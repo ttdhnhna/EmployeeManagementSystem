@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống quản lý Nhân viên</title>
+</head>
+<body>
+    <div >
+        <h1> Danh sách Nhân viên</h1>
+        <table border="1">
+            <thead >
+                <tr>
+                    <th>ID</th>
+                    <th>Họ tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Chức vụ</th>
+                    <th>Mã phòng ban</th>
+                    <th>Mã trình độ</th>
+                    <th>Bậc lương</th>
+                    <th>Mã hợp đồng</th>
+                    <th>Chức năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each = "employee: ${ListEmployees}">
+                    <td th:text="${employee.idnv}"></td>
+                    <td th:text="${employee.Hoten}"></td>
+                    <td th:text="${employee.Ngaysinh}"></td>
+                    <td th:text="${employee.Chucvu}"></td>
+                    <td th:text="${employee.idpb}"></td>
+                    <td th:text="${employee.idtdhv}"></td>
+                    <td th:text="${employee.idluong}"></td>
+                    <td th:text="${employee.idmhd}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
