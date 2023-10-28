@@ -19,15 +19,10 @@ public class Employee {
     private String SDT;
     private String Email;
     private String Chucvu;
-    private Long idpb;
-    private Long idtdhv;
-    private Long idluong;
-    private Long idmhd;
     //Constructor được sử dụng để khởi tạo đối tượng 
     public Employee() {
     }
-    public Employee(Long idnv, String hoten, String ngaysinh, String quequan, String dantoc, String sDT, String Email, String chucvu,
-        Long idpb, Long idtdhv, Long idluong, Long idmhd) {
+    public Employee(Long idnv, String hoten, String ngaysinh, String quequan, String dantoc, String sDT, String Email, String chucvu) {
         this.idnv = idnv;
         this.Hoten = hoten;
         this.Ngaysinh = ngaysinh;
@@ -36,10 +31,6 @@ public class Employee {
         this.SDT = sDT;
         this.Email = Email;
         this.Chucvu = chucvu;
-        this.idpb = idpb;
-        this.idtdhv = idtdhv;
-        this.idluong = idluong;
-        this.idmhd = idmhd;
     }
     //Các getter và setter này được dùng để giúp các lớn bên ngoài có thể lấy và chỉnh sửa các thuộc tính lớp con kế thừa thuộc tính của lớp này 
     //Lý do cần sử dụng là để giúp các dữ liệu quan trọng như thuộc tính của lớp cha sẽ không thể bị thay đổi bởi người dùng.
@@ -91,30 +82,4 @@ public class Employee {
     public void setChucvu(String chucvu) {
         Chucvu = chucvu;
     }
-    public Long getIdpb() {
-        return idpb;
-    }
-    public void setIdpb(Long idpb) {
-        this.idpb = idpb;
-    }
-    public Long getIdtdhv() {
-        return idtdhv;
-    }
-    public void setIdtdhv(Long idtdhv) {
-        this.idtdhv = idtdhv;
-    }
-    public Long getIdluong() {
-        return idluong;
-    }
-    public void setIdluong(Long idluong) {
-        this.idluong = idluong;
-    }
-    public Long getIdmhd() {
-        return idmhd;
-    }
-    public void setIdmhd(Long idmhd) {
-        this.idmhd = idmhd;
-    }
-    
-    
 }
