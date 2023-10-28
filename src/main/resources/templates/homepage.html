@@ -15,19 +15,22 @@
                     <th>ID</th>
                     <th>Họ tên</th>
                     <th>Ngày sinh</th>
+                    <th>SDT</th>
+                    <th>Quê quán</th>
                     <th>Chức vụ</th>
                     <th>Mã phòng ban</th>
                     <th>Mã trình độ</th>
                     <th>Bậc lương</th>
                     <th>Mã hợp đồng</th>
-                    <th>Chức năng</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each = "employee: ${ListEmployees}">
+                <tr th:each = "employee : ${ListEmployees}">
                     <td th:text="${employee.idnv}"></td>
                     <td th:text="${employee.Hoten}"></td>
                     <td th:text="${employee.Ngaysinh}"></td>
+                    <td th:text="${employee.SDT}"></td>
+                    <td th:text="${employee.Quequan}"></td>
                     <td th:text="${employee.Chucvu}"></td>
                     <td th:text="${employee.idpb}"></td>
                     <td th:text="${employee.idtdhv}"></td>
