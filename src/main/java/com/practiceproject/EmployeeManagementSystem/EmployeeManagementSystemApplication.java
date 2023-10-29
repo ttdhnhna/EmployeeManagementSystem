@@ -9,9 +9,8 @@ public class EmployeeManagementSystemApplication {
 		SpringApplication.run(EmployeeManagementSystemApplication.class, args);
 	}
 	//TODO: Nếu hiển thị được dữ liệu thì sẽ bổ sung thêm phần giới tính cho Nhân viên.
-	/*Đã thử xóa cái phần spring.datasource.driver trong phần properties và có xóa đi mấy thuộc tính
-	 * private của service vs controller
-	 * Bổ sung thêm phần tên cột vào phần thuộc tính.
-	 * Và sửa lại phần dữ liệu
+	/*Đã chạy ổn được phần thêm dữ liệu nhân viên rồi giờ thì chỉ cần cố tìm xem dữ liệu đã
+	 * lưu ở đâu thôi vì chắc chắn nó không được lưu ở trên máy của mình và bổ xung thêm chức 
+	 * năng xóa
 	*/
 }
