@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,7 @@
     <!-- Header -->
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
         <!-- Brand -->
-        <a class="navbar-brand" href="#">Hệ thống Quản lý Nhân viên</a>
+        <a class="navbar-brand" th:href="@{/}">Hệ thống Quản lý Nhân viên</a>
       
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -37,13 +37,14 @@
       </nav>
       <br>
 
+    <!-- Body -->
     <div class="container">
         <div class="row">
             <h1> Danh sách Nhân viên</h1>
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <a th:href="@{/addEmployee/new}" class="btn btn-primary btn-sm mb-3">
+                <a th:href="@{/addEmployee}" class="btn btn-primary btn-sm mb-3">
                     Thêm mới
                 </a>
             </div>

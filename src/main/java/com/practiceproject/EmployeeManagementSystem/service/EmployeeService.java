@@ -17,4 +17,8 @@ public class EmployeeService {
     public List<Employee> getEmployees(){
         return repository.findAll();
     }
+
+    public void saveEmployee(Employee employee){
+        this.repository.save(employee);
+    }
 }
