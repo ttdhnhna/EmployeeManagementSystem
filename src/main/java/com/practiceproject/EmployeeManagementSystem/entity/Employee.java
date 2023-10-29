@@ -1,5 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,26 +13,36 @@ public class Employee {
     @Id//Chỉ định khóa chính của một thực thể
     @GeneratedValue (strategy = GenerationType.IDENTITY)//Cung cấp thông số kỹ thuật của strategy tạo các giá trị cho khóa chính
     private Long idnv;
+
+    @Column(name = "Hoten")
     private String Hoten;
+    @Column(name = "Ngaysinh")
     private String Ngaysinh;
+    @Column(name = "Quequan")
     private String Quequan;
+    @Column(name = "Dantoc")
     private String Dantoc;
+    @Column(name = "SDT")
     private String SDT;
+    @Column(name = "Email")
     private String Email;
+    @Column(name = "Chucvu")
     private String Chucvu;
+    
     //Constructor được sử dụng để khởi tạo đối tượng 
     public Employee() {
     }
-    public Employee(Long idnv, String hoten, String ngaysinh, String quequan, String dantoc, String sDT, String Email, String chucvu) {
-        this.idnv = idnv;
-        this.Hoten = hoten;
-        this.Ngaysinh = ngaysinh;
-        this.Quequan = quequan;
-        this.Dantoc = dantoc;
-        this.SDT = sDT;
-        this.Email = Email;
-        this.Chucvu = chucvu;
-    }
+     
+    // public Employee(Long idnv, String hoten, String ngaysinh, String quequan, String dantoc, String sDT, String Email, String chucvu) {
+    //     this.idnv = idnv;
+    //     this.Hoten = hoten;
+    //     this.Ngaysinh = ngaysinh;
+    //     this.Quequan = quequan;
+    //     this.Dantoc = dantoc;
+    //     this.SDT = sDT;
+    //     this.Email = Email;
+    //     this.Chucvu = chucvu;
+    // }
     //Các getter và setter này được dùng để giúp các lớn bên ngoài có thể lấy và chỉnh sửa các thuộc tính lớp con kế thừa thuộc tính của lớp này 
     //Lý do cần sử dụng là để giúp các dữ liệu quan trọng như thuộc tính của lớp cha sẽ không thể bị thay đổi bởi người dùng.
     public Long getIdnv() {

@@ -9,8 +9,9 @@ public class EmployeeManagementSystemApplication {
 		SpringApplication.run(EmployeeManagementSystemApplication.class, args);
 	}
 	//TODO: Nếu hiển thị được dữ liệu thì sẽ bổ sung thêm phần giới tính cho Nhân viên.
-	/*Vẫn lỗi không hiển thị được dữ liệu có thể là do lỗi liên kết hoặc có thể là do phần khai
-	 * báo thuộc tính dữ liệu của mình bị sai nhưng cần phải xem lại của nó hoặc có khi cứ thử 
-	 * tạo cách thêm dữ liệu trước vậy.
+	/*Đã thử xóa cái phần spring.datasource.driver trong phần properties và có xóa đi mấy thuộc tính
+	 * private của service vs controller
+	 * Bổ sung thêm phần tên cột vào phần thuộc tính.
+	 * Và sửa lại phần dữ liệu
 	*/
 }

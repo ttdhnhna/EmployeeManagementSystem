@@ -10,7 +10,7 @@ import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
 public class EmployeeController {
     @Autowired 
     //Điều này có nghĩa là ta sẽ lấy được bean đc tạo tự động bởi Spring
-    private EmployeeService service;
+    EmployeeService service;
     //Hiển thị trang chủ
     @GetMapping("/")
     // Điều này có nghĩa là phương thức này sẽ được thực hiện khi người dùng gửi yêu cầu GET tới '/'
