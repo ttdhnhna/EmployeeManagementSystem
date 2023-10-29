@@ -12,5 +12,6 @@ public class EmployeeManagementSystemApplication {
 	/*Vẫn lỗi không hiển thị được dữ liệu có thể là do lỗi liên kết hoặc có thể là do phần khai
 	 * báo thuộc tính dữ liệu của mình bị sai nhưng cần phải xem lại của nó hoặc có khi cứ thử 
 	 * tạo cách thêm dữ liệu trước vậy.
+	 * Và có thể nên bổ sung thêm phần tên cột vào thuộc tính
 	*/
 }
