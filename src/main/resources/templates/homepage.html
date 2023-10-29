@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,11 +7,12 @@
     <title>Hệ thống quản lý Nhân viên</title>
 </head>
 <body>
-    <div >
+    <div align="center">
         <h1> Danh sách Nhân viên</h1>
         <table border="1">
             <thead >
                 <tr>
+                    <th>ID</th>
                     <th>Họ tên</th>
                     <th>Ngày sinh</th>
                     <th>Quê quán</th>
@@ -23,6 +24,7 @@
             </thead>
             <tbody>
                 <tr th:each = "employee : ${ListEmployees}">
+                    <td th:text="${employee.idnv}"></td>
                     <td th:text="${employee.Hoten}"></td>
                     <td th:text="${employee.Ngaysinh}"></td>
                     <td th:text="${employee.Quequan}"></td>
