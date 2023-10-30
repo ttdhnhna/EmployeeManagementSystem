@@ -60,6 +60,7 @@
                     <th>SDT</th>
                     <th>Email</th>
                     <th>Chức vụ</th>
+                    <th>Chức năng</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,6 +73,10 @@
                     <td th:text="${employee.SDT}"></td>
                     <td th:text="${employee.Email}"></td>
                     <td th:text="${employee.Chucvu}"></td>
+                    <td>
+                      <a th:href="@{/updateEmployee/{id}(id=${employee.id})}" class="btn btn-primary">Sửa</a>
+                      <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Xóa</a>
+                  </td>
                 </tr>
             </tbody>
         </table>

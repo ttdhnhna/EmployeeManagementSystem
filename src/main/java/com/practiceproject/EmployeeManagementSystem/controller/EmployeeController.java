@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
@@ -33,6 +34,18 @@ public class EmployeeController {
     public String saveEmployee(@ModelAttribute("employee") Employee employee){
         //Luu vao csdl
         service.saveEmployee(employee);
+        return "redirect:/";
+    }
+    @GetMapping("/updateEmployee/{id}")
+    public String updateEmployee(@PathVariable(value = "id") long id, Model model){
+        //Lay du lieu nhan vien tu service
+        Employee employee=service.getEmployeebyID(id);
+        model.addAttribute("employee", employee);
+        return "updateemployee"; 
+    }
+    @GetMapping("/deleteEmployee/{id}")
+    public String deleteEmployee(@PathVariable(value = "id") long id){
+        this.service.deleteEmployeebyID(id);
         return "redirect:/";
     }
 }

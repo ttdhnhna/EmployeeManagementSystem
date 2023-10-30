@@ -1,7 +1,7 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +17,24 @@ public class EmployeeService {
     public List<Employee> getEmployees(){
         return repository.findAll();
     }
-
+    //Luu nhan vien
     public void saveEmployee(Employee employee){
         this.repository.save(employee);
     }
+    //Tim nhan vien bang id
+    public Employee getEmployeebyID(long id){
+        Optional<Employee> optional=repository.findById(id);
+        Employee employee=null;
+        if(optional.isPresent()){
+            employee=optional.get();
+        }else{
+            throw new RuntimeException("Khong tim thay id nhan vien: "+id);
+        }
+        return employee;
+    }
+    //Xoa nhan vien bang id
+    public void deleteEmployeebyID(long id){
+        this.repository.deleteById(id);
+    }
+
 }
