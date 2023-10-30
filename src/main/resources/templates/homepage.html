@@ -74,8 +74,8 @@
                     <td th:text="${employee.Email}"></td>
                     <td th:text="${employee.Chucvu}"></td>
                     <td>
-                      <a th:href="@{/updateEmployee/{id}(id=${employee.id})}" class="btn btn-primary">Sửa</a>
-                      <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Xóa</a>
+                      <a th:href="@{/updateEmployee/{id}(id=${employee.idnv})}" class="btn btn-primary">Sửa</a>
+                      <a th:href="@{/deleteEmployee/{id}(id=${employee.idnv})}" class="btn btn-danger">Xóa</a>
                   </td>
                 </tr>
             </tbody>
