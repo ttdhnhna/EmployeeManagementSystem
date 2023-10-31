@@ -20,6 +20,8 @@ public class Employee {
     private String Ngaysinh;
     @Column(name = "Quequan")
     private String Quequan;
+    @Column(name = "GT")
+    private String GT;
     @Column(name = "Dantoc")
     private String Dantoc;
     @Column(name = "SDT")
@@ -69,6 +71,7 @@ public class Employee {
     public void setQuequan(String quequan) {
         Quequan = quequan;
     }
+    
     public String getDantoc() {
         return Dantoc;
     }
@@ -92,5 +95,13 @@ public class Employee {
     }
     public void setChucvu(String chucvu) {
         Chucvu = chucvu;
+    }
+
+    public String getGT() {
+        return GT;
+    }
+
+    public void setGT(String gT) {
+        GT = gT;
     }
 }

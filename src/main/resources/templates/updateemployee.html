@@ -47,13 +47,19 @@
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
                         nut gui -->
                         <div class="form-group">
+                            <input 
+                                type="hidden"
+                                th:field="*{idnv}"
+                                class="form-control"
+                            />
+                        </div>
+                        <div class="form-group">
                             <label>Họ tên</label>
                             <input 
                                 type="text"
                                 name="Hoten"
                                 th:field="*{Hoten}"
                                 class="form-control"
-                                placeholder="Nhập họ và tên nhân viên"
                             />
                         </div>
                         <div class="form-group">
@@ -63,7 +69,6 @@
                                 name="Ngaysinh"
                                 th:field="*{Ngaysinh}"
                                 class="form-control"
-                                placeholder="Nhập ngày sinh nhân viên"
                             />
                         </div>
                         <div class="form-group">
@@ -73,7 +78,15 @@
                                 name="Quequan"
                                 th:field="*{Quequan}"
                                 class="form-control"
-                                placeholder="Nhập quê quán nhân viên"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label>Giới tính</label>
+                            <input 
+                                type="text"
+                                name="GT"
+                                th:field="*{GT}"
+                                class="form-control"
                             />
                         </div>
                         <div class="form-group">
@@ -83,7 +96,6 @@
                                 name="Dantoc"
                                 th:field="*{Dantoc}"
                                 class="form-control"
-                                placeholder="Nhập dân tộc nhân viên"
                             />
                         </div>
                         <div class="form-group">
@@ -93,7 +105,6 @@
                                 name="SDT"
                                 th:field="*{SDT}"
                                 class="form-control"
-                                placeholder="Nhập số điện thoại nhân viên"
                             />
                         </div>
                         <div class="form-group">
@@ -103,7 +114,6 @@
                                 name="Email"
                                 th:field="*{Email}"
                                 class="form-control"
-                                placeholder="Nhập Email"
                             />
                         </div>
                         <div class="form-group">
@@ -113,7 +123,6 @@
                                 name="Chucvu"
                                 th:field="*{Chucvu}"
                                 class="form-control"
-                                placeholder="Nhập chức vụ nhân viên"
                             />
                         </div>
                         <div class="box-footer">
@@ -122,6 +131,8 @@
                             </button>
                         </div>
                     </form>
+                    <hr>
+		            <a th:href="@{/}">Quay lại</a>
                 </div>
             </div>
         </div>
