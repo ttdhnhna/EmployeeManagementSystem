@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,20 +34,19 @@
         <!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
           <form class="form-inline" action="/action_page.php">
             <input class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm">
-            <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
+            <button class="btn btn-success" type="submit">Tìm kiếm</button>
           </form>
         </nav> -->
       </nav>
       <br>
-
     <!-- Body -->
     <div class="container">
         <div class="row">
-            <h1> Danh sách Nhân viên</h1>
+            <h1> Danh sách Phòng ban</h1>
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <a th:href="@{/addEmployee}" class="btn btn-primary btn-sm mb-3">
+                <a th:href="@{}" class="btn btn-primary btn-sm mb-3">
                     Thêm mới
                 </a>
             </div>
@@ -55,33 +54,24 @@
         <table class="table thead-light table-bordered">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>Họ tên</th>
-                    <th>Ngày sinh</th>
-                    <th>Quê quán</th>
-                    <th>Giới tính</th>
-                    <th>Dân tộc</th>
-                    <th>SĐT</th>
-                    <th>Email</th>
-                    <th>Chức vụ</th>
+                    <th>ID Phòng ban</th>
+                    <th>Tên Phòng ban</th>
+                    <th>Địa chỉ</th>
+                    <th>Số điện thoại</th>
                     <th>Chức năng</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each = "employee : ${ListEmployees}">
-                    <td th:text="${employee.idnv}"></td>
-                    <td th:text="${employee.Hoten}"></td>
-                    <td th:text="${employee.Ngaysinh}"></td>
-                    <td th:text="${employee.Quequan}"></td>
-                    <td th:text="${employee.GT}"></td>
-                    <td th:text="${employee.Dantoc}"></td>
-                    <td th:text="${employee.SDT}"></td>
-                    <td th:text="${employee.Email}"></td>
-                    <td th:text="${employee.Chucvu}"></td>
+                <tr th:each = "department : ${ListDepartments}">
+                    <td th:text="${employee.idpb}"></td>
+                    <td th:text="${employee.tenpb}"></td>
+                    <td th:text="${employee.diachi}"></td>
+                    <td th:text="${employee.sdt}"></td>
                     <td>
-                      <a th:href="@{/updateEmployee/{id}(id=${employee.idnv})}" class="btn btn-primary">Sửa</a>
-                      <a th:href="@{/deleteEmployee/{id}(id=${employee.idnv})}" class="btn btn-danger">Xóa</a>
-                  </td>
+                      <a th:href="@{}" class="btn btn-primary">Sửa</a>
+                      <a th:href="@{}" class="btn btn-primary">Chi tiết</a>
+                      <a th:href="@{}" class="btn btn-danger">Xóa</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

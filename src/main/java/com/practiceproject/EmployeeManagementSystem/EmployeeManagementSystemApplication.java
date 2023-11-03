@@ -8,4 +8,5 @@ public class EmployeeManagementSystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EmployeeManagementSystemApplication.class, args);
 	}
+	//TODO: Đầu tiên là làm một trang web để có thể hiển thị ra đầy đủ thông tin nhân viên.
 }

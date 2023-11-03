@@ -35,16 +35,6 @@ public class Employee {
     public Employee() {
     }
      
-    // public Employee(Long idnv, String hoten, String ngaysinh, String quequan, String dantoc, String sDT, String Email, String chucvu) {
-    //     this.idnv = idnv;
-    //     this.Hoten = hoten;
-    //     this.Ngaysinh = ngaysinh;
-    //     this.Quequan = quequan;
-    //     this.Dantoc = dantoc;
-    //     this.SDT = sDT;
-    //     this.Email = Email;
-    //     this.Chucvu = chucvu;
-    // }
     //Các getter và setter này được dùng để giúp các lớn bên ngoài có thể lấy và chỉnh sửa các thuộc tính lớp con kế thừa thuộc tính của lớp này 
     //Lý do cần sử dụng là để giúp các dữ liệu quan trọng như thuộc tính của lớp cha sẽ không thể bị thay đổi bởi người dùng.
     public Long getIdnv() {
