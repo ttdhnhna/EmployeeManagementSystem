@@ -37,11 +37,4 @@ public class EmployeeService {
         this.repository.deleteById(id);
     }
 }
-/*public Employee getEmployeebyID(long id){
-        Employee emp =repository.getById(null);
-        if(emp==null){
-            throw new RuntimeException("Khong tim thay id nhan vien: "+id);
-        }
-        return emp;
-    }
-*/
+
