@@ -63,10 +63,10 @@
             </thead>
             <tbody>
                 <tr th:each = "department : ${ListDepartments}">
-                    <td th:text="${employee.idpb}"></td>
-                    <td th:text="${employee.tenpb}"></td>
-                    <td th:text="${employee.diachi}"></td>
-                    <td th:text="${employee.sdt}"></td>
+                    <td th:text="${department.idpb}"></td>
+                    <td th:text="${department.tenpb}"></td>
+                    <td th:text="${department.diachi}"></td>
+                    <td th:text="${department.sdt}"></td>
                     <!-- <td>
                       <a th:href="@{}" class="btn btn-primary">Sửa</a>
                       <a th:href="@{}" class="btn btn-primary">Chi tiết</a>
