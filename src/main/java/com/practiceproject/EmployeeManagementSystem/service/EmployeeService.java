@@ -3,6 +3,7 @@ package com.practiceproject.EmployeeManagementSystem.service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
@@ -35,6 +36,11 @@ public class EmployeeService {
     //Xoa nhan vien bang id
     public void deleteEmployeebyID(long id){
         this.repository.deleteById(id);
+    }
+
+    //Sắp xếp nhân viên theo tên
+    public List<Employee> findEmployeewithSort(String field){
+        return repository.findAll(Sort.by(Sort.Direction.ASC,field));
     }
 }
 

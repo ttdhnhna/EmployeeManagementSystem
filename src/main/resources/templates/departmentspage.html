@@ -67,11 +67,11 @@
                     <td th:text="${department.tenpb}"></td>
                     <td th:text="${department.diachi}"></td>
                     <td th:text="${department.sdt}"></td>
-                    <!-- <td>
-                      <a th:href="@{}" class="btn btn-primary">Sửa</a>
-                      <a th:href="@{}" class="btn btn-primary">Chi tiết</a>
-                      <a th:href="@{}" class="btn btn-danger">Xóa</a>
-                    </td> -->
+                    <td>
+                      <!-- <a th:href="@{}" class="btn btn-primary">Sửa</a>
+                      <a th:href="@{}" class="btn btn-primary">Chi tiết</a> -->
+                      <a th:href="@{/deleteDepartment/{id}(id=${department.idpb})}" class="btn btn-danger">Xóa</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
