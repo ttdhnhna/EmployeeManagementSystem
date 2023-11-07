@@ -9,4 +9,5 @@ public class EmployeeManagementSystemApplication {
 		SpringApplication.run(EmployeeManagementSystemApplication.class, args);
 	}
 	//TODO: Đầu tiên là làm một trang web để có thể hiển thị ra đầy đủ thông tin nhân viên.
+	/*Lỗi không quay lại về trang hiện danh sách phong ban được. */
 }

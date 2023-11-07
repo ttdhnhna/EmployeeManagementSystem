@@ -32,12 +32,12 @@ public class DepartmentController {
     @PostMapping("/saveDepartment")
     public String saveDepartment(@ModelAttribute("department") Department department){
         service.saveDepartment(department); 
-        return "redirect:departmentspage";
+        return "redirect:/departmentspage";
     }
 
     @GetMapping("/deleteDepartment/{id}")
     public String deleteDepartment(@PathVariable(value = "id") long id){
         this.service.deleteDepartmentID(id);
-        return "redirect:departmentspage";
+        return "redirect:/departmentspage";
     }
 }
