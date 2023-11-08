@@ -38,9 +38,5 @@ public class EmployeeService {
         this.repository.deleteById(id);
     }
 
-    //Sắp xếp nhân viên theo tên
-    public List<Employee> findEmployeewithSort(String field){
-        return repository.findAll(Sort.by(Sort.Direction.ASC,field));
-    }
 }
 

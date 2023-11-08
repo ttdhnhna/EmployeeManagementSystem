@@ -40,4 +40,11 @@ public class DepartmentController {
         this.service.deleteDepartmentID(id);
         return "redirect:/departments";
     }
+
+    @GetMapping("/updateDepartment/{id}")
+    public String updateDepartment(@PathVariable(value = "id") long id, Model model){
+        Department department=service.getDepartmentID(id);
+        model.addAttribute("department", department);
+        return "updatedepartment";
+    }
 }
