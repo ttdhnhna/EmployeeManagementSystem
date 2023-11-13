@@ -8,5 +8,4 @@ public class EmployeeManagementSystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EmployeeManagementSystemApplication.class, args);
 	}
-	//TODO: Thêm một branch khác để xử lý chức năng login
 }
