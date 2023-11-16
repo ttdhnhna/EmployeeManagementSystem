@@ -2,8 +2,6 @@ package com.practiceproject.EmployeeManagementSystem.entity;
 
 import java.util.Collection;
 
-import javax.management.relation.Role;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,10 +34,10 @@ public class User {
     @JoinTable(
         name = "users_roles",
         joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+        inverseJoinColumns = @JoinColumn(name="roles_id", referencedColumnName = "id"))
+    private Collection<Roles> roles;
 
-    public User(String name, String password, Collection<Role> roles, String email) {
+    public User(String name, String password, Collection<Roles> roles, String email) {
         super();
         this.name = name;
         this.password = password;
@@ -58,10 +56,10 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    public Collection<Role> getRoles() {
+    public Collection<Roles> getRoles() {
         return roles;
     }
-    public void setRoles(Collection<Role> roles) {
+    public void setRoles(Collection<Roles> roles) {
         this.roles = roles;
     }
     public Long getId() {

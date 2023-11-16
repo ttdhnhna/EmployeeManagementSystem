@@ -19,7 +19,7 @@
 	<dependencies>
 
 		<!-- Security dependency -->
- 		<dependency>
+ 		<!-- <dependency>
  			<groupId>org.springframework.boot</groupId>
  			<artifactId>spring-boot-starter-security</artifactId>
  			<version>3.1.5</version>
@@ -35,7 +35,7 @@
      		<groupId>org.springframework.security</groupId>
      		<artifactId>spring-security-core</artifactId>
      		<version>5.1.6.RELEASE</version>
-   		</dependency>
+   		</dependency> -->
 
 		<!-- Added Dependency -->
 		<dependency>
