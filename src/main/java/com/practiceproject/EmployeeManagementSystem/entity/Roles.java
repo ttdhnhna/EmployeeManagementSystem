@@ -15,7 +15,8 @@ public class Roles {
     private String name;
     public Roles() {
     }
-    public Roles( String name) {
+    public Roles(String name) {
+        super();
         this.name = name;
     }
     public Long getId() {

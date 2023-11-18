@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class EmployeeManagementSystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EmployeeManagementSystemApplication.class, args);
-		//Đã chạy thử thành công
+		//TODO: Tạo trang đăng ký tk
 	}
 }
