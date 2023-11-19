@@ -1,9 +1,11 @@
-package com.practiceproject.EmployeeManagementSystem.dto;
+package com.practiceproject.EmployeeManagementSystem.entity;
 
 public class UserRegistrationDto {
     private String name;
     private String email;
     private String password;
+    public UserRegistrationDto() {
+    }
     public UserRegistrationDto(String name, String email, String password) {
         super();
         this.name = name;

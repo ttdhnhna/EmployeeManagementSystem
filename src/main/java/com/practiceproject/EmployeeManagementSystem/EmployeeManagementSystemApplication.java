@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class EmployeeManagementSystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EmployeeManagementSystemApplication.class, args);
-		//TODO: Tạo trang đăng ký tk
+		//TODO: Về nhà chạy thử trên laptop xong kiểm tra csdl xem có lưu thành công ko?
 	}
 }

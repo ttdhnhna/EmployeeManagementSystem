@@ -2,12 +2,11 @@ package com.practiceproject.EmployeeManagementSystem.service;
 
 import java.util.Arrays;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.practiceproject.EmployeeManagementSystem.dto.UserRegistrationDto;
 import com.practiceproject.EmployeeManagementSystem.entity.Roles;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
+import com.practiceproject.EmployeeManagementSystem.entity.UserRegistrationDto;
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 
 @Service
