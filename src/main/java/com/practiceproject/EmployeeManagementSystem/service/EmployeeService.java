@@ -8,31 +8,32 @@ import org.springframework.stereotype.Service;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 
-@Service
-//Được sử dụng với các lớp cung cấp các chức năng business
+@Service//Nó được sử dụng để đánh dấu lớp là nhà cung cấp dịch vụ
+//Hay có thể nói là nó đánh dấu lớp nào sẽ thực hiện việc xử lý các hoạt động
 public class EmployeeService {
     @Autowired //Được sử dụng để tự động Dependency Injection
     EmployeeRepository repository;//Hay có thể nói cách khác là giống như kế thừa các thuộc tính của lớp EmployeeRepository vào repository  
     //Để có thể sử dụng các chức năng của nó trong service.
+    //Chức năng hiện tất cả nhân viên
     public List<Employee> getEmployees(){
         return repository.findAll();
     }
-    //Luu nhan vien
+    //Lưu nhân viên
     public void saveEmployee(Employee employee){
         this.repository.save(employee);
     }
-    //Tim nhan vien bang id
+    //Tìm nhân viên bằng id
     public Employee getEmployeebyID(long id){
         Optional<Employee> optional=repository.findById(id);
         Employee employee=null;
         if(optional.isPresent()){
             employee=optional.get();
         }else{
-            throw new RuntimeException("Khong tim thay id nhan vien: "+id);
+            throw new RuntimeException("Không tìm thấy id nhân viên: "+id);
         }
         return employee;
     }
-    //Xoa nhan vien bang id
+    //Xóa nhân viên bằng id
     public void deleteEmployeebyID(long id){
         this.repository.deleteById(id);
     }

@@ -1,6 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
-import jakarta.persistence.Column;
+// import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,23 +12,24 @@ import jakarta.persistence.Table;
 public class Employee {
     @Id//Chỉ định khóa chính của một thực thể
     @GeneratedValue (strategy = GenerationType.IDENTITY)//Cung cấp thông số kỹ thuật của strategy tạo các giá trị cho khóa chính
+    //Để tự động tạo các giá trị duy nhất cho các cột khóa chính trong các bảng cơ sở dữ liệu của chúng ta.
     private Long idnv;
 
-    @Column(name = "Hoten")
+    // @Column(name = "Hoten")
     private String Hoten;
-    @Column(name = "Ngaysinh")
+    // @Column(name = "Ngaysinh")
     private String Ngaysinh;
-    @Column(name = "Quequan")
+    // @Column(name = "Quequan")
     private String Quequan;
-    @Column(name = "GT")
+    // @Column(name = "GT")
     private String GT;
-    @Column(name = "Dantoc")
+    // @Column(name = "Dantoc")
     private String Dantoc;
-    @Column(name = "SDT")
+    // @Column(name = "SDT")
     private String SDT;
-    @Column(name = "Email")
+    // @Column(name = "Email")
     private String Email;
-    @Column(name = "Chucvu")
+    // @Column(name = "Chucvu")
     private String Chucvu;
     
     //Constructor được sử dụng để khởi tạo đối tượng 
