@@ -1,6 +1,49 @@
-Whitelabel Error Page
-This application has no explicit mapping for /error, so you are seeing this as a fallback.
+// Controller
+//  @GetMapping("/page/{pageNo}")
+// 	public String findPaginated(@PathVariable (value = "pageNo") int pageNo, 
+// 			@RequestParam("sortField") String sortField,
+// 			@RequestParam("sortDir") String sortDir,
+// 			Model model) {
+// 		int pageSize = 5;
+		
+// 		Page<Employee> page = employeeService.findPaginated(pageNo, pageSize, sortField, sortDir);
+// 		List<Employee> listEmployees = page.getContent();
+		
+// 		model.addAttribute("currentPage", pageNo);
+// 		model.addAttribute("totalPages", page.getTotalPages());
+// 		model.addAttribute("totalItems", page.getTotalElements());
+		
+// 		model.addAttribute("sortField", sortField);
+// 		model.addAttribute("sortDir", sortDir);
+// 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+		
+// 		model.addAttribute("listEmployees", listEmployees);
+// 		return "index";
+// 	}
 
-Mon Nov 06 11:55:43 ICT 2023
-There was an unexpected error (type=Not Found, status=404).
-No message available
+//Service
+    // @Override
+	// public Page<Employee> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+	// 	Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+	// 		Sort.by(sortField).descending();
+		
+	// 	Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+	// 	return this.employeeRepository.findAll(pageable);
+	// }
+
+//HTML
+// <tr>
+// <th>
+// <a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
+//     Employee First Name</a>
+// </th>
+// <th>
+// <a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
+//     Employee Last Name</a>
+// </th>
+// <th>
+// <a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
+//     Employee Email</a>
+// </th>
+// <th> Actions </th>
+// </tr>
