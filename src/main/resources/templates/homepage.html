@@ -27,22 +27,22 @@
               <a class="nav-link" th:href="@{/} ">Quản lý Nhân viên</a>
             </li>
             <li class="nav-item">
-              <!-- <a class="nav-link" th:href="@{/departments} ">Quản lý Phòng ban</a> -->
+              <a class="nav-link" th:href="@{/departments} ">Quản lý Phòng ban</a>
             </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" th:href="@{/registration} ">Đăng ký</a>
+            </li> -->
             <li class="nav-item">
-              <!-- <a class="nav-link" th:href="@{/registration} ">Đăng ký</a> -->
-            </li>
-            <li class="nav-item">
-              <!-- <a class="nav-link" th:href="@{/} ">Đăng xuất</a> -->
+              <a class="nav-link" th:href="@{/} ">Đăng xuất</a>
             </li>
           </ul>
         </div>
-        <!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
           <form class="form-inline" action="/action_page.php">
             <input class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm">
             <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
           </form>
-        </nav> -->
+        </nav>
     </nav>
     <br>
 
@@ -55,6 +55,9 @@
             <div class="col-lg-3">
                 <a th:href="@{/addEmployee}" class="btn btn-primary btn-sm mb-3">
                     Thêm mới
+                </a>
+                <a th:href="@{/registration}" class="btn btn-primary btn-sm mb-3">
+                    Đăng ký
                 </a>
             </div>
         </div>
