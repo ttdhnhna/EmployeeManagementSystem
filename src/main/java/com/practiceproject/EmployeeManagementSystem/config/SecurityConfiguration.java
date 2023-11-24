@@ -1,5 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -10,11 +11,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.practiceproject.EmployeeManagementSystem.service.UserService;
+
 // import com.practiceproject.EmployeeManagementSystem.service.UserService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
+    @Autowired
+    private UserService service;
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -23,7 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-        auth.setUserDetailsService(null);
+        auth.setUserDetailsService(service);
         auth.setPasswordEncoder(passwordEncoder());
         return auth;
     }

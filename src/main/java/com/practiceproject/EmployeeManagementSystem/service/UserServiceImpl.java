@@ -2,6 +2,8 @@ package com.practiceproject.EmployeeManagementSystem.service;
 
 import java.util.Arrays;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Roles;
@@ -27,6 +29,12 @@ public class UserServiceImpl implements UserService{
         Arrays.asList(new Roles("ROLE_USER")) , registrationDto.getEmail());
         
         return repository.save(user);
+    }
+
+
+    @Override
+    public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException {
+        return null;
     }
     
 }
