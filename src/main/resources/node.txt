@@ -47,3 +47,20 @@
 // </th>
 // <th> Actions </th>
 // </tr>
+
+* Để tạo liên kết giữa 2 bảng dữ liệu phòng ban và nhân viên thì mình sẽ dùng đến @onetomany và @manytoone 
+cái này sẽ cần phải nghiên cứu 1 lúc mới được.
+
+* Sau khi làm xong cái chức năng đăng nhập với đăng ký thì sẽ chuyển trang đăng nhập sẽ là trang hiển thị đầu tiên
+và sau khi đăng nhập thành công thì mới chuyển đến trang chủ
+
+* Sửa cái hiện id.
+
+* Chức năng bổ sung: Sắp xếp theo tên, id, ...; Phân trang; Xem chi tiết nhân viên, phòng ban; Tìm kiếm nhân viên theo id; 
+Tính lương và cật nhật lương.
+
+* Làm trang mẫu cho người dùng bình thường với thông tin hiện lên trang chủ là thông tin của nhân viên đăng nhập.
+
+* Tạo khả năng phân biệt tài khoản admin và user 
+
+* Bổ sung chức năng phân quyền
