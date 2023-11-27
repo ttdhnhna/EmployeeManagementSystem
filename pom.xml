@@ -18,6 +18,14 @@
 	</properties>
 	<dependencies>
 
+		<!-- Added Dependency -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+
+
 		<!-- Security dependency -->
  		<dependency>
  			<groupId>org.springframework.boot</groupId>
@@ -29,12 +37,6 @@
      		<groupId>org.springframework.security</groupId>
      		<artifactId>spring-security-config</artifactId>
     		<version>5.1.6.RELEASE</version>
-   		</dependency>
-
-   		<dependency>
-     		<groupId>org.springframework.security</groupId>
-     		<artifactId>spring-security-core</artifactId>
-     		<version>5.1.6.RELEASE</version>
    		</dependency>
 
 		<!-- Added Dependency -->
