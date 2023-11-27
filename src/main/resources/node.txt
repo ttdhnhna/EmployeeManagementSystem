@@ -64,3 +64,105 @@ Tính lương và cật nhật lương.
 * Tạo khả năng phân biệt tài khoản admin và user 
 
 * Bổ sung chức năng phân quyền
+
+ERROR: 
+2023-11-27T11:26:31.982+07:00  INFO 5328 --- [  restartedMain] .p.E.EmployeeManagementSystemApplication : Starting EmployeeManagementSystemApplication using Java 20.0.1 with PID 5328 (D:\CODE\EmployeeManagementSystem\target\classes started by Admin in D:\CODE\EmployeeManagementSystem)
+2023-11-27T11:26:32.046+07:00  INFO 5328 --- [  restartedMain] .p.E.EmployeeManagementSystemApplication : No active profile set, falling back to 1 default profile: "default"
+2023-11-27T11:26:32.247+07:00  INFO 5328 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults 
+active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-27T11:26:32.249+07:00  INFO 5328 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related 
+logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-27T11:26:34.561+07:00 ERROR 5328 --- [  restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+java.lang.IllegalStateException: Error processing condition on org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration.propertySourcesPlaceholderConfigurer
+        at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:60) ~[spring-boot-autoconfigure-3.1.5.jar:3.1.5]
+        at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:108) ~[spring-context-6.0.13.jar:6.0.13]
+        at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForBeanMethod(ConfigurationClassBeanDefinitionReader.java:183) ~[spring-context-6.0.13.jar:6.0.13]
+        at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:144) ~[spring-context-6.0.13.jar:6.0.13]
+        at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:120) ~[spring-context-6.0.13.jar:6.0.13]
+        at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:427) ~[spring-context-6.0.13.jar:6.0.13]
+        at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:287) ~[spring-context-6.0.13.jar:6.0.13]
+        at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:344) ~[spring-context-6.0.13.jar:6.0.13]
+        at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:115) ~[spring-context-6.0.13.jar:6.0.13]
+        at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:779) ~[spring-context-6.0.13.jar:6.0.13]
+        at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:597) ~[spring-context-6.0.13.jar:6.0.13]
+        at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.5.jar:3.1.5]
+        at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:738) ~[spring-boot-3.1.5.jar:3.1.5]
+        at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:440) ~[spring-boot-3.1.5.jar:3.1.5]      
+        at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) ~[spring-boot-3.1.5.jar:3.1.5]
+        at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.5.jar:3.1.5]
+        at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.5.jar:3.1.5]
+        at com.practiceproject.EmployeeManagementSystem.EmployeeManagementSystemApplication.main(EmployeeManagementSystemApplication.java:9) ~[classes/:na]
+        at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+        at java.base/java.lang.reflect.Method.invoke(Method.java:578) ~[na:na]
+        at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.1.5.jar:3.1.5]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@33909752]
+        at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.0.13.jar:6.0.13]    
+        at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:360) ~[spring-core-6.0.13.jar:6.0.13]
+        at org.springframework.util.ReflectionUtils.getUniqueDeclaredMethods(ReflectionUtils.java:417) ~[spring-core-6.0.13.jar:6.0.13]
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.lambda$getTypeForFactoryMethod$1(AbstractAutowireCapableBeanFactory.java:748) ~[spring-beans-6.0.13.jar:6.0.13]
+        at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708) ~[na:na]
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryMethod(AbstractAutowireCapableBeanFactory.java:747) ~[spring-beans-6.0.13.jar:6.0.13]
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineTargetType(AbstractAutowireCapableBeanFactory.java:680) ~[spring-beans-6.0.13.jar:6.0.13]
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:651) ~[spring-beans-6.0.13.jar:6.0.13]
+        at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1630) ~[spring-beans-6.0.13.jar:6.0.13]
+        at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:560) ~[spring-beans-6.0.13.jar:6.0.13]
+        at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:532) ~[spring-beans-6.0.13.jar:6.0.13]
+        at org.springframework.boot.autoconfigure.condition.OnBeanCondition.collectBeanNamesForType(OnBeanCondition.java:246) ~[spring-boot-autoconfigure-3.1.5.jar:3.1.5]
+        at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getBeanNamesForType(OnBeanCondition.java:239) ~[spring-boot-autoconfigure-3.1.5.jar:3.1.5]
+        at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getBeanNamesForType(OnBeanCondition.java:229) ~[spring-boot-autoconfigure-3.1.5.jar:3.1.5]
+        at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getMatchingBeans(OnBeanCondition.java:182) ~[spring-boot-autoconfigure-3.1.5.jar:3.1.5]
+        at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getMatchOutcome(OnBeanCondition.java:157) ~[spring-boot-autoconfigure-3.1.5.jar:3.1.5]
+        at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:47) ~[spring-boot-autoconfigure-3.1.5.jar:3.1.5]
+        ... 20 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: javax/servlet/Filter
+        at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+        at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3502) ~[na:na]
+        at java.base/java.lang.Class.getDeclaredMethods(Class.java:2601) ~[na:na]
+        at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.0.13.jar:6.0.13]    
+        ... 36 common frames omitted
+Caused by: java.lang.ClassNotFoundException: javax.servlet.Filter
+        at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
+        at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[na:na]
+        at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521) ~[na:na]
+        ... 40 common frames omitted
+
+2023-11-27T11:26:34.667+07:00  WARN 5328 --- [  restartedMain] o.s.boot.SpringApplication               : Unable to close ApplicationContext
+
+java.lang.IllegalStateException: Failed to introspect Class [org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@33909752]
+        at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.0.13.jar:6.0.13]    
+        at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:360) ~[spring-core-6.0.13.jar:6.0.13]
+        at org.springframework.util.ReflectionUtils.getUniqueDeclaredMethods(ReflectionUtils.java:417) ~[spring-core-6.0.13.jar:6.0.13]
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.lambda$getTypeForFactoryMethod$1(AbstractAutowireCapableBeanFactory.java:748) ~[spring-beans-6.0.13.jar:6.0.13]
+        at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708) ~[na:na]
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryMethod(AbstractAutowireCapableBeanFactory.java:747) ~[spring-beans-6.0.13.jar:6.0.13]
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineTargetType(AbstractAutowireCapableBeanFactory.java:680) ~[spring-beans-6.0.13.jar:6.0.13]
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:651) ~[spring-beans-6.0.13.jar:6.0.13]
+        at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1630) ~[spring-beans-6.0.13.jar:6.0.13]
+        at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:560) ~[spring-beans-6.0.13.jar:6.0.13]
+        at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:532) ~[spring-beans-6.0.13.jar:6.0.13]
+        at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:659) ~[spring-beans-6.0.13.jar:6.0.13]
+        at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:651) ~[spring-beans-6.0.13.jar:6.0.13]
+        at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1312) ~[spring-context-6.0.13.jar:6.0.13]
+        at org.springframework.boot.SpringApplication.getExitCodeFromMappedException(SpringApplication.java:867) ~[spring-boot-3.1.5.jar:3.1.5]
+        at org.springframework.boot.SpringApplication.getExitCodeFromException(SpringApplication.java:855) ~[spring-boot-3.1.5.jar:3.1.5]
+        at org.springframework.boot.SpringApplication.handleExitCode(SpringApplication.java:842) ~[spring-boot-3.1.5.jar:3.1.5]      
+        at org.springframework.boot.SpringApplication.handleRunFailure(SpringApplication.java:782) ~[spring-boot-3.1.5.jar:3.1.5]    
+        at org.springframework.boot.SpringApplication.run(SpringApplication.java:329) ~[spring-boot-3.1.5.jar:3.1.5]
+        at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.5.jar:3.1.5]
+        at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.5.jar:3.1.5]
+        at com.practiceproject.EmployeeManagementSystem.EmployeeManagementSystemApplication.main(EmployeeManagementSystemApplication.java:9) ~[classes/:na]
+        at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+        at java.base/java.lang.reflect.Method.invoke(Method.java:578) ~[na:na]
+        at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.1.5.jar:3.1.5]
+Caused by: java.lang.NoClassDefFoundError: javax/servlet/Filter
+        at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+        at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3502) ~[na:na]
+        at java.base/java.lang.Class.getDeclaredMethods(Class.java:2601) ~[na:na]
+        at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.0.13.jar:6.0.13]    
+        ... 24 common frames omitted
+Caused by: java.lang.ClassNotFoundException: javax.servlet.Filter
+        at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
+        at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[na:na]
+        at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521) ~[na:na]
+        ... 28 common frames omitted
