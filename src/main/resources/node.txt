@@ -50,7 +50,7 @@
 
 * Thứ tự những nhiệm vụ cần phải làm: 
 * Để tạo liên kết giữa 2 bảng dữ liệu phòng ban và nhân viên thì mình sẽ dùng đến @onetomany và @manytoone 
-cái này sẽ cần phải nghiên cứu 1 lúc mới được.
+cái này sẽ cần phải nghiên cứu 1 lúc mới được.(Đã thêm nhưng chưa test trên csdl để xem liên kết đã thành công chưa)
 
 * Sau khi làm xong cái chức năng đăng nhập với đăng ký thì sẽ chuyển trang đăng nhập sẽ là trang hiển thị đầu tiên
 và sau khi đăng nhập thành công thì mới chuyển đến trang chủ

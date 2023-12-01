@@ -1,10 +1,14 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
+// import com.fasterxml.jackson.annotation.JsonBackReference;
+
 // import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+// import jakarta.persistence.JoinColumn;
+// import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity//Chỉ định rằng lớp là một thực thể và được ánh xạ tới bảng cơ sở dữ liệu
@@ -14,22 +18,18 @@ public class Employee {
     @GeneratedValue (strategy = GenerationType.IDENTITY)//Cung cấp thông số kỹ thuật của strategy tạo các giá trị cho khóa chính
     //Để tự động tạo các giá trị duy nhất cho các cột khóa chính trong các bảng cơ sở dữ liệu của chúng ta.
     private Long idnv;
+    // @ManyToOne
+    // @JoinColumn(name = "id_pb", nullable = false, referencedColumnName = "id_pb")
+    // @JsonBackReference
+    // private Department idpb;
 
-    // @Column(name = "Hoten")
     private String Hoten;
-    // @Column(name = "Ngaysinh")
     private String Ngaysinh;
-    // @Column(name = "Quequan")
     private String Quequan;
-    // @Column(name = "GT")
     private String GT;
-    // @Column(name = "Dantoc")
     private String Dantoc;
-    // @Column(name = "SDT")
     private String SDT;
-    // @Column(name = "Email")
     private String Email;
-    // @Column(name = "Chucvu")
     private String Chucvu;
     
     //Constructor được sử dụng để khởi tạo đối tượng 
@@ -87,12 +87,17 @@ public class Employee {
     public void setChucvu(String chucvu) {
         Chucvu = chucvu;
     }
-
     public String getGT() {
         return GT;
     }
-
     public void setGT(String gT) {
         GT = gT;
     }
+
+    // public Department getIdpb() {
+    //     return idpb;
+    // }
+    // public void setIdpb(Department idpb) {
+    //     this.idpb = idpb;
+    // }
 }
