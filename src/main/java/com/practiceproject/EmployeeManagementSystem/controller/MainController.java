@@ -1,18 +1,18 @@
-package com.practiceproject.EmployeeManagementSystem.controller;
+// package com.practiceproject.EmployeeManagementSystem.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.stereotype.Controller;
+// import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
-public class MainController {
+// @Controller
+// public class MainController {
     
-    @GetMapping("/login")
-    public String login(){
-        return "login";
-    }
+//     @GetMapping("/login")
+//     public String login(){
+//         return "login";
+//     }
 
-    @GetMapping("/")
-    public String homepage(){
-        return "homepage";
-    }
-}
+//     @GetMapping("/")
+//     public String homepage(){
+//         return "homepage";
+//     }
+// }
