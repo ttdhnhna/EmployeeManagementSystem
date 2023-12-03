@@ -8,4 +8,5 @@ public class EmployeeManagementSystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EmployeeManagementSystemApplication.class, args);
 	}
+	//TODO: Xóa CSDL và chạy thử chương trình xem liệu đã có liên kết giữa 2 bảng nhân viên và phòng ban chưa.
 }

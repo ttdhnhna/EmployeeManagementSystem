@@ -34,7 +34,7 @@
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
           <form class="form-inline" action="/action_page.php">
             <input class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm">
-            <button class="btn btn-success" type="submit">Tìm kiếm</button>
+            <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
           </form>
         </nav>
       </nav>
@@ -125,6 +125,15 @@
                                 type="text"
                                 name="Chucvu"
                                 th:field="*{Chucvu}"
+                                class="form-control"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label>ID Phòng ban</label>
+                            <input 
+                                type="text"
+                                name="idpb"
+                                th:field="*{idpb}"
                                 class="form-control"
                             />
                         </div>

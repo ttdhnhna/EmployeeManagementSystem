@@ -69,6 +69,7 @@
                     <th>Dân tộc</th>
                     <th>SĐT</th>
                     <th>Email</th>
+                    <th>ID Phòng ban</th>
                     <th>Chức vụ</th>
                     <th>Chức năng</th>
                 </tr>
@@ -83,6 +84,7 @@
                     <td th:text="${employee.Dantoc}"></td>
                     <td th:text="${employee.SDT}"></td>
                     <td th:text="${employee.Email}"></td>
+                    <td th:text="${employee.idpb}"></td>
                     <td th:text="${employee.Chucvu}"></td>
                     <td>
                       <a th:href="@{/updateEmployee/{id}(id=${employee.idnv})}" class="btn btn-primary">Sửa</a>

@@ -1,16 +1,16 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
-// import java.util.Set;
+import java.util.Set;
 
-// import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-// import jakarta.persistence.CascadeType;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-// import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,9 +20,9 @@ public class Department {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id_pb")
     private Long idpb;
-    // @OneToMany(mappedBy = "tblDepartment", cascade = CascadeType.ALL)
-    // @JsonManagedReference
-    // private Set<Employee> idnv;
+    @OneToMany(mappedBy = "tblDepartment", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Set<Employee> idnv;
 
     private String tenpb;
     private String diachi;

@@ -1,14 +1,13 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
-// import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-// import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-// import jakarta.persistence.JoinColumn;
-// import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity//Chỉ định rằng lớp là một thực thể và được ánh xạ tới bảng cơ sở dữ liệu
@@ -18,10 +17,10 @@ public class Employee {
     @GeneratedValue (strategy = GenerationType.IDENTITY)//Cung cấp thông số kỹ thuật của strategy tạo các giá trị cho khóa chính
     //Để tự động tạo các giá trị duy nhất cho các cột khóa chính trong các bảng cơ sở dữ liệu của chúng ta.
     private Long idnv;
-    // @ManyToOne
-    // @JoinColumn(name = "id_pb", nullable = false, referencedColumnName = "id_pb")
-    // @JsonBackReference
-    // private Department idpb;
+    @ManyToOne
+    @JoinColumn(name = "id_pb", nullable = false, referencedColumnName = "id_pb")
+    @JsonBackReference
+    private Department idpb;
 
     private String Hoten;
     private String Ngaysinh;
@@ -94,10 +93,10 @@ public class Employee {
         GT = gT;
     }
 
-    // public Department getIdpb() {
-    //     return idpb;
-    // }
-    // public void setIdpb(Department idpb) {
-    //     this.idpb = idpb;
-    // }
+    public Department getIdpb() {
+        return idpb;
+    }
+    public void setIdpb(Department idpb) {
+        this.idpb = idpb;
+    }
 }
