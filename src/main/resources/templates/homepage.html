@@ -61,22 +61,56 @@
         <table class="table thead-light table-bordered">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>Họ tên</th>
-                    <th>Ngày sinh</th>
-                    <th>Quê quán</th>
-                    <th>Giới tính</th>
-                    <th>Dân tộc</th>
-                    <th>SĐT</th>
-                    <th>Email</th>
-                    <th>ID Phòng ban</th>
-                    <th>Chức vụ</th>
+                    <th>
+                      <a th:href="@{'?sortField=idnv&sortDir='+${reverseSortDir}}">ID</a>
+                    </th>
+                    <th>
+                      <a th:href="@{'?sortField=idpb&sortDir='+${reverseSortDir}}">ID Phòng ban</a>
+                    </th>
+                    <th>
+                      <a th:href="@{'?sortField=Hoten&sortDir='+${reverseSortDir}}">Họ tên</a>
+                    </th>
+                    <th>
+                      <a th:href="@{'?sortField=Ngaysinh&sortDir='+${reverseSortDir}}">Ngày sinh</a>
+                    </th>
+                    <th>
+                      <a th:href="@{'?sortField=Quequan&sortDir='+${reverseSortDir}}">Quê quán</a>
+                    </th>
+                    <th>
+                      <a th:href="@{'?sortField=GT&sortDir='+${reverseSortDir}}">Giới tính</a>
+                    </th>
+                    <th>
+                      <a th:href="@{'?sortField=Dantoc&sortDir='+${reverseSortDir}}">Dân tộc</a>
+                    </th>
+                    <th>
+                      <a th:href="@{'?sortField=SDT&sortDir='+${reverseSortDir}}">SĐT</a>
+                    </th>
+                    <th>
+                      <a th:href="@{'?sortField=Email&sortDir='+${reverseSortDir}}">Email</a>
+                    </th>
+                    <th>
+                      <a th:href="@{'?sortField=Chucvu&sortDir='+${reverseSortDir}}">Chức vụ</a>
+                    </th>
                     <th>Chức năng</th>
                 </tr>
+                <!-- <tr>
+                  <th>ID</th>
+                  <th>Họ tên</th>
+                  <th>Ngày sinh</th>
+                  <th>Quê quán</th>
+                  <th>Giới tính</th>
+                  <th>Dân tộc</th>
+                  <th>SĐT</th>
+                  <th>Email</th>
+                  <th>ID Phòng ban</th>
+                  <th>Chức vụ</th>
+                  <th>Chức năng</th>
+                </tr> -->
             </thead>
             <tbody>
                 <tr th:each = "employee : ${ListEmployees}">
                     <td th:text="${employee.idnv}"></td>
+                    <td th:text="${employee.idpb}"></td>
                     <td th:text="${employee.Hoten}"></td>
                     <td th:text="${employee.Ngaysinh}"></td>
                     <td th:text="${employee.Quequan}"></td>
@@ -84,7 +118,6 @@
                     <td th:text="${employee.Dantoc}"></td>
                     <td th:text="${employee.SDT}"></td>
                     <td th:text="${employee.Email}"></td>
-                    <td th:text="${employee.idpb}"></td>
                     <td th:text="${employee.Chucvu}"></td>
                     <td>
                       <a th:href="@{/updateEmployee/{id}(id=${employee.idnv})}" class="btn btn-primary">Sửa</a>
