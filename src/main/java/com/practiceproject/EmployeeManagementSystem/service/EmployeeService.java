@@ -41,9 +41,11 @@ public class EmployeeService {
     public void deleteEmployeebyID(long id){
         this.repository.deleteById(id);
     }
-    public Page<Employee> findPaginated(String sortFeild, String sortDirection){
+    public Page<Employee> findPaginated(//int pageNo,  int pageSize, 
+    String sortFeild, String sortDirection){
         Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortFeild).ascending() :
         Sort.by(sortFeild).descending();
+        // Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
         Pageable pageable=PageRequest.of(0, 0, sort);
         return this.repository.findAll(pageable);
     }

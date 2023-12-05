@@ -1,6 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
-import java.util.Set;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -20,9 +20,9 @@ public class Department {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id_pb")
     private Long idpb;
-    @OneToMany(mappedBy = "tblDepartment", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "idpb", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private Set<Employee> idnv;
+    private List<Employee> idnv;
 
     private String tenpb;
     private String diachi;
