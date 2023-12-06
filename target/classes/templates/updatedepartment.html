@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+    crossorigin="anonymous">
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" th:href="@{/}">Hệ thống Quản lý Nhân viên</a>
+      
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/} ">Quản lý Nhân viên</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/departments} ">Quản lý Phòng ban</a>
+              </li>
+            </ul>
+        </div>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+          <form class="form-inline" action="/action_page.php">
+            <input class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm">
+            <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
+          </form>
+        </nav>
+      </nav>
+      <br>
+      <!-- Body -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+                <br>
+                <h1 class="text-center">Chỉnh sửa thông tin Phòng ban</h1>
+                <div class="card-body">
+                    <form action="#" th:action="@{/saveDepartment}" th:object="${department}" method="post">
+                        <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
+                        nut gui -->
+                        <div class="form-group">
+                            <input 
+                                type="hidden"
+                                th:field="*{idpb}"
+                                class="form-control"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label>Tên phòng ban</label>
+                            <input 
+                                type="text"
+                                name="tenpb"
+                                th:field="*{tenpb}"
+                                class="form-control"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ</label>
+                            <input 
+                                type="text"
+                                name="diachi"
+                                th:field="*{diachi}"
+                                class="form-control"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label>Số điện thoại</label>
+                            <input 
+                                type="text"
+                                name="sdt"
+                                th:field="*{sdt}"
+                                class="form-control"
+                            />
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">
+                                Cập nhật
+                            </button>
+                        </div>
+                    </form>
+                    <hr>
+		            <a th:href="@{/departments}">Quay lại</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+</body>
+</html>

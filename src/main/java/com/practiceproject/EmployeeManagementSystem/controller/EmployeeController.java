@@ -1,16 +1,16 @@
 package com.practiceproject.EmployeeManagementSystem.controller;
 
-// import java.util.List;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
@@ -29,11 +29,11 @@ public class EmployeeController {
 	// Trong TH này là: "http://localhost:8080/" (Trang chủ)
     public String getEmployees(Model model){
         // Chúng ta sử dụng Interface Model để truyền dữ liệu từ Controller sang View để hiển thị
-        model.addAttribute("ListEmployees", service.getEmployees());
+        // model.addAttribute("ListEmployees", service.getEmployees());
         /*Phương thức addAttribute ở đây sẽ giúp ta truyền nhưng dữ liệu mà ta lấy được bằng service.getEmployees()
          * và truyền vào ListEmployees để ta có thể dùng để hiển thị trên trang web
         */
-        return "homepage";
+        return findPaginated(1, "Hoten", "asc", model);
     }
     @GetMapping("/addEmployee")
     public String addEmployee(Model model){
@@ -62,19 +62,24 @@ public class EmployeeController {
         this.service.deleteEmployeebyID(id);
         return "redirect:/";
     }
-    // @GetMapping("/")
-    // // @GetMapping("/page/{pageNo}")
-    // public String findPaginated(//@PathVariable(value = "pageNo") int pageNo, 
-    // @RequestParam("sortField") String sortField
-    // , @RequestParam("sortDir") String sortDir
-    // , Model model){
-    //     int pageSize=5;
-    //     // Page<Employee> page=service.findPaginated(sortField, sortDir);
-    //     // List<Employee> listEmployees=page.getContent();
+    @GetMapping("/page/{pageNo}")
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, 
+    @RequestParam("sortField") String sortField, 
+    @RequestParam("sortDir") String sortDir, Model model){
 
-    //     model.addAttribute("sortField", sortField);
-    //     model.addAttribute("sortDir", sortDir);
-    //     model.addAttribute("reverseSortDir", sortDir.equals("ask") ? "desc" : "asc");
-    //     return "homepage";
-    // }
+        int pageSize=5;
+
+        Page<Employee> page=service.findPaginated(pageNo, pageSize, sortField, sortDir);
+        List<Employee> listEmployees=page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listEmployees", listEmployees); 
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("ask") ? "desc" : "asc");
+        return "homepage";
+    }
 }

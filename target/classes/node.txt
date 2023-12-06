@@ -1,0 +1,77 @@
+// Controller
+//  @GetMapping("/page/{pageNo}")
+// 	public String findPaginated(@PathVariable (value = "pageNo") int pageNo, 
+// 			@RequestParam("sortField") String sortField,
+// 			@RequestParam("sortDir") String sortDir,
+// 			Model model) {
+// 		int pageSize = 5;
+		
+// 		Page<Employee> page = employeeService.findPaginated(pageNo, pageSize, sortField, sortDir);
+// 		List<Employee> listEmployees = page.getContent();
+		
+// 		model.addAttribute("currentPage", pageNo);
+// 		model.addAttribute("totalPages", page.getTotalPages());
+// 		model.addAttribute("totalItems", page.getTotalElements());
+		
+// 		model.addAttribute("sortField", sortField);
+// 		model.addAttribute("sortDir", sortDir);
+// 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+		
+// 		model.addAttribute("listEmployees", listEmployees);
+// 		return "index";
+// 	}
+
+//Service
+    // @Override
+	// public Page<Employee> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+	// 	Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+	// 		Sort.by(sortField).descending();
+		
+	// 	Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+	// 	return this.employeeRepository.findAll(pageable);
+	// }
+
+//HTML
+// <tr>
+// <th>
+// <a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
+//     Employee First Name</a>
+// </th>
+// <th>
+// <a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
+//     Employee Last Name</a>
+// </th>
+// <th>
+// <a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
+//     Employee Email</a>
+// </th>
+// <th> Actions </th>
+// </tr>
+
+* Thứ tự những nhiệm vụ cần phải làm: 
+* Để tạo liên kết giữa 2 bảng dữ liệu phòng ban và nhân viên thì mình sẽ dùng đến @onetomany và @manytoone 
+cái này sẽ cần phải nghiên cứu 1 lúc mới được.(Đã thành công)
+
+* Sau khi làm xong cái chức năng đăng nhập với đăng ký thì sẽ chuyển trang đăng nhập sẽ là trang hiển thị đầu tiên
+và sau khi đăng nhập thành công thì mới chuyển đến trang chủ
+
+* Sửa cái hiện id. (Xong)
+
+* Chức năng bổ sung: Sắp xếp theo tên, id, ...; Phân trang; Xem chi tiết nhân viên, phòng ban; Tìm kiếm nhân viên theo id; 
+Tính lương và cật nhật lương.
+
+* Làm trang mẫu cho người dùng bình thường với thông tin hiện lên trang chủ là thông tin của nhân viên đăng nhập.
+
+* Tạo khả năng phân biệt tài khoản admin và user 
+
+* Bổ sung chức năng phân quyền
+
+* Tạo chức năng hiển thị lịch biểu và giao nhiệm vụ cho nhân viên.
+
+* Tạo chức năng nhắn tin.
+
+ERRORS: 
+Lỗi hiển thị ở phần id phòng ban còn đâu thì chương trình chạy ổn rồi 
+phần id của phòng ban nó cứ hiển thị như này 
+"com.practiceproject.EmployeeManagementSystem.entity.Department@239bfa55"
+mỗi tội là mỗi lần cập nhật thêm nhân viên thì phần sau @ sẽ lại thay đổi
