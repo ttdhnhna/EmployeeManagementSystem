@@ -60,7 +60,7 @@
         </div>
         <table class="table thead-light table-bordered">
             <thead class="table-dark">
-                <tr>
+                <!-- <tr>
                     <th>
                       <a th:href="@{'?sortField=idnv&sortDir='+${reverseSortDir}}">ID</a>
                     </th>
@@ -92,9 +92,10 @@
                       <a th:href="@{'?sortField=Chucvu&sortDir='+${reverseSortDir}}">Chức vụ</a>
                     </th>
                     <th>Chức năng</th>
-                </tr>
-                <!-- <tr>
+                </tr> -->
+                <tr>
                   <th>ID</th>
+                  <th>ID Phòng ban</th>
                   <th>Họ tên</th>
                   <th>Ngày sinh</th>
                   <th>Quê quán</th>
@@ -102,10 +103,9 @@
                   <th>Dân tộc</th>
                   <th>SĐT</th>
                   <th>Email</th>
-                  <th>ID Phòng ban</th>
                   <th>Chức vụ</th>
                   <th>Chức năng</th>
-                </tr> -->
+                </tr>
             </thead>
             <tbody>
                 <tr th:each = "employee : ${ListEmployees}">
