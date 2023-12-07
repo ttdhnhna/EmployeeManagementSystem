@@ -29,11 +29,12 @@ public class EmployeeController {
 	// Trong TH này là: "http://localhost:8080/" (Trang chủ)
     public String getEmployees(Model model){
         // Chúng ta sử dụng Interface Model để truyền dữ liệu từ Controller sang View để hiển thị
-        // model.addAttribute("ListEmployees", service.getEmployees());
+        model.addAttribute("ListEmployees", service.getEmployees());
         /*Phương thức addAttribute ở đây sẽ giúp ta truyền nhưng dữ liệu mà ta lấy được bằng service.getEmployees()
          * và truyền vào ListEmployees để ta có thể dùng để hiển thị trên trang web
         */
-        return findPaginated(1, "Hoten", "asc", model);
+        // return findPaginated(1, "idnv", "asc", model);
+        return "homepage";
     }
     @GetMapping("/addEmployee")
     public String addEmployee(Model model){
@@ -79,7 +80,7 @@ public class EmployeeController {
 
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
-        model.addAttribute("reverseSortDir", sortDir.equals("ask") ? "desc" : "asc");
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
         return "homepage";
     }
 }

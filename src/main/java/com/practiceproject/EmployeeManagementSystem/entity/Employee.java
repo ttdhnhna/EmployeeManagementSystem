@@ -21,7 +21,7 @@ public class Employee {
     @JoinColumn(name = "id_pb", nullable = false, referencedColumnName = "id_pb")
     @JsonBackReference
     private Department idpb;
-
+    
     private String Hoten;
     private String Ngaysinh;
     private String Quequan;
