@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.RequestParam;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
@@ -29,12 +29,12 @@ public class EmployeeController {
 	// Trong TH này là: "http://localhost:8080/" (Trang chủ)
     public String getEmployees(Model model){
         // Chúng ta sử dụng Interface Model để truyền dữ liệu từ Controller sang View để hiển thị
-        model.addAttribute("ListEmployees", service.getEmployees());
+        // model.addAttribute("ListEmployees", service.getEmployees());
         /*Phương thức addAttribute ở đây sẽ giúp ta truyền nhưng dữ liệu mà ta lấy được bằng service.getEmployees()
          * và truyền vào ListEmployees để ta có thể dùng để hiển thị trên trang web
         */
-        // return findPaginated(1, "idnv", "asc", model);
-        return "homepage";
+        return findPaginated(1, model);
+        // return "homepage";
     }
     @GetMapping("/addEmployee")
     public String addEmployee(Model model){
@@ -64,13 +64,10 @@ public class EmployeeController {
         return "redirect:/";
     }
     @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, 
-    @RequestParam("sortField") String sortField, 
-    @RequestParam("sortDir") String sortDir, Model model){
-
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model){
         int pageSize=5;
 
-        Page<Employee> page=service.findPaginated(pageNo, pageSize, sortField, sortDir);
+        Page<Employee> page=service.findPaginated(pageNo, pageSize);
         List<Employee> listEmployees=page.getContent();
 
         model.addAttribute("currentPage", pageNo);
@@ -78,9 +75,9 @@ public class EmployeeController {
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("listEmployees", listEmployees); 
 
-        model.addAttribute("sortField", sortField);
-        model.addAttribute("sortDir", sortDir);
-        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+        // model.addAttribute("sortField", sortField);
+        // model.addAttribute("sortDir", sortDir);
+        // model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
         return "homepage";
     }
 }

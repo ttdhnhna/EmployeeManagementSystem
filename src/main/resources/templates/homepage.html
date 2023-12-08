@@ -36,7 +36,7 @@
         </div>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
           <form class="form-inline" action="/action_page.php">
-            <input class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm">
+            <input class="form-control mr-sm-2" type="text" name = "keyword" placeholder="Tìm kiếm">
             <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
           </form>
         </nav>
@@ -95,7 +95,7 @@
                 </tr> -->
                 <tr>
                   <th>ID</th>
-                  <th>ID Phòng ban</th>
+                  <!-- <th>ID Phòng ban</th> -->
                   <th>Họ tên</th>
                   <th>Ngày sinh</th>
                   <th>Quê quán</th>
@@ -110,7 +110,7 @@
             <tbody>
                 <tr th:each = "employee : ${ListEmployees}">
                     <td th:text="${employee.idnv}"></td>
-                    <td th:text="${employee.idpb}"></td>
+                    <!-- <td th:text="${employee.idpb}"></td> -->
                     <td th:text="${employee.Hoten}"></td>
                     <td th:text="${employee.Ngaysinh}"></td>
                     <td th:text="${employee.Quequan}"></td>
@@ -133,7 +133,7 @@
               Tổng hàng: [[${totalItems}]]
             </div>
 
-            <div class="coL-sm-1">
+            <!-- <div class="coL-sm-1">
               <span th:each="i: ${#numbers.sequence(1, totalPages)}">
                 <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDir}}">[[${i}]]</a>
                 <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
@@ -148,9 +148,27 @@
             <div class="coL-sm-1">
               <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDir}}">Cuối cùng</a>
               <span th:unless="${currentPage < totalPages}">Cuối cùng</span>
+            </div> -->
+
+            <div class="coL-sm-1">
+              <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}}">[[${i}]]</a>
+                <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+              </span>
+            </div>
+
+            <div class="coL-sm-1">
+              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}}">Tiếp theo</a>
+              <span th:unless="${currentPage < totalPages}">Tiếp theo</span>
+            </div>
+
+            <div class="coL-sm-1">
+              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}}">Cuối cùng</a>
+              <span th:unless="${currentPage < totalPages}">Cuối cùng</span>
             </div>
           </div>
         </div>
+
     </div>
     <!-- <footer class="bg-light text-center text-lg-start">
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">

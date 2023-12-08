@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+// import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
@@ -41,10 +41,10 @@ public class EmployeeService {
     public void deleteEmployeebyID(long id){
         this.repository.deleteById(id);
     }
-    public Page<Employee> findPaginated(int pageNo,  int pageSize, String sortFeild, String sortDirection){
-        Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortFeild).ascending() :
-            Sort.by(sortFeild).descending();
-        Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
+    public Page<Employee> findPaginated(int pageNo,  int pageSize){
+        // Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortFeild).ascending() :
+        //     Sort.by(sortFeild).descending();
+        Pageable pageable=PageRequest.of(pageNo-1, pageSize);
         return this.repository.findAll(pageable);
     }
 }
