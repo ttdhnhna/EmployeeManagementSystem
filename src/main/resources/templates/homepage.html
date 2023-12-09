@@ -130,7 +130,9 @@
         <div th:if="${totalPages>1}">
           <div class="row coL-sm-10">
             <div class="coL-sm-2">
+              &nbsp; &nbsp;
               Tổng hàng: [[${totalItems}]]
+              &nbsp; &nbsp;
             </div>
 
             <!-- <div class="coL-sm-1">
@@ -158,13 +160,14 @@
             </div>
 
             <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}}">Tiếp theo</a>
-              <span th:unless="${currentPage < totalPages}">Tiếp theo</span>
+              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}}">Tiếp</a>
+              <span th:unless="${currentPage < totalPages}">Tiếp</span>
+              &nbsp;
             </div>
 
             <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}}">Cuối cùng</a>
-              <span th:unless="${currentPage < totalPages}">Cuối cùng</span>
+              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}}">Cuối</a>
+              <span th:unless="${currentPage < totalPages}">Cuối</span>
             </div>
           </div>
         </div>

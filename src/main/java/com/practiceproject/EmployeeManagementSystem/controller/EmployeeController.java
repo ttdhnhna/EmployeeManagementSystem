@@ -68,12 +68,12 @@ public class EmployeeController {
         int pageSize=5;
 
         Page<Employee> page=service.findPaginated(pageNo, pageSize);
-        List<Employee> listEmployees=page.getContent();
+        List<Employee> ListEmployees=page.getContent();
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
-        model.addAttribute("listEmployees", listEmployees); 
+        model.addAttribute("ListEmployees", ListEmployees); 
 
         // model.addAttribute("sortField", sortField);
         // model.addAttribute("sortDir", sortDir);
