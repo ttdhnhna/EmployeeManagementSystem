@@ -1,6 +1,9 @@
 package com.practiceproject.EmployeeManagementSystem.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +21,7 @@ public class DepartmentController {
 
     @GetMapping("/departments")
     public String getDepartments(Model model){
-        model.addAttribute("ListDepartments", service.getDepartments());
-        return "departmentspage";
+        return findPaginated(1, model);
     } 
 
     @GetMapping("/addDepartment")
@@ -46,5 +48,20 @@ public class DepartmentController {
         Department department=service.getDepartmentID(id);
         model.addAttribute("department", department);
         return "updatedepartment";
+    }
+
+    @GetMapping("/page/{pageNo}")
+    public String findPaginated(@PathVariable(value = "pageNo")int pageNo, Model model){
+        int pageSize=10;
+
+        Page<Department> page=service.findPaginated(pageNo, pageSize);
+        List<Department> ListDepartments=page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+
+        model.addAttribute("ListDepartments", ListDepartments);
+        return "departmentspage";
     }
 }

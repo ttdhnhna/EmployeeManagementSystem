@@ -41,6 +41,7 @@ public class EmployeeService {
     public void deleteEmployeebyID(long id){
         this.repository.deleteById(id);
     }
+    //Phân trang và sắp xếp
     public Page<Employee> findPaginated(int pageNo,  int pageSize, String sortField, String sortDirection){
         Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
             Sort.by(sortField).descending();

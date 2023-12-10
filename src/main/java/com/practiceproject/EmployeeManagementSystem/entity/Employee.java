@@ -22,14 +22,14 @@ public class Employee {
     @JsonBackReference
     private Department idpb;
     
-    private String Hoten;
-    private String Ngaysinh;
-    private String Quequan;
-    private String GT;
-    private String Dantoc;
-    private String SDT;
-    private String Email;
-    private String Chucvu;
+    private String hoten;
+    private String ngaysinh;
+    private String quequan;
+    private String gt;
+    private String dantoc;
+    private String sdt;
+    private String email;
+    private String chucvu;
     
     //Constructor được sử dụng để khởi tạo đối tượng 
     public Employee() {
@@ -43,54 +43,70 @@ public class Employee {
     public void setIdnv(Long idnv) {
         this.idnv = idnv;
     }
-    public String getHoten() {
-        return Hoten;
-    }
-    public void setHoten(String hoten) {
-        Hoten = hoten;
-    }
-    public String getNgaysinh() {
-        return Ngaysinh;
-    }
-    public void setNgaysinh(String ngaysinh) {
-        Ngaysinh = ngaysinh;
-    }
-    public String getQuequan() {
-        return Quequan;
-    }
-    public void setQuequan(String quequan) {
-        Quequan = quequan;
-    }
     
+
+    public String getHoten() {
+        return hoten;
+    }
+
+    public void setHoten(String hoten) {
+        this.hoten = hoten;
+    }
+
+    public String getNgaysinh() {
+        return ngaysinh;
+    }
+
+    public void setNgaysinh(String ngaysinh) {
+        this.ngaysinh = ngaysinh;
+    }
+
+    public String getQuequan() {
+        return quequan;
+    }
+
+    public void setQuequan(String quequan) {
+        this.quequan = quequan;
+    }
+
+    public String getGt() {
+        return gt;
+    }
+
+    public void setGt(String gt) {
+        this.gt = gt;
+    }
+
     public String getDantoc() {
-        return Dantoc;
+        return dantoc;
     }
+
     public void setDantoc(String dantoc) {
-        Dantoc = dantoc;
+        this.dantoc = dantoc;
     }
-    public String getSDT() {
-        return SDT;
+
+    public String getSdt() {
+        return sdt;
     }
-    public void setSDT(String sDT) {
-        SDT = sDT;
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
     }
+
     public String getEmail() {
-        return Email;
+        return email;
     }
+
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
+
     public String getChucvu() {
-        return Chucvu;
+        return chucvu;
     }
+
     public void setChucvu(String chucvu) {
-        Chucvu = chucvu;
-    }
-    public String getGT() {
-        return GT;
-    }
-    public void setGT(String gT) {
-        GT = gT;
+        this.chucvu = chucvu;
     }
 
     public Department getIdpb() {

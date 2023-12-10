@@ -46,6 +46,7 @@
     <!-- Body -->
     <div class="container">
         <div class="row">
+            &nbsp; &nbsp; 
             <h1> Danh sách Nhân viên</h1>
         </div>
         <div class="row">
@@ -62,23 +63,23 @@
             <thead class="table-dark">
                 <tr>
                     <th>
-                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=idnv & sortDir=' + ${reverseSortDir}}">ID</a>
+                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}">ID</a>
                     </th>
                     <th>
-                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=Hoten & sortDir=' + ${reverseSortDir}}">Họ tên</a>
+                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=hoten&sortDir=' + ${reverseSortDir}}">Họ tên</a>
                     </th>
                     <th>Ngày sinh</th>
                     <th>Quê quán</th>
                     <th>
-                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=GT & sortDir=' + ${reverseSortDir}}">Giới tính</a>
+                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=gt&sortDir=' + ${reverseSortDir}}">Giới tính</a>
                     </th>
                     <th>Dân tộc</th>
                     <th>SĐT</th>
                     <th>
-                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=Email & sortDir=' + ${reverseSortDir}}">Email</a>
+                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">Email</a>
                     </th>
                     <th>
-                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=Chucvu & sortDir='+${reverseSortDir}}">Chức vụ</a>
+                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=chucvu&sortDir='+${reverseSortDir}}">Chức vụ</a>
                     </th>
                     <th>Chức năng</th>
                 </tr>
@@ -86,14 +87,14 @@
             <tbody>
                 <tr th:each = "employee : ${ListEmployees}">
                     <td th:text="${employee.idnv}"></td>
-                    <td th:text="${employee.Hoten}"></td>
-                    <td th:text="${employee.Ngaysinh}"></td>
-                    <td th:text="${employee.Quequan}"></td>
-                    <td th:text="${employee.GT}"></td>
-                    <td th:text="${employee.Dantoc}"></td>
-                    <td th:text="${employee.SDT}"></td>
-                    <td th:text="${employee.Email}"></td>
-                    <td th:text="${employee.Chucvu}"></td>
+                    <td th:text="${employee.hoten}"></td>
+                    <td th:text="${employee.ngaysinh}"></td>
+                    <td th:text="${employee.quequan}"></td>
+                    <td th:text="${employee.gt}"></td>
+                    <td th:text="${employee.dantoc}"></td>
+                    <td th:text="${employee.sdt}"></td>
+                    <td th:text="${employee.email}"></td>
+                    <td th:text="${employee.chucvu}"></td>
                     <td>
                       <a th:href="@{/updateEmployee/{id}(id=${employee.idnv})}" class="btn btn-primary">Sửa</a>
                       <a th:href="@{/deleteEmployee/{id}(id=${employee.idnv})}" class="btn btn-danger">Xóa</a>
@@ -109,24 +110,6 @@
               Tổng hàng: [[${totalItems}]]
               &nbsp; &nbsp;
             </div>
-
-            <!-- <div class="coL-sm-1">
-              <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDir}}">[[${i}]]</a>
-                <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
-              </span>
-            </div>
-
-            <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDir}}">Tiếp theo</a>
-              <span th:unless="${currentPage < totalPages}">Tiếp theo</span>
-            </div>
-
-            <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDir}}">Cuối cùng</a>
-              <span th:unless="${currentPage < totalPages}">Cuối cùng</span>
-            </div> -->
-
             <div class="coL-sm-1">
               <span th:each="i: ${#numbers.sequence(1, totalPages)}">
                 <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>

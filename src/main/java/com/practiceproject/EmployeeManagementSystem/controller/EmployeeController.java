@@ -29,14 +29,15 @@ public class EmployeeController {
 	// Trong TH này là: "http://localhost:8080/" (Trang chủ)
     public String getEmployees(Model model){
         // Chúng ta sử dụng Interface Model để truyền dữ liệu từ Controller sang View để hiển thị
-        return findPaginated(1, "Hoten", "asc", model);
+        return findPaginated(1, "hoten", "asc", model);
     }
     @GetMapping("/addEmployee")
     public String addEmployee(Model model){
         Employee employee=new Employee();
         model.addAttribute("employee", employee);
-        /*Phương thức addAttribute ở đây sẽ giúp ta truyền nhưng dữ liệu mà ta lấy được bằng service.getEmployees()
-         * và truyền vào ListEmployees để ta có thể dùng để hiển thị trên trang web
+        /*Phương thức addAttribute ở đây sẽ giúp ta truyền nhưng dữ liệu mà đối tượng employee có
+         * và truyền vào employee dưới dạng html để ta có thể dùng để hiển thị và chỉnh sửa
+         * trên trang web
         */
         return "newemployee";
     }
