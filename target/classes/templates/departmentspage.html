@@ -58,9 +58,15 @@
         <table class="table thead-light table-bordered">
             <thead class="table-dark">
                 <tr>
-                    <th>ID Phòng ban</th>
-                    <th>Tên Phòng ban</th>
-                    <th>Địa chỉ</th>
+                    <th>
+                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=idpb&sortDir=' + ${reverseSortDir}}">ID Phòng ban</a>
+                    </th>
+                    <th>
+                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=tenpb&sortDir=' + ${reverseSortDir}}">Tên Phòng ban</a>
+                    </th>
+                    <th>
+                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=diachi&sortDir=' + ${reverseSortDir}}">Địa chỉ Phòng ban</a>
+                    </th>
                     <th>Số điện thoại</th>
                     <th>Chức năng</th>
                 </tr>
@@ -106,7 +112,6 @@
             </div>
           </div>
         </div>
-
     </div>
 </body>
 </html>

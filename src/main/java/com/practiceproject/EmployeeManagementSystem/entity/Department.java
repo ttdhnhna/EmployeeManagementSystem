@@ -53,12 +53,11 @@ public class Department {
     public void setSdt(String sdt) {
         this.sdt = sdt;
     }
-
-    // public Set<Employee> getIdnv() {
-    //     return idnv;
-    // }
-    // public void setIdnv(Set<Employee> idnv) {
-    //     this.idnv = idnv;
-    // }
+    public List<Employee> getIdnv() {
+        return idnv;
+    }
+    public void setIdnv(List<Employee> idnv) {
+        this.idnv = idnv;
+    }
     
 }

@@ -164,7 +164,7 @@ Caused by: java.lang.IllegalArgumentException: The given id must not be null
 	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
 	... 57 more
 
-ERRORS DEPARTMENT:
+ERRORS DEPARTMENT: phan trang
 This application has no explicit mapping for /error, so you are seeing this as a fallback.
 
 Mon Dec 11 11:53:22 ICT 2023
