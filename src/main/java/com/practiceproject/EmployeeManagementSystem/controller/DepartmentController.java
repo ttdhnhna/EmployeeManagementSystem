@@ -50,9 +50,9 @@ public class DepartmentController {
         return "updatedepartment";
     }
 
-    @GetMapping("/page/{pageNo}")
+    @GetMapping("/pageDepartment/{pageDepartmentNo}")
     public String findPaginated(@PathVariable(value = "pageNo")int pageNo, Model model){
-        int pageSize=10;
+        int pageSize=5;
 
         Page<Department> page=service.findPaginated(pageNo, pageSize);
         List<Department> ListDepartments=page.getContent();
