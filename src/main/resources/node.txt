@@ -58,7 +58,9 @@ và sau khi đăng nhập thành công thì mới chuyển đến trang chủ
 * Sửa cái hiện id. (Xong)
 
 * Chức năng bổ sung: Sắp xếp theo tên, id, ...; Phân trang; Xem chi tiết nhân viên, phòng ban; Tìm kiếm nhân viên theo id; 
-Tính lương và cật nhật lương.
+Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viên trong phòng ban.
+
+* Sửa chức năng phân trang, sắp xếp và sửa phòng ban
 
 * Làm trang mẫu cho người dùng bình thường với thông tin hiện lên trang chủ là thông tin của nhân viên đăng nhập.
 
