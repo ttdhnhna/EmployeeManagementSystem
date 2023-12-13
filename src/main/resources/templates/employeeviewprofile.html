@@ -5,9 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý Nhân viên</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
     crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
 </head>
 <body>
     <!-- Header -->
@@ -53,11 +55,7 @@
             </div>
             <div class="list-group list-group-flush account-settings-links">
               <a class="list-group-item list-group-item-action active" data-toggle="list"
-                href="#account-details">Chi tiet</a>
-            </div>
-            <div class="list-group list-group-flush account-settings-links">
-              <a class="list-group-item list-group-item-action active" data-toggle="list"
-                href="#account-connections">Lien he</a>
+                href="#account-details">Thong tin chi tiet</a>
             </div>
             <div class="list-group list-group-flush account-settings-links">
               <a class="list-group-item list-group-item-action active" data-toggle="list"
@@ -70,6 +68,7 @@
           </div>
           <div class="col-md-9">
             <div class="tab-content">
+
               <div class="tab-pane fade active show" id="account-general">
                 <div class="card-body media align-items-center">
                   <img src="https://bootdey.com/img/Content/avatar/avatar1.png" height="100"
@@ -95,10 +94,11 @@
                   </div>
                 </div>
               </div>
+
               <div class="tab-pane face" id="account-details">
                 <div class="card-body pb-2">
                   <div class="form-group">
-                    <label class="form-lable">Ly lich</label>
+                    <label class="form-lable">Gioi thieu</label>
                     <textarea class="form-control" rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam a repellat velit porro totam aperiam, est distinctio eveniet possimus dolorem accusamus error aspernatur, eos culpa impedit tempora temporibus corrupti debitis.</textarea>
                   </div>
                   <div class="form-group">
@@ -132,11 +132,122 @@
                 </div>
               </div>
 
-              
+              <div class="tab-pane fade" id="account-social-links">
+                <div class="form-group">
+                  <label class="form-label">Twitter</label>
+                  <input type="text" class="form-control" value="https://twitter.com/user">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Facebook</label>
+                  <input type="text" class="form-control" value="https://www.facebook.com/user">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Google</label>
+                  <input type="text" class="form-control" value>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">LinkedIn</label>
+                  <input type="text" class="form-control" value>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Instagram</label>
+                  <input type="text" class="form-control" value="https://www.instagram.com/user">
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="account-access">
+                <div class="card-body pb-2">
+                  <h6 class="mb-4">Quyen truy cap</h6>
+                  <div class="form-group">
+                    <label class="switcher">
+                      <input type="checkbox" class="switcher-input" checked>
+                      <span class="switcher-indicator">
+                        <span class="switcher-yes"></span>
+                        <span class="switcher-yes"></span>
+                      </span>
+                      <span class="switcher-label">Network Access</span>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label class="switcher">
+                      <input type="checkbox" class="switcher-input" checked>
+                      <span class="switcher-indicator">
+                        <span class="switcher-yes"></span>
+                        <span class="switcher-yes"></span>
+                      </span>
+                      <span class="switcher-label">HR Portal</span>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label class="switcher">
+                      <input type="checkbox" class="switcher-input" checked>
+                      <span class="switcher-indicator">
+                        <span class="switcher-yes"></span>
+                        <span class="switcher-yes"></span>
+                      </span>
+                      <span class="switcher-label">CRM System</span>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label class="switcher">
+                      <input type="checkbox" class="switcher-input" checked>
+                      <span class="switcher-indicator">
+                        <span class="switcher-yes"></span>
+                        <span class="switcher-yes"></span>
+                      </span>
+                      <span class="switcher-label">Finance System</span>
+                    </label>
+                  </div>
+                </div>
+
+                <hr class="border-light m-0">
+                <div class="card-body pb-2">
+                  <h6 class="mb-4">Trang bi</h6>
+                  <div class="form-group">
+                    <label class="switcher">
+                      <input type="checkbox" class="switcher-input" checked>
+                      <span class="switcher-indicator">
+                        <span class="switcher-yes"></span>
+                        <span class="switcher-yes"></span>
+                      </span>
+                      <span class="switcher-label">Order PC</span>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label class="switcher">
+                      <input type="checkbox" class="switcher-input" checked>
+                      <span class="switcher-indicator">
+                        <span class="switcher-yes"></span>
+                        <span class="switcher-yes"></span>
+                      </span>
+                      <span class="switcher-label">Order Laptop</span>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label class="switcher">
+                      <input type="checkbox" class="switcher-input" checked>
+                      <span class="switcher-indicator">
+                        <span class="switcher-yes"></span>
+                        <span class="switcher-yes"></span>
+                      </span>
+                      <span class="switcher-label">Order Mobile Phone</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <div class="text-right mt-3">
+        <a href="#" class="btn btn-danger ">
+            Quay lai
+        </a>
+      </div>
+      </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+    </script>
 </body>
 </html>
