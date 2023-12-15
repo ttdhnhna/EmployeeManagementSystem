@@ -32,18 +32,6 @@ label.btn {
     color: #babbbc !important;
 }
 
-.btn-facebook {
-    border-color: rgba(0, 0, 0, 0);
-    background  : #3B5998;
-    color       : #fff;
-}
-
-.btn-instagram {
-    border-color: rgba(0, 0, 0, 0);
-    background  : #000;
-    color       : #fff;
-}
-
 .card {
     background-clip: padding-box;
     box-shadow     : 0 1px 4px rgba(24, 28, 33, 0.012);
@@ -83,7 +71,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 }
 
 .material-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
+    /* padding     : 10px; */
     border-color: rgba(24, 28, 33, 0.03) !important;
 }
 
@@ -92,7 +80,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 }
 
 .dark-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
+    padding     : 20px;
     border-color: rgba(255, 255, 255, 0.03) !important;
 }
 
@@ -105,6 +93,6 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 }
 
 .light-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
+    padding     : 20px;
     border-color: rgba(24, 28, 33, 0.03) !important;
 }
