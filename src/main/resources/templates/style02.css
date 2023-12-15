@@ -18,12 +18,6 @@ label.btn {
     margin-bottom: 0;
 }
 
-.btn-outline-primary {
-    border-color: #26B4FF;
-    background  : transparent;
-    color       : #26B4FF;
-}
-
 .btn {
     cursor: pointer;
 }
@@ -34,20 +28,20 @@ label.btn {
 
 .card {
     background-clip: padding-box;
-    box-shadow     : 0 1px 4px rgba(24, 28, 33, 0.012);
+    box-shadow     : 0 4px 4px rgba(24, 28, 33, 0.012);
 }
 
 .row-bordered {
     overflow: hidden;
 }
 
-.account-settings-fileinput {
+/* .account-settings-fileinput {
     position  : absolute;
     visibility: hidden;
     width     : 1px;
     height    : 1px;
     opacity   : 0;
-}
+} */
 
 .account-settings-links .list-group-item.active {
     font-weight: bold !important;
@@ -80,7 +74,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 }
 
 .dark-style .account-settings-links .list-group-item {
-    padding     : 20px;
+    padding     : 0.85rem 1.5rem;
     border-color: rgba(255, 255, 255, 0.03) !important;
 }
 
@@ -93,6 +87,6 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 }
 
 .light-style .account-settings-links .list-group-item {
-    padding     : 20px;
+    padding     : 0.85rem 1.5rem;
     border-color: rgba(24, 28, 33, 0.03) !important;
 }

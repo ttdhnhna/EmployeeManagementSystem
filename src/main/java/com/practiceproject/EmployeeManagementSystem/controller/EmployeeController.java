@@ -82,4 +82,11 @@ public class EmployeeController {
         model.addAttribute("ListEmployees", ListEmployees); 
         return "homepage";
     }
+    //Xem chi tiết hồ sơ nhân viên
+    @GetMapping("/profileemployee/{id}")
+    public String viewProfileEmployee(@PathVariable(value = "id") long id, Model model){
+        Employee employee=service.getEmployeebyID(id);
+        model.addAttribute("employee", employee);
+        return "employeeviewprofile";
+    }
 }

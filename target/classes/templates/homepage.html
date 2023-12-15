@@ -68,16 +68,6 @@
                     <th>
                       <a th:href="@{'/page/' + ${currentPage} + '?sortField=hoten&sortDir=' + ${reverseSortDir}}">Họ tên</a>
                     </th>
-                    <th>Ngày sinh</th>
-                    <th>Quê quán</th>
-                    <th>
-                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=gt&sortDir=' + ${reverseSortDir}}">Giới tính</a>
-                    </th>
-                    <th>Dân tộc</th>
-                    <th>SĐT</th>
-                    <th>
-                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">Email</a>
-                    </th>
                     <th>
                       <a th:href="@{'/page/' + ${currentPage} + '?sortField=chucvu&sortDir='+${reverseSortDir}}">Chức vụ</a>
                     </th>
@@ -88,15 +78,10 @@
                 <tr th:each = "employee : ${ListEmployees}">
                     <td th:text="${employee.idnv}"></td>
                     <td th:text="${employee.hoten}"></td>
-                    <td th:text="${employee.ngaysinh}"></td>
-                    <td th:text="${employee.quequan}"></td>
-                    <td th:text="${employee.gt}"></td>
-                    <td th:text="${employee.dantoc}"></td>
-                    <td th:text="${employee.sdt}"></td>
-                    <td th:text="${employee.email}"></td>
                     <td th:text="${employee.chucvu}"></td>
                     <td>
                       <a th:href="@{/updateEmployee/{id}(id=${employee.idnv})}" class="btn btn-primary">Sửa</a>
+                      <a th:href="@{/profileemployee/{id}(id=${employee.idnv})}" class="btn btn-primary">Chi tiết</a>
                       <a th:href="@{/deleteEmployee/{id}(id=${employee.idnv})}" class="btn btn-danger">Xóa</a>
                   </td>
                 </tr>
