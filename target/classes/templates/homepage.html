@@ -65,6 +65,7 @@
                     <th>
                       <a th:href="@{'/page/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}">ID</a>
                     </th>
+                    <th>Ảnh hồ sơ</th>
                     <th>
                       <a th:href="@{'/page/' + ${currentPage} + '?sortField=hoten&sortDir=' + ${reverseSortDir}}">Họ tên</a>
                     </th>
@@ -77,6 +78,7 @@
             <tbody>
                 <tr th:each = "employee : ${ListEmployees}">
                     <td th:text="${employee.idnv}"></td>
+                    <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" height="100" width="100"></td>
                     <td th:text="${employee.hoten}"></td>
                     <td th:text="${employee.chucvu}"></td>
                     <td>
@@ -103,14 +105,14 @@
             </div>
 
             <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Tiếp</a>
-              <span th:unless="${currentPage < totalPages}">Tiếp</span>
+              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">></a>
+              <span th:unless="${currentPage < totalPages}">></span>
               &nbsp;
             </div>
 
             <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Cuối</a>
-              <span th:unless="${currentPage < totalPages}">Cuối</span>
+              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">>></a>
+              <span th:unless="${currentPage < totalPages}">>></span>
             </div>
           </div>
         </div>
