@@ -65,7 +65,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 }
 
 .material-style .account-settings-links .list-group-item {
-    /* padding     : 10px; */
+    padding     : 0.85rem 1.5rem;
     border-color: rgba(24, 28, 33, 0.03) !important;
 }
 
