@@ -26,6 +26,13 @@ public class EmployeeService {
     public void saveEmployee(Employee employee){
         this.repository.save(employee);
     }
+
+    public List<Employee> findAll(String keyword){
+        if(keyword!=null){
+            return repository.findAll(keyword);
+        }
+        return repository.findAll();
+    }
     //Tìm nhân viên bằng id
     public Employee getEmployeebyID(long id){
         Optional<Employee> optional=repository.findById(id);

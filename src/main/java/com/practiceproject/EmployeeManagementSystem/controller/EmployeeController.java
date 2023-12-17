@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,7 @@ public class EmployeeController {
 	// Trong TH này là: "http://localhost:8080/" (Trang chủ)
     public String getEmployees(Model model){
         // Chúng ta sử dụng Interface Model để truyền dữ liệu từ Controller sang View để hiển thị
-        return findPaginated(1, "hoten", "asc", model);
+        return findPaginated(1, "idnv", "asc", model);
     }
     @GetMapping("/addEmployee")
     public String addEmployee(Model model){
@@ -82,11 +83,20 @@ public class EmployeeController {
         model.addAttribute("ListEmployees", ListEmployees); 
         return "homepage";
     }
+
     //Xem chi tiết hồ sơ nhân viên
     @GetMapping("/profileemployee/{id}")
     public String viewProfileEmployee(@PathVariable(value = "id") long id, Model model){
         Employee employee=service.getEmployeebyID(id);
         model.addAttribute("employee", employee);
         return "employeeviewprofile";
+    }
+
+    //Tìm kiếm
+    @GetMapping("/findemployee")
+    public String findEmployees(Model model, @Param("keyword") String keyword){
+        List<Employee> ListEmployees=service.findAll(keyword);
+        model.addAttribute("ListEmployees", ListEmployees);
+        return "homepage";
     }
 }
