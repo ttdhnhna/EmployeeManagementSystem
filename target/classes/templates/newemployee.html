@@ -32,9 +32,11 @@
           </ul>
         </div>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-          <form class="form-inline" action="/action_page.php">
+          <form class="form-inline" th:action="@{/findemployee}">
             <input class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm">
             <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
+            &nbsp;&nbsp;
+            <button class="btn btn-outline-danger" type="button" onclick="clearFilter()" >Reset</button>
           </form>
         </nav>
       </nav>
@@ -153,5 +155,11 @@
     </div>
     <br>
     <br>
+    <!-- Phần script cho nút reset -->
+    <script type="text/javascript">
+        function clearFilter(){
+          window.location='/addEmployee';
+        }
+      </script>
 </body>
 </html>

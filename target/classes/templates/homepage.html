@@ -39,7 +39,7 @@
             <input class="form-control mr-sm-2" type="text" name = "keyword" placeholder="Tìm kiếm">
             <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
             &nbsp;&nbsp;
-            <button class="btn btn-outline-danger" type="submit">Reset</button>
+            <button class="btn btn-outline-danger" type="button" onclick="clearFilter()">Reset</button>
           </form>
         </nav>
     </nav>
@@ -124,5 +124,11 @@
         © 2020 Copyright
       </div>
     </footer> -->
+    <!-- Phần script cho nút reset -->
+    <script type="text/javascript">
+      function clearFilter(){
+        window.location='/';
+      }
+    </script>
 </body>
 </html>

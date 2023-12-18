@@ -31,9 +31,11 @@
           </ul>
         </div>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-          <form class="form-inline" action="/action_page.php">
+          <form class="form-inline" th:action="@{/findemployee}">
             <input class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm">
-            <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
+            <button class="btn btn-outline-success" type="submit" >Tìm kiếm</button>
+            &nbsp;&nbsp;
+            <button class="btn btn-outline-danger" type="button" onclick="clearFilter()" >Reset</button>
           </form>
         </nav>
       </nav>
@@ -68,7 +70,7 @@
                 <hr class="border-light m-0">
                 <div class="card-body"> 
                   <div class="form-group">
-                    <label class="form-lable">ID</label>
+                    <label class="form-lable">Mã nhân viên</label>
                     <input type="text" class="form-control mb-1" 
                     name="idnv"
                     th:field="*{idnv}"> 
@@ -271,5 +273,11 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
       <script type="text/javascript">
       </script>
+      <!-- Phần script cho nút reset -->
+    <script type="text/javascript">
+      function clearFilter(){
+        window.location='/profileemployee/{id}';
+      }
+    </script>
 </body>
 </html>
