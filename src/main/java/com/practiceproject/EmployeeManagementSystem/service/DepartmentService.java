@@ -46,4 +46,12 @@ public class DepartmentService {
         Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
         return this.repository.findAll(pageable);
     }
+
+    //Chức năng tìm kiếm theo keyword
+    public List<Department> findDepartments(String keyword){
+        if(keyword!=null){
+            return repository.findAllDepartments(keyword);
+        }
+        return repository.findAll();
+    }
 }

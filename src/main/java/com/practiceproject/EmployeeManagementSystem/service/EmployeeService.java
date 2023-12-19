@@ -26,13 +26,6 @@ public class EmployeeService {
     public void saveEmployee(Employee employee){
         this.repository.save(employee);
     }
-
-    public List<Employee> findAll(String keyword){
-        if(keyword!=null){
-            return repository.findAll(keyword);
-        }
-        return repository.findAll();
-    }
     //Tìm nhân viên bằng id
     public Employee getEmployeebyID(long id){
         Optional<Employee> optional=repository.findById(id);
@@ -54,6 +47,13 @@ public class EmployeeService {
             Sort.by(sortField).descending();
         Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
         return this.repository.findAll(pageable);
+    }
+    //Chức năng tìm kiếm theo keyword
+    public List<Employee> findAll(String keyword){
+        if(keyword!=null){
+            return repository.findAll(keyword);
+        }
+        return repository.findAll();
     }
 }
 

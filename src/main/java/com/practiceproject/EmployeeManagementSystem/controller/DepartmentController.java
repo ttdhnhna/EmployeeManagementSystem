@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -68,6 +69,13 @@ public class DepartmentController {
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
+        model.addAttribute("ListDepartments", ListDepartments);
+        return "departmentspage";
+    }
+    //Tìm kiếm
+    @GetMapping("/finddepartment")
+    public String findDepartments(Model model, @Param("keyword") String keyword){
+        List<Department> ListDepartments=service.findDepartments(keyword);
         model.addAttribute("ListDepartments", ListDepartments);
         return "departmentspage";
     }
