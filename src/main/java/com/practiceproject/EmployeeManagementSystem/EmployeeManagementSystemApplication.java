@@ -10,7 +10,6 @@ public class EmployeeManagementSystemApplication {
 	}
 	/*Lỗi ở 2 phần sửa và chuyển trang của phòng ban 
 	 * Sửa lại 2 phần lỗi trên và làm phần trang chi tiết nhân viên.
-	 * Đã chạy thử thành công được chức năng tìm kiếm rồi giờ thì làm nốt nút reset 
-	 * xong sẽ làm phần tìm kiếm cho các trang còn lại
+	 * Lỗi phần tìm kiếm, lỗi đã ghi trong note chỉ cần sửa lại là đc.
 	 */
 }
