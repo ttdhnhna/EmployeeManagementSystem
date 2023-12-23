@@ -53,7 +53,7 @@
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <a th:href="@{/add}" class="btn btn-primary btn-sm mb-3">
+                <a th:href="@{/addSalary}" class="btn btn-primary btn-sm mb-3">
                     Thêm mới
                 </a>
             </div>
@@ -72,14 +72,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each = "employee : ${ListSalaries}">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr th:each = "salary : ${ListSalaries}">
+                    <td th:text="${salary.idluong}"></td>
+                    <td th:text="${salary.idnv}"></td>
+                    <td th:text="${salary.luongcb}"></td>
+                    <td th:text="${salary.hsl}"></td>
+                    <td th:text="${salary.phucap}"></td>
+                    <td th:text="${salary.baohiem}"></td>
+                    <td th:text="${salary.tongluong}"></td>
                     <td>
                       <a href="#" class="btn btn-primary">Sửa</a>
                       <a href="#" class="btn btn-danger">Xóa</a>

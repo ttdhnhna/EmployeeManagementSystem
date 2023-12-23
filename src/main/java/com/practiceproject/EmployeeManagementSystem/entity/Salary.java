@@ -91,7 +91,4 @@ public class Salary {
     public void setTongluong(double tongluong) {
         this.tongluong = tongluong;
     }
-
-    
-    
 }

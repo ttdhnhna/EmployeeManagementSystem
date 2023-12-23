@@ -16,4 +16,8 @@ public class SalaryService {
     public List<Salary> getSalaries(){
         return repository.findAll();
     }
+
+    public void saveSalary(Salary salary){
+        this.repository.save(salary);
+    }
 }

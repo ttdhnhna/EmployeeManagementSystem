@@ -48,97 +48,67 @@
                 <br>
                 <h1 class="text-center">Tạo Mã Lương mới</h1>
                 <div class="card-body">
-                    <form action="#" th:action="@{/}" th:object="${}" method="post">
+                    <form action="#" th:action="@{/saveSalary}" th:object="${salary}" method="post">
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
                         nut gui -->
                         <div class="form-group">
-                            <label>Họ tên</label>
+                            <label>ID Nhân viên</label>
                             <input 
                                 type="text"
-                                name="hoten"
-                                th:field="*{hoten}"
+                                name="idnv"
+                                th:field="*{idnv}"
                                 class="form-control"
-                                placeholder="Nhập họ và tên nhân viên"
+                                placeholder="Nhập ID nhân viên"
                             />
                         </div>
                         <div class="form-group">
-                            <label>Ngày sinh</label>
+                            <label>Lương cơ bản</label>
                             <input 
                                 type="text"
-                                name="ngaysinh"
-                                th:field="*{ngaysinh}"
+                                name="luongcb"
+                                th:field="*{luongcb}"
                                 class="form-control"
-                                placeholder="Nhập ngày sinh nhân viên"
+                                placeholder="Nhập lương cơ bản của nhân viên"
                             />
                         </div>
                         <div class="form-group">
-                            <label>Quê quán</label>
+                            <label>Hệ số lương</label>
                             <input 
                                 type="text"
-                                name="quequan"
-                                th:field="*{quequan}"
+                                name="hsl"
+                                th:field="*{hsl}"
                                 class="form-control"
-                                placeholder="Nhập quê quán nhân viên"
+                                placeholder="Nhập hệ số lương của nhân viên"
                             />
                         </div>
                         <div class="form-group">
-                            <label>Giới tính</label>
+                            <label>Phụ cấp</label>
                             <input 
                                 type="text"
-                                name="gt"
-                                th:field="*{gt}"
+                                name="phucap"
+                                th:field="*{phucap}"
                                 class="form-control"
-                                placeholder="Nhập giới tính nhân viên"
+                                placeholder="Nhập phụ cấp của nhân viên"
                             />
                         </div>
                         <div class="form-group">
-                            <label>Dân tộc</label>
+                            <label>Bảo hiểm</label>
                             <input 
                                 type="text"
-                                name="dantoc"
-                                th:field="*{dantoc}"
+                                name="baohiem"
+                                th:field="*{baohiem}"
                                 class="form-control"
-                                placeholder="Nhập dân tộc nhân viên"
+                                placeholder="Nhập số tiền bảo hiểm của nhân viên"
                             />
                         </div>
                         <div class="form-group">
-                            <label>Số điện thoại</label>
+                            <label>Trừ lương</label>
                             <input 
                                 type="text"
-                                name="sdt"
-                                th:field="*{sdt}"
+                                name="truluong"
+                                th:field="*{truluong}"
                                 class="form-control"
-                                placeholder="Nhập số điện thoại nhân viên"
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input 
-                                type="text"
-                                name="email"
-                                th:field="*{email}"
-                                class="form-control"
-                                placeholder="Nhập Email"
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label>Chức vụ</label>
-                            <input 
-                                type="text"
-                                name="chucvu"
-                                th:field="*{chucvu}"
-                                class="form-control"
-                                placeholder="Nhập chức vụ nhân viên"
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label>ID Phòng ban</label>
-                            <input 
-                                type="text"
-                                name="idpb"
-                                th:field="*{idpb}"
-                                class="form-control"
-                                placeholder="Nhập mã phòng ban nhân viên"
+                                placeholder="Nhập số tiền bị trừ của nhân viên"
                             />
                         </div>
                         <div class="box-footer">
@@ -148,7 +118,7 @@
                         </div>
                     </form>
                     <hr>
-		            <a th:href="@{/}">Quay lại</a>
+		            <a th:href="@{/salaries}">Quay lại</a>
                 </div>
             </div>
         </div>
