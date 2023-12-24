@@ -13,7 +13,8 @@ public class EmployeeManagementSystemApplication {
 	 * Phần tìm kiếm ở trang phòng ban vẫn chưa hoạt động đc nên sẽ để tạm đấy vậy
 	 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 	 * đâu xử lý.
-	 * Đang làm dở phần tính lương nhân viên, mai sẽ làm phần thêm lương rồi hoàn thành nốt phần
-	 * hiện lẫn liên kết giữa mã lương với nhân viên rồi mới chạy thử xem có hiện lên ko?
+	 * Đã làm xong phần hiện, thêm mã lương và liên kết giờ sẽ cần làm thêm lương với
+	 * hiện lương ở phần nhân viên là đc. Nhưng sẽ cần phải sửa lại cái vscode ở nhà 
+	 * trước.
 	 */
 }

@@ -1,9 +1,13 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -13,10 +17,14 @@ import jakarta.persistence.Table;
 @Table(name="tblSalary")
 public class Salary {
     @Id
+    @Column(name = "id_luong")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idluong;
+    
+    @OneToOne(mappedBy = "idluong")
+    @JsonManagedReference
+    private Employee idnv;
 
-    private Long idnv;
     private double luongcb;
     private double hsl;
     private double phucap;
@@ -33,14 +41,6 @@ public class Salary {
 
     public void setIdluong(Long idluong) {
         this.idluong = idluong;
-    }
-
-    public Long getIdnv() {
-        return idnv;
-    }
-
-    public void setIdnv(Long idnv) {
-        this.idnv = idnv;
     }
 
     public double getLuongcb() {
@@ -90,5 +90,13 @@ public class Salary {
 
     public void setTongluong(double tongluong) {
         this.tongluong = tongluong;
+    }
+
+    public Employee getIdnv() {
+        return idnv;
+    }
+
+    public void setIdnv(Employee idnv) {
+        this.idnv = idnv;
     }
 }

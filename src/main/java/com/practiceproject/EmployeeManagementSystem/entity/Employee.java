@@ -2,12 +2,14 @@ package com.practiceproject.EmployeeManagementSystem.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity//Chỉ định rằng lớp là một thực thể và được ánh xạ tới bảng cơ sở dữ liệu
@@ -21,6 +23,11 @@ public class Employee {
     @JoinColumn(name = "id_pb", nullable = false, referencedColumnName = "id_pb")
     @JsonBackReference
     private Department idpb;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_luong", referencedColumnName = "id_luong")
+    @JsonBackReference
+    private Salary idluong;
     
     private String hoten;
     private String ngaysinh;
@@ -115,4 +122,13 @@ public class Employee {
     public void setIdpb(Department idpb) {
         this.idpb = idpb;
     }
+
+    public Salary getIdluong() {
+        return idluong;
+    }
+
+    public void setIdluong(Salary idluong) {
+        this.idluong = idluong;
+    }
+
 }
