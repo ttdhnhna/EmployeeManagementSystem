@@ -14,7 +14,6 @@ public class EmployeeManagementSystemApplication {
 	 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 	 * đâu xử lý.
 	 * Đã làm xong phần hiện, thêm mã lương và liên kết giờ sẽ cần làm thêm lương với
-	 * hiện lương ở phần nhân viên là đc. Nhưng sẽ cần phải sửa lại cái vscode ở nhà 
-	 * trước.
+	 * hiện lương ở phần nhân viên là đc.
 	 */
 }
