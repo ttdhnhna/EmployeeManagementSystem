@@ -182,6 +182,12 @@
               <div class="tab-pane face" id="account-salary" th:object="${employee}">
                 <div class="card-body pb-2">
                   <div class="form-group">
+                    <label class="form-lable">Mã Lương</label>
+                    <input type="text" class="form-control mb-1"
+                    name="idluong"
+                    th:field="*{idluong}"> 
+                  </div>
+                  <div class="form-group">
                     <label class="form-lable">Lương cơ bản</label>
                     <input type="text" class="form-control mb-1"
                     > 

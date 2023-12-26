@@ -23,3 +23,6 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 * Tạo chức năng nhắn tin.
 
 Ghi chú: Phần tìm kiếm trong lương thì sẽ có cả tìm mã nhân viên, mã lương và tên nhân viên
+Đã thêm được phần sửa vs thêm lương ở nhân viên rồi
+Giờ sẽ cần chạy thử xem việc thêm, hiện lương và liên kết bảng NV với bảng lương có thành công không
+

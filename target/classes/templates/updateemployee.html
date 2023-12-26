@@ -47,7 +47,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
                 <br>
-                <h1 class="text-center">Chỉnh sửa thông tin Nhân viên</h1>
+                <h1 class="text-center">Chỉnh sửa Thông tin Nhân viên</h1>
                 <div class="card-body">
                     <form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post">
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
@@ -137,6 +137,15 @@
                                 type="text"
                                 name="idpb"
                                 th:field="*{idpb}"
+                                class="form-control"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label>ID Lương</label>
+                            <input 
+                                type="text"
+                                name="idluong"
+                                th:field="*{idluong}"
                                 class="form-control"
                             />
                         </div>
