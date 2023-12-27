@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
@@ -35,5 +36,12 @@ public class SalaryController {
         Salary salary=new Salary();
         model.addAttribute("salary", salary);
         return "newsalary";
+    }
+
+    @GetMapping("/updateSalary/{id}")
+    public String updateEmployee(@PathVariable(value = "id") long id, Model model){
+        Salary salary=service.getSalaryID(id);
+        model.addAttribute("salary", salary);
+        return "updatesalary";
     }
 }
