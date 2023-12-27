@@ -24,5 +24,6 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 
 Ghi chú: Phần tìm kiếm trong lương thì sẽ có cả tìm mã nhân viên, mã lương và tên nhân viên
 Đã thêm được phần sửa vs thêm lương ở nhân viên rồi
-Giờ sẽ cần chạy thử xem việc thêm, hiện lương và liên kết bảng NV với bảng lương có thành công không
-
+Giờ sẽ cần chạy thử xem việc thêm, hiện lương
+Đã chạy thử và liên ket dc 2 bang luong va nhan vien thanh cong voi nhau roi nhung do muon
+qua nên chua chay thu dc cn them, se lam phan sua va trang chi tiet phong ban chieu nay.
