@@ -25,5 +25,12 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 Ghi chú: Phần tìm kiếm trong lương thì sẽ có cả tìm mã nhân viên, mã lương và tên nhân viên
 Đã thêm được phần sửa vs thêm lương ở nhân viên rồi
 Giờ sẽ cần chạy thử xem việc thêm, hiện lương
-Đã chạy thử và liên ket dc 2 bang luong va nhan vien thanh cong voi nhau roi nhung do muon
-qua nên chua chay thu dc cn them, se lam phan sua va trang chi tiet phong ban chieu nay.
+Loi phan them bang luong sau khi them thi khong vao xem dc bang luong nua, lien ket giua 2
+bang luong va nv thi van on co thay dc lk nhung khong thay dc thuoc tinh idnv o 2 bang luong
+va phong ban, phan sua ma luong o nv thi van on va hien len dc.
+
+Lỗi ở 2 phần sửa và chuyển trang của phòng ban
+	 * Sửa lại 2 phần lỗi trên.
+	 * Phần tìm kiếm ở trang phòng ban vẫn chưa hoạt động đc nên sẽ để tạm đấy vậy
+	 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
+	 * đâu xử lý.
