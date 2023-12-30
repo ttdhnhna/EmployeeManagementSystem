@@ -34,6 +34,5 @@ Lỗi ở 2 phần sửa và chuyển trang của phòng ban
 	 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 	 * đâu xử lý.
 
-Đã xử lý được khuôn trang chi tiết phòng ban rồi giờ chỉ cần lấy thông tin và cho vào thôi
-cũng có sửa lại cái phần hiện thông tin ở chi tiết nhân viên về chạy thử và kiểm tra lại xem
-Mai sẽ xử lý cách để lấy thông tin từ bảng csdl ra.
+Đã sửa cái lỗi hiện ở bảng lương và bảng chi tiết nhân viên, mai sẽ xem tiếp và làm thêm phần
+hiện thông tin danh sách nhân viên ở phòng ban.
