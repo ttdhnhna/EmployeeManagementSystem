@@ -36,3 +36,6 @@ Lỗi ở 2 phần sửa và chuyển trang của phòng ban
 
 Đã sửa cái lỗi hiện ở bảng lương và bảng chi tiết nhân viên, mai sẽ xem tiếp và làm thêm phần
 hiện thông tin danh sách nhân viên ở phòng ban.
+
+Chạy thử rồi và lỗi hiện id nhân viên ở phần hiện danh sách lương, phần sửa thi loi khong sua
+dc. Chieu nay se thu sua lai cac phan nay va lam them phan xoa
