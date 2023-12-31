@@ -3,12 +3,14 @@ package com.practiceproject.EmployeeManagementSystem.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.service.SalaryService;
@@ -28,7 +30,7 @@ public class SalaryController {
     @PostMapping("/saveSalary")
     public String saveSalary(@ModelAttribute("salary") Salary salary){
         service.saveSalary(salary);
-        return "redirect: /salaries";
+        return "redirect:/salaries";
     }
 
     @GetMapping("/addSalary")
@@ -43,5 +45,32 @@ public class SalaryController {
         Salary salary=service.getSalaryID(id);
         model.addAttribute("salary", salary);
         return "updatesalary";
+    }
+
+    @GetMapping("/deleteSalary/{id}")
+    public String deleteSalary(@PathVariable(value = "id") long id){
+        this.service.deleteSalarybyID(id);
+        return "redirect:/salaries";
+    }
+
+    @GetMapping("/page/{pageNo}")
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
+    @RequestParam("sortField") String sortField,
+    @RequestParam("sortDir") String sortDir, Model model){
+        int pageSize=10;
+
+        Page<Salary> page=service.findPaginated(pageNo, pageSize, sortField, sortDir);
+        List<Salary> ListSalaries=page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+
+        model.addAttribute("ListSalaries", ListSalaries);
+        return "salariespage";
     }
 }

@@ -19,4 +19,5 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
 
     //Lấy thông tin danh sách nhân viên.
     
+    public String getNVInformation();
 }

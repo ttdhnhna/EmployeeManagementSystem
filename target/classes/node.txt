@@ -34,5 +34,8 @@ Lỗi ở 2 phần sửa và chuyển trang của phòng ban
 	 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 	 * đâu xử lý.
 
-Đã sửa cái lỗi hiện ở bảng lương và bảng chi tiết nhân viên, mai sẽ xem tiếp và làm thêm phần
-hiện thông tin danh sách nhân viên ở phòng ban.
+Đã sửa lỗi sửa lương và có xóa đi phần hiện id nv ở trang lương; có làm thêm phần xóa 
+và phần phân trang và sx rồi nhưng chưa áp vào trang khi nào chạy thử được cn xóa xong
+thì sẽ thêm vào sau. Cần xem lại csdl phần lương xem có hiện thông tin idnv không nếu 
+không thì sẽ cần phải sửa lại.
+
