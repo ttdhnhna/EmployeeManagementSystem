@@ -39,3 +39,6 @@ và phần phân trang và sx rồi nhưng chưa áp vào trang khi nào chạy 
 thì sẽ thêm vào sau. Cần xem lại csdl phần lương xem có hiện thông tin idnv không nếu 
 không thì sẽ cần phải sửa lại.
 
+Có tìm được 1 vd ms sẽ xem vào ngày mai để lấy dl từ dsnv và phòng ban sau. Có sửa lại
+cái phần sử phòng ban vs lương rồi sẽ cần test thử
+

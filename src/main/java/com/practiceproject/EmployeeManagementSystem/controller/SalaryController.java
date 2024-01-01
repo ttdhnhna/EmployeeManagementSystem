@@ -30,7 +30,7 @@ public class SalaryController {
     @PostMapping("/saveSalary")
     public String saveSalary(@ModelAttribute("salary") Salary salary){
         service.saveSalary(salary);
-        return "redirect:/salaries";
+        return "salariespage";
     }
 
     @GetMapping("/addSalary")
@@ -50,7 +50,7 @@ public class SalaryController {
     @GetMapping("/deleteSalary/{id}")
     public String deleteSalary(@PathVariable(value = "id") long id){
         this.service.deleteSalarybyID(id);
-        return "redirect:/salaries";
+        return "salariespage";
     }
 
     @GetMapping("/page/{pageNo}")
