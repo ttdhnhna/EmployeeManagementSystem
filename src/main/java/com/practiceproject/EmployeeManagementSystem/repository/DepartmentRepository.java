@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
-import com.practiceproject.EmployeeManagementSystem.entity.Employee;
+// import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
