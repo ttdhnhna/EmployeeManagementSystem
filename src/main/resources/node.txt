@@ -43,3 +43,5 @@ Có làm đc phần repo cho việc lấy danh sách nhân viên cho phòng ban 
 phần controller cho nó nhưng sẽ cần chạy thử cái cn ở phần lương vs phần phòng ban đã 
 sửa hôm qua trước.
 
+Van con loi phan sua vi cai luc an nut cap nhat sua lai thi no khong bi loi nhung no
+khong quay lai trang ma hien dung.(Sai phan save)

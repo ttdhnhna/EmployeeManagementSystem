@@ -53,24 +53,24 @@ public class SalaryController {
         return "salariespage";
     }
 
-    @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
-    @RequestParam("sortField") String sortField,
-    @RequestParam("sortDir") String sortDir, Model model){
-        int pageSize=10;
-
-        Page<Salary> page=service.findPaginated(pageNo, pageSize, sortField, sortDir);
-        List<Salary> ListSalaries=page.getContent();
-
-        model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("totalItems", page.getTotalElements());
-
-        model.addAttribute("sortField", sortField);
-        model.addAttribute("sortDir", sortDir);
-        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-
-        model.addAttribute("ListSalaries", ListSalaries);
-        return "salariespage";
-    }
+//    @GetMapping("/page/{pageNo}")
+//    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
+//    @RequestParam("sortField") String sortField,
+//    @RequestParam("sortDir") String sortDir, Model model){
+//        int pageSize=10;
+//
+//        Page<Salary> page=service.findPaginated(pageNo, pageSize, sortField, sortDir);
+//        List<Salary> ListSalaries=page.getContent();
+//
+//        model.addAttribute("currentPage", pageNo);
+//        model.addAttribute("totalPages", page.getTotalPages());
+//        model.addAttribute("totalItems", page.getTotalElements());
+//
+//        model.addAttribute("sortField", sortField);
+//        model.addAttribute("sortDir", sortDir);
+//        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+//
+//        model.addAttribute("ListSalaries", ListSalaries);
+//        return "salariespage";
+//    }
 }
