@@ -34,18 +34,7 @@ Lỗi ở 2 phần sửa và chuyển trang của phòng ban
 	 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 	 * đâu xử lý.
 
-Đã sửa lỗi sửa lương và có xóa đi phần hiện id nv ở trang lương; có làm thêm phần xóa 
-và phần phân trang và sx rồi nhưng chưa áp vào trang khi nào chạy thử được cn xóa xong
-thì sẽ thêm vào sau. Cần xem lại csdl phần lương xem có hiện thông tin idnv không nếu 
-không thì sẽ cần phải sửa lại.
-
-Có làm đc phần repo cho việc lấy danh sách nhân viên cho phòng ban rồi mai sẽ làm cái
-phần controller cho nó nhưng sẽ cần chạy thử cái cn ở phần lương vs phần phòng ban đã 
-sửa hôm qua trước.
-
-Van con loi phan sua vi cai luc an nut cap nhat sua lai thi no khong bi loi nhung no
-khong quay lai trang ma hien dung.(Sai phan save)
-
+Da sua lai dc nut save roi va no hien dc dung phan minh muon gio se can t
 
 Đây là phần code mà mình tìm được trên mạng về cái phần lk 1-n này nhưng đối tượng sẽ khác là
 Library: 

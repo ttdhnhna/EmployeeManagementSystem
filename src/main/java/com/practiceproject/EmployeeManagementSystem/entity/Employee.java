@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity//Chỉ định rằng lớp là một thực thể và được ánh xạ tới bảng cơ sở dữ liệu
 @Table(name = "tblEmployee")//Chỉ định tên của bảng cơ sở dữ liệu sẽ được sử dụng để ánh xạ
-public class Employee {
+public class  Employee {
     @Id//Chỉ định khóa chính của một thực thể
     @GeneratedValue (strategy = GenerationType.IDENTITY)//Cung cấp thông số kỹ thuật của strategy tạo các giá trị cho khóa chính
     //Để tự động tạo các giá trị duy nhất cho các cột khóa chính trong các bảng cơ sở dữ liệu của chúng ta.
