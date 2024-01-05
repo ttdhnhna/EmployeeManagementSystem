@@ -23,7 +23,7 @@ public class DepartmentController {
 
     @GetMapping("/departments")
     public String getDepartments(Model model){
-        return findPaginated(1,"tenpb", "asc", model);
+        return findPaginated(1,"idpb", "asc", model);
     } 
 
     @GetMapping("/addDepartment")

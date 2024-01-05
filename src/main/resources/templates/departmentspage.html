@@ -98,19 +98,19 @@
             </div>
             <div class="coL-sm-1">
               <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                <a th:if="${currentPage != i}" th:href="@{'/pageDepartment/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
                 <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
               </span>
             </div>
 
             <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Tiếp</a>
+              <a th:if="${currentPage < totalPages}" th:href="@{'/pageDepartment/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Tiếp</a>
               <span th:unless="${currentPage < totalPages}">Tiếp</span>
               &nbsp;
             </div>
 
             <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Cuối</a>
+              <a th:if="${currentPage < totalPages}" th:href="@{'/pageDepartment/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Cuối</a>
               <span th:unless="${currentPage < totalPages}">Cuối</span>
             </div>
           </div>
