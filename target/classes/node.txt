@@ -34,4 +34,4 @@ Lỗi ở 2 phần sửa và chuyển trang của phòng ban
 	 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 	 * đâu xử lý.
 
-Đã thêm phần phân trang cho lương và sửa lại cả phân trang của pb cần chạy thử.
+Fix lỗi và có cố sửa thêm phần hiện danh sách nv ở phòng ban.

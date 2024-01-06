@@ -52,7 +52,7 @@ public class SalaryController {
     }
 
     @GetMapping("/pageSalary/{pageSalaryNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
+    public String findPaginated(@PathVariable(value = "pageSalaryNo") int pageNo,
     @RequestParam("sortField") String sortField,
     @RequestParam("sortDir") String sortDir, Model model){
        int pageSize=5;
