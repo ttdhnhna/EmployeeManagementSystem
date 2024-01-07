@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,4 +72,11 @@ public class SalaryController {
        model.addAttribute("ListSalaries", ListSalaries);
        return "salariespage";
    }
+    //Tìm kiếm
+    @GetMapping("/findSalary")
+    public String findSalaries(Model model, @Param("keyword") String keyword){
+        List<Salary> ListSalaries=service.findAllSalaries(keyword);
+        model.addAttribute("ListSalaries", ListSalaries);
+        return "salariespage";
+    } 
 }

@@ -47,4 +47,11 @@ public class SalaryService {
         Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
         return this.repository.findAll(pageable);
     }
+    //Chức năng tìm kiếm theo keyword
+    public List<Salary>findAllSalaries(String keyword){
+        if(keyword!=null){
+            return repository.findAllSalaries(keyword);
+        }
+        return repository.findAll();
+    }
 }

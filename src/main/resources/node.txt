@@ -36,6 +36,7 @@ Lỗi ở 2 phần sửa và chuyển trang của phòng ban
 
 Đã sửa phần sắp xếp ở phòng ban cũng có thêm đc chức năng lưu idnv tự động vào phòng
 ban mỗi khi nhấn nút save nữa rồi. Mai sẽ chạy thử và tìm lỗi ở đâu rồi còn sửa.
+Thêm chức năng tìm kiếm cho phần lương.
 
 Loi phan sua phong ban:
 Sun Jan 07 11:35:49 ICT 2024
