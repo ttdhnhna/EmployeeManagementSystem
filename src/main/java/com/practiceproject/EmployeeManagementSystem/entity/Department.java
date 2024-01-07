@@ -1,6 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
-import java.util.List;
+import java.util.HashSet;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -22,8 +22,7 @@ public class Department {
     private Long idpb;
     @OneToMany(mappedBy = "idpb", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Employee> idnv;
-
+    private HashSet<Employee> idnv;
     private String tenpb;
     private String diachi;
     private String sdt;
@@ -53,10 +52,10 @@ public class Department {
     public void setSdt(String sdt) {
         this.sdt = sdt;
     }
-    public List<Employee> getIdnv() {
+    public HashSet<Employee> getIdnv() {
         return idnv;
     }
-    public void setIdnv(List<Employee> idnv) {
+    public void setIdnv(HashSet<Employee> idnv) {
         this.idnv = idnv;
     }
     

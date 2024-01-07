@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
-// import com.practiceproject.EmployeeManagementSystem.entity.Employee;
+import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
@@ -17,6 +17,12 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     + "OR p.diachi LIKE %?1%"
     + "OR p.sdt LIKE %?1%")
     public List<Department> findAllDepartments(String keyword);
+
+    //Lấy id nv và cho vào list
+    @Query("SELECT Employee.idnv FROM Employee"
+    +"INNER JOIN Department "
+    +"ON Department.idpb=Employee.idpb")
+    public List<Employee> findAllIDNV();
 
     //Lấy thông tin danh sách nhân viên: id, hoten, sdt, chuc vu
 //    @Query("SELECT e.idnv, e.hoten, e.sdt, e.chucvu FROM Employee e"

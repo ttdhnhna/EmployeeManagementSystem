@@ -1,5 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
+import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.repository.DepartmentRepository;
 
 @Service
@@ -20,8 +22,13 @@ public class DepartmentService {
     public List<Department> getDepartments(){
         return repository.findAll();
     }
-
+// repository.findAllIDNV().get(i)
     public void saveDepartment(Department department){
+        HashSet<Employee> listidnv=new HashSet<>();
+        for(int i=0;i<repository.findAllIDNV().size();i++){
+            listidnv.add(repository.findAllIDNV().get(i));
+        }
+        department.setIdnv(listidnv);
         this.repository.save(department);
     }
 
@@ -53,5 +60,10 @@ public class DepartmentService {
             return repository.findAllDepartments(keyword);
         }
         return repository.findAll();
+    }
+
+    //Chức năng lưu id của nv
+    public List<Employee> findIDNV(){
+        return repository.findAllIDNV();
     }
 }
