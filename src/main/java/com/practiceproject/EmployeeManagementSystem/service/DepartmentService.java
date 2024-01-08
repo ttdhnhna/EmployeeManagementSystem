@@ -22,7 +22,7 @@ public class DepartmentService {
     public List<Department> getDepartments(){
         return repository.findAll();
     }
-// repository.findAllIDNV().get(i)
+
     public void saveDepartment(Department department){
         HashSet<Employee> listidnv=new HashSet<>();
         for(int i=0;i<repository.findAllIDNV().size();i++){

@@ -19,9 +19,9 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     public List<Department> findAllDepartments(String keyword);
 
     //Lấy id nv và cho vào list
-    @Query("SELECT Employee.idnv FROM Employee"
-    +"INNER JOIN Department "
-    +"ON Department.idpb=Employee.idpb")
+    @Query(value = "SELECT e.idnv FROM Employee e"
+    +"INNER JOIN Department d"
+    +"ON d.idpb=e.idpb", nativeQuery = true)
     public List<Employee> findAllIDNV();
 
     //Lấy thông tin danh sách nhân viên: id, hoten, sdt, chuc vu
@@ -29,4 +29,8 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
 //    +"INNER JOIN Department d "
 //    +"ON d.idpb=e.idpb")
 //    public List<Employee> getNVInformationbyID();
+//@Query("SELECT new com.roytuts.spring.data.jpa.left.right.inner.cross.join.dto.DeptEmpDto(d.name, e.name, e.email, e.address) "
+// + "FROM Department d LEFT JOIN d.employees e")
+// List<DeptEmpDto> fetchEmpDeptDataLeftJoin();
+
 }

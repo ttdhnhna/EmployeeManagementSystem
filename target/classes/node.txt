@@ -34,9 +34,8 @@ Lỗi ở 2 phần sửa và chuyển trang của phòng ban
 	 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 	 * đâu xử lý.
 
-Đã sửa phần sắp xếp ở phòng ban cũng có thêm đc chức năng lưu idnv tự động vào phòng
-ban mỗi khi nhấn nút save nữa rồi. Mai sẽ chạy thử và tìm lỗi ở đâu rồi còn sửa.
-Thêm chức năng tìm kiếm cho phần lương.
+Đã sửa lỗi ứng dụng rồi nhưng khả năng cao là vẫn còn lỗi ở phần repo của phòng ban
+ở phân query nên sẽ vẫn cần phải sửa thêm.
 
 Loi phan sua phong ban:
 Sun Jan 07 11:35:49 ICT 2024
@@ -129,3 +128,27 @@ Caused by: java.lang.IllegalArgumentException: The given id must not be null
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
 	... 57 more
+
+Loi sau khi chay thu CT 8/1:
+Caused by: org.hibernate.query.sqm.UnknownEntityException: Could not resolve root entity 'EmployeeINNER'
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitRootEntity(SemanticQueryBuilder.java:1960) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitRootEntity(SemanticQueryBuilder.java:253) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.grammars.hql.HqlParser$RootEntityContext.accept(HqlParser.java:2473) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitEntityWithJoins(SemanticQueryBuilder.java:1874) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitFromClause(SemanticQueryBuilder.java:1865) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitQuery(SemanticQueryBuilder.java:1141) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitQuerySpecExpression(SemanticQueryBuilder.java:937) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitQuerySpecExpression(SemanticQueryBuilder.java:253) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.grammars.hql.HqlParser$QuerySpecExpressionContext.accept(HqlParser.java:1818) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitSimpleQueryGroup(SemanticQueryBuilder.java:931) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitSimpleQueryGroup(SemanticQueryBuilder.java:253) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.grammars.hql.HqlParser$SimpleQueryGroupContext.accept(HqlParser.java:1711) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitSelectStatement(SemanticQueryBuilder.java:418) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitStatement(SemanticQueryBuilder.java:377) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.buildSemanticModel(SemanticQueryBuilder.java:295) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.query.hql.internal.StandardHqlTranslator.translate(StandardHqlTranslator.java:81) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.query.internal.QueryInterpretationCacheStandardImpl.createHqlInterpretation(QueryInterpretationCacheStandardImpl.java:165) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.query.internal.QueryInterpretationCacheStandardImpl.resolveHqlInterpretation(QueryInterpretationCacheStandardImpl.java:147) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.internal.AbstractSharedSessionContract.interpretHql(AbstractSharedSessionContract.java:741) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:786) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	... 72 common frames omitted
