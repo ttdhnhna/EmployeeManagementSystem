@@ -34,8 +34,7 @@ Lỗi ở 2 phần sửa và chuyển trang của phòng ban
 	 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 	 * đâu xử lý.
 
-Đã sửa lỗi ứng dụng rồi nhưng khả năng cao là vẫn còn lỗi ở phần repo của phòng ban
-ở phân query nên sẽ vẫn cần phải sửa thêm.
+Fix lỗi và cập nhật thêm trang chi tiết phòng ban.
 
 Loi phan sua phong ban:
 Sun Jan 07 11:35:49 ICT 2024
