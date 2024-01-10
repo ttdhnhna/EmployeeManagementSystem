@@ -3,6 +3,7 @@ package com.practiceproject.EmployeeManagementSystem.service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,7 +25,7 @@ public class DepartmentService {
     }
 
     public void saveDepartment(Department department){
-        HashSet<Employee> listidnv=new HashSet<>();
+        Set<Employee> listidnv=new HashSet<>();
         for(int i=0;i<repository.findAllIDNV().size();i++){
             listidnv.add(repository.findAllIDNV().get(i));
         }
@@ -65,5 +66,9 @@ public class DepartmentService {
     //Chức năng lưu id của nv
     public List<Employee> findIDNV(){
         return repository.findAllIDNV();
+    }
+
+    public List<Employee> getNVInformationbyID(){
+        return null;
     }
 }

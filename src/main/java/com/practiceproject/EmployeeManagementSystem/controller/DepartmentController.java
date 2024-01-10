@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
+import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.service.DepartmentService;
 
 @Controller
@@ -78,5 +79,15 @@ public class DepartmentController {
         List<Department> ListDepartments=service.findDepartments(keyword);
         model.addAttribute("ListDepartments", ListDepartments);
         return "departmentspage";
+    }
+
+    //Trang chi tiết phòng ban.
+    @GetMapping("/viewDepartmentdetail/{id}")
+    public String viewDepartmentdetail(@PathVariable(value = "id") long id, Model model){
+        Department department=service.getDepartmentID(id);
+        model.addAttribute("department", department);
+        List<Employee> getNVInformationbyID=service.getNVInformationbyID();
+        model.addAttribute("employee", getNVInformationbyID);
+        return "departmentviewprofile";
     }
 }

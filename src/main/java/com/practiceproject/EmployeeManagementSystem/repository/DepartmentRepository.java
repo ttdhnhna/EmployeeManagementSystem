@@ -29,8 +29,6 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
 //    +"INNER JOIN Department d "
 //    +"ON d.idpb=e.idpb")
 //    public List<Employee> getNVInformationbyID();
-//@Query("SELECT new com.roytuts.spring.data.jpa.left.right.inner.cross.join.dto.DeptEmpDto(d.name, e.name, e.email, e.address) "
-// + "FROM Department d LEFT JOIN d.employees e")
-// List<DeptEmpDto> fetchEmpDeptDataLeftJoin();
+
 
 }
