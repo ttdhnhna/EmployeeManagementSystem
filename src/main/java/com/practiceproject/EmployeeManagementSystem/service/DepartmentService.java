@@ -2,6 +2,7 @@ package com.practiceproject.EmployeeManagementSystem.service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -68,7 +69,7 @@ public class DepartmentService {
         return repository.findAllIDNV();
     }
 
-    public List<Employee> getNVInformationbyID(){
-        return null;
+    public Map<Long,List<Employee>> getNVInformationbyID(){
+        return repository.getNVInformationbyID();
     }
 }

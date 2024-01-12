@@ -1,6 +1,7 @@
 package com.practiceproject.EmployeeManagementSystem.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,10 +26,10 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     public List<Employee> findAllIDNV();
 
     //Lấy thông tin danh sách nhân viên: id, hoten, sdt, chuc vu
-//    @Query("SELECT e.idnv, e.hoten, e.sdt, e.chucvu FROM Employee e"
-//    +"INNER JOIN Department d "
-//    +"ON d.idpb=e.idpb")
-//    public List<Employee> getNVInformationbyID();
+   @Query("SELECT e.idnv, e.hoten, e.sdt, e.chucvu FROM Employee e"
+   +"INNER JOIN Department d "
+   +"ON d.id_pb=e.id_pb")
+   public Map<Long,List<Employee>> getNVInformationbyID();
 
 
 }

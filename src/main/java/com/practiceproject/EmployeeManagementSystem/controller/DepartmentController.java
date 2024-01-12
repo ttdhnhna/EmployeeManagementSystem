@@ -1,6 +1,8 @@
 package com.practiceproject.EmployeeManagementSystem.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -86,7 +88,8 @@ public class DepartmentController {
     public String viewDepartmentdetail(@PathVariable(value = "id") long id, Model model){
         Department department=service.getDepartmentID(id);
         model.addAttribute("department", department);
-        List<Employee> getNVInformationbyID=service.getNVInformationbyID();
+        Map<Long,List<Employee>> getNVInformationbyID=new HashMap<>();
+        getNVInformationbyID=service.getNVInformationbyID();
         model.addAttribute("employee", getNVInformationbyID);
         return "departmentviewprofile";
     }
