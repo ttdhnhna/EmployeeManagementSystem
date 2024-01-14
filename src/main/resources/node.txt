@@ -10,9 +10,9 @@ và sau khi đăng nhập thành công thì mới chuyển đến trang chủ
 * Chức năng bổ sung: Sắp xếp theo tên, id, ...; Phân trang; Xem chi tiết nhân viên, phòng ban; Tìm kiếm nhân viên theo id; 
 Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viên trong phòng ban.
 
-* Sửa chức năng phân trang, sắp xếp và sửa phòng ban
+* Sửa chức năng phân trang, sắp xếp và sửa phòng ban (Xong)
 
-* Làm trang mẫu cho người dùng bình thường với thông tin hiện lên trang chủ là thông tin của nhân viên đăng nhập.
+* Làm chức năng đăng nhập và đăng xuất cho người dùng.
 
 * Tạo khả năng phân biệt tài khoản admin và user 
 
@@ -34,9 +34,7 @@ Lỗi ở 2 phần sửa và chuyển trang của phòng ban
 	 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 	 * đâu xử lý.
 
-Sẽ cần phải xóa cả CSDL đi để xem liệu đã sửa đc phần tự thêm idnv chưa xong rồi thì
-sẽ test cái chức năng hiện chi tiết phòng ban kia sau, đã thêm vs sửa đc vài thứ nữa
-rồi.
+
 
 
 
