@@ -32,5 +32,7 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
+Chay dc nhung khong hieu sao no lai dan minh den trang dang nhap ma minh la con
+khong biet mk hay tk. Nen sua lai
 
 
