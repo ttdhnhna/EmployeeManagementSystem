@@ -32,5 +32,9 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
+Thử xóa cái dependency ở file pom đi rồi để test thử các chức năng đã làm kia trước còn bây giờ 
+làm đc cái gì hay cái đấy.
+Tạo được đối tượng user.
+
 
 
