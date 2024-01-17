@@ -84,13 +84,13 @@ public class DepartmentController {
     }
 
     //Trang chi tiết phòng ban.
-    @GetMapping("/viewDepartmentdetail/{id}")
-    public String viewDepartmentdetail(@PathVariable(value = "id") long id, Model model){
-        Department department=service.getDepartmentID(id);
-        model.addAttribute("department", department);
-        Map<Long,List<Employee>> getNVInformationbyID=new HashMap<>();
-        getNVInformationbyID=service.getNVInformationbyID();
-        model.addAttribute("employee", getNVInformationbyID);
-        return "departmentviewprofile";
-    }
+    // @GetMapping("/viewDepartmentdetail/{id}")
+    // public String viewDepartmentdetail(@PathVariable(value = "id") long id, Model model){
+    //     Department department=service.getDepartmentID(id);
+    //     model.addAttribute("department", department);
+    //     Map<Long,List<Employee>> getNVInformationbyID=new HashMap<>();
+    //     getNVInformationbyID=service.getNVInformationbyID();
+    //     model.addAttribute("employee", getNVInformationbyID);
+    //     return "departmentviewprofile";
+    // }
 }

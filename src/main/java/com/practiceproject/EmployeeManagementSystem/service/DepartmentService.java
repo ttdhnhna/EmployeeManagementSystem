@@ -69,7 +69,7 @@ public class DepartmentService {
         return repository.findAllIDNV();
     }
 
-    public Map<Long,List<Employee>> getNVInformationbyID(){
-        return repository.getNVInformationbyID();
-    }
+    // public Map<Long,List<Employee>> getNVInformationbyID(){
+    //     return repository.getNVInformationbyID();
+    // }
 }
