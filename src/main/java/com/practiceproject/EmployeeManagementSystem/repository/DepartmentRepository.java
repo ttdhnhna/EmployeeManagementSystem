@@ -20,8 +20,8 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     public List<Department> findAllDepartments(String keyword);
 
     //Lấy id nv và cho vào list
-    @Query(value = "SELECT e.id_pb FROM Employee e "
-    + "INNER JOIN Department d "
+    @Query(value = "SELECT e.id_pb FROM dbo.tbl_employee e "
+    + "INNER JOIN dbo.tbl_department d "
     + "ON e.id_pb = d.id_pb", nativeQuery = true)
     public List<Employee> findAllIDNV();
 
