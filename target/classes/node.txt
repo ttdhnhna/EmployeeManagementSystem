@@ -32,7 +32,6 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
-Đã thử sửa lại lỗi rồi sẽ cần chạy lại để xem còn bị sai ở đâu.
-
-
+Vẫn đang làm dở phần controller của chức năng lưu idnv vào phòng ban và đang hơi phân vân là liệu
+có cần thêm thuộc tính id vào để dễ phân biệt không, sẽ cần làm tiếp.
 

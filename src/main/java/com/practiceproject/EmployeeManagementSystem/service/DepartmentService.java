@@ -2,7 +2,7 @@ package com.practiceproject.EmployeeManagementSystem.service;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+// import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -26,11 +26,6 @@ public class DepartmentService {
     }
 
     public void saveDepartment(Department department){
-        Set<Employee> listidnv=new HashSet<>();
-        for(int i=0;i<repository.findAllIDNV().size();i++){
-            listidnv.add(repository.findAllIDNV().get(i));
-        }
-        department.setIdnv(listidnv);
         this.repository.save(department);
     }
 
@@ -72,4 +67,13 @@ public class DepartmentService {
     // public Map<Long,List<Employee>> getNVInformationbyID(){
     //     return repository.getNVInformationbyID();
     // }
+
+    public void updateIdNV(Department department){
+        Set<Employee> listidnv=new HashSet<>();
+        for(int i=0;i<repository.findAllIDNV().size();i++){
+            listidnv.add(repository.findAllIDNV().get(i));
+        }
+        department.setIdnv(listidnv);
+        this.repository.save(department);
+    }
 }
