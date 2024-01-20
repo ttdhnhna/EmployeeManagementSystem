@@ -93,4 +93,10 @@ public class DepartmentController {
     //     model.addAttribute("employee", getNVInformationbyID);
     //     return "departmentviewprofile";
     // }
+
+    @GetMapping("/updateIDNV/{id}")
+    public String updateIDNV(@PathVariable(value = "id") long id){
+        this.service.updateIdNV(id);
+        return "departmentspage";
+    }
 }

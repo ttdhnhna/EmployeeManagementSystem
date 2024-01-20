@@ -59,19 +59,15 @@ public class DepartmentService {
         return repository.findAll();
     }
 
-    //Chức năng lưu id của nv
-    public List<Employee> findIDNV(){
-        return repository.findAllIDNV();
-    }
-
     // public Map<Long,List<Employee>> getNVInformationbyID(){
     //     return repository.getNVInformationbyID();
     // }
 
-    public void updateIdNV(Department department){
+    public void updateIdNV(long id){
+        Department department=new Department();
         Set<Employee> listidnv=new HashSet<>();
-        for(int i=0;i<repository.findAllIDNV().size();i++){
-            listidnv.add(repository.findAllIDNV().get(i));
+        for(int i=0;i<repository.findAllIDNV(id).size();i++){
+            listidnv.add(repository.findAllIDNV(id).get(i));
         }
         department.setIdnv(listidnv);
         this.repository.save(department);
