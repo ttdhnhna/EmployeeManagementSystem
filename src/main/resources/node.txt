@@ -35,3 +35,9 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 Đã làm xong phần cập nhật idnv cho phòng ban rồi, mai sẽ chạy thử xem đã thêm phòng ban độc
 lập dược chưa vs có chức năng đã chạy ổn chưa.
 
+Có thử làm thêm phần đăng ký tài khoản mới theo cái vd kia nhưng sẽ bị thiếu phần service, 
+tuy là các chức năng sẽ vẫn hoạt động bìn thường nhưng sẽ có 1 vấn đề là khi muốn xử lý đến
+logic thì sẽ khá là khó vì gần như không thể xử lý được ở phần controller.
+
+Mai sẽ tạo 1 nhánh riêng để có thể tạo chức năng đăng nhập và đăng xuất này để không ảnh hưởng
+đến các chức năng còn lại.
