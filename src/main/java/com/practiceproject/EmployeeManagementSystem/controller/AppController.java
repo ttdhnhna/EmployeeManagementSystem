@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.practiceproject.EmployeeManagementSystem.entity.User;
-import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
+import com.practiceproject.EmployeeManagementSystem.service.AppService;
 
 @Controller
 public class AppController {
     @Autowired
-    private UserRepository repository;
+    AppService service;
     @GetMapping("/registration")
     public String regisPage(Model model){
         model.addAttribute("user", new User());
@@ -21,7 +21,7 @@ public class AppController {
     }
     @PostMapping("/saveRegistration")
     public String saveRegistration(@ModelAttribute("user") User user){
-        this.repository.save(user);
+        service.saveUser(user);
         return "redirect:/";
     }
 }
