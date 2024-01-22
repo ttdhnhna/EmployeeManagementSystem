@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
-import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
@@ -20,10 +19,10 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     public List<Department> findAllDepartments(String keyword);
 
     //Lấy id nv và cho vào list
-    @Query(value = "SELECT e.id_pb FROM dbo.tbl_employee e "
+    @Query(value = "SELECT e.idnv FROM dbo.tbl_employee e "
     + "INNER JOIN dbo.tbl_department d "
     + "ON e.id_pb = %?1%", nativeQuery = true)
-    public List<Employee> findAllIDNV(long id);
+    public List<Long> findAllIDNV(long id);
 
     //Lấy thông tin danh sách nhân viên: id, hoten, sdt, chuc vu
 //    @Query(value = "SELECT [id], [hoten], [sdt], [chucvu] FROM Employee "

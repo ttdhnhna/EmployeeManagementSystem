@@ -14,7 +14,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
-import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.repository.DepartmentRepository;
 
 @Service
@@ -65,7 +64,7 @@ public class DepartmentService {
 
     public void updateIdNV(long id){
         Department department=new Department();
-        Set<Employee> listidnv=new HashSet<>();
+        Set<Long> listidnv=new HashSet<>();
         for(int i=0;i<repository.findAllIDNV(id).size();i++){
             listidnv.add(repository.findAllIDNV(id).get(i));
         }
