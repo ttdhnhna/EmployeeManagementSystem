@@ -22,7 +22,7 @@ public class Department {
     private Long idpb;
     @OneToMany(mappedBy = "idpb", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private Set<Long> idnv;
+    private Set<Employee> idnv;
     private String tenpb;
     private String diachi;
     private String sdt;
@@ -52,10 +52,10 @@ public class Department {
     public void setSdt(String sdt) {
         this.sdt = sdt;
     }
-    public Set<Long> getIdnv() {
+    public Set<Employee> getIdnv() {
         return idnv;
     }
-    public void setIdnv(Set<Long> idnv) {
+    public void setIdnv(Set<Employee> idnv) {
         this.idnv.clear();
         this.idnv.addAll(idnv);
         //this.idnv=idnv;
