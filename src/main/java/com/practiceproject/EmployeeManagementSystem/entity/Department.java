@@ -1,5 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -52,8 +53,14 @@ public class Department {
     public void setSdt(String sdt) {
         this.sdt = sdt;
     }
-    public Set<Employee> getIdnv() {
-        return idnv;
+    public Set<Long> getIdnv(Long departmentId) {
+        Set<Long> employeeIds = new HashSet<>();
+        for (Employee employee : idnv) {
+            if (employee.getIdpb().getIdpb().equals(departmentId)) {
+                employeeIds.add(employee.getIdnv());
+            }
+        }
+        return employeeIds;
     }
     public void setIdnv(Set<Employee> idnv) {
         this.idnv.clear();

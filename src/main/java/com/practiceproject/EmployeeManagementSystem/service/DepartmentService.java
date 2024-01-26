@@ -63,16 +63,6 @@ public class DepartmentService {
     //     return repository.getNVInformationbyID();
     // }
 
-    // public void updateIdNV(long id){
-    //     Department department=new Department();
-    //     Set<Long> listidnv=new HashSet<>();
-    //     for(int i=0;i<repository.findAllIDNV(id).size();i++){
-    //         listidnv.add(repository.findAllIDNV(id).get(i));
-    //     }
-    //     department.setIdnv(listidnv);
-    //     this.repository.save(department);
-    // }
-
     // public void updateIdNV(long id) {
     //     Department department = repository.findById(id).orElse(null);
     //     if (department != null) {
