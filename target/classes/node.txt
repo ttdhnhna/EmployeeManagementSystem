@@ -32,71 +32,10 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
-Đã làm xong phần cập nhật idnv cho phòng ban rồi, mai sẽ chạy thử xem đã thêm phòng ban độc
-lập dược chưa vs có chức năng đã chạy ổn chưa.
-
 Có thử làm thêm phần đăng ký tài khoản mới theo cái vd kia nhưng sẽ bị thiếu phần service, 
 tuy là các chức năng sẽ vẫn hoạt động bìn thường nhưng sẽ có 1 vấn đề là khi muốn xử lý đến
 logic thì sẽ khá là khó vì gần như không thể xử lý được ở phần controller.
 
-Có thể sẽ phải sửa lại cái phần thuộc tính của phòng ban để lấy được luôn idnv xong sẽ không
-cần phải xử lý trong repo và service chỉ cần controller lấy được idpb và truyền vào cái phương
-thức đấy là xong.
-Department:
-package com.practiceproject.EmployeeManagementSystem.entity;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
-import java.util.HashSet;
-import java.util.Set;
-
-@Entity
-@Table(name = "tblDepartment")
-public class Department {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_pb")
-    private Long idpb;
-
-    @OneToMany(mappedBy = "idpb", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private Set<Employee> employees;
-
-    private String tenpb;
-    private String diachi;
-    private String sdt;
-
-    public Department() {
-        this.employees = new HashSet<>();
-    }
-
-    // Other getters and setters...
-
-    public Set<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(Set<Employee> employees) {
-        this.employees = employees;
-    }
-
-    // Method to get all employee IDs for a specific department
-    public Set<Long> getAllEmployeeIdsForDepartment(Long departmentId) {
-        Set<Long> employeeIds = new HashSet<>();
-        for (Employee employee : employees) {
-            if (employee.getIdpb().getIdpb().equals(departmentId)) {
-                employeeIds.add(employee.getIdnv());
-            }
-        }
-        return employeeIds;
-    }
-}
+Đã sửa lại cái phần service để lấy thông tin nhân viên trong phòng ban rồi, giờ sẽ cần chạy 
+thử và nếu thành công đc thì mình sẽ áp dụng tương tự vs phần lấy chi tiết nhân viên luôn 
+và không cần phải làm mấy câu lệnh sql làm gì cả.
