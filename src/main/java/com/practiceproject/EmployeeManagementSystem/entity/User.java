@@ -1,5 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +14,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long iduser;
     private String hoten;
+    @Column(nullable = true, unique = true)
     private String email;
     private String password;
     
