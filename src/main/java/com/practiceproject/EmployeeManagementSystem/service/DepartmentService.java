@@ -15,12 +15,14 @@ import org.springframework.stereotype.Service;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.repository.DepartmentRepository;
+import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 
 @Service
 public class DepartmentService {
     @Autowired
     DepartmentRepository repository;
-    EmployeeService eservice;
+    @Autowired
+    EmployeeRepository eRepository;
 
     public List<Department> getDepartments(){
         return repository.findAll();
@@ -67,7 +69,7 @@ public class DepartmentService {
     public void updateIdNV(long id) {
         Department department=new Department();
         Set<Employee> employeeIds = new HashSet<>();
-        for(Employee employee : eservice.getEmployees()){
+        for(Employee employee : eRepository.findAll()){
             if(employee.getIdpb().equals(id)){
                 employeeIds.add(employee);
             }
