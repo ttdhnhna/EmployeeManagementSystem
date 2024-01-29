@@ -54,9 +54,7 @@ public class Department {
     }
     
     public void setIdnv(Set<Employee> idnv) {
-        this.idnv.clear();
-        this.idnv.addAll(idnv);
-        //this.idnv=idnv;
+        this.idnv=idnv;
     }
     public Set<Employee> getIdnv() {
         return idnv;
