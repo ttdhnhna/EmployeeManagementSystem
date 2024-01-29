@@ -36,4 +36,4 @@ Có thử làm thêm phần đăng ký tài khoản mới theo cái vd kia nhưn
 tuy là các chức năng sẽ vẫn hoạt động bìn thường nhưng sẽ có 1 vấn đề là khi muốn xử lý đến
 logic thì sẽ khá là khó vì gần như không thể xử lý được ở phần controller.
 
-Vừa thử sửa lại đc cái phần sửa phòng ban rồi.
+Khong luu dc cai kia nhung se can xem lai cai phan homepage cua pb va controller nua
