@@ -33,7 +33,7 @@ public class DepartmentService {
     }
 
     public Department getDepartmentID(long id){
-        Optional<Department> optional=repository.findById(null);
+        Optional<Department> optional=repository.findById(id);
         Department department=null;
         if(optional.isPresent()){
             department=optional.get();

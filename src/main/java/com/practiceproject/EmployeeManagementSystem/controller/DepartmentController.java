@@ -45,7 +45,7 @@ public class DepartmentController {
     @GetMapping("/deleteDepartment/{id}")
     public String deleteDepartment(@PathVariable(value = "id") long id){
         this.service.deleteDepartmentID(id);
-        return "departmentspage";
+        return "redirect:/departments";
     }
 
     @GetMapping("/updateDepartment/{id}")
