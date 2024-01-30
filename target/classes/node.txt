@@ -22,18 +22,10 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 
 * Tạo chức năng nhắn tin.
 
-Ghi chú: Phần tìm kiếm trong lương thì sẽ có cả tìm mã nhân viên, mã lương và tên nhân viên
-Đã thêm được phần sửa vs thêm lương ở nhân viên rồi
-Giờ sẽ cần chạy thử xem việc thêm, hiện lương
-Khong thay dc thuoc tinh idnv o 2 bang luong
-va phong ban, phan sua ma luong o nv thi van on va hien len dc.
-
 * Phần tìm kiếm ở trang phòng ban vẫn chưa hoạt động đc nên sẽ để tạm đấy vậy
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
-Có thử làm thêm phần đăng ký tài khoản mới theo cái vd kia nhưng sẽ bị thiếu phần service, 
-tuy là các chức năng sẽ vẫn hoạt động bìn thường nhưng sẽ có 1 vấn đề là khi muốn xử lý đến
-logic thì sẽ khá là khó vì gần như không thể xử lý được ở phần controller.
-
-Khong luu dc cai kia nhung se can xem lai cai phan homepage cua pb va controller nua
+Đã làm được cái nút để xem chi tiết phòng ban với danh sách nhân viên, nhưng sẽ để cái nút chi tiết là vô dụng để chạy thử xem
+có ổn không nếu chạy ổn rồi thì sẽ chạy thử cái chức năng xem chi tiết và nếu xong đc cái cn đấy rồi thì mình sẽ chạy thử chức
+năng đăng ký.

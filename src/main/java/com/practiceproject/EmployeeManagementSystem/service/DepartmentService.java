@@ -1,9 +1,8 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -62,19 +61,14 @@ public class DepartmentService {
         return repository.findAll();
     }
 
-    // public Map<Long,List<Employee>> getNVInformationbyID(){
-    //     return repository.getNVInformationbyID();
-    // }
-
-    public void updateIdNV(long id) {
-        Department department=new Department();
-        Set<Employee> employeeIds = new HashSet<>();
+    //Tìm kiếm danh sách nhân viên theo idpb
+    public List<Employee> getNVInformationbyID(long id){
+        List<Employee> ListEmployees=new ArrayList<>();
         for(Employee employee : eRepository.findAll()){
-            if(employee.getIdpb().equals(id)){
-                employeeIds.add(employee);
+            if(employee.getIdpb().getIdpb()==id){
+                ListEmployees.add(employee);
             }
         }
-        department.setIdnv(employeeIds);
-        this.repository.save(department);
+        return ListEmployees;
     }
 }
