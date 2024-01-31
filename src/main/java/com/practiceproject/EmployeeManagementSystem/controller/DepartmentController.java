@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
+import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 // import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.service.DepartmentService;
 
@@ -45,7 +46,7 @@ public class DepartmentController {
     @GetMapping("/deleteDepartment/{id}")
     public String deleteDepartment(@PathVariable(value = "id") long id){
         this.service.deleteDepartmentID(id);
-        return "departmentspage";
+        return "redirect:/departments";
     }
 
     @GetMapping("/updateDepartment/{id}")
@@ -84,19 +85,12 @@ public class DepartmentController {
     }
 
     //Trang chi tiết phòng ban.
-    // @GetMapping("/viewDepartmentdetail/{id}")
-    // public String viewDepartmentdetail(@PathVariable(value = "id") long id, Model model){
-    //     Department department=service.getDepartmentID(id);
-    //     model.addAttribute("department", department);
-    //     Map<Long,List<Employee>> getNVInformationbyID=new HashMap<>();
-    //     getNVInformationbyID=service.getNVInformationbyID();
-    //     model.addAttribute("employee", getNVInformationbyID);
-    //     return "departmentviewprofile";
-    // }
-
-    @GetMapping("/updateIDNV/{id}")
-    public String updateIDNV(@PathVariable(value = "id") long id){
-        this.service.updateIdNV(id);
-        return "departmentspage";
+    @GetMapping("/viewDepartmentdetail/{id}")
+    public String viewDepartmentdetail(@PathVariable(value = "id") long id, Model model){
+        Department department=service.getDepartmentID(id);
+        model.addAttribute("department", department);
+        List<Employee> ListEmployees=service.getNVInformationbyID(id);
+        model.addAttribute("ListEmployees", ListEmployees);
+        return "departmentviewprofile";
     }
 }
