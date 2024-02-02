@@ -27,6 +27,6 @@ public class AppController {
         String ePass=encoder.encode(user.getPassword());
         user.setPassword(ePass);
         this.repository.save(user);
-        return "redirect:/";
+        return "redirect:/registration?success";
     }
 }

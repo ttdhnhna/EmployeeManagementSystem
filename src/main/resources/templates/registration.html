@@ -34,9 +34,9 @@
                 <h1 align="center"> Đăng ký </h1>
 
                 <!-- Tin nhắn thành công -->
-                <!-- <div th:if="${param.success}">
+                <div th:if="${param.success}">
                     <div class="alert alert-info">Bạn đã đăng ký tài khoản thành công!</div>
-                </div> -->
+                </div>
 
                 <form th:action="@{/saveRegistration}" method="post" th:object="${user}">
                     <div class="form-group">
@@ -68,10 +68,7 @@
                         <button type="submit" class="btn btn-success">Đăng ký</button>
                         &nbsp;
                         <a th:href="@{/}" class="btn btn-danger">Quay lại</a>
-                        &nbsp; 
-                        <span>Đã đăng ký?
-                            <a href="#" th:href="/login">Đăng nhập ở đây!</a>
-                        </span>
+                        
                     </div>
                 </form>
             </div>
