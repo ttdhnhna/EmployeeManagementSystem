@@ -32,10 +32,5 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
-Đã fix lỗi 
-Và cop rồi paste cái mk dưới đây vào cái tk adminh trong csdl(12345)
-$2a$10$JAJuy2h2ENwusBWfdgdvoeMlacnAzoHiDFQbFOchiWOD4oYDy6d8O
-Nếu là 123456:
-$2a$10$f83/aIrpCXZTqLGxoysQPOsRadeMY2CrYTwtluZ8dQ3j1.2EYX13O
-
-Có thêm thử chức năng hiện thông báo đã đăng ký tài khoản thành công.
+Không thể thay được antMatchers = requestMatchers đc nên mình sẽ chỉ thay 1 số phần trong phần config 
+thôi nhưng có bổ sung đc thêm 1 số phần vào config rồi.

@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.practiceproject.EmployeeManagementSystem.service.CustomUserDetailsService;
 
@@ -47,14 +48,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers("/").authenticated()
+            .antMatchers("/registration**",
+            "/js/**",
+            "/css/**",
+            "/img/**")
+            .authenticated()
             .anyRequest().permitAll()
             .and()
             .formLogin()
-                .usernameParameter("email")
-                .defaultSuccessUrl("/")
+                .loginPage("/login")
+                .permitAll()
             .and()
-            .logout().logoutSuccessUrl("/").permitAll();
+            .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .permitAll();
     }
 
     

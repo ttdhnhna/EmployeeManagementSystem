@@ -29,4 +29,8 @@ public class AppController {
         this.repository.save(user);
         return "redirect:/registration?success";
     }
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 }

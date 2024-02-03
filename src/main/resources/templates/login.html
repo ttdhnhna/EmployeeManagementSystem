@@ -37,24 +37,24 @@
                 <h1 align="center"> Đăng nhập </h1>
                 <form th:action="@{/login}" method="post">
                     <!-- Tin nhắn báo lỗi -->
-                    <!-- <div th:if="${param.error}">
+                    <div th:if="${param.error}">
                         <div class="alert alert-danger">Sai tên đăng nhập hoặc mật khảu</div>
-                    </div> -->
+                    </div>
                     <!-- Tin nhắn báo đăng xuất -->
-                    <!-- <div th:if="${param.Logout}">
+                    <div th:if="${param.logout}">
                         <div class="alert alert-info">Bạn đã đăng xuất thành công.</div>
-                    </div> -->
+                    </div>
 
                     <div class="form-group">
                         <label for="username">Email</label>:
                         <input type="email" class="form-control" id="username" name="username"
-                        placeholder="Nhập Email" autofocus="autofocus">
+                        placeholder="Nhập Email" autofocus="autofocus" th:field="*{email}">
                     </div>
 
                     <div class="form-group">
                         <label for="password">Mật khẩu</label>:
                         <input type="password" class="form-control"  id="password" name="password"
-                        placeholder="Nhập Mật khẩu">
+                        placeholder="Nhập Mật khẩu" th:field="*{password}">
                     </div>
 
                     <div class="form-group">
