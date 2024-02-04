@@ -32,45 +32,70 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
-Không thể thay được antMatchers = requestMatchers đc nên mình sẽ chỉ thay 1 số phần trong phần config 
-thôi nhưng có bổ sung đc thêm 1 số phần vào config rồi.
+Có thể sẽ phải update springboot version nếu vẫn tiếp tục gặp lỗi và dưới đây là cách: 
+To update your Spring Boot version in your Maven project, follow these steps:
 
-java.lang.IllegalStateException: Failed to introspect Class [org.springframework.boot.autoconfigure.security.servlet.SpringBootWebSecurityConfiguration$SecurityFilterChainConfiguration] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528]
-	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.0.13.jar:6.0.13]
-	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:360) ~[spring-core-6.0.13.jar:6.0.13]
-	at org.springframework.util.ReflectionUtils.getUniqueDeclaredMethods(ReflectionUtils.java:417) ~[spring-core-6.0.13.jar:6.0.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.lambda$getTypeForFactoryMethod$1(AbstractAutowireCapableBeanFactory.java:748) ~[spring-beans-6.0.13.jar:6.0.13]
-	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1740) ~[na:na]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryMethod(AbstractAutowireCapableBeanFactory.java:747) ~[spring-beans-6.0.13.jar:6.0.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineTargetType(AbstractAutowireCapableBeanFactory.java:680) ~[spring-beans-6.0.13.jar:6.0.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:651) ~[spring-beans-6.0.13.jar:6.0.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1630) ~[spring-beans-6.0.13.jar:6.0.13]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:560) ~[spring-beans-6.0.13.jar:6.0.13]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:532) ~[spring-beans-6.0.13.jar:6.0.13]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:659) ~[spring-beans-6.0.13.jar:6.0.13]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:651) ~[spring-beans-6.0.13.jar:6.0.13]
-	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1312) ~[spring-context-6.0.13.jar:6.0.13]
-	at org.springframework.boot.SpringApplication.getExitCodeFromMappedException(SpringApplication.java:867) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.getExitCodeFromException(SpringApplication.java:855) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.handleExitCode(SpringApplication.java:842) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.handleRunFailure(SpringApplication.java:782) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:329) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.5.jar:3.1.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.5.jar:3.1.5]
-	at com.practiceproject.EmployeeManagementSystem.EmployeeManagementSystemApplication.main(EmployeeManagementSystemApplication.java:9) ~[classes/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:578) ~[na:na]
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.1.5.jar:3.1.5]
-Caused by: java.lang.NoClassDefFoundError: org/springframework/security/config/annotation/web/configurers/AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry
-	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
-	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3502) ~[na:na]
-	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2601) ~[na:na]
-	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.0.13.jar:6.0.13]
-	... 24 common frames omitted
-Caused by: java.lang.ClassNotFoundException: org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry
-	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
-	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[na:na]
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521) ~[na:na]
-	... 28 common frames omitted
+1. **Update the Parent POM:**
 
-Co ve loi la khong co phan /logout nen se can phai xem lai
+    Open your `pom.xml` file and locate the `<parent>` section. Update the `<version>` element to the desired Spring Boot version. For example:
+
+    ```xml
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.2</version> <!-- Update to the latest version -->
+        <relativePath/>
+    </parent>
+    ```
+
+2. **Update Dependency Versions:**
+
+    If you have any specific Spring Boot dependencies in the `<dependencies>` section, ensure they use the same version. You can remove the version from the individual dependencies and let them inherit the version from the parent. For example:
+
+    Before:
+
+    ```xml
+    <dependencies>
+        <!-- Other dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.6.2</version> <!-- Remove this line -->
+        </dependency>
+        <!-- Other dependencies -->
+    </dependencies>
+    ```
+
+    After:
+
+    ```xml
+    <dependencies>
+        <!-- Other dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <!-- No version specified; it will inherit from the parent -->
+        </dependency>
+        <!-- Other dependencies -->
+    </dependencies>
+    ```
+
+3. **Clean and Rebuild:**
+
+    Save your changes and rebuild your project. You can do this by running the following Maven commands in your project directory:
+
+    ```bash
+    mvn clean
+    mvn install
+    ```
+
+    Or you can use an integrated development environment (IDE) like IntelliJ IDEA or Eclipse to trigger a clean and build.
+
+4. **Verify the Update:**
+
+    After a successful build, check the console or logs for any warnings or errors related to the dependencies. Ensure that your project is using the updated Spring Boot version.
+
+By following these steps, you should be able to update your Spring Boot version in your Maven project. Make sure to test your application thoroughly to ensure compatibility with the new Spring Boot version.
+
+
+Có chỉnh sửa 1 số thứ ở trong file pom nên nếu có lỗi gì sẽ cần phải chỉnh sửa lại.
