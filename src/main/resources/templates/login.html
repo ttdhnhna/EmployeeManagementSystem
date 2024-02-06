@@ -41,14 +41,14 @@
                         <div class="alert alert-danger">Sai tên đăng nhập hoặc mật khảu</div>
                     </div>
                     <!-- Tin nhắn báo đăng xuất -->
-                    <div th:if="${param.Logout}">
+                    <div th:if="${param.logout}">
                         <div class="alert alert-info">Bạn đã đăng xuất thành công.</div>
                     </div>
 
                     <div class="form-group">
-                        <label for="username">Tên người dùng</label>:
-                        <input type="text" class="form-control" id="username" name="username"
-                        placeholder="Nhập Tên người dùng" autofocus="autofocus">
+                        <label for="username">Email</label>:
+                        <input type="email" class="form-control" id="username" name="username"
+                        placeholder="Nhập Email" autofocus="autofocus">
                     </div>
 
                     <div class="form-group">
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="form-group">
-                        <a href="/" href="#">Quên mật khẩu?</a></span>
+                        <a  href="#">Quên mật khẩu?</a></span>
                     </div>
 
                     <div class="form-group">
