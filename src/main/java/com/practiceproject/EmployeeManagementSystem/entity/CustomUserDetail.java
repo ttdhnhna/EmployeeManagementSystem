@@ -1,8 +1,11 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
@@ -19,7 +22,9 @@ public class CustomUserDetail implements UserDetails{
     
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+        Collection<User> users=new ArrayList<>();
+        return users.stream().map(user->new SimpleGrantedAuthority(user.getEmail())).collect(Collectors.toList());
+        //return null;
     }
 
     @Override
