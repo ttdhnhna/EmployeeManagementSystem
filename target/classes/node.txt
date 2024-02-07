@@ -35,3 +35,4 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 Đã thử sửa lỗi ở phần CustomUserDetail rồi nếu chương trình không chạy đc thì sẽ phải sửa lại như cũ vậy.
 Thêm lại cái dependency giúp mình hiện trang login khi ms vào trang web rồi.
 
+Thêm nhánh làm chức năng phân chia tài khoản admin và user.
