@@ -32,6 +32,5 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
-Đã thử sửa lỗi ở phần CustomUserDetail rồi nếu chương trình không chạy đc thì sẽ phải sửa lại như cũ vậy.
-Thêm lại cái dependency giúp mình hiện trang login khi ms vào trang web rồi.
-
+Đã thử xử lý bằng cách chỉnh sửa lại phần antMatchers ở trong file config rồi nếu có gì không đc thì chỉ cần chỉnh
+lại là đc.

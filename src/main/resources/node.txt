@@ -32,5 +32,5 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
-Nut dang nhap vs dang ky la chay thanh cong roi nhung khi vao thi trang dang nhap khong hien
-len dau tien ma la trang chu.
+Đã thử xử lý bằng cách chỉnh sửa lại phần antMatchers ở trong file config rồi nếu có gì không đc thì chỉ cần chỉnh
+lại là đc.
