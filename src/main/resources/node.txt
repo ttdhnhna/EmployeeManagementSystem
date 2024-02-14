@@ -1,3 +1,6 @@
+Link website về mấy ý tưởng project có thể làm thêm để cho vào cv: 
+https://mindmajix.com/spring-boot-projects#for-freshers
+
 * Thứ tự những nhiệm vụ cần phải làm: 
 * Để tạo liên kết giữa 2 bảng dữ liệu phòng ban và nhân viên thì mình sẽ dùng đến @onetomany và @manytoone 
 cái này sẽ cần phải nghiên cứu 1 lúc mới được.(Đã thành công)
