@@ -37,10 +37,5 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
-Cần phải xử lý để có thể thêm đc phần chức vụ như admin và user vào trang đăng ký để có thể
-lưu vào CSDL.
-Mới đang ở phần thêm phần role vào trong phần entity và tạo liên kết với user thôi, chưa làm
-đc gì thêm cả, giờ sẽ xem hết cái video kia xem nó hoạt động như thế nào rồi mình mới bắt đầu
-làm.
-
-Them nut dang xuat o cac trang khac nua
+Đã xem xong cái video kia rồi giờ vừa thêm phần chức năng nhập vai trò vào trong phần đăng ký rồi
+giờ có thể sẽ cần phải chạy thử xem có lỗi không rồi sẽ làm tiếp sau.
