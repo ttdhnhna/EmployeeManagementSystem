@@ -33,4 +33,12 @@ public class AppController {
     public String login(){
         return "login";
     }
+    @GetMapping("/loginadmin")
+    public String loginadmin(){
+        return "loginadmin";
+    }
+    @GetMapping("/userpage")
+    public String showUserpage(){
+        return "userpage";
+    }
 }

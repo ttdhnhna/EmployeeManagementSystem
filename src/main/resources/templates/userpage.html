@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống quản lý Nhân viên</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+    crossorigin="anonymous">
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" th:href="@{/}">Hệ thống Quản lý Nhân viên</a>
+      
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Thông tin chi tiết</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" th:href="@{/departments} ">Quản lý Phòng ban</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/salaries} ">Quản lý Lương</a>
+            </li> -->
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+              <a class="nav-link" th:href="@{/logout} ">Đăng xuất</a>
+            </li>
+          </ul>
+        </div>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+          <form class="form-inline" th:action="@{/findemployee}">
+            <input class="form-control mr-sm-2" type="search" name = "keyword" placeholder="Tìm kiếm">
+            <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
+          </form>
+        </nav>
+    </nav>
+    <br>
+    <!-- Body -->
+    <div class="container light-style flex-grow-1 container-p-y">
+        <h1 class="text-center">Chào mừng </h1>
+    </div>
+</body>
+</html>

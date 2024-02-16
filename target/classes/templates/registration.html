@@ -72,8 +72,8 @@
                             <select id="role" class="form-control">
                                 <!-- <option value="Role.ADMIN" th:field="Role.ADMIN">ADMIN</option>
                                 <option value="Role.USER" th:field="Role.USER">USER</option> -->
-                                <option value="admin" th:field="Role.ADMIN">ADMIN</option>
-                                <option value="user" th:field="Role.USER">USER</option>
+                                <option value="admin" th:field="*{Role.ADMIN}">ADMIN</option>
+                                <option value="user" th:field="*{Role.USER}">USER</option>
                             </select>
                         </label>
                     </div>

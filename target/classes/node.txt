@@ -37,5 +37,15 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
-Đã xem xong cái video kia rồi giờ vừa thêm phần chức năng nhập vai trò vào trong phần đăng ký rồi
-giờ có thể sẽ cần phải chạy thử xem có lỗi không rồi sẽ làm tiếp sau.
+* Sau khi xử lý xong cái phần phân biệt user vs admin này rồi mình sẽ cần liên kết user vs 
+nhân viên bằng cách dùng liên kết email nv, vs thêm cả phần danh sách người dùng để có thể sửa 
+thông tin và thêm cả phần thông tin tài khoản sẽ được hiện trong phần chi tiết nhân viên 
+(mỗi nhân viên sẽ có một tài khoản riêng và hiện cả mật khẩu nữa).
+
+Và khi test lại phần chạy thử đăng ký thành công thì cần kiểm tra xem trong CSDL xem có vai trò
+ở trong đấy chưa.
+
+Có làm thêm được vài trang khác vs sửa lỗi và có làm thêm đc tý phần config thôi nhưng đang comment
+nó lại rồi, khi chạy thử và thành công đc cái phần vai trò của user rồi thì mình sẽ bắt đầu làm tiếp
+phần config này.
+
