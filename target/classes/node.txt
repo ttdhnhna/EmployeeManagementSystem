@@ -44,5 +44,7 @@ thông tin và thêm cả phần thông tin tài khoản sẽ được hiện tr
 
 Đã thử sửa lỗi rồi.
 
+Đã thêm nốt đc phần phân biệt đăng nhập giữa tài khoản admin vs user rồi, giờ chỉ cần chạy thử rồi
+xem lỗi ở đâu còn sửa thôi.
 
 
