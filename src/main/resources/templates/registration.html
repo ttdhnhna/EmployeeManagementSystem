@@ -68,14 +68,15 @@
                     <div class="form-group">
                         <label class="control-label" for="password">
                             Nhập vai trò
-                            &nbsp;
-                            <select id="role" class="form-control">
-                                <!-- <option value="Role.ADMIN" th:field="Role.ADMIN">ADMIN</option>
-                                <option value="Role.USER" th:field="Role.USER">USER</option> -->
-                                <option value="admin" th:field="*{Role.ADMIN}">ADMIN</option>
-                                <option value="user" th:field="*{Role.USER}">USER</option>
-                            </select>
                         </label>
+                        <select id="role" class="form-control" th:field="*{role}">
+                            <!--<select id="role" class="form-control" th:field="*{role}">
+                                <option value="ADMIN">ADMIN</option>
+                                <option value="USER">USER</option>
+                            </select>-->
+                            <option value="ADMIN">ADMIN</option>
+                            <option value="USER">USER</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">Đăng ký</button>
