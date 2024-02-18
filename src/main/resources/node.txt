@@ -47,4 +47,18 @@ thông tin và thêm cả phần thông tin tài khoản sẽ được hiện tr
 Đã thêm nốt đc phần phân biệt đăng nhập giữa tài khoản admin vs user rồi, giờ chỉ cần chạy thử rồi
 xem lỗi ở đâu còn sửa thôi.
 
+Loi khong chay dc ung dung 18/2:
+***************************
+APPLICATION FAILED TO START
+***************************
 
+Description:
+
+The bean 'filterChain', defined in class path resource [com/practiceproject/EmployeeManagementSystem/config/UserSecurityConfig.class], could not be registered. A bean with that name has already been defined in class path resource [com/practiceproject/EmployeeManagementSystem/config/AdminSecurityConfig.class] and overriding is disabled.
+
+Action:
+
+Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true
+
+
+Process finished with exit code 0
