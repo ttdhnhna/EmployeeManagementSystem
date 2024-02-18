@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,13 +53,10 @@
     <div class="container">
         <div class="row">
             &nbsp; &nbsp; 
-            <h1> Danh sách Nhân viên</h1>
+            <h1> Danh sách Tài khoản</h1>
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <a th:href="@{/addEmployee}" class="btn btn-primary btn-sm mb-3">
-                    Thêm mới
-                </a>
                 <a th:href="@{/registration}" class="btn btn-primary btn-sm mb-3">
                     Đăng ký
                 </a>
@@ -68,35 +65,30 @@
         <table class="table thead-light table-bordered">
             <thead class="table-dark">
                 <tr>
-                    <th>
-                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}">ID</a>
-                    </th>
+                    <th>ID</th>
                     <th>Ảnh hồ sơ</th>
-                    <th>
-                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=hoten&sortDir=' + ${reverseSortDir}}">Họ tên</a>
-                    </th>
-                    <th>
-                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=chucvu&sortDir='+${reverseSortDir}}">Chức vụ</a>
-                    </th>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                    <th>Chức vụ</th>
                     <th>Chức năng</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each = "employee : ${ListEmployees}">
-                    <td th:text="${employee.idnv}"></td>
+                <tr th:each = "user : ${ListAccounts}">
+                    <td th:text="${user.iduser}"></td>
                     <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" height="100" width="100"></td>
-                    <td th:text="${employee.hoten}"></td>
-                    <td th:text="${employee.chucvu}"></td>
+                    <td th:text="${user.hoten}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.role}"></td>
                     <td>
-                      <a th:href="@{/updateEmployee/{id}(id=${employee.idnv})}" class="btn btn-primary">Sửa</a>
-                      <a th:href="@{/profileemployee/{id}(id=${employee.idnv})}" class="btn btn-primary">Chi tiết</a>
-                      <a th:href="@{/deleteEmployee/{id}(id=${employee.idnv})}" class="btn btn-danger">Xóa</a>
+                      <a href="#" class="btn btn-primary">Sửa</a>
+                      <a href="#" class="btn btn-danger">Xóa</a>
                   </td>
                 </tr>
             </tbody>
         </table>
 
-        <div th:if="${totalPages>1}">
+        <!-- <div th:if="${totalPages>1}">
           <div class="row coL-sm-10">
             <div class="coL-sm-2">
               &nbsp; &nbsp;
@@ -121,12 +113,7 @@
               <span th:unless="${currentPage < totalPages}">Cuối</span>
             </div>
           </div>
-        </div>
+        </div> -->
     </div>
-    <!-- <footer class="bg-light text-center text-lg-start">
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2020 Copyright
-      </div>
-    </footer> -->
 </body>
 </html>

@@ -1,6 +1,8 @@
 package com.practiceproject.EmployeeManagementSystem.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -10,11 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
+import com.practiceproject.EmployeeManagementSystem.service.UserService;
 
 @Controller
 public class AppController {
     @Autowired
     UserRepository repository;
+    @Autowired
+    UserService service;
 
     @GetMapping("/registration")
     public String registerPage(Model model){
@@ -40,5 +45,11 @@ public class AppController {
     @GetMapping("/userpage")
     public String showUserpage(){
         return "userpage";
+    }
+    @GetMapping("/accounts")
+    public String showAccountPage(Model model){
+        List<User> ListAccounts= service.getAccounts();
+        model.addAttribute("ListAccounts", ListAccounts);
+        return "accountspage";
     }
 }
