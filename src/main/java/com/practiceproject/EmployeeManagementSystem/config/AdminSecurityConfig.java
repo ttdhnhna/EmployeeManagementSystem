@@ -13,7 +13,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class AdminSecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain2(HttpSecurity http) throws Exception{
         http.antMatcher("/loginadmin")
             .authorizeRequests().anyRequest()
             .hasAuthority("ADMIN")

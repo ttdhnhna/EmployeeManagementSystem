@@ -42,9 +42,4 @@ nhân viên bằng cách dùng liên kết email nv, vs thêm cả phần danh s
 thông tin và thêm cả phần thông tin tài khoản sẽ được hiện trong phần chi tiết nhân viên 
 (mỗi nhân viên sẽ có một tài khoản riêng và hiện cả mật khẩu nữa).
 
-Đã thử sửa lỗi rồi.
-
-Đã thêm nốt đc phần phân biệt đăng nhập giữa tài khoản admin vs user rồi, giờ chỉ cần chạy thử rồi
-xem lỗi ở đâu còn sửa thôi.
-
-
+Đã thử sửa lỗi rồi giờ sẽ cần chạy thử.
