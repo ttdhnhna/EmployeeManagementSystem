@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.practiceproject.EmployeeManagementSystem.entity.User;
@@ -51,5 +52,11 @@ public class AppController {
         List<User> ListAccounts= service.getAccounts();
         model.addAttribute("ListAccounts", ListAccounts);
         return "accountspage";
+    }
+    
+    @GetMapping("/deleteAccount/{id}")
+    public String deleteAccount(@PathVariable(value = "id") long id){
+        this.service.deleteAccountById(id);
+        return "redirect:/accounts";
     }
 }

@@ -82,7 +82,7 @@
                     <td th:text="${user.role}"></td>
                     <td>
                       <a href="#" class="btn btn-primary">Sửa</a>
-                      <a href="#" class="btn btn-danger">Xóa</a>
+                      <a th:href="@{/deleteAccount/{id}(id=${user.iduser})}" class="btn btn-danger">Xóa</a>
                   </td>
                 </tr>
             </tbody>
