@@ -44,3 +44,4 @@ thông tin và thêm cả phần thông tin tài khoản sẽ được hiện tr
 
 Đã thử sửa lỗi phần này bằng cách tạo một lớp config mới với tác dụng của 2 lớp admin vs user
 security hợp lại luôn và mình đã vô hiệu luôn 2 lớp này nên sẽ cần chạy thử lại là đc.
+Thêm được phần sửa luôn thông tin tài khoản rồi.

@@ -30,6 +30,9 @@ public class UserService {
         return user;
     }
 
+    public void saveAccount(User user){
+        this.repository.save(user);
+    }
     public void deleteAccountById(long id){
         this.repository.deleteById(id);
     }

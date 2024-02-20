@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -59,4 +60,21 @@ public class AppController {
         this.service.deleteAccountById(id);
         return "redirect:/accounts";
     }
+
+    @GetMapping("/updateAccount/{id}")
+    public String updateAccount(@PathVariable(value = "id")long id, Model model){
+        User user=service.getUserByID(id);
+        model.addAttribute("user", user);
+        return "updateaccount";
+    }
+
+    @PostMapping("/saveAccount")
+    public String saveAccount(@ModelAttribute("user") User user){
+        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+        String ePass=encoder.encode(user.getPassword());
+        user.setPassword(ePass);
+        service.saveAccount(user);
+        return "redirect:/accounts";
+    }
+
 }
