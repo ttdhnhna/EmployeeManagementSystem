@@ -42,6 +42,7 @@ nhân viên bằng cách dùng liên kết email nv, vs thêm cả phần danh s
 thông tin và thêm cả phần thông tin tài khoản sẽ được hiện trong phần chi tiết nhân viên 
 (mỗi nhân viên sẽ có một tài khoản riêng và hiện cả mật khẩu nữa).
 
-Đã thử sửa lỗi phần này bằng cách tạo một lớp config mới với tác dụng của 2 lớp admin vs user
-security hợp lại luôn và mình đã vô hiệu luôn 2 lớp này nên sẽ cần chạy thử lại là đc.
-Thêm được phần sửa luôn thông tin tài khoản rồi.
+21/2:
+* Co chay thu thanh cong roi nhung co vai loi
+- Loi khong chuyen dc sang dang nhap tai khoan nv khi dang o trang dn tk admin
+- Khong dang nhap dc vao trang nguoi dung ke ca khi co tk nguoi dung
