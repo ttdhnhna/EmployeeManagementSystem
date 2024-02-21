@@ -37,12 +37,6 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
-* Sau khi xử lý xong cái phần phân biệt user vs admin này rồi mình sẽ cần liên kết user vs 
-nhân viên bằng cách dùng liên kết email nv, vs thêm cả phần danh sách người dùng để có thể sửa 
-thông tin và thêm cả phần thông tin tài khoản sẽ được hiện trong phần chi tiết nhân viên 
-(mỗi nhân viên sẽ có một tài khoản riêng và hiện cả mật khẩu nữa).
-
-21/2:
-* Co chay thu thanh cong roi nhung co vai loi
-- Loi khong chuyen dc sang dang nhap tai khoan nv khi dang o trang dn tk admin
-- Khong dang nhap dc vao trang nguoi dung ke ca khi co tk nguoi dung
+* Đã thử sửa lỗi rồi.
+Sẽ cần chạy thử và xem liệu đã ổn chưa rồi sẽ làm phân liên kết giữa nhân viên với người dùng
+sau.

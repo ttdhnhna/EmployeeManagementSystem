@@ -50,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/login").hasAuthority("USER")
+                .antMatchers("/userpage").authenticated()//Nếu sai thi xoa cai nay di
                 .antMatchers("/loginadmin").hasAuthority("ADMIN")
                 .antMatchers("/").authenticated()
                 .anyRequest().permitAll()
@@ -58,14 +59,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/userpage")
-                .usernameParameter("username")
+                // .usernameParameter("username")
                 .permitAll()
                 .and()
             .formLogin()
                 .loginPage("/loginadmin")
                 .loginProcessingUrl("/loginadmin")
                 .defaultSuccessUrl("/")
-                .usernameParameter("username")
+                // .usernameParameter("username")
                 .permitAll()
                 .and()
             .logout()
@@ -73,7 +74,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
-                .permitAll();
+                .permitAll()
+                //Có thêm đoạn dưới này
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logoutadmin"))
+                .logoutSuccessUrl("/logoutadmin?logout")
+                .permitAll()
+            ;
     }
 }
 

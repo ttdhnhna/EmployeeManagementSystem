@@ -81,7 +81,7 @@
                     <td th:text="${user.email}"></td>
                     <td th:text="${user.role}"></td>
                     <td>
-                      <a href="#" class="btn btn-primary">Sửa</a><!--Bo sung phan link lien ket vao day-->
+                      <a th:href="@{/updateAccount/{id}(id=${user.iduser})}" class="btn btn-primary">Sửa</a>
                       <a th:href="@{/deleteAccount/{id}(id=${user.iduser})}" class="btn btn-danger">Xóa</a>
                   </td>
                 </tr>
