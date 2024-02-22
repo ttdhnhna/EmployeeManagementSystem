@@ -30,6 +30,7 @@ public class UserService {
         return user;
     }
 
+    @SuppressWarnings("null")
     public void saveAccount(User user){
         this.repository.save(user);
     }
