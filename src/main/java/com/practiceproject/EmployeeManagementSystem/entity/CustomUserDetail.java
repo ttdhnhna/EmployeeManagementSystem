@@ -23,7 +23,7 @@ public class CustomUserDetail implements UserDetails{
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<User> users=new ArrayList<>();
-        return users.stream().map(user->new SimpleGrantedAuthority(user.getEmail())).collect(Collectors.toList());
+        return users.stream().map(user->new SimpleGrantedAuthority(user.getRole().toString())).collect(Collectors.toList());
         //Đoạn ở trên có thể sẽ chỉ cần thay đổi getEmail bằng getRole
         /*
          * List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
