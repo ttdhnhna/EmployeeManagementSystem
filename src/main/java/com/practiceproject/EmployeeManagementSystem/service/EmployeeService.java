@@ -23,7 +23,6 @@ public class EmployeeService {
         return repository.findAll();
     }
     //Lưu nhân viên
-    @SuppressWarnings("null")
     public void saveEmployee(Employee employee){
         this.repository.save(employee);
     }

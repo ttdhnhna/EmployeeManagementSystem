@@ -27,7 +27,6 @@ public class DepartmentService {
         return repository.findAll();
     }
 
-    @SuppressWarnings("null")
     public void saveDepartment(Department department){
         this.repository.save(department);
     }

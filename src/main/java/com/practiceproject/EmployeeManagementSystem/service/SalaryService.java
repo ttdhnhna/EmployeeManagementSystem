@@ -22,7 +22,6 @@ public class SalaryService {
         return repository.findAll();
     }
     //Luu luong
-    @SuppressWarnings("null")
     public void saveSalary(Salary salary){
         this.repository.save(salary);
     }
