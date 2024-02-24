@@ -40,3 +40,4 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 Đã thử sửa lại phần ảnh ở các trang đăng nhập rồi, với cố sửa luôn phần đăng nhập rồi nếu có
 lỗi gì thì sec cứ vào trang CustomUserDetail để xem có cần sửa thêm gì không?
 
+Van chua sua dc.
