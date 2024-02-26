@@ -12,26 +12,43 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/userpage")
-            .authenticated()
-            .anyRequest()
-            .permitAll()
-        .and()
-        .antMatcher("/userpage").authorizeRequests()
-            .anyRequest().hasAnyAuthority("USER")
-        .and()
-        .formLogin()
-            .loginPage("/login")
-            // .loginProcessingUrl("/login")
-            // .defaultSuccessUrl("/userpage")
-            .permitAll()
-        .and()
-        .logout()
-            .invalidateHttpSession(true)
-            .clearAuthentication(true)
-            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-            .logoutSuccessUrl("/login?logout")
-            .permitAll();
+        // http.authorizeRequests().antMatchers("/userpage")
+        //     .authenticated()
+        //     // .anyRequest()
+        //     // .permitAll()
+        // .and()
+        // .antMatcher("/userpage")
+        //     .authorizeRequests()
+        //     .anyRequest().hasAnyAuthority("USER")
+        // .and()
+        // .formLogin()
+        //     .loginPage("/login")
+        //     // .loginProcessingUrl("/login")
+        //     // .defaultSuccessUrl("/userpage")
+        //     .permitAll()
+        // .and()
+        // .logout()
+        //     .invalidateHttpSession(true)
+        //     .clearAuthentication(true)
+        //     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+        //     .logoutSuccessUrl("/login?logout")
+        //     .permitAll();
+        http
+            .authorizeRequests()
+                .antMatchers("/").hasAuthority("USER") // Access to homepage restricted to ADMIN
+                .antMatchers("/login").permitAll() // Allow access to loginadmin page
+                .anyRequest().authenticated()
+                .and()
+            .formLogin()
+                .loginPage("/logina")
+                .permitAll()
+                .and()
+            .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .permitAll();
     }
     
 }
