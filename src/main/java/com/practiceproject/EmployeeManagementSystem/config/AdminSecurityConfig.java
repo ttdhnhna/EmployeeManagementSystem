@@ -1,9 +1,10 @@
 package com.practiceproject.EmployeeManagementSystem.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
+// import org.springframework.context.annotation.Configuration;
+// import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,8 +13,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.practiceproject.EmployeeManagementSystem.service.CustomUserDetailsService;
 
-@Configuration
-@Order(1)
+// @Configuration
+// @Order(1)
 public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
     @Bean
     public UserDetailsService userDetailsService(){
@@ -31,6 +32,11 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider());
     }
     
     @Override 
@@ -60,10 +66,10 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
         //         .permitAll();
 
         http.authorizeRequests()
-                .antMatchers("/").authenticated()// Access to homepage restricted to ADMIN
-                .antMatchers("/loginadmin").hasAuthority("ADMIN") // Allow access to loginadmin page
+                .antMatchers("/").hasAuthority("ADMIN") // Access to homepage restricted to ADMIN
+                .antMatchers("/loginadmin").permitAll() // Allow access to loginadmin page
                 .anyRequest()
-                .permitAll()
+                .authenticated()
                 .and()
             .formLogin()
                 .loginPage("/loginadmin")
