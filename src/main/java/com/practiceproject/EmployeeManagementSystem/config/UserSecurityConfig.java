@@ -35,12 +35,13 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
         //     .permitAll();
         http
             .authorizeRequests()
-                .antMatchers("/").hasAuthority("USER") // Access to homepage restricted to ADMIN
+                .antMatchers("/userpage").hasAuthority("USER") // Access to homepage restricted to ADMIN
                 .antMatchers("/login").permitAll() // Allow access to loginadmin page
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
-                .loginPage("/logina")
+                .loginPage("/login")
+                .defaultSuccessUrl("/userpage")
                 .permitAll()
                 .and()
             .logout()
