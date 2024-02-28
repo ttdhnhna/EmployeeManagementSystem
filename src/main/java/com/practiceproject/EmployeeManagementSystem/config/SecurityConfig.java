@@ -17,6 +17,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.practiceproject.EmployeeManagementSystem.service.CustomUserDetailsService;
+
 // import com.practiceproject.EmployeeManagementSystem.service.CustomUserDetailsService;
 
 @Configuration
@@ -84,8 +86,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //             .permitAll()
     //         ;
     // }
-    @Autowired
-    UserDetailsService userDetailsService;
+    
+    @Bean
+    public UserDetailsService userDetailsService(){
+        return new CustomUserDetailsService();
+    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {//Dung de xac thuc admin vs user
@@ -121,7 +126,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider adminAuthenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
         // authProvider.setAuthoritiesMapper(adminAuthoritiesMapper());
         return authProvider;
@@ -130,7 +135,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider userAuthenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
