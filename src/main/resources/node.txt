@@ -38,3 +38,23 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * đâu xử lý
 
 Đã thử sửa tý lỗi rồi chỉ cần chạy thử xem còn lỗi ko là xong?
+
+28/2:
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field userDetailsService in com.practiceproject.EmployeeManagementSystem.config.SecurityConfig required a bean of type 'org.springframework.security.core.userdetails.UserDetailsService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.security.core.userdetails.UserDetailsService' in your configuration.
+
+
+Process finished with exit code 0
