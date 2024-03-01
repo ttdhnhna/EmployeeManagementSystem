@@ -67,7 +67,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
 
         http.authorizeRequests()
                 .antMatchers("/").hasAuthority("ADMIN") // Access to homepage restricted to ADMIN
-                .antMatchers("/loginadmin").permitAll() // Allow access to loginadmin page
+                .antMatchers("/loginadmin").hasAnyAuthority("ADMIN") // Allow access to loginadmin page
                 .anyRequest()
                 .authenticated()
                 .and()

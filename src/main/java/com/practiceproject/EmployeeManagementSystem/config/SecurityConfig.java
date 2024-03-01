@@ -2,7 +2,7 @@ package com.practiceproject.EmployeeManagementSystem.config;
 
 // import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -92,7 +92,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new CustomUserDetailsService();
     }
 
-    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {//Dung de xac thuc admin vs user
         auth.authenticationProvider(adminAuthenticationProvider());
         auth.authenticationProvider(userAuthenticationProvider());
@@ -118,6 +117,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/loginadmin?logout")
                 .and()
             .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
                 .permitAll();

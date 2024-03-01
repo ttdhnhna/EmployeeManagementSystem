@@ -37,4 +37,4 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý
 
-Đã thử sửa tý lỗi rồi chỉ cần chạy thử xem còn lỗi ko là xong?
+Đã sửa lỗi lại rồi nếu vẫn không chạy đc thì chuyển qua 2 cái file kia.
