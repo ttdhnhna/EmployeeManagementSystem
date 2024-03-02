@@ -21,7 +21,7 @@ import com.practiceproject.EmployeeManagementSystem.service.CustomUserDetailsSer
 
 // import com.practiceproject.EmployeeManagementSystem.service.CustomUserDetailsService;
 
-@Configuration
+//@Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
