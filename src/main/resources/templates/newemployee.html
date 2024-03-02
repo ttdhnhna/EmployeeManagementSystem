@@ -54,6 +54,7 @@
                     <form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post">
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
                         nut gui -->
+                        <!--enctype="multipart/form-data"-->
                         <div class="form-group">
                             <label>Họ tên</label>
                             <input 
@@ -193,7 +194,7 @@
             reader=new FileReader();
             reader.onload=function(e){
                 $('#thumbnail').attr('src',e.target.result);
-                $('#thumbnail').css('width', '300px'); // Set the width to 100 pixels
+                $('#thumbnail').css('width', '200px'); // Set the width to 100 pixels
             };
             reader.readAsDataURL(file);
         };
