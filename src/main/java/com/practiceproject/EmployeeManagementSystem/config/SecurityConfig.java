@@ -87,15 +87,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //         ;
     // }
     
-    @Bean
-    public UserDetailsService userDetailsService(){
-        return new CustomUserDetailsService();
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService(){
+//        return new CustomUserDetailsService();
+//    }
 
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {//Dung de xac thuc admin vs user
-        auth.authenticationProvider(adminAuthenticationProvider());
-        auth.authenticationProvider(userAuthenticationProvider());
-    }
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {//Dung de xac thuc admin vs user
+//        auth.authenticationProvider(adminAuthenticationProvider());
+//        auth.authenticationProvider(userAuthenticationProvider());
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -124,27 +124,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
-    @Bean
-    public DaoAuthenticationProvider adminAuthenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
-        // authProvider.setAuthoritiesMapper(adminAuthoritiesMapper());
-        return authProvider;
-    }
+//    @Bean
+//    public DaoAuthenticationProvider adminAuthenticationProvider() {
+//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+//        authProvider.setUserDetailsService(userDetailsService());
+//        authProvider.setPasswordEncoder(passwordEncoder());
+//        // authProvider.setAuthoritiesMapper(adminAuthoritiesMapper());
+//        return authProvider;
+//    }
+//
+//    @Bean
+//    public DaoAuthenticationProvider userAuthenticationProvider() {
+//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+//        authProvider.setUserDetailsService(userDetailsService());
+//        authProvider.setPasswordEncoder(passwordEncoder());
+//        return authProvider;
+//    }
 
-    @Bean
-    public DaoAuthenticationProvider userAuthenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
     // @Bean
     // public GrantedAuthoritiesMapper adminAuthoritiesMapper() {
