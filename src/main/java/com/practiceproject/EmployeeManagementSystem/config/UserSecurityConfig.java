@@ -3,11 +3,13 @@ package com.practiceproject.EmployeeManagementSystem.config;
  import org.springframework.context.annotation.Configuration;
  import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+// import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @Order(2)
+@EnableWebSecurity
 public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
@@ -22,15 +24,17 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
              .anyRequest().hasAuthority("USER")
          .and()
          .formLogin()
-             .loginPage("/login")
-             // .loginProcessingUrl("/login")
-             // .defaultSuccessUrl("/userpage")
-             .permitAll()
+            .loginPage("/login")
+            .usernameParameter("username")
+            .loginProcessingUrl("/login")
+            .defaultSuccessUrl("/login")
+            .permitAll()
          .and()
          .logout()
-             .invalidateHttpSession(true)
-             .clearAuthentication(true)
-             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            //  .invalidateHttpSession(true)
+            //  .clearAuthentication(true)
+            //  .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+             .logoutUrl("/logout")
              .logoutSuccessUrl("/login?logout")
              .permitAll();
 //        http.authorizeRequests()

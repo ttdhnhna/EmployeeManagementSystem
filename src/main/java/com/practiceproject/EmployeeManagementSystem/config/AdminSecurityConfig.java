@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+// import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.practiceproject.EmployeeManagementSystem.service.CustomUserDetailsService;
 
@@ -21,8 +21,7 @@ import javax.sql.DataSource;
 @Order(1)
 @EnableWebSecurity
 public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
-
-     @Autowired
+    @Autowired
     DataSource dataSource;
 
     @Bean
@@ -53,23 +52,24 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
         
          http.authorizeRequests().antMatchers("/")
              .authenticated()
-             .anyRequest()
-             .permitAll()
+            //  .anyRequest()
+            //  .permitAll()
          .and()
              .antMatcher("/loginadmin")
              .authorizeHttpRequests().anyRequest().hasAuthority("ADMIN")
              .and()
              .formLogin()
                  .loginPage("/loginadmin")
-                 // .loginProcessingUrl("/loginadmin")
-                 // .defaultSuccessUrl("/")
-                 // .usernameParameter("username")
+                 .usernameParameter("username")
+                 .loginProcessingUrl("/loginadmin")
+                 .defaultSuccessUrl("/loginadmin")
                  .permitAll()
              .and()
              .logout()
-                 .invalidateHttpSession(true)
-                 .clearAuthentication(true)
-                 .logoutRequestMatcher(new AntPathRequestMatcher("/logoutadmin"))
+                //  .invalidateHttpSession(true)
+                //  .clearAuthentication(true)
+                //  .logoutRequestMatcher(new AntPathRequestMatcher("/logoutadmin"))
+                 .logoutUrl("/logoutadmin")
                  .logoutSuccessUrl("/loginadmin?logout")
                  .permitAll();
 
