@@ -25,14 +25,14 @@ public class EmployeeController {
     //Điều này có nghĩa là ta sẽ lấy được bean đc tạo tự động bởi Spring
     EmployeeService service;
     //Hiển thị trang chủ
-    @GetMapping("/")
+    @GetMapping("/admin/homepage")
     // Điều này có nghĩa là phương thức này sẽ được thực hiện khi người dùng gửi yêu cầu GET tới '/'
 	// Trong TH này là: "http://localhost:8080/" (Trang chủ)
     public String getEmployees(Model model){
         // Chúng ta sử dụng Interface Model để truyền dữ liệu từ Controller sang View để hiển thị
         return findPaginated(1, "idnv", "asc", model);
     }
-    @GetMapping("/addEmployee")
+    @GetMapping("/admin/addEmployee")
     public String addEmployee(Model model){
         Employee employee=new Employee();
         model.addAttribute("employee", employee);
@@ -47,9 +47,9 @@ public class EmployeeController {
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
         service.saveEmployee(employee);
-        return "redirect:/";
+        return "redirect:/admin/homepage";
     }
-    @GetMapping("/updateEmployee/{id}")
+    @GetMapping("/admin/updateEmployee/{id}")
     public String updateEmployee(@PathVariable(value = "id") long id, Model model){
         //@PathVariable được dùng để xử lý các biểu mẫu trong ánh xạ URI được yêu cầu và đặt làm tham số
         //Hay đơn giản hơn là nó lấy id có được khi ta nhấn nút sửa và gán nó vào id vừa khai báo ở trên
@@ -58,12 +58,12 @@ public class EmployeeController {
         model.addAttribute("employee", employee);
         return "updateemployee"; 
     }
-    @GetMapping("/deleteEmployee/{id}")
+    @GetMapping("/admin/deleteEmployee/{id}")
     public String deleteEmployee(@PathVariable(value = "id") long id){
         this.service.deleteEmployeebyID(id);
-        return "redirect:/";
+        return "redirect:/admin/homepage";
     }
-    @GetMapping("/page/{pageNo}")
+    @GetMapping("/admin/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo, 
     @RequestParam("sortField") String sortField,
     @RequestParam("sortDir") String sortDir, Model model){
@@ -85,7 +85,7 @@ public class EmployeeController {
     }
 
     //Xem chi tiết hồ sơ nhân viên
-    @GetMapping("/profileemployee/{id}")
+    @GetMapping("/admin/profileemployee/{id}")
     public String viewProfileEmployee(@PathVariable(value = "id") long id, Model model){
         Employee employee=service.getEmployeebyID(id);
         model.addAttribute("employee", employee);

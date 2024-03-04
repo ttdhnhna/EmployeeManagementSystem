@@ -23,7 +23,7 @@ public class AppController {
     @Autowired
     UserService service;
 
-    @GetMapping("/registration")
+    @GetMapping("/admin/registration")
     public String registerPage(Model model){
         model.addAttribute("user",new User());
         return "registration";
@@ -34,34 +34,34 @@ public class AppController {
         String ePass=encoder.encode(user.getPassword());
         user.setPassword(ePass);
         this.repository.save(user);
-        return "redirect:/registration?success";
+        return "redirect:/admin/registration?success";
     }
-    @GetMapping("/login")
+    @GetMapping("/user/login")
     public String login(){
         return "login";
     }
-    @GetMapping("/loginadmin")
+    @GetMapping("/admin/login")
     public String loginadmin(){
         return "loginadmin";
     }
-    @GetMapping("/userpage")
+    @GetMapping("/user/userpage")
     public String showUserpage(){
         return "userpage";
     }
-    @GetMapping("/accounts")
+    @GetMapping("/admin/accounts")
     public String showAccountPage(Model model){
         List<User> ListAccounts= service.getAccounts();
         model.addAttribute("ListAccounts", ListAccounts);
         return "accountspage";
     }
     
-    @GetMapping("/deleteAccount/{id}")
+    @GetMapping("/admin/deleteAccount/{id}")
     public String deleteAccount(@PathVariable(value = "id") long id){
         this.service.deleteAccountById(id);
         return "redirect:/accounts";
     }
 
-    @GetMapping("/updateAccount/{id}")
+    @GetMapping("/admin/updateAccount/{id}")
     public String updateAccount(@PathVariable(value = "id")long id, Model model){
         User user=service.getUserByID(id);
         model.addAttribute("user", user);

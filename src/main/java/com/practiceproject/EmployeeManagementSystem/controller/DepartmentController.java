@@ -25,12 +25,12 @@ public class DepartmentController {
     @Autowired
     DepartmentService service;
 
-    @GetMapping("/departments")
+    @GetMapping("/admin/departments")
     public String getDepartments(Model model){
         return findPaginated(1,"idpb", "asc", model);
     } 
 
-    @GetMapping("/addDepartment")
+    @GetMapping("/admin/addDepartment")
     public String addDepartment(Model model){
         Department department=new Department();
         model.addAttribute("department", department);
@@ -43,20 +43,20 @@ public class DepartmentController {
         return "redirect:/departments";
     }
 
-    @GetMapping("/deleteDepartment/{id}")
+    @GetMapping("/admin/deleteDepartment/{id}")
     public String deleteDepartment(@PathVariable(value = "id") long id){
         this.service.deleteDepartmentID(id);
         return "redirect:/departments";
     }
 
-    @GetMapping("/updateDepartment/{id}")
+    @GetMapping("/admin/updateDepartment/{id}")
     public String updateDepartment(@PathVariable(value = "id") long id, Model model){
         Department department=service.getDepartmentID(id);
         model.addAttribute("department", department);
         return "updatedepartment";
     }
 
-    @GetMapping("/pageDepartment/{pageDepartmentNo}")
+    @GetMapping("/admin/pageDepartment/{pageDepartmentNo}")
     public String findPaginated(@PathVariable(value = "pageDepartmentNo")int pageNo, 
     @RequestParam("sortField") String sortField,
     @RequestParam("sortDir") String sortDir, Model model){
@@ -85,7 +85,7 @@ public class DepartmentController {
     }
 
     //Trang chi tiết phòng ban.
-    @GetMapping("/viewDepartmentdetail/{id}")
+    @GetMapping("/admin/viewDepartmentdetail/{id}")
     public String viewDepartmentdetail(@PathVariable(value = "id") long id, Model model){
         Department department=service.getDepartmentID(id);
         model.addAttribute("department", department);

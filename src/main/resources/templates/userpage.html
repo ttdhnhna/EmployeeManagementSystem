@@ -13,7 +13,7 @@
     <!-- Header -->
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
         <!-- Brand -->
-        <a class="navbar-brand" th:href="@{/userpage}">Hệ thống Quản lý Nhân viên</a>
+        <a class="navbar-brand" th:href="/@{/user/userpage}">Hệ thống Quản lý Nhân viên</a>
       
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -33,7 +33,7 @@
               <a class="nav-link" th:href="@{/salaries} ">Quản lý Lương</a>
             </li> -->
             <li sec:authorize="isAuthenticated()" class="nav-item">
-              <a class="nav-link" th:href="@{/logout} ">Đăng xuất</a>
+              <a class="nav-link" th:href="/@{/user/logout} ">Đăng xuất</a>
             </li>
           </ul>
         </div>

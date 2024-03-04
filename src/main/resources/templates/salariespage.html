@@ -13,7 +13,7 @@
     <!-- Header -->
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
         <!-- Brand -->
-        <a class="navbar-brand" th:href="@{/}">Hệ thống Quản lý Nhân viên</a>
+        <a class="navbar-brand" th:href="/@{/admin/homepage}">Hệ thống Quản lý Nhân viên</a>
       
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -24,19 +24,19 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/} ">Quản lý Nhân viên</a>
+              <a class="nav-link" th:href="/@{/admin/homepage} ">Quản lý Nhân viên</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/departments} ">Quản lý Phòng ban</a>
+              <a class="nav-link" th:href="/@{/admin/departments} ">Quản lý Phòng ban</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/salaries} ">Quản lý Lương</a>
+                <a class="nav-link" th:href="/@{/admin/salaries} ">Quản lý Lương</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/accounts} ">Quản lý Tài khoản</a>
+              <a class="nav-link" th:href="/@{/admin/accounts} ">Quản lý Tài khoản</a>
             </li>
             <li sec:authorize="isAuthenticated()" class="nav-item">
-              <a class="nav-link" th:href="@{/logoutadmin} ">Đăng xuất</a>
+              <a class="nav-link" th:href="/@{/admin/logout} ">Đăng xuất</a>
             </li>
           </ul>
         </div>
@@ -56,7 +56,7 @@
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <a th:href="@{/addSalary}" class="btn btn-primary btn-sm mb-3">
+                <a th:href="/@{/admin/addSalary}" class="btn btn-primary btn-sm mb-3">
                     Thêm mới
                 </a>
             </div>
@@ -65,25 +65,25 @@
             <thead class="table-dark">
                 <tr>
                   <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=idluong&sortDir=' + ${reverseSortDir}}">ID Lương</a>
+                    <a th:href="/@{'/admin/pageSalary/' + ${currentPage} + '?sortField=idluong&sortDir=' + ${reverseSortDir}}">ID Lương</a>
                   </th>
                   <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=luongcb&sortDir=' + ${reverseSortDir}}">Lương cơ bản</a>
+                    <a th:href="/@{'/admin/pageSalary/' + ${currentPage} + '?sortField=luongcb&sortDir=' + ${reverseSortDir}}">Lương cơ bản</a>
                   </th>
                   <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=hsl&sortDir=' + ${reverseSortDir}}">Hệ số lương</a>
+                    <a th:href="/@{'/admin/pageSalary/' + ${currentPage} + '?sortField=hsl&sortDir=' + ${reverseSortDir}}">Hệ số lương</a>
                   </th>
                   <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=phucap&sortDir=' + ${reverseSortDir}}">Phụ cấp</a>
+                    <a th:href="/@{'/admin/pageSalary/' + ${currentPage} + '?sortField=phucap&sortDir=' + ${reverseSortDir}}">Phụ cấp</a>
                   </th>
                   <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=baohiem&sortDir=' + ${reverseSortDir}}">Bảo hiểm</a>
+                    <a th:href="/@{'/admin/pageSalary/' + ${currentPage} + '?sortField=baohiem&sortDir=' + ${reverseSortDir}}">Bảo hiểm</a>
                   </th>
                   <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=truluong&sortDir=' + ${reverseSortDir}}">Trừ lương</a>
+                    <a th:href="/@{'/admin/pageSalary/' + ${currentPage} + '?sortField=truluong&sortDir=' + ${reverseSortDir}}">Trừ lương</a>
                   </th>
                   <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=tongluong&sortDir=' + ${reverseSortDir}}">Trừ lương</a>
+                    <a th:href="/@{'/admin/pageSalary/' + ${currentPage} + '?sortField=tongluong&sortDir=' + ${reverseSortDir}}">Trừ lương</a>
                   </th>
                   <th>Chức năng</th>
                 </tr>
@@ -98,8 +98,8 @@
                     <td th:text="${salary.truluong}"></td>
                     <td th:text="${salary.tongluong}"></td>
                     <td>
-                      <a th:href="@{/updateSalary/{id}(id=${salary.idluong})}" class="btn btn-primary">Sửa</a>
-                      <a th:href="@{/deleteSalary/{id}(id=${salary.idluong})}" class="btn btn-danger">Xóa</a>
+                      <a th:href="/@{/admin/updateSalary/{id}(id=${salary.idluong})}" class="btn btn-primary">Sửa</a>
+                      <a th:href="/@{/admin/deleteSalary/{id}(id=${salary.idluong})}" class="btn btn-danger">Xóa</a>
                   </td>
                 </tr>
             </tbody>
