@@ -14,7 +14,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-         http.antMatcher("/user/login")
+         http.antMatcher("/user/**")
              .authorizeRequests()
              .anyRequest().hasAuthority("USER")
          .and()
@@ -23,7 +23,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
             .usernameParameter("username")
             .loginProcessingUrl("/user/login")
             .defaultSuccessUrl("/user/login")
-//            .permitAll()
+            .permitAll()
          .and()
          .logout()
             //  .invalidateHttpSession(true)

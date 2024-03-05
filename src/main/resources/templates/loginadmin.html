@@ -37,7 +37,7 @@
                 &nbsp;
                 <h1 align="center"> Đăng nhập với tư cách Quản lý</h1>
                 &nbsp;
-                <form th:action="@{/loginadmin}" method="post">
+                <form th:action="/@{/admin/login}" method="post">
                     <!-- Tin nhắn báo lỗi -->
                     <div th:if="${param.error}">
                         <div class="alert alert-danger">Sai tên đăng nhập hoặc mật khảu</div>

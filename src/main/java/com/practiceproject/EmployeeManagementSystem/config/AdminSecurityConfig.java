@@ -58,7 +58,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
                  .usernameParameter("username")
                  .loginProcessingUrl("/admin/login")
                  .defaultSuccessUrl("/admin/login")
-//                 .permitAll()
+                 .permitAll()
              .and()
              .logout()
                 //  .invalidateHttpSession(true)
