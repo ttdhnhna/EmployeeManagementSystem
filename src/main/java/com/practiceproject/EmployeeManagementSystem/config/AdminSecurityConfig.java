@@ -65,8 +65,8 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
                 //  .clearAuthentication(true)
                 //  .logoutRequestMatcher(new AntPathRequestMatcher("/logoutadmin"))
                  .logoutUrl("/admin/logout")
-                 .logoutSuccessUrl("/admin/logout?logout")
-                 .permitAll();
+                 .logoutSuccessUrl("/admin/logout?logout");
+                //  .permitAll();
 
 //        http.authorizeRequests()
 //                .antMatchers("/").hasAuthority("ADMIN") // Access to homepage restricted to ADMIN
