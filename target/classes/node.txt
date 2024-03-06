@@ -35,5 +35,4 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 Đã thử xử lý bằng cách chỉnh sửa lại phần antMatchers ở trong file config rồi nếu có gì không đc thì chỉ cần chỉnh
 lại là đc.
 
-Đã thêm đc cột ảnh vào trong thuộc tính nhân viên rồi.
-Sẽ cần phải bổ sung phần javascript để giúp hiện ảnh vừa nhập ở phần newemployee sau.
+Đã làm xong phần này giờ chỉ cần chạy thử xong sửa sao cho hoạt động là đc.

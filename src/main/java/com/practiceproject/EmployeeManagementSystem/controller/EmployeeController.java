@@ -1,5 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
+import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
+import com.practiceproject.EmployeeManagementSystem.service.FileUploadUtil;
+
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller//chỉ ra rằng một lớp cụ thể đóng vai trò của bộ điều khiển
 /*Hay có thể nói dễ hiểu hơn là lớp này sẽ là lớp được dùng để liên kết và lấy nhưng logic toán học được tạo ra trong service
  * và đưa ra cho người dùng khi họ tương tác 
 */
 public class EmployeeController {
+    @Autowired
+    EmployeeRepository repository;
     @Autowired 
     //Điều này có nghĩa là ta sẽ lấy được bean đc tạo tự động bởi Spring
     EmployeeService service;
@@ -47,16 +52,14 @@ public class EmployeeController {
     }
     @PostMapping("/saveEmployee")
     public String saveEmployee(@ModelAttribute("employee") Employee employee,
-        RedirectAttributes re, @RequestParam("anh")MultipartFile multipartFile){
+        @RequestParam("anh")MultipartFile multipartFile) throws IOException{
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
         String anh = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         employee.setAnh(anh);
-
-        service.saveEmployee(employee);
-
-        String uploadDir="/anh/"+employee.getIdnv();
-
+        Employee savedEmployee=this.repository.save(employee);
+        String uploadDir="anh/"+savedEmployee.getIdnv();
+        FileUploadUtil.saveFile(uploadDir, uploadDir, multipartFile);
         return "redirect:/";
     }
     @GetMapping("/updateEmployee/{id}")

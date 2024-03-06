@@ -35,5 +35,4 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 Đã thử xử lý bằng cách chỉnh sửa lại phần antMatchers ở trong file config rồi nếu có gì không đc thì chỉ cần chỉnh
 lại là đc.
 
-Co chinh sua 1 chut o phan controller nen se bat dau tu day va o phan Brand ID cua video
-huong dan
+Đã làm xong phần này giờ chỉ cần chạy thử xong sửa sao cho hoạt động là đc.

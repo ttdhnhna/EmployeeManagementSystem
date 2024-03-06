@@ -2,6 +2,8 @@ package com.practiceproject.EmployeeManagementSystem.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import java.beans.Transient;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -132,9 +134,12 @@ public class  Employee {
     public void setIdluong(Salary idluong) {
         this.idluong = idluong;
     }
-
+    @Transient
     public String getAnh() {
-        return anh;
+        if(anh==null || idnv==null){
+            return null;
+        }
+        return "/anh/"+idnv+"/"+anh;
     }
 
     public void setAnh(String anh) {
