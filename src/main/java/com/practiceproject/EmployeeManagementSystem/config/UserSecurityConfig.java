@@ -23,7 +23,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
             .usernameParameter("username")
             .loginProcessingUrl("/user/login")
             .defaultSuccessUrl("/user/login")
-            .permitAll()
+//            .permitAll()
          .and()
          .logout()
             //  .invalidateHttpSession(true)
