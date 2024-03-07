@@ -42,3 +42,4 @@ năng cập nhật ảnh.
 
 Chay dc khong bi loi nhung lai khong truy cap dc vao cac duong link de dang nhap va khi thay doi
 duong link sang user hoac admin thi gan nhu deu bi tu choi truy cap.
+Va co loi van de voi tk admin vs email 123@gmail nen se can phai tao ms hoac sua lai vs sql server
