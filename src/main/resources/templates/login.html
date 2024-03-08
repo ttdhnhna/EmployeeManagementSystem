@@ -37,7 +37,7 @@
                 &nbsp;
                 <h1 align="center"> Đăng nhập </h1>
                 &nbsp;
-                <form th:action="/@{/user/login}" method="post">
+                <form th:action="@{/user/login}" method="post">
                     <!-- Tin nhắn báo lỗi -->
                     <div th:if="${param.error}">
                         <div class="alert alert-danger">Sai tên đăng nhập hoặc mật khảu</div>
@@ -75,7 +75,7 @@
             </div>
         </div>
     </div>
-    <a th:href="/@{/admin/login}"><img src="/src/main/resources/static/img/profile.png" style="height: 35px; float: right;
+    <a th:href="@{/admin/login}"><img src="../static/image/profile.png" style="height: 35px; float: right;
         position: fixed;
         bottom: 10px; 
         right: 10px;

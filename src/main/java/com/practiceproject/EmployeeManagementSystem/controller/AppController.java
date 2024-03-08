@@ -58,7 +58,7 @@ public class AppController {
     @GetMapping("/admin/deleteAccount/{id}")
     public String deleteAccount(@PathVariable(value = "id") long id){
         this.service.deleteAccountById(id);
-        return "redirect:/accounts";
+        return "redirect:/admin/accounts";
     }
 
     @GetMapping("/admin/updateAccount/{id}")

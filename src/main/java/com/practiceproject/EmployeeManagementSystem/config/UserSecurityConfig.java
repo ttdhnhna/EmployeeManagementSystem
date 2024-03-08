@@ -16,22 +16,23 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
          http.antMatcher("/user/**")
              .authorizeRequests()
+             .antMatchers("/user/login").permitAll()
              .anyRequest().hasAuthority("USER")
          .and()
          .formLogin()
             .loginPage("/user/login")
-            .usernameParameter("username")
+            // .usernameParameter("username")
             .loginProcessingUrl("/user/login")
-            .defaultSuccessUrl("/user/login")
-//            .permitAll()
+            .defaultSuccessUrl("/user/userpage")
+           .permitAll()
          .and()
          .logout()
             //  .invalidateHttpSession(true)
             //  .clearAuthentication(true)
             //  .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
              .logoutUrl("/user/logout")
-             .logoutSuccessUrl("/user/login?logout");
-            //  .permitAll();
+             .logoutSuccessUrl("/user/login?logout")
+             .permitAll();
 //        http.authorizeRequests()
 //                .antMatchers("/userpage").hasAuthority("USER") // Access to homepage restricted to ADMIN
 //                .antMatchers("/login").hasAuthority("USER") // Allow access to loginadmin page

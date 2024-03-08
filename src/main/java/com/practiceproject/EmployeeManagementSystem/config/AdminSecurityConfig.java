@@ -51,22 +51,24 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
         // http.authorizeRequests().antMatchers("/").permitAll();
         
          http.antMatcher("/admin/**")
-             .authorizeHttpRequests().anyRequest().hasAuthority("ADMIN")
+             .authorizeHttpRequests()
+                .antMatchers("/admin/login").permitAll()
+                .anyRequest().hasAuthority("ADMIN")
              .and()
              .formLogin()
                  .loginPage("/admin/login")
-                 .usernameParameter("username")
+                //  .usernameParameter("username")
                  .loginProcessingUrl("/admin/login")
-                 .defaultSuccessUrl("/admin/login")
-//                 .permitAll()
+                 .defaultSuccessUrl("/admin/homepage")
+                 .permitAll()
              .and()
              .logout()
                 //  .invalidateHttpSession(true)
                 //  .clearAuthentication(true)
                 //  .logoutRequestMatcher(new AntPathRequestMatcher("/logoutadmin"))
                  .logoutUrl("/admin/logout")
-                 .logoutSuccessUrl("/admin/logout?logout");
-                //  .permitAll();
+                 .logoutSuccessUrl("/admin/logout?logout")
+                 .permitAll();
 
 //        http.authorizeRequests()
 //                .antMatchers("/").hasAuthority("ADMIN") // Access to homepage restricted to ADMIN
