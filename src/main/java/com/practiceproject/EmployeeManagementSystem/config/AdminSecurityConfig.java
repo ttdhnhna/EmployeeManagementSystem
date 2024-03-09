@@ -22,7 +22,7 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
-    DataSource dataSource;
+    private DataSource dataSource;
 
     @Bean
     public UserDetailsService userDetailsService(){
@@ -49,26 +49,20 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override 
     protected void configure(HttpSecurity http) throws Exception{
         // http.authorizeRequests().antMatchers("/").permitAll();
-        
-         http.antMatcher("/admin/**")
-             .authorizeHttpRequests()
-                .antMatchers("/admin/login").permitAll()
-                .anyRequest().hasAuthority("ADMIN")
-             .and()
-             .formLogin()
-                 .loginPage("/admin/login")
-                //  .usernameParameter("username")
-                 .loginProcessingUrl("/admin/login")
-                 .defaultSuccessUrl("/admin/homepage")
-                 .permitAll()
-             .and()
-             .logout()
-                //  .invalidateHttpSession(true)
-                //  .clearAuthentication(true)
-                //  .logoutRequestMatcher(new AntPathRequestMatcher("/logoutadmin"))
-                 .logoutUrl("/admin/logout")
-                 .logoutSuccessUrl("/admin/logout?logout")
-                 .permitAll();
+
+        http.antMatcher("/admin/**")
+                .authorizeRequests()
+                    .anyRequest().hasAuthority("ADMIN")
+                .and()
+                .formLogin()
+                    .loginPage("/admin/login")
+                    .loginProcessingUrl("/admin/login")
+                    .defaultSuccessUrl("/admin/homepage")
+                .and()
+                .logout()
+                    .logoutUrl("/admin/logout")
+                    .logoutSuccessUrl("/admin/logout?logout")
+                .permitAll();
 
 //        http.authorizeRequests()
 //                .antMatchers("/").hasAuthority("ADMIN") // Access to homepage restricted to ADMIN

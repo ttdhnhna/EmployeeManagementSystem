@@ -14,25 +14,19 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-         http.antMatcher("/user/**")
-             .authorizeRequests()
-             .antMatchers("/user/login").permitAll()
-             .anyRequest().hasAuthority("USER")
-         .and()
-         .formLogin()
-            .loginPage("/user/login")
-            // .usernameParameter("username")
-            .loginProcessingUrl("/user/login")
-            .defaultSuccessUrl("/user/userpage")
-           .permitAll()
-         .and()
-         .logout()
-            //  .invalidateHttpSession(true)
-            //  .clearAuthentication(true)
-            //  .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-             .logoutUrl("/user/logout")
-             .logoutSuccessUrl("/user/login?logout")
-             .permitAll();
+        http.antMatcher("/user/**")
+                .authorizeRequests()
+                    .anyRequest().hasAuthority("USER")
+                .and()
+                .formLogin()
+                    .loginPage("/user/login")
+                    .loginProcessingUrl("/user/login")
+                    .defaultSuccessUrl("/user/userpage")
+                .and()
+                .logout()
+                    .logoutUrl("/user/logout")
+                    .logoutSuccessUrl("/user/login?logout")
+                .permitAll();
 //        http.authorizeRequests()
 //                .antMatchers("/userpage").hasAuthority("USER") // Access to homepage restricted to ADMIN
 //                .antMatchers("/login").hasAuthority("USER") // Allow access to loginadmin page
