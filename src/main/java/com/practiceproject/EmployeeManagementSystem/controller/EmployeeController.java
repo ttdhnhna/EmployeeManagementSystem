@@ -58,6 +58,7 @@ public class EmployeeController {
         String anh = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         employee.setAnh(anh);
         Employee savedEmployee=this.repository.save(employee);
+        service.saveEmployee(employee);
         String uploadDir="anh/"+savedEmployee.getIdnv();
         FileUploadUtil.saveFile(uploadDir, uploadDir, multipartFile);
         return "redirect:/";

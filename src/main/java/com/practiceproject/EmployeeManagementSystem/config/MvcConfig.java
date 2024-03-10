@@ -18,6 +18,6 @@ public class MvcConfig implements WebMvcConfigurer{
         Path uploadDir=Paths.get(dirName);
         String uploadPath=uploadDir.toFile().getAbsolutePath();
         if(dirName.startsWith("../")) dirName= dirName.replaceAll("../", "");
-        registry.addResourceHandler("/"+dirName+"/**").addResourceLocations("file:/"+uploadPath+"/");
+        registry.addResourceHandler("/"+dirName+" /**").addResourceLocations("file:/"+uploadPath+"/");
     }
 }

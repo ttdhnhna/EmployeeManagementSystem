@@ -135,7 +135,7 @@ public class  Employee {
         this.idluong = idluong;
     }
     @Transient
-    public String getAnh() {
+    public String getAnhPath() {
         if(anh==null || idnv==null){
             return null;
         }
@@ -146,5 +146,8 @@ public class  Employee {
         this.anh = anh;
     }
 
-    
+    public String getAnh() {
+        return anh;
+    }
+
 }
