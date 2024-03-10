@@ -22,7 +22,7 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
-    private DataSource dataSource;
+    DataSource dataSource;
 
     @Bean
     public UserDetailsService userDetailsService(){
@@ -48,7 +48,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
     
     @Override 
     protected void configure(HttpSecurity http) throws Exception{
-        // http.authorizeRequests().antMatchers("/").permitAll();
+        http.authorizeRequests().antMatchers("/admin/login").permitAll();
 
         http.antMatcher("/admin/**")
                 .authorizeRequests()

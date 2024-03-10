@@ -14,19 +14,21 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().antMatchers("/user/login").permitAll();
+
         http.antMatcher("/user/**")
-                .authorizeRequests()
-                    .anyRequest().hasAuthority("USER")
-                .and()
-                .formLogin()
-                    .loginPage("/user/login")
-                    .loginProcessingUrl("/user/login")
-                    .defaultSuccessUrl("/user/userpage")
-                .and()
-                .logout()
-                    .logoutUrl("/user/logout")
-                    .logoutSuccessUrl("/user/login?logout")
-                .permitAll();
+            .authorizeRequests()
+                .anyRequest().hasAuthority("USER")
+            .and()
+            .formLogin()
+                .loginPage("/user/login")
+                .loginProcessingUrl("/user/login")
+                .defaultSuccessUrl("/user/userpage")
+            .and()
+            .logout()
+                .logoutUrl("/user/logout")
+                .logoutSuccessUrl("/user/login?logout")
+            .permitAll();
 //        http.authorizeRequests()
 //                .antMatchers("/userpage").hasAuthority("USER") // Access to homepage restricted to ADMIN
 //                .antMatchers("/login").hasAuthority("USER") // Allow access to loginadmin page
