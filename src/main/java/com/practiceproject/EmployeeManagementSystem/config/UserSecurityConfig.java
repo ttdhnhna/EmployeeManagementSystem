@@ -29,22 +29,6 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
                 .logoutUrl("/user/logout")
                 .logoutSuccessUrl("/user/login?logout")
             .permitAll();
-//        http.authorizeRequests()
-//                .antMatchers("/userpage").hasAuthority("USER") // Access to homepage restricted to ADMIN
-//                .antMatchers("/login").hasAuthority("USER") // Allow access to loginadmin page
-//                .anyRequest().authenticated()
-//                .and()
-//            .formLogin()
-//                .loginPage("/login")
-//                .defaultSuccessUrl("/userpage")
-//                .permitAll()
-//                .and()
-//            .logout()
-//                .invalidateHttpSession(true)
-//                .clearAuthentication(true)
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                .logoutSuccessUrl("/login?logout")
-//                .permitAll();
     }
     
 }
