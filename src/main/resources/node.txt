@@ -41,4 +41,5 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 năng cập nhật ảnh.
 
 Va co loi van de voi tk admin vs email 123@gmail nen se can phai tao ms hoac sua lai vs sql server
-Đã thử sửa lỗi rồi chỉ cần chạy thử là đc.
+Co chay dc va truy cap dc vao cac trang web dang nhap kia roi nhung tk admin bi sai va khi co truy
+cap vao bang tk user thi khong vao dc userpage ma lai dan vao duong link anh?
