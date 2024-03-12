@@ -41,6 +41,7 @@
                     <!-- Tin nhắn báo lỗi -->
                     <div th:if="${param.error}">
                         <div class="alert alert-danger">Sai tên đăng nhập hoặc mật khảu</div>
+                        <h4 style="color: red">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</h4>
                     </div>
                     <!-- Tin nhắn báo đăng xuất -->
                     <div th:if="${param.logout}">
@@ -75,7 +76,17 @@
             </div>
         </div>
     </div>
-    <a th:href="@{/admin/login}"><img src="../templates/profile.png" style="height: 35px; float: right;
+    <a th:href="@{/admin/login}" style="position: fixed;
+        bottom: 10px;
+        right: 10px;
+        margin: 0;
+        padding: 0;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        text-decoration: underline;">
+        ADMIN LOGIN
+    </a>
+    <!-- <img src="../templates/profile.png" style="height: 35px; float: right;
         position: fixed;
         bottom: 10px; 
         right: 10px;
@@ -84,6 +95,6 @@
         margin-right: 10px;
         margin-bottom: 10px;"
         alt="Chuyển sang trang đăng nhập quản lý"
-    ></a>
+    > -->
 </body>
 </html>

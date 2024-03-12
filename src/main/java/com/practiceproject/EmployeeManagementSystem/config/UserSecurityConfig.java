@@ -14,7 +14,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/user/login").permitAll();
+        // http.authorizeRequests().antMatchers("/user/login").permitAll();
 
         http.antMatcher("/user/**")
             .authorizeRequests()
