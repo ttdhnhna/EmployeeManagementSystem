@@ -2,8 +2,6 @@ package com.practiceproject.EmployeeManagementSystem.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import java.beans.Transient;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,7 +38,7 @@ public class  Employee {
     private String sdt;
     private String email;
     private String chucvu;
-    private String anh;
+    private byte[] anh;
     
     //Constructor được sử dụng để khởi tạo đối tượng 
     public Employee() {
@@ -134,20 +132,12 @@ public class  Employee {
     public void setIdluong(Salary idluong) {
         this.idluong = idluong;
     }
-    @Transient
-    public String getAnhPath() {
-        if(anh==null || idnv==null){
-            return null;
-        }
-        return "/anh/"+idnv+"/"+anh;
-    }
 
-    public void setAnh(String anh) {
-        this.anh = anh;
-    }
-
-    public String getAnh() {
+    public byte[] getAnh() {
         return anh;
     }
 
+    public void setAnh(byte[] anh) {
+        this.anh = anh;
+    }
 }
