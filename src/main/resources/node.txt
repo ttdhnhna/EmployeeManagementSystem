@@ -43,3 +43,5 @@ năng cập nhật ảnh.
 Va co loi van de voi tk admin vs email 123@gmail nen se can phai tao ms hoac sua lai vs sql server
 Chay dc on het roi nhung can chinh lai cac duong dan chuc nang kia (xoa cai dau / trc cac duong
 link di) va van con bi loi phan dang xuat.
+
+Có khi thay đổi lại cách đăng xuất lại giống trong nhánh master xem thế nào.
