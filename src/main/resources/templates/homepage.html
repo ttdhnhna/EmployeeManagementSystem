@@ -13,7 +13,7 @@
     <!-- Header -->
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
         <!-- Brand -->
-        <a class="navbar-brand" th:href="/@{/admin/homepage}">Hệ thống Quản lý Nhân viên</a>
+        <a class="navbar-brand" th:href="@{/admin/homepage}">Hệ thống Quản lý Nhân viên</a>
       
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -88,9 +88,9 @@
                     <td th:text="${employee.hoten}"></td>
                     <td th:text="${employee.chucvu}"></td>
                     <td>
-                      <a th:href="/@{/admin/updateEmployee/{id}(id=${employee.idnv})}" class="btn btn-primary">Sửa</a>
-                      <a th:href="/@{/admin/profileemployee/{id}(id=${employee.idnv})}" class="btn btn-primary">Chi tiết</a>
-                      <a th:href="/@{/admin/deleteEmployee/{id}(id=${employee.idnv})}" class="btn btn-danger">Xóa</a>
+                      <a th:href="@{/admin/updateEmployee/{id}(id=${employee.idnv})}" class="btn btn-primary">Sửa</a>
+                      <a th:href="@{/admin/profileemployee/{id}(id=${employee.idnv})}" class="btn btn-primary">Chi tiết</a>
+                      <a th:href="@{/admin/deleteEmployee/{id}(id=${employee.idnv})}" class="btn btn-danger">Xóa</a>
                   </td>
                 </tr>
             </tbody>
