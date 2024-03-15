@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-// import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.practiceproject.EmployeeManagementSystem.service.CustomUserDetailsService;
 
@@ -48,19 +48,21 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
     
     @Override 
     protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests().antMatchers("/admin/login").permitAll();
+        http.authorizeRequests().antMatchers("/login").permitAll();
 
         http.antMatcher("/admin/**")
                 .authorizeRequests().anyRequest().hasAuthority("ADMIN")
                 .and()
                 .formLogin()
-                    .loginPage("/admin/login")
-                    .loginProcessingUrl("/admin/login")
+                    .loginPage("/login")
+                    .loginProcessingUrl("/login")
                     .defaultSuccessUrl("/admin/homepage")
                 .and()
                 .logout()
-                    .logoutUrl("/admin/logout")
-                    .logoutSuccessUrl("/admin/logout?logout")
+                    .invalidateHttpSession(true)
+                    .clearAuthentication(true)
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/login?logout")
                 .permitAll();
     }
 }

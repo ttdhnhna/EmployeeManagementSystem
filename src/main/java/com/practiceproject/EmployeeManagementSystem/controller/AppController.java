@@ -40,7 +40,7 @@ public class AppController {
     public String login(){
         return "login";
     }
-    @GetMapping("/admin/login")
+    @GetMapping("/login")
     public String loginadmin(){
         return "loginadmin";
     }

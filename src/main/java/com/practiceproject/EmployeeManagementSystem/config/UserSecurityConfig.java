@@ -5,7 +5,7 @@ package com.practiceproject.EmployeeManagementSystem.config;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-// import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @Order(2)
@@ -26,7 +26,9 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
                 .defaultSuccessUrl("/user/userpage")
             .and()
             .logout()
-                .logoutUrl("/user/logout")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                 .logoutSuccessUrl("/user/login?logout")
             .permitAll();
     }

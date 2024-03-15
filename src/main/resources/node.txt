@@ -41,7 +41,6 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 năng cập nhật ảnh.
 
 Va co loi van de voi tk admin vs email 123@gmail nen se can phai tao ms hoac sua lai vs sql server
-Chay dc on het roi nhung can chinh lai cac duong dan chuc nang kia (xoa cai dau / trc cac duong
-link di) va van con bi loi phan dang xuat.
 
-Có khi thay đổi lại cách đăng xuất lại giống trong nhánh master xem thế nào.
+Đã thử sửa lại lỗi rồi và chỉnh lại đường dẫn login sang luôn loginadmin rồi để không phải cứ 
+chỉnh lại đường dẫn khi muốn đăng nhập.
