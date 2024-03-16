@@ -81,8 +81,8 @@
                     <td th:text="${user.email}"></td>
                     <td th:text="${user.role}"></td>
                     <td>
-                      <a th:href="/@{/admin/updateAccount/{id}(id=${user.iduser})}" class="btn btn-primary">Sửa</a>
-                      <a th:href="/@{/admin/deleteAccount/{id}(id=${user.iduser})}" class="btn btn-danger">Xóa</a>
+                      <a th:href="@{/admin/updateAccount/{id}(id=${user.iduser})}" class="btn btn-primary">Sửa</a>
+                      <a th:href="@{/admin/deleteAccount/{id}(id=${user.iduser})}" class="btn btn-danger">Xóa</a>
                   </td>
                 </tr>
             </tbody>
