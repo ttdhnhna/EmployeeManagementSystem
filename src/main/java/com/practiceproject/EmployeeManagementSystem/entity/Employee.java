@@ -38,7 +38,7 @@ public class  Employee {
     private String sdt;
     private String email;
     private String chucvu;
-    private byte[] anh;
+    private String anh;
     
     //Constructor được sử dụng để khởi tạo đối tượng 
     public Employee() {
@@ -133,11 +133,13 @@ public class  Employee {
         this.idluong = idluong;
     }
 
-    public byte[] getAnh() {
+    public String getAnh() {
         return anh;
     }
 
-    public void setAnh(byte[] anh) {
+    public void setAnh(String anh) {
         this.anh = anh;
     }
+
+    
 }
