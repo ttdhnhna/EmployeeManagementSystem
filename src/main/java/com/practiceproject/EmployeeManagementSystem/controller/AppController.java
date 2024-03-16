@@ -74,7 +74,7 @@ public class AppController {
         String ePass=encoder.encode(user.getPassword());
         user.setPassword(ePass);
         service.saveAccount(user);
-        return "redirect:/accounts";
+        return "redirect:/admin/accounts";
     }
 
 }

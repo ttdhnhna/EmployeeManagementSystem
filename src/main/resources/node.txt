@@ -40,8 +40,6 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * Bổ sung nốt các chức năng còn lại cho tài khoản sau khi đã sửa đc lỗi đăng nhập và chức
 năng cập nhật ảnh.
 
-Vẫn còn lỗi ở phần đăng xuất của admin và khi đăng nhập thì ở cả 2 tk đều không dẫn trực tiếp 
-đến trang chủ hoặc trang người dùng mà vẫn bị lỗi dẫn đến trang trắng, và có lỗi ở phần dẫn của
-saveAccount sau khi nhấn xong thì bị lỗi đường link.
-Và mình có xóa cái phần hiện thông tin debug trong phần properties rồi, nếu có muốn nhìn lại
-thì chỉ cần bỏ comment là đc.
+Cần sửa lại cái phần kiểm tra mật khẩu trong phần update account của nhân viên.
+
+Đã sửa lỗi cần chạy thử.

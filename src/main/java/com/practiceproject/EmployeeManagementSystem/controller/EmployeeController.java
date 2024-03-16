@@ -25,7 +25,7 @@ public class EmployeeController {
     //Điều này có nghĩa là ta sẽ lấy được bean đc tạo tự động bởi Spring
     EmployeeService service;
     //Hiển thị trang chủ
-    @GetMapping("/admin/homepage")
+    @GetMapping("/")
     // Điều này có nghĩa là phương thức này sẽ được thực hiện khi người dùng gửi yêu cầu GET tới '/'
 	// Trong TH này là: "http://localhost:8080/" (Trang chủ)
     public String getEmployees(Model model){
@@ -47,7 +47,7 @@ public class EmployeeController {
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
         service.saveEmployee(employee);
-        return "redirect:/admin/homepage";
+        return "redirect:/";
     }
     @GetMapping("/admin/updateEmployee/{id}")
     public String updateEmployee(@PathVariable(value = "id") long id, Model model){
@@ -60,8 +60,8 @@ public class EmployeeController {
     }
     @GetMapping("/admin/deleteEmployee/{id}")
     public String deleteEmployee(@PathVariable(value = "id") long id){
-        this.service.deleteEmployeebyID(id);
-        return "redirect:/admin/homepage";
+        this.service.deleteEmployeebyID(id); 
+        return "redirect:/";
     }
     @GetMapping("/admin/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo, 

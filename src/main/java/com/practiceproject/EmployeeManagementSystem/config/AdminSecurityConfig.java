@@ -49,6 +49,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override 
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests().antMatchers("/login").permitAll();
+        http.authorizeRequests().antMatchers("/").authenticated().anyRequest().hasAuthority("ADMIN");
 
         http.antMatcher("/admin/**")
                 .authorizeRequests().anyRequest().hasAuthority("ADMIN")
@@ -56,12 +57,12 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
                 .formLogin()
                     .loginPage("/login")
                     .loginProcessingUrl("/login")
-                    .defaultSuccessUrl("/admin/homepage")
+                    .defaultSuccessUrl("/")
                 .and()
                 .logout()
                     .invalidateHttpSession(true)
                     .clearAuthentication(true)
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout"))
                     .logoutSuccessUrl("/login?logout")
                 .permitAll();
     }
