@@ -42,4 +42,5 @@ năng cập nhật ảnh.
 
 Cần sửa lại cái phần kiểm tra mật khẩu trong phần update account của nhân viên.
 
-Đã sửa lỗi cần chạy thử.
+Đã chạy thử ổn thành công rồi, không có vấn đề gì mấy ngoài vs cái tài khoản, giờ thì sẽ
+bắt đầu làm nốt các chức năng của tài khoản.

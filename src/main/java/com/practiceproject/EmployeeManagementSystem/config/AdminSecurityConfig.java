@@ -49,7 +49,6 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override 
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests().antMatchers("/login").permitAll();
-        http.authorizeRequests().antMatchers("/").authenticated().anyRequest().hasAuthority("ADMIN");
 
         http.antMatcher("/admin/**")
                 .authorizeRequests().anyRequest().hasAuthority("ADMIN")
