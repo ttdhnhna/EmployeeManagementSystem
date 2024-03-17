@@ -36,4 +36,11 @@ public class UserService {
     public void deleteAccountById(long id){
         this.repository.deleteById(id);
     }
+
+    public List<User> findAllUsers(String keyword){
+        if(keyword!=null){
+            return repository.findAllUsers(keyword);
+        }
+        return repository.findAll();
+    }
 }

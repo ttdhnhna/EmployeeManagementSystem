@@ -4,6 +4,7 @@ package com.practiceproject.EmployeeManagementSystem.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,4 +78,10 @@ public class AppController {
         return "redirect:/admin/accounts";
     }
 
+    @GetMapping("/finduser")
+    public String findUsers(Model model, @Param("keyword") String keyword){
+        List<User> ListAccounts=service.findAllUsers(keyword);
+        model.addAttribute("ListAccounts", ListAccounts);
+        return "accountspage";
+    }
 }
