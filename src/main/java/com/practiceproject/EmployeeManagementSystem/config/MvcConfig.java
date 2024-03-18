@@ -11,13 +11,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MvcConfig implements WebMvcConfigurer{
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
-        exposeDirectory("anh", registry);
-    }
-
-    private void exposeDirectory(String dirName, ResourceHandlerRegistry registry){
-        Path uploadDir=Paths.get(dirName);
+        Path uploadDir=Paths.get("./anh");
         String uploadPath=uploadDir.toFile().getAbsolutePath();
-        if(dirName.startsWith("../")) dirName= dirName.replaceAll("../", "");
-        registry.addResourceHandler("/"+dirName+" /**").addResourceLocations("file:/"+uploadPath+"/");
+        // if(dirName.startsWith("../")) dirName= dirName.replaceAll("../", "");
+        registry.addResourceHandler("/anh/**").addResourceLocations("file:/"+uploadPath+"/");
     }
 }

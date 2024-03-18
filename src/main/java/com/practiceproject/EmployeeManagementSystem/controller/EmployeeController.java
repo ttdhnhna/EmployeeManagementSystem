@@ -66,7 +66,7 @@ public class EmployeeController {
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         employee.setAnh(fileName);
         Employee savedEmployee=this.repository.save(employee);
-        String uploadDir="/anh/"+savedEmployee.getIdnv();
+        String uploadDir="./anh/"+savedEmployee.getIdnv();
         Path uploadPath=Paths.get(uploadDir);
         if(!Files.exists(uploadPath)){
             Files.createDirectories(uploadPath);
