@@ -19,7 +19,7 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 
 * Làm chức năng đăng nhập và đăng xuất cho người dùng. (Xong)
 
-* Tạo khả năng phân biệt tài khoản admin và user 
+* Tạo khả năng phân biệt tài khoản admin và user (Xong)
 
 * Bổ sung chức năng phân quyền
 
