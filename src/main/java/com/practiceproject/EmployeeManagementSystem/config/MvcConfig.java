@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer{
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry){
+    public void addResourceHandlers(@SuppressWarnings("null") ResourceHandlerRegistry registry){
         Path uploadDir=Paths.get("./anh");
         String uploadPath=uploadDir.toFile().getAbsolutePath();
         // if(dirName.startsWith("../")) dirName= dirName.replaceAll("../", "");

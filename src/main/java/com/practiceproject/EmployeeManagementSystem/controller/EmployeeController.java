@@ -63,6 +63,7 @@ public class EmployeeController {
         // if(!multipartFile.isEmpty()){
         //     employee.setAnh(multipartFile.getBytes());
         // }
+        @SuppressWarnings("null")
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         employee.setAnh(fileName);
         Employee savedEmployee=this.repository.save(employee);
