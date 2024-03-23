@@ -1,5 +1,7 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +10,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
+
 
 @Service//Nó được sử dụng để đánh dấu lớp là nhà cung cấp dịch vụ
 //Hay có thể nói là nó đánh dấu lớp nào sẽ thực hiện việc xử lý các hoạt động
@@ -23,7 +28,16 @@ public class EmployeeService {
         return repository.findAll();
     }
     //Lưu nhân viên
-    public void saveEmployee(Employee employee){
+    public void saveEmployee(Employee employee, MultipartFile file){
+        String filename=StringUtils.cleanPath(file.getOriginalFilename());
+        if(filename.contains("..")){
+            System.out.println("File khong hop le!");
+        }
+        try {
+            employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         this.repository.save(employee);
     }
     //Tìm nhân viên bằng id
