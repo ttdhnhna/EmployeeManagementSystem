@@ -32,5 +32,6 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
-Đã có thử 1 cách khác và cách này sẽ cần phải truyền cả file vào xong sẽ lưu vs các chỉnh sửa 
-ở bên service.
+Đã hoàn thành được phần lưu và hiện ảnh này theo như cái cách mới rồi, công nhận là nó có vẻ đơn
+giản hơn hẳn so vs cách kia. Giờ thì khi chạy thử sẽ xóa cái cột ảnh trong cái csdl kia đi rồi chạy
+thử thôi; còn nếu có lỗi gì thì sửa vậy.

@@ -1,11 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,24 +54,7 @@ public class EmployeeController {
         @RequestParam("anh")MultipartFile multipartFile) throws IOException{
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
-        // if(!multipartFile.isEmpty()){
-        //     employee.setAnh(multipartFile.getBytes());
-        // }
-        @SuppressWarnings("null")
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        employee.setAnh(fileName);
-        Employee savedEmployee=this.repository.save(employee);
-        String uploadDir="./anh/"+savedEmployee.getIdnv();
-        Path uploadPath=Paths.get(uploadDir);
-        if(!Files.exists(uploadPath)){
-            Files.createDirectories(uploadPath);
-        }
-        try (InputStream inputStream=multipartFile.getInputStream();){
-            Path filePath=uploadPath.resolve(fileName);
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            throw new IOException("Khong the luu file: "+fileName);
-        }
+        service.saveEmployee(employee, multipartFile);
         return "redirect:/";
     }
     @GetMapping("/updateEmployee/{id}")
