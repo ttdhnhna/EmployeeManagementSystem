@@ -45,3 +45,6 @@ Cần sửa lại cái phần kiểm tra mật khẩu trong phần update accoun
 Không thể tìm thấy lỗi của cái kia ở đâu nhưng vẫn có thử thay đổi 1 vài phần nên sẽ cần
 phải chạy thử để xem như thế nào.
 Nếu không chạy được thì chỉ cần xóa đi với gỡ comment cái dataSource đi là đc.
+
+Cập nhật được nốt phần phân trang vs sắp xếp rồi nhưng vẫn chưa hoàn chỉnh sẽ cần chỉnh sửa
+nốt phần đường link ở trang accountspage rồi hẵng chạy thử.

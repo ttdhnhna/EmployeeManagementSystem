@@ -65,11 +65,11 @@
         <table class="table thead-light table-bordered">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
+                    <th><a th:href="@{'/admin/page/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}"></a>ID</a></th>
                     <th>Ảnh hồ sơ</th>
-                    <th>Họ tên</th>
-                    <th>Email</th>
-                    <th>Chức vụ</th>
+                    <th><a th:href="@{'/admin/page/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}"></a>Họ tên</a></th>
+                    <th><a th:href="@{'/admin/page/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}"></a>Email</a></th>
+                    <th><a th:href="@{'/admin/page/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}"></a>Chức vụ</a></th>
                     <th>Chức năng</th>
                 </tr>
             </thead>
@@ -88,7 +88,7 @@
             </tbody>
         </table>
 
-        <!-- <div th:if="${totalPages>1}">
+        <div th:if="${totalPages>1}">
           <div class="row coL-sm-10">
             <div class="coL-sm-2">
               &nbsp; &nbsp;
@@ -113,7 +113,7 @@
               <span th:unless="${currentPage < totalPages}">Cuối</span>
             </div>
           </div>
-        </div> -->
+        </div>
     </div>
 </body>
 </html>
