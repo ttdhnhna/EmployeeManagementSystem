@@ -1,6 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -15,14 +15,14 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.practiceproject.EmployeeManagementSystem.service.CustomUserDetailsService;
 
-import javax.sql.DataSource;
+// import javax.sql.DataSource;
 
 @Configuration
 @Order(1)
 @EnableWebSecurity
 public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
-    @Autowired
-    DataSource dataSource;
+    // @Autowired
+    // DataSource dataSource;
 
     @Bean
     public UserDetailsService userDetailsService(){
@@ -51,18 +51,23 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/login").permitAll();
 
         http.antMatcher("/admin/**")
-                .authorizeRequests().anyRequest().hasAuthority("ADMIN")
-                .and()
-                .formLogin()
-                    .loginPage("/login")
-                    .loginProcessingUrl("/login")
-                    .defaultSuccessUrl("/")
-                .and()
-                .logout()
-                    .invalidateHttpSession(true)
-                    .clearAuthentication(true)
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout"))
-                    .logoutSuccessUrl("/login?logout")
-                .permitAll();
+            .authorizeRequests()
+                .anyRequest().hasAuthority("ADMIN")
+            .and()
+            .antMatcher("/")
+                .authorizeRequests()
+                .anyRequest().authenticated()
+            .and()
+            .formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/")
+            .and()
+            .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout"))
+                .logoutSuccessUrl("/login?logout")
+            .permitAll();
     }
 }
