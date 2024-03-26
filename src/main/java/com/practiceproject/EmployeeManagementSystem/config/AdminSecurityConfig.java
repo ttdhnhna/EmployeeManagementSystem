@@ -1,10 +1,10 @@
 package com.practiceproject.EmployeeManagementSystem.config;
 
-// import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-// import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 // import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,14 +15,14 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.practiceproject.EmployeeManagementSystem.service.CustomUserDetailsService;
 
-// import javax.sql.DataSource;
+import javax.sql.DataSource;
 
 @Configuration
 @Order(1)
 @EnableWebSecurity
 public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
-    // @Autowired
-    // DataSource dataSource;
+    @Autowired
+    DataSource dataSource;
 
     @Bean
     public UserDetailsService userDetailsService(){
@@ -33,13 +33,13 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
         return new BCryptPasswordEncoder();
     }
 
-    // @Bean
-    // public DaoAuthenticationProvider authenticationProvider() {
-    //     DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-    //     authProvider.setUserDetailsService(userDetailsService());
-    //     authProvider.setPasswordEncoder(passwordEncoder());
-    //     return authProvider;
-    // }
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
 
     // @Override
     // protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -54,10 +54,10 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
             .authorizeRequests()
                 .anyRequest().hasAuthority("ADMIN")
             .and()
-            .antMatcher("/")
-                .authorizeRequests()
-                .anyRequest().authenticated()
-            .and()
+            // .antMatcher("/")
+            //     .authorizeRequests()
+            //     .anyRequest().authenticated()
+            // .and()
             .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
