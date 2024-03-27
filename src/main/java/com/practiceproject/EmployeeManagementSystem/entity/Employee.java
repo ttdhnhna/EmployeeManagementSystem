@@ -12,7 +12,6 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity//Chỉ định rằng lớp là một thực thể và được ánh xạ tới bảng cơ sở dữ liệu
 @Table(name = "tblEmployee")//Chỉ định tên của bảng cơ sở dữ liệu sẽ được sử dụng để ánh xạ
@@ -142,13 +141,5 @@ public class  Employee {
 
     public void setAnh(String anh) {
         this.anh = anh;
-    }
-
-    @Transient
-    public String getAnhPath(){
-        if(anh==null || idnv==null){
-            return null;
-        }
-        return "/anh/"+idnv+"/"+anh;
     }
 }

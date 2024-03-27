@@ -31,10 +31,11 @@ public class EmployeeService {
     public void saveEmployee(Employee employee, MultipartFile file){
         String filename=StringUtils.cleanPath(file.getOriginalFilename());
         if(filename.contains("..")){
-            System.out.println("File khong hop le!");
+            System.out.println("File không hợp lệ!");
         }
         try {
-            employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
+            String base64Image = Base64.getEncoder().encodeToString(file.getBytes());
+            employee.setAnh(base64Image);
         } catch (IOException e) {
             e.printStackTrace();
         }
