@@ -34,12 +34,11 @@ public class EmployeeService {
             System.out.println("File không hợp lệ!");
         }
         try {
-            String base64Image = Base64.getEncoder().encodeToString(file.getBytes());
-            employee.setAnh(base64Image);
+            employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.repository.save(employee);
+        repository.save(employee);
     }
     //Tìm nhân viên bằng id
     public Employee getEmployeebyID(long id){

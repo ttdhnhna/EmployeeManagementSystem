@@ -35,8 +35,7 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 Đã hoàn thành được phần lưu và hiện ảnh này theo như cái cách mới rồi, công nhận là nó có vẻ đơn
 giản hơn hẳn so vs cách kia. Giờ thì khi chạy thử sẽ xóa cái cột ảnh trong cái csdl kia đi rồi chạy
 thử thôi; còn nếu có lỗi gì thì sửa vậy.
-
-Vẫn bị lỗi như trước: 
+ 
 Whitelabel Error Page
 This application has no explicit mapping for /error, so you are seeing this as a fallback.
 
@@ -135,7 +134,4 @@ Field error in object 'employee' on field 'anh': rejected value [org.springframe
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:1623)
 
-DefaultHandlerExceptionResolver : Resolved [org.springframework.validation.BindException: 
-org.springframework.validation.BeanPropertyBindingResult: 1 errors<EOL>Field error in object 
-'employee' on field 'anh': rejected value 
-[org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@6e321681]; codes [typeMismatch.employee.anh,typeMismatch.anh,typeMismatch.java.lang.String,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [employee.anh,anh]; arguments []; default message [anh]]; default message [Failed to convert property value of type 'org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile' to required type 'java.lang.String' for property 'anh'; nested exception is java.lang.IllegalStateException: Cannot convert value of type 'org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile' to required type 'java.lang.String' for property 'anh': no matching editors or conversion strategy found]]
+Đã thử sửa lỗi rồi.

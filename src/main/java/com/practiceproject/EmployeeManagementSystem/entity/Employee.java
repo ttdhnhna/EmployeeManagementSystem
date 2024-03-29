@@ -3,6 +3,7 @@ package com.practiceproject.EmployeeManagementSystem.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,6 +41,7 @@ public class  Employee {
     private String email;
     private String chucvu;
     @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
     private String anh;
     
     //Constructor được sử dụng để khởi tạo đối tượng 
