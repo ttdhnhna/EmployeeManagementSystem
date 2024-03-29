@@ -10,7 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+// import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
@@ -42,7 +43,8 @@ public class EmployeeController {
         */
         return "newemployee";
     }
-    @PostMapping("/admin/saveEmployee")
+    // @PostMapping("/saveEmployee")
+    @RequestMapping(path = "/saveEmployee")
     public String saveEmployee(@ModelAttribute("employee") Employee employee){
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
