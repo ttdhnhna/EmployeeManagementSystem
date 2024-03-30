@@ -39,11 +39,11 @@ thử thôi; còn nếu có lỗi gì thì sửa vậy.
 Whitelabel Error Page
 This application has no explicit mapping for /error, so you are seeing this as a fallback.
 
-Thu Mar 28 11:30:31 ICT 2024
+Sat Mar 30 11:40:08 ICT 2024
 There was an unexpected error (type=Bad Request, status=400).
 Validation failed for object='employee'. Error count: 1
 org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors
-Field error in object 'employee' on field 'anh': rejected value [org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@6e321681]; codes [typeMismatch.employee.anh,typeMismatch.anh,typeMismatch.java.lang.String,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [employee.anh,anh]; arguments []; default message [anh]]; default message [Failed to convert property value of type 'org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile' to required type 'java.lang.String' for property 'anh'; nested exception is java.lang.IllegalStateException: Cannot convert value of type 'org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile' to required type 'java.lang.String' for property 'anh': no matching editors or conversion strategy found]
+Field error in object 'employee' on field 'anh': rejected value [org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@78cb5eb2]; codes [typeMismatch.employee.anh,typeMismatch.anh,typeMismatch.java.lang.String,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [employee.anh,anh]; arguments []; default message [anh]]; default message [Failed to convert property value of type 'org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile' to required type 'java.lang.String' for property 'anh'; nested exception is java.lang.IllegalStateException: Cannot convert value of type 'org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile' to required type 'java.lang.String' for property 'anh': no matching editors or conversion strategy found]
 	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.resolveArgument(ModelAttributeMethodProcessor.java:175)
 	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:121)
 	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
