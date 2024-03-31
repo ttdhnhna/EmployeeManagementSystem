@@ -26,7 +26,7 @@ public class SalaryController {
         return findPaginated(1, "idluong", "asc", model);
     }
 
-    @PostMapping("/saveSalary")
+    @PostMapping("/admin/saveSalary")
     public String saveSalary(@ModelAttribute("salary") Salary salary){
         service.saveSalary(salary);
         return "redirect:/admin/salaries";

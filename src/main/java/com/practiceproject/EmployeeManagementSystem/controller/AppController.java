@@ -31,7 +31,7 @@ public class AppController {
         model.addAttribute("user",new User());
         return "registration";
     }
-    @PostMapping("/saveRegistration")
+    @PostMapping("/admin/saveRegistration")
     public String saveRegistration(User user){
         BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
         String ePass=encoder.encode(user.getPassword());
@@ -69,7 +69,7 @@ public class AppController {
         return "updateaccount";
     }
 
-    @PostMapping("/saveAccount")
+    @PostMapping("/admin/saveAccount")
     public String saveAccount(@ModelAttribute("user") User user){
         BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
         String ePass=encoder.encode(user.getPassword());
