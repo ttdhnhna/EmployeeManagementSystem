@@ -38,7 +38,7 @@ public class EmployeeService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        repository.save(employee);
+        this.repository.save(employee);
     }
     //Tìm nhân viên bằng id
     public Employee getEmployeebyID(long id){
