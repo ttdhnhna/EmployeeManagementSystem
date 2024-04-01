@@ -1,6 +1,5 @@
 package com.practiceproject.EmployeeManagementSystem.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +50,7 @@ public class EmployeeController {
     }
     @PostMapping("/saveEmployee")
     public String saveEmployee(@ModelAttribute("employee") Employee employee,
-        @RequestParam("anh")MultipartFile multipartFile) throws IOException{
+        @RequestParam("anh")MultipartFile multipartFile){
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
         service.saveEmployee(employee, multipartFile);
