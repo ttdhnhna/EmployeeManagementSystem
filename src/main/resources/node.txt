@@ -45,7 +45,8 @@ Cần sửa lại cái phần kiểm tra mật khẩu trong phần update accoun
 Cập nhật được nốt phần phân trang vs sắp xếp rồi nhưng vẫn chưa hoàn chỉnh sẽ cần chỉnh sửa
 nốt phần đường link ở trang accountspage rồi hẵng chạy thử.
 
-Cần chỉnh lại đường dẫn của trang chủ thành /admin/homepage như hồi trước.
+Nên chạy thử debug với phần này trước để xem lỗi như thế nào, xong nếu không được thì mình sẽ sử dụng postman 
+để tìm lỗi.
 
 Whitelabel Error Page
 This application has no explicit mapping for /error, so you are seeing this as a fallback.
@@ -107,3 +108,25 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:1623)
+
+Testing a login REST API service using Postman is a common practice in software development. Here's a general outline of the steps you can follow:
+
+Set Up Postman Environment:
+- Open Postman and create a new request.
+- Set the request type to "POST" since you'll be sending data to the server.
+- Enter the endpoint URL of the login API service.
+Add Request Body:
+- In the request body section, select "raw" and choose the format (e.g., JSON) in which you'll be sending the data.
+- Enter the required login credentials (e.g., username and password) in the request body.
+Set Headers:
+- Add any necessary headers to the request, such as "Content-Type" and "Accept".
+Send the Request:
+- Click the "Send" button to execute the request.
+Review the Response:
+- Check the response from the server to see if the login was successful.
+- Inspect the response status code, headers, and body for relevant information.
+Handle Authentication Tokens (if applicable):
+- If the API returns an authentication token upon successful login, you can capture and use it in subsequent requests by storing it in a variable or environment.
+Test Different Scenarios:
+- Test various scenarios such as valid login credentials, invalid credentials, and edge cases to ensure the API behaves as expected in different situations.
+By following these steps, you can effectively test a login REST API service using Postman. Keep in mind that the specific details may vary based on the API's requirements and authentication mechanisms.
