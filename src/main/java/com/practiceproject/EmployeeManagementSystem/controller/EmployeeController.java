@@ -8,12 +8,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+// import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
+import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
 
@@ -49,11 +51,21 @@ public class EmployeeController {
         return "newemployee";
     }
     @PostMapping("/saveEmployee")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee,
-        @RequestParam("anh")MultipartFile multipartFile){
+    public String saveEmployee(@RequestParam("hoten") String hoten,
+        @RequestParam("hoten") String ngaysinh,
+        @RequestParam("hoten") String quequan,
+        @RequestParam("hoten") String gt,
+        @RequestParam("hoten") String dantoc,
+        @RequestParam("hoten") String sdt,
+        @RequestParam("hoten") String email,
+        @RequestParam("hoten") String chucvu,
+        @RequestParam("hoten") Department idpb,
+        @RequestParam("hoten") Salary idluong,
+        @RequestParam("anh")MultipartFile anh){
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
-        service.saveEmployee(employee, multipartFile);
+        // service.saveEmployee(employee, multipartFile);
+        service.saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, anh);
         return "redirect:/";
     }
     @GetMapping("/updateEmployee/{id}")
