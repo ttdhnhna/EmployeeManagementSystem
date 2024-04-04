@@ -52,15 +52,15 @@ public class EmployeeController {
     }
     @PostMapping("/saveEmployee")
     public String saveEmployee(@RequestParam("hoten") String hoten,
-        @RequestParam("hoten") String ngaysinh,
-        @RequestParam("hoten") String quequan,
-        @RequestParam("hoten") String gt,
-        @RequestParam("hoten") String dantoc,
-        @RequestParam("hoten") String sdt,
-        @RequestParam("hoten") String email,
-        @RequestParam("hoten") String chucvu,
-        @RequestParam("hoten") Department idpb,
-        @RequestParam("hoten") Salary idluong,
+        @RequestParam("ngaysinh") String ngaysinh,
+        @RequestParam("quequan") String quequan,
+        @RequestParam("gt") String gt,
+        @RequestParam("dantoc") String dantoc,
+        @RequestParam("sdt") String sdt,
+        @RequestParam("email") String email,
+        @RequestParam("chucvu") String chucvu,
+        @RequestParam("idpb") Department idpb,
+        @RequestParam("idluong") Salary idluong,
         @RequestParam("anh")MultipartFile anh){
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl

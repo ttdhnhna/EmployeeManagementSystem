@@ -37,6 +37,7 @@ public class EmployeeService {
     Salary idluong,
     MultipartFile file){
         Employee employee=new Employee();
+        @SuppressWarnings("null")
         String filename=StringUtils.cleanPath(file.getOriginalFilename());
         if(filename.contains("..")){
             System.out.println("File không hợp lệ!");

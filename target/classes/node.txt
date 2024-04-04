@@ -33,3 +33,4 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * đâu xử lý.
 
 Chạy thử rồi không ấn được nút cập nhật cần phải xem lại.
+2024-04-04 21:54:24.028  WARN 6332 --- [io-8080-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'long'; nested exception is java.lang.NumberFormatException: For input string: "style02.css"]
