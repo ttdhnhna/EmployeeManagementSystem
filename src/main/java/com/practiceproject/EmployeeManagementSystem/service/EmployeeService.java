@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
+import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 
 
@@ -28,8 +30,13 @@ public class EmployeeService {
         return repository.findAll();
     }
     //Lưu nhân viên
-    public void saveEmployee(Employee employee, MultipartFile file){
-        @SuppressWarnings("null")
+    public void saveEmployee(String hoten, String ngaysinh, 
+    String quequan, String gt, String dantoc, String sdt,
+    String email, String chucvu,
+    Department idpb,
+    Salary idluong,
+    MultipartFile file){
+        Employee employee=new Employee();
         String filename=StringUtils.cleanPath(file.getOriginalFilename());
         if(filename.contains("..")){
             System.out.println("File không hợp lệ!");
@@ -39,6 +46,16 @@ public class EmployeeService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        employee.setHoten(hoten);
+        employee.setNgaysinh(ngaysinh);
+        employee.setQuequan(quequan);
+        employee.setGt(gt);
+        employee.setDantoc(dantoc);
+        employee.setSdt(sdt);
+        employee.setEmail(email);
+        employee.setChucvu(chucvu);
+        employee.setIdpb(idpb);
+        employee.setIdluong(idluong);
         this.repository.save(employee);
     }
     //Tìm nhân viên bằng id
