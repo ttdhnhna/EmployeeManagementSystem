@@ -30,6 +30,7 @@ public class EmployeeService {
         return repository.findAll();
     }
     //Lưu nhân viên
+    @SuppressWarnings("null")
     public void saveEmployee(String hoten, String ngaysinh, 
     String quequan, String gt, String dantoc, String sdt,
     String email, String chucvu,
