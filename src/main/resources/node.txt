@@ -8,7 +8,7 @@ và sau khi đăng nhập thành công thì mới chuyển đến trang chủ
 * Sửa cái hiện id. (Xong)
 
 * Chức năng bổ sung: Sắp xếp theo tên, id, ...; Phân trang; Xem chi tiết nhân viên, phòng ban; Tìm kiếm nhân viên theo id; 
-Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viên trong phòng ban.
+Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viên trong phòng ban. (Xong)
 
 * Bo sung chi tiet luong cho nhan vien va them phan danh sach tai khoan nguoi dung cho admin.
 
@@ -17,8 +17,6 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 * Làm chức năng đăng nhập và đăng xuất cho người dùng. (Xong)
 
 * Tạo khả năng phân biệt tài khoản admin và user 
-
-* Bổ sung chức năng phân quyền
 
 * Tạo chức năng hiển thị lịch biểu và giao nhiệm vụ cho nhân viên.
 
@@ -35,3 +33,7 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * đâu xử lý.
 
 Cập nhật chức năng hiện ảnh cho nhánh master
+Cần bổ sung và hoàn tất lại chương trình như hiện đầy đủ các thông tin của nhân viên, thêm thuộc
+tính cho nhân viên để lưu các thông tin đấy.
+
+* Làm chức năng ghi nhớ thông tin đăng nhập và quên mật khẩu.
