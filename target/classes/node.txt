@@ -34,4 +34,4 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
-Chay on dc chuc nang dang nhap, dang xuat va hien trang dang nhap dau tien roi
+Cập nhật chức năng hiện ảnh cho nhánh master
