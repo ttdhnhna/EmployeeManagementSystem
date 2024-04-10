@@ -112,6 +112,8 @@ public class EmployeeController {
     public String viewProfileEmployee(@PathVariable(value = "id") long id, Model model){
         Employee employee=service.getEmployeebyID(id);
         model.addAttribute("employee", employee);
+        Salary salary=service.getsalaryInfo(id);
+        model.addAttribute("salary", salary);
         return "employeeviewprofile";
     }
 

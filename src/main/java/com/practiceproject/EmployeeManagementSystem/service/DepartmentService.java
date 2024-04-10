@@ -61,10 +61,7 @@ public class DepartmentService {
         return repository.findAll();
     }
 
-    // public Map<Long,List<Employee>> getNVInformationbyID(){
-    //     return repository.getNVInformationbyID();
-    // }
-
+    //Chức năng lấy thông tin nhân viên có cùng id phòng ban
     public List<Employee> getNVInformationbyID(long id){
         List<Employee> ListEmployees=new ArrayList<>();
         for(Employee employee : eRepository.findAll()){

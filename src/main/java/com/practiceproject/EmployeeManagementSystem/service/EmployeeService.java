@@ -17,6 +17,7 @@ import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
+import com.practiceproject.EmployeeManagementSystem.repository.SalaryRepository;
 
 
 @Service//Nó được sử dụng để đánh dấu lớp là nhà cung cấp dịch vụ
@@ -25,6 +26,9 @@ public class EmployeeService {
     @Autowired //Được sử dụng để tự động Dependency Injection
     EmployeeRepository repository;//Hay có thể nói cách khác là giống như kế thừa các thuộc tính của lớp EmployeeRepository vào repository  
     //Để có thể sử dụng các chức năng của nó trong service.
+    @Autowired
+    SalaryRepository sRepository;
+
     //Chức năng hiện tất cả nhân viên
     public List<Employee> getEmployees(){
         return repository.findAll();
@@ -59,7 +63,7 @@ public class EmployeeService {
         employee.setIdluong(idluong);
         this.repository.save(employee);
     }
-
+    //Chức năng cập nhật nhân viên riêng.
     public void updateEmployee(Employee employee){
         this.repository.save(employee);
     }
@@ -92,6 +96,17 @@ public class EmployeeService {
             return repository.findAll(keyword);
         }
         return repository.findAll();
+    }
+
+    //Chức năng lấy thông tin lương cho nhân viên.
+    public Salary getsalaryInfo(long id){
+        Salary salaryinfo=new Salary();
+        for(Salary s : sRepository.findAll()){
+            if(s.getIdnv().getIdnv()==id){
+                salaryinfo=s;
+            }
+        }
+        return salaryinfo;
     }
 }
 

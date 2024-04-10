@@ -173,7 +173,7 @@
                 </div>
               </div>
 
-              <div class="tab-pane face" id="account-salary" th:object="${employee}">
+              <div class="tab-pane face" id="account-salary" th:object="${salary}">
                 <div class="card-body pb-2">
                   <div class="form-group">
                     <label class="form-lable">Mã Lương</label>
@@ -184,31 +184,39 @@
                   <div class="form-group">
                     <label class="form-lable">Lương cơ bản</label>
                     <input type="text" class="form-control mb-1"
+                    name="luongcb"
+                    th:field="*{luongcb}"
                     > 
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Hệ số lương</label>
                     <input type="text" class="form-control mb-1"
-                    > 
+                    name="hsl"
+                    th:field="*{hsl}"> 
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Phụ cấp</label>
                     <input type="text" class="form-control mb-1"
-                    > 
+                    name="phucap"
+                    th:field="*{phucap}"> 
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Bảo hiểm lao động</label>
                     <input type="text" class="form-control mb-1"
-                    > 
+                    name="baohiem"
+                    th:field="*{baohiem}"> 
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Trừ lương</label>
-                    <input type="text" class="form-control mb-1">
+                    <input type="text" class="form-control mb-1"
+                    name="truluong"
+                    th:field="*{truluong}">
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Tổng lương</label>
                     <input type="text" class="form-control mb-1"
-                    > 
+                    name="tongluong"
+                    th:field="*{tongluong}"> 
                   </div>
                 </div>
             </div>
