@@ -32,8 +32,10 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
-Cập nhật chức năng hiện ảnh cho nhánh master
 Cần bổ sung và hoàn tất lại chương trình như hiện đầy đủ các thông tin của nhân viên, thêm thuộc
 tính cho nhân viên để lưu các thông tin đấy.
 
 * Làm chức năng ghi nhớ thông tin đăng nhập và quên mật khẩu.
+
+Có khi cần tạo 1 chức năng lưu nhân viên mới cho cái cập nhật nhân viên kia
+Tìm thêm ảnh nhân viên 

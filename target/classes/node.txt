@@ -1,0 +1,41 @@
+* Thứ tự những nhiệm vụ cần phải làm: 
+* Để tạo liên kết giữa 2 bảng dữ liệu phòng ban và nhân viên thì mình sẽ dùng đến @onetomany và @manytoone 
+cái này sẽ cần phải nghiên cứu 1 lúc mới được.(Đã thành công)
+
+* Sau khi làm xong cái chức năng đăng nhập với đăng ký thì sẽ chuyển trang đăng nhập sẽ là trang hiển thị đầu tiên
+và sau khi đăng nhập thành công thì mới chuyển đến trang chủ
+
+* Sửa cái hiện id. (Xong)
+
+* Chức năng bổ sung: Sắp xếp theo tên, id, ...; Phân trang; Xem chi tiết nhân viên, phòng ban; Tìm kiếm nhân viên theo id; 
+Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viên trong phòng ban. (Xong)
+
+* Bo sung chi tiet luong cho nhan vien va them phan danh sach tai khoan nguoi dung cho admin.
+
+* Sửa chức năng phân trang, sắp xếp và sửa phòng ban (Xong)
+
+* Làm chức năng đăng nhập và đăng xuất cho người dùng. (Xong)
+
+* Tạo khả năng phân biệt tài khoản admin và user 
+
+* Tạo chức năng hiển thị lịch biểu và giao nhiệm vụ cho nhân viên.
+
+* Tạo chức năng nhắn tin.
+
+Ghi chú: Phần tìm kiếm trong lương thì sẽ có cả tìm mã nhân viên, mã lương và tên nhân viên
+Đã thêm được phần sửa vs thêm lương ở nhân viên rồi
+Giờ sẽ cần chạy thử xem việc thêm, hiện lương
+Khong thay dc thuoc tinh idnv o 2 bang luong
+va phong ban, phan sua ma luong o nv thi van on va hien len dc.
+
+* Phần tìm kiếm ở trang phòng ban vẫn chưa hoạt động đc nên sẽ để tạm đấy vậy
+* khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
+* đâu xử lý.
+
+Cần bổ sung và hoàn tất lại chương trình như hiện đầy đủ các thông tin của nhân viên, thêm thuộc
+tính cho nhân viên để lưu các thông tin đấy.
+
+* Làm chức năng ghi nhớ thông tin đăng nhập và quên mật khẩu.
+
+Có khi cần tạo 1 chức năng lưu nhân viên mới cho cái cập nhật nhân viên kia
+Tìm thêm ảnh nhân viên 
