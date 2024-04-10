@@ -8,19 +8,27 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.RequestPart;
 
+import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
+import com.practiceproject.EmployeeManagementSystem.entity.Salary;
+import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
+
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller//chỉ ra rằng một lớp cụ thể đóng vai trò của bộ điều khiển
 /*Hay có thể nói dễ hiểu hơn là lớp này sẽ là lớp được dùng để liên kết và lấy nhưng logic toán học được tạo ra trong service
  * và đưa ra cho người dùng khi họ tương tác 
 */
 public class EmployeeController {
+    @Autowired
+    EmployeeRepository repository;
     @Autowired 
     //Điều này có nghĩa là ta sẽ lấy được bean đc tạo tự động bởi Spring
     EmployeeService service;
@@ -43,10 +51,21 @@ public class EmployeeController {
         return "newemployee";
     }
     @PostMapping("/saveEmployee")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee){
+    public String saveEmployee(@RequestParam("hoten") String hoten,
+        @RequestParam("ngaysinh") String ngaysinh,
+        @RequestParam("quequan") String quequan,
+        @RequestParam("gt") String gt,
+        @RequestParam("dantoc") String dantoc,
+        @RequestParam("sdt") String sdt,
+        @RequestParam("email") String email,
+        @RequestParam("chucvu") String chucvu,
+        @RequestParam("idpb") Department idpb,
+        @RequestParam("idluong") Salary idluong,
+        @RequestParam("anh")MultipartFile anh){
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
-        service.saveEmployee(employee);
+        // service.saveEmployee(employee, multipartFile);
+        service.saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, anh);
         return "redirect:/";
     }
     @GetMapping("/updateEmployee/{id}")
