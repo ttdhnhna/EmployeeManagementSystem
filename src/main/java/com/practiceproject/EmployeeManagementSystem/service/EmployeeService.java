@@ -59,6 +59,11 @@ public class EmployeeService {
         employee.setIdluong(idluong);
         this.repository.save(employee);
     }
+
+    public void updateEmployee(Employee employee){
+        this.repository.save(employee);
+    }
+
     //Tìm nhân viên bằng id
     public Employee getEmployeebyID(long id){
         Optional<Employee> optional=repository.findById(id);

@@ -54,7 +54,7 @@
                 <br>
                 <h1 class="text-center">Chỉnh sửa Thông tin Nhân viên</h1>
                 <div class="card-body">
-                    <form:input action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post"
+                    <form:input action="#" th:action="@{/updateEmployee}" th:object="${employee}" method="post"
                         enctype="multipart/form-data"
                     >
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
@@ -164,7 +164,7 @@
                                 name="anh"
                                 id="anh"
                                 th:field="*{anh}"
-                                accept="img/png, img/jpeg"
+                                accept="img/png, img/jpeg, img/jpg"
                             >
                             <br>
                             <br>

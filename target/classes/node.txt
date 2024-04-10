@@ -37,5 +37,4 @@ tính cho nhân viên để lưu các thông tin đấy.
 
 * Làm chức năng ghi nhớ thông tin đăng nhập và quên mật khẩu.
 
-Có khi cần tạo 1 chức năng lưu nhân viên mới cho cái cập nhật nhân viên kia
-Tìm thêm ảnh nhân viên 
+

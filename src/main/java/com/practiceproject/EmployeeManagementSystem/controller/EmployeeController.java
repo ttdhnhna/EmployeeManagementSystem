@@ -8,15 +8,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-// import org.springframework.web.bind.annotation.RequestPart;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
-import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
 
 
@@ -27,8 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
  * và đưa ra cho người dùng khi họ tương tác 
 */
 public class EmployeeController {
-    @Autowired
-    EmployeeRepository repository;
     @Autowired 
     //Điều này có nghĩa là ta sẽ lấy được bean đc tạo tự động bởi Spring
     EmployeeService service;
@@ -68,6 +65,13 @@ public class EmployeeController {
         service.saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, anh);
         return "redirect:/";
     }
+
+    @PostMapping("/updateEmployee")
+    public String updateEmployee(@ModelAttribute("employee") Employee employee){
+        service.updateEmployee(employee);
+        return "redirect:/";
+    }
+
     @GetMapping("/updateEmployee/{id}")
     public String updateEmployee(@PathVariable(value = "id") long id, Model model){
         //@PathVariable được dùng để xử lý các biểu mẫu trong ánh xạ URI được yêu cầu và đặt làm tham số
