@@ -37,7 +37,6 @@ tính cho nhân viên để lưu các thông tin đấy.
 
 * Làm chức năng ghi nhớ thông tin đăng nhập và quên mật khẩu.
 
-Thêm được phần hiện thông tin lương trong chi tiết nhân viên và thêm đc phần cập nhật thông tin nv
-mới rồi.
-
 Liên kết thuộc tính tk với nhân viên bằng thuộc tính email.
+
+Cần sửa lại chức năng sửa lại nhân viên vì cái kia vẫn không hoạt động đc.
