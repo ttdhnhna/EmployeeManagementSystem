@@ -15,6 +15,7 @@ public class User {
     private Long iduser;
     private String hoten;
     @Column(nullable = true, unique = true)
+    
     private String email;
     private String password;
     
