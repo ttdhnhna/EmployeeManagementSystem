@@ -64,7 +64,33 @@ public class EmployeeService {
         this.repository.save(employee);
     }
     //Chức năng cập nhật nhân viên riêng.
-    public void updateEmployee(Employee employee){
+    @SuppressWarnings("null")
+    public void updateEmployee(String hoten, String ngaysinh, 
+    String quequan, String gt, String dantoc, String sdt,
+    String email, String chucvu,
+    Department idpb,
+    Salary idluong,
+    MultipartFile file){
+        Employee employee=new Employee();
+        String filename=StringUtils.cleanPath(file.getOriginalFilename());
+        if(filename.contains("..")){
+            System.out.println("File không hợp lệ!");
+        }
+        try {
+            employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        employee.setHoten(hoten);
+        employee.setNgaysinh(ngaysinh);
+        employee.setQuequan(quequan);
+        employee.setGt(gt);
+        employee.setDantoc(dantoc);
+        employee.setSdt(sdt);
+        employee.setEmail(email);
+        employee.setChucvu(chucvu);
+        employee.setIdpb(idpb);
+        employee.setIdluong(idluong);
         this.repository.save(employee);
     }
 

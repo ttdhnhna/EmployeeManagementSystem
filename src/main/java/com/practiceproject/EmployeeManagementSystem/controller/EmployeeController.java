@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+// import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -67,8 +67,18 @@ public class EmployeeController {
     }
 
     @PostMapping("/updateEmployee")
-    public String updateEmployee(@ModelAttribute("employee") Employee employee){
-        service.updateEmployee(employee);
+    public String updateEmployee(@RequestParam("hoten") String hoten,
+    @RequestParam("ngaysinh") String ngaysinh,
+    @RequestParam("quequan") String quequan,
+    @RequestParam("gt") String gt,
+    @RequestParam("dantoc") String dantoc,
+    @RequestParam("sdt") String sdt,
+    @RequestParam("email") String email,
+    @RequestParam("chucvu") String chucvu,
+    @RequestParam("idpb") Department idpb,
+    @RequestParam("idluong") Salary idluong,
+    @RequestParam("anh") MultipartFile anh){
+        service.updateEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, anh);
         return "redirect:/";
     }
 
