@@ -37,7 +37,12 @@ public class  Employee {
     private String gt;
     private String dantoc;
     private String sdt;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "email_nv", referencedColumnName = "email_nv")
+    @JsonBackReference
     private String email;
+    
     private String chucvu;
     
     @Lob

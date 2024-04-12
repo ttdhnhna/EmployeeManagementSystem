@@ -66,22 +66,6 @@ public class EmployeeController {
         return "redirect:/";
     }
 
-    @PostMapping("/updateEmployee")
-    public String updateEmployee(@RequestParam("hoten") String hoten,
-    @RequestParam("ngaysinh") String ngaysinh,
-    @RequestParam("quequan") String quequan,
-    @RequestParam("gt") String gt,
-    @RequestParam("dantoc") String dantoc,
-    @RequestParam("sdt") String sdt,
-    @RequestParam("email") String email,
-    @RequestParam("chucvu") String chucvu,
-    @RequestParam("idpb") Department idpb,
-    @RequestParam("idluong") Salary idluong,
-    @RequestParam("anh") MultipartFile anh){
-        service.updateEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, anh);
-        return "redirect:/";
-    }
-
     @GetMapping("/updateEmployee/{id}")
     public String updateEmployee(@PathVariable(value = "id") long id, Model model){
         //@PathVariable được dùng để xử lý các biểu mẫu trong ánh xạ URI được yêu cầu và đặt làm tham số
