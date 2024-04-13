@@ -25,12 +25,12 @@ public class Salary {
     @JsonManagedReference
     private Employee idnv;
 
-    private double luongcb;
-    private double hsl;
-    private double phucap;
-    private double baohiem;
-    private double truluong;
-    private double tongluong;
+    private static float luongcb = 1350000;
+    private float hsl;
+    private float phucap;
+    private float baohiem;
+    private float truluong;
+    private float tongluong;
     
     public Salary() {
     }
@@ -43,53 +43,45 @@ public class Salary {
         this.idluong = idluong;
     }
 
-    public double getLuongcb() {
-        return luongcb;
-    }
-
-    public void setLuongcb(double luongcb) {
-        this.luongcb = luongcb;
-    }
-
-    public double getHsl() {
+    public float getHsl() {
         return hsl;
     }
 
-    public void setHsl(double hsl) {
+    public void setHsl(float hsl) {
         this.hsl = hsl;
     }
 
-    public double getPhucap() {
-        return phucap;
-    }
-
-    public void setPhucap(double phucap) {
-        this.phucap = phucap;
-    }
-
-    public double getBaohiem() {
-        return baohiem;
-    }
-
-    public void setBaohiem(double baohiem) {
-        this.baohiem = baohiem;
-    }
-
-    public double getTruluong() {
-        return truluong;
-    }
-
-    public void setTruluong(double truluong) {
-        this.truluong = truluong;
-    }
-
-    public double getTongluong() {
+    public float getTongluong() {
         tongluong=luongcb*hsl+phucap-baohiem-truluong;
         return tongluong;
     }
 
-    public void setTongluong(double tongluong) {
+    public void setTongluong(Float tongluong) {
         this.tongluong = tongluong;
+    }
+
+    public float getPhucap() {
+        return phucap;
+    }
+
+    public void setPhucap(float phucap) {
+        this.phucap = phucap;
+    }
+
+    public float getBaohiem() {
+        return baohiem;
+    }
+
+    public void setBaohiem(float baohiem) {
+        this.baohiem = baohiem;
+    }
+
+    public float getTruluong() {
+        return truluong;
+    }
+
+    public void setTruluong(float truluong) {
+        this.truluong = truluong;
     }
 
     public Employee getIdnv() {
@@ -99,4 +91,5 @@ public class Salary {
     public void setIdnv(Employee idnv) {
         this.idnv = idnv;
     }
+    
 }

@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "tblUser")
@@ -14,8 +17,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long iduser;
     private String hoten;
-    @Column(nullable = true, unique = true)
-    
+
+    @OneToOne(mappedBy = "email")
+    @JsonManagedReference
+    @Column(name="email_nv",nullable = true, unique = true)
     private String email;
     private String password;
     
