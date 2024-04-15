@@ -27,16 +27,16 @@
                 <a class="nav-link" th:href="@{/} ">Quản lý Nhân viên</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" th:href="@{/admin/departments} ">Quản lý Phòng ban</a>
+                <a class="nav-link" th:href="@{/departments} ">Quản lý Phòng ban</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" th:href="@{/admin/salaries} ">Quản lý Lương</a>
+                <a class="nav-link" th:href="@{/salaries} ">Quản lý Lương</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" th:href="@{/admin/accounts} ">Quản lý Tài khoản</a>
+                <a class="nav-link" th:href="@{/accounts} ">Quản lý Tài khoản</a>
               </li>
               <li sec:authorize="isAuthenticated()" class="nav-item">
-                <a class="nav-link" th:href="@{/admin/logout} ">Đăng xuất</a>
+                <a class="nav-link" th:href="@{/logout} ">Đăng xuất</a>
               </li>
             </ul>
         </div>
@@ -55,7 +55,7 @@
                 <br>
                 <h1 class="text-center">Chỉnh sửa thông tin Tài khoản</h1>
                 <div class="card-body">
-                    <form action="#" th:action="@{/admin/saveAccount}" th:object="${user}" method="post">
+                    <form action="#" th:action="@{/saveAccount}" th:object="${user}" method="post">
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
                         nut gui -->
                         <div class="form-group">
@@ -96,11 +96,13 @@
                             />
                         </div>
                         <div class="form-group">
-                            <label>Vai trò</label>
-                            <select id="role" class="form-control" th:field="*{role}">
-                                <option value="ADMIN">ADMIN</option>
-                                <option value="USER">USER</option>
-                            </select>
+                            <label>Nhập lại mật khẩu mới</label>
+                            <input 
+                                type="password"
+                                id="password"
+                                th:field="*{password}"
+                                class="form-control"
+                            />
                         </div>
                         &nbsp;
                         <div class="box-footer">
@@ -110,7 +112,7 @@
                         </div>
                     </form>
                     <hr>
-		            <a th:href="@{/admin/accounts}">Quay lại</a>
+		            <a th:href="@{/accounts}">Quay lại</a>
                 </div>
             </div>
         </div>

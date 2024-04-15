@@ -44,31 +44,31 @@ public class AppController {
     public String login(){
         return "login";
     }
-    @GetMapping("/admin/accounts")
+    @GetMapping("/accounts")
     public String showAccountPage(Model model){
         return findPaginatedAcc(1, "iduser", "asc", model);
     }
     
-    @GetMapping("/admin/deleteAccount/{id}")
+    @GetMapping("/deleteAccount/{id}")
     public String deleteAccount(@PathVariable(value = "id") long id){
         this.service.deleteAccountById(id);
-        return "redirect:/admin/accounts";
+        return "redirect:/accounts";
     }
 
-    @GetMapping("/admin/updateAccount/{id}")
+    @GetMapping("/updateAccount/{id}")
     public String updateAccount(@PathVariable(value = "id")long id, Model model){
         User user=service.getUserByID(id);
         model.addAttribute("user", user);
         return "updateaccount";
     }
 
-    @PostMapping("/admin/saveAccount")
+    @PostMapping("/saveAccount")
     public String saveAccount(@ModelAttribute("user") User user){
         BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
         String ePass=encoder.encode(user.getPassword());
         user.setPassword(ePass);
         service.saveAccount(user);
-        return "redirect:/admin/accounts";
+        return "redirect:/accounts";
     }
 
     @GetMapping("/finduser")
@@ -78,7 +78,7 @@ public class AppController {
         return "accountspage";
     }
 
-    @GetMapping("/admin/pageAcc/{pageAccNo}")
+    @GetMapping("/pageAcc/{pageAccNo}")
     public String findPaginatedAcc(@PathVariable(value = "pageAccNo") int pageNo,
     @RequestParam("sortAccField") String sortField,
     @RequestParam("sortAccDir") String sortDir, Model model){

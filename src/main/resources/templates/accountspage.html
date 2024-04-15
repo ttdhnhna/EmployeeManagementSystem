@@ -27,16 +27,16 @@
               <a class="nav-link" th:href="@{/} ">Quản lý Nhân viên</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/admin/departments} ">Quản lý Phòng ban</a>
+              <a class="nav-link" th:href="@{/departments} ">Quản lý Phòng ban</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/admin/salaries} ">Quản lý Lương</a>
+              <a class="nav-link" th:href="@{/salaries} ">Quản lý Lương</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/admin/accounts} ">Quản lý Tài khoản</a>
+              <a class="nav-link" th:href="@{/accounts} ">Quản lý Tài khoản</a>
             </li>
             <li sec:authorize="isAuthenticated()" class="nav-item">
-              <a class="nav-link" th:href="@{/admin/logout} ">Đăng xuất</a>
+              <a class="nav-link" th:href="@{/logout} ">Đăng xuất</a>
             </li>
           </ul>
         </div>
@@ -57,7 +57,7 @@
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <a th:href="@{/admin/registration}" class="btn btn-primary btn-sm mb-3">
+                <a th:href="@{/registration}" class="btn btn-primary btn-sm mb-3">
                     Đăng ký
                 </a>
             </div>
@@ -65,11 +65,10 @@
         <table class="table thead-light table-bordered">
             <thead class="table-dark">
                 <tr>
-                    <th><a th:href="@{'/admin/page/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}"></a>ID</a></th>
+                    <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}"></a>ID</a></th>
                     <th>Ảnh hồ sơ</th>
-                    <th><a th:href="@{'/admin/page/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}"></a>Họ tên</a></th>
-                    <th><a th:href="@{'/admin/page/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}"></a>Email</a></th>
-                    <th><a th:href="@{'/admin/page/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}"></a>Chức vụ</a></th>
+                    <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortField=hoten&sortDir=' + ${reverseSortDir}}"></a>Họ tên</a></th>
+                    <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}"></a>Email</a></th>
                     <th>Chức năng</th>
                 </tr>
             </thead>
@@ -79,10 +78,9 @@
                     <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" height="100" width="100"></td>
                     <td th:text="${user.hoten}"></td>
                     <td th:text="${user.email}"></td>
-                    <td th:text="${user.role}"></td>
                     <td>
-                      <a th:href="@{/admin/updateAccount/{id}(id=${user.iduser})}" class="btn btn-primary">Sửa</a>
-                      <a th:href="@{/admin/deleteAccount/{id}(id=${user.iduser})}" class="btn btn-danger">Xóa</a>
+                      <a th:href="@{/updateAccount/{id}(id=${user.iduser})}" class="btn btn-primary">Sửa</a>
+                      <a th:href="@{/deleteAccount/{id}(id=${user.iduser})}" class="btn btn-danger">Xóa</a>
                   </td>
                 </tr>
             </tbody>
@@ -97,19 +95,19 @@
             </div>
             <div class="coL-sm-1">
               <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                <a th:if="${currentPage != i}" th:href="@{'/pageAcc/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
                 <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
               </span>
             </div>
 
             <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Tiếp</a>
+              <a th:if="${currentPage < totalPages}" th:href="@{'/pageAcc/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Tiếp</a>
               <span th:unless="${currentPage < totalPages}">Tiếp</span>
               &nbsp;
             </div>
 
             <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Cuối</a>
+              <a th:if="${currentPage < totalPages}" th:href="@{'/pageAcc/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Cuối</a>
               <span th:unless="${currentPage < totalPages}">Cuối</span>
             </div>
           </div>

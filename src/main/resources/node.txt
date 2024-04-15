@@ -36,7 +36,7 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 
 Cần sửa lại chức năng sửa lại nhân viên vì cái kia vẫn không hoạt động đc.
 
-Tạo phần danh sách tài khoản và thay đổi mật khẩu.
+Tạo phần thay đổi mật khẩu với việc kiểm tra xem mật khẩu cũ có đúng như trong CSDL không và
+phần nhập mật khẩu mới vs nhập lại mk mới phải giống nhau cũng như phải khác với mật khẩu cũ.
 
-Đã tạo đc liên kết giữa nv vs account và bổ sung phần hiện danh sách với sửa tài khoản nhưng vẫn chưa hoàn
-thiện cần bổ sung.
+

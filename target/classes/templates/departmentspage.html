@@ -32,6 +32,9 @@
             <li class="nav-item">
               <a class="nav-link" th:href="@{/salaries} ">Quản lý Lương</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/accounts} ">Quản lý Tài khoản</a>
+            </li>
             <li sec:authorize="isAuthenticated()" class="nav-item">
               <a class="nav-link" th:href="@{/logout} ">Đăng xuất</a>
             </li>
@@ -82,8 +85,7 @@
                     <td th:text="${department.sdt}"></td>
                     <td>
                       <a th:href="@{/updateDepartment/{id}(id=${department.idpb})}" class="btn btn-primary">Sửa</a>
-                       <a th:href="@{/viewDepartmentdetail/{id}(id=${department.idpb})}" class="btn btn-primary">Chi tiết</a>
-<!--                      <a th:href="@{/updateIDNV/{id}(id=${department.idpb})}" class="btn btn-primary">Cập nhật NV</a>-->
+                      <a th:href="@{/viewDepartmentdetail/{id}(id=${department.idpb})}" class="btn btn-primary">Chi tiết</a>
                       <a th:href="@{/deleteDepartment/{id}(id=${department.idpb})}" class="btn btn-danger">Xóa</a>
                     </td>
                 </tr>
