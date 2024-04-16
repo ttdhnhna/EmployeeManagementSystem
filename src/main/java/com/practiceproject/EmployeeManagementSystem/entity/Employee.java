@@ -31,16 +31,17 @@ public class  Employee {
     @JsonBackReference
     private Salary idluong;
     
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "iduser", referencedColumnName = "iduser")
+    @JsonBackReference
+    private User iduser;
+
     private String hoten;
     private String ngaysinh;
     private String quequan;
     private String gt;
     private String dantoc;
     private String sdt;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "email_nv", referencedColumnName = "email_nv")
-    @JsonBackReference
     private String email;
     
     private String chucvu;

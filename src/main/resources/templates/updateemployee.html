@@ -160,6 +160,15 @@
                             />
                         </div>
                         <div class="form-group">
+                            <label>ID Tài khoản</label>
+                            <input 
+                                type="text"
+                                name="iduser"
+                                th:field="*{iduser}"
+                                class="form-control"
+                            />
+                        </div>
+                        <div class="form-group">
                             <label>Ảnh đại điện: </label>
                             <br>
                             <img th:src="${'data:image/jpeg;base64,'+{employee.anh}}" height="100" width="100" style="margin-top: 10px; margin-bottom: 15px;">

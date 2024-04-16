@@ -14,15 +14,16 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "tblUser")
 public class User {
     @Id
+    @Column(name = "iduser")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long iduser;
     private String hoten;
-
-    @OneToOne(mappedBy = "email")
-    @JsonManagedReference
-    @Column(name="email_nv",nullable = true, unique = true)
-    private String email;
+    private String email; 
     private String password;
+
+    @OneToOne(mappedBy = "iduser")
+    @JsonManagedReference
+    private Employee idnv;
     
     public User() {
     }
