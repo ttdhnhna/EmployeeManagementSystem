@@ -14,6 +14,6 @@ public interface UserRepository extends JpaRepository<User,Long>{
     @Query("SELECT u FROM User u WHERE u.hoten LIKE %?1%"
     + "OR u.iduser LIKE %?1%"
     + "OR u.email LIKE %?1%"
-    + "OR u.role LIKE %?1%")
+    + "OR u.idnv LIKE %?1%")
     public List<User> findAllUsers(String keywords);
 }

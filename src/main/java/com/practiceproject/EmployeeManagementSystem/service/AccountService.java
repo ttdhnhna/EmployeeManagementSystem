@@ -55,4 +55,8 @@ public class AccountService {
         Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
         return this.repository.findAll(pageable);
     }
+
+    public void changePassword(){
+        
+    }
 }

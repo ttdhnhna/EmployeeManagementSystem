@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -97,5 +98,9 @@ public class AppController {
 
         model.addAttribute("ListAccounts", ListAccounts);
         return "accountspage";
+    }
+
+    public ResponseEntity<?> changePassword(){
+        return ResponseEntity.accepted().build();
     }
 }
