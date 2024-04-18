@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
@@ -17,6 +18,7 @@ import com.practiceproject.EmployeeManagementSystem.entity.User;
 public class AccountService {
     @Autowired
     UserRepository repository;
+    PasswordEncoder passwordEncoder;
 
     public List<User> getAccounts(){
         return repository.findAll();
@@ -56,7 +58,17 @@ public class AccountService {
         return this.repository.findAll(pageable);
     }
 
-    public void changePassword(){
-        
+    public void changePassword(String currentpass, String newpass, String comfirm, User user){
+        if(!passwordEncoder.matches(currentpass, user.getPassword())){
+            throw new IllegalStateException("Sai mật khẩu");
+        }
+        if(!newpass.equals(comfirm)){
+            throw new IllegalStateException("Mật khẩu không trùng khớp");
+        }
+        if(passwordEncoder.matches(newpass, user.getPassword())){
+            throw new IllegalStateException("Mật khẩu mới phải khác mật khẩu cũ");
+        }
+        user.setPassword(passwordEncoder.encode(newpass));
+        this.repository.save(user);
     }
 }

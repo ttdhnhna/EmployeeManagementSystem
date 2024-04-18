@@ -55,7 +55,7 @@
                 <br>
                 <h1 class="text-center">Chỉnh sửa thông tin Tài khoản</h1>
                 <div class="card-body">
-                    <form action="#" th:action="@{/saveAccount}" th:object="${user}" method="post">
+                    <form action="#" th:action="@{/changePassword}" th:object="${user}" method="post">
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
                         nut gui -->
                         <div class="form-group">
@@ -88,6 +88,7 @@
                             <input 
                                 type="password"
                                 id="currentpassword"
+                                name="currentpassword"
                                 th:field="*{password}"
                                 class="form-control"
                             />
@@ -97,6 +98,7 @@
                             <input 
                                 type="password"
                                 id="newpassword"
+                                name="newpassword"
                                 th:field="*{password}"
                                 class="form-control"
                             />
@@ -106,6 +108,7 @@
                             <input 
                                 type="password"
                                 id="confirmpassword"
+                                name="confirmpassword"
                                 th:field="*{password}"
                                 class="form-control"
                             />

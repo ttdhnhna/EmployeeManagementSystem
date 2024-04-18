@@ -65,10 +65,10 @@
         <table class="table thead-light table-bordered">
             <thead class="table-dark">
                 <tr>
-                    <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}"></a>ID</a></th>
+                    <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortAccField=idnv&sortAccDir=' + ${reverseSortDir}}"></a>ID</a></th>
                     <th>Ảnh hồ sơ</th>
-                    <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortField=hoten&sortDir=' + ${reverseSortDir}}"></a>Họ tên</a></th>
-                    <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}"></a>Email</a></th>
+                    <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortAccField=hoten&sortAccDir=' + ${reverseSortDir}}"></a>Họ tên</a></th>
+                    <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortAccField=email&sortAccDir=' + ${reverseSortDir}}"></a>Email</a></th>
                     <th>Chức năng</th>
                 </tr>
             </thead>
@@ -95,19 +95,19 @@
             </div>
             <div class="coL-sm-1">
               <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                <a th:if="${currentPage != i}" th:href="@{'/pageAcc/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                <a th:if="${currentPage != i}" th:href="@{'/pageAcc/' + ${i} + '?sortAccField=' + ${sortAccField} + '&sortAccDir=' + ${sortAccDir}}">[[${i}]]</a>
                 <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
               </span>
             </div>
 
             <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/pageAcc/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Tiếp</a>
+              <a th:if="${currentPage < totalPages}" th:href="@{'/pageAcc/' + ${currentPage + 1}+ '?sortAccField=' + ${sortAccField} + '&sortAccDir=' + ${sortAccDir}}">Tiếp</a>
               <span th:unless="${currentPage < totalPages}">Tiếp</span>
               &nbsp;
             </div>
 
             <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/pageAcc/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Cuối</a>
+              <a th:if="${currentPage < totalPages}" th:href="@{'/pageAcc/' + ${totalPages}+ '?sortAccField=' + ${sortAccField} + '&sortAccDir=' + ${sortAccDir}}">Cuối</a>
               <span th:unless="${currentPage < totalPages}">Cuối</span>
             </div>
           </div>
