@@ -91,5 +91,9 @@ public class Salary {
     public void setIdnv(Employee idnv) {
         this.idnv = idnv;
     }
+
+    public static float getLuongcb() {
+        return luongcb;
+    }
     
 }
