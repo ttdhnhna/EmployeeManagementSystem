@@ -149,4 +149,14 @@ public class  Employee {
     public void setAnh(String anh) {
         this.anh = anh;
     }
+
+    public User getIduser() {
+        return iduser;
+    }
+
+    public void setIduser(User iduser) {
+        this.iduser = iduser;
+    }
+
+    
 }

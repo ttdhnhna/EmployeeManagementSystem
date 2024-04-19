@@ -99,9 +99,9 @@ public class AppController {
         return "accountspage";
     }
     @PostMapping("/changePassword")
-    public String changePassword(@RequestParam("currentpassword") String currpass
-    , @RequestParam("newpassword") String newpass
-    , @RequestParam("confirmpassword") String confirmString
+    public String changePassword(@RequestParam(value = "currentpassword", required = false) String currpass
+    , @RequestParam(value = "newpassword", required = false) String newpass
+    , @RequestParam(value = "confirmpassword", required = false) String confirmString
     , @ModelAttribute("user") User user
     ){
         this.service.changePassword(currpass, newpass, confirmString, user);
