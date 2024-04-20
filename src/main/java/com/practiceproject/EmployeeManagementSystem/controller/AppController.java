@@ -80,8 +80,8 @@ public class AppController {
 
     @GetMapping("/pageAcc/{pageAccNo}")
     public String findPaginatedAcc(@PathVariable(value = "pageAccNo") int pageNo,
-    @RequestParam("sortAccField") String sortField,
-    @RequestParam("sortAccDir") String sortDir, Model model){
+    @RequestParam("sortField") String sortField,
+    @RequestParam("sortDir") String sortDir, Model model){
         int pageSize=10;
 
         Page<User> page=service.findPaginatedAcc(pageNo, pageSize, sortField, sortDir);
@@ -91,8 +91,8 @@ public class AppController {
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
 
-        model.addAttribute("sortAccField", sortField);
-        model.addAttribute("sortAccDir", sortDir);
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("ListAccounts", ListAccounts);
@@ -100,8 +100,8 @@ public class AppController {
     }
     @PostMapping("/changePassword")
     public String changePassword(@RequestParam(value = "currentpassword", required = false) String currpass
-    , @RequestParam(value = "newpassword", required = false) String newpass
-    , @RequestParam(value = "confirmpassword", required = false) String confirmString
+    , @RequestParam(value = "newpassword") String newpass
+    , @RequestParam(value = "confirmpassword") String confirmString
     , @ModelAttribute("user") User user
     ){
         this.service.changePassword(currpass, newpass, confirmString, user);

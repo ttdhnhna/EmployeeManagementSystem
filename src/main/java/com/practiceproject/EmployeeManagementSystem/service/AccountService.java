@@ -8,7 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
@@ -18,7 +18,6 @@ import com.practiceproject.EmployeeManagementSystem.entity.User;
 public class AccountService {
     @Autowired
     UserRepository repository;
-    PasswordEncoder passwordEncoder;
 
     public List<User> getAccounts(){
         return repository.findAll();
@@ -59,6 +58,7 @@ public class AccountService {
     }
 
     public void changePassword(String currentpass, String newpass, String comfirm, User user){
+        BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
         if(!passwordEncoder.matches(currentpass, user.getPassword())){
             throw new IllegalStateException("Sai mật khẩu");
         }
