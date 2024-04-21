@@ -58,6 +58,9 @@ public class AccountService {
     }
 
     public void changePassword(String currentpass, String newpass, String comfirm, User user){
+        if (currentpass == null || newpass == null || comfirm == null) {
+            throw new IllegalArgumentException("Mật khẩu không thể để trống");
+        }
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
         if(!passwordEncoder.matches(currentpass, user.getPassword())){
             throw new IllegalStateException("Sai mật khẩu");

@@ -30,11 +30,15 @@ public class AppController {
     @GetMapping("/registration")
     public String registerPage(Model model){
         model.addAttribute("user",new User());
-        return "registration";
+        return "newaccount";
     }
     @PostMapping("/saveRegistration")
-    public String saveRegistration(User user){
+    public String saveRegistration(@RequestParam ("confirm") String confirm, 
+    User user){
         BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+        if(!user.getPassword().equals(confirm)){
+            throw new IllegalStateException("Mật khẩu không trùng khớp");
+        }
         String ePass=encoder.encode(user.getPassword());
         user.setPassword(ePass);
         this.repository.save(user);
@@ -100,11 +104,11 @@ public class AppController {
     }
     @PostMapping("/changePassword")
     public String changePassword(@RequestParam(value = "currentpassword", required = false) String currpass
-    , @RequestParam(value = "newpassword") String newpass
-    , @RequestParam(value = "confirmpassword") String confirmString
+    , @RequestParam(value = "newpassword", required = false) String newpass
+    , @RequestParam(value = "confirmpassword", required = false) String confirm
     , @ModelAttribute("user") User user
     ){
-        this.service.changePassword(currpass, newpass, confirmString, user);
+        this.service.changePassword(currpass, newpass, confirm, user);
         return "redirect:/accounts";
     }
 }

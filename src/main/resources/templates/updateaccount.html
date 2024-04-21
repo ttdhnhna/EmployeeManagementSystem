@@ -54,6 +54,9 @@
             <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
                 <br>
                 <h1 class="text-center">Chỉnh sửa thông tin Tài khoản</h1>
+                <div th:if="${error}" class="alert alert-danger">
+                    <p th:text="${error}"></p>
+                </div>
                 <div class="card-body">
                     <form action="#" th:action="@{/changePassword}" th:object="${user}" method="post">
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
@@ -98,8 +101,7 @@
                             <input 
                                 type="password"
                                 id="newpassword"
-                                name="newpassword"
-                                
+                                name="newpassword"                               
                                 class="form-control"
                             />
                         </div>
@@ -108,8 +110,7 @@
                             <input 
                                 type="password"
                                 id="confirmpassword"
-                                name="confirmpassword"
-                                
+                                name="confirmpassword"                               
                                 class="form-control"
                             />
                         </div>
