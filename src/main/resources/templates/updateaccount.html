@@ -54,9 +54,6 @@
             <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
                 <br>
                 <h1 class="text-center">Chỉnh sửa thông tin Tài khoản</h1>
-                <div th:if="${error}" class="alert alert-danger">
-                    <p th:text="${error}"></p>
-                </div>
                 <div class="card-body">
                     <form action="#" th:action="@{/changePassword}" th:object="${user}" method="post">
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
@@ -90,7 +87,6 @@
                             <label>Mật khẩu cũ</label>
                             <input 
                                 type="password"
-                                id="currentpassword"
                                 name="currentpassword"
                                 th:field="*{password}"
                                 class="form-control"
@@ -100,8 +96,8 @@
                             <label>Mật khẩu mới</label>
                             <input 
                                 type="password"
-                                id="newpassword"
-                                name="newpassword"                               
+                                name="newpassword" 
+                                th:field="*{password}"
                                 class="form-control"
                             />
                         </div>
@@ -109,8 +105,8 @@
                             <label>Nhập lại mật khẩu mới</label>
                             <input 
                                 type="password"
-                                id="confirmpassword"
-                                name="confirmpassword"                               
+                                name="confirmpassword"   
+                                th:field="*{password}"
                                 class="form-control"
                             />
                         </div>
