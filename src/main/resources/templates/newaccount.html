@@ -60,9 +60,6 @@
                 <div th:if="${param.success}">
                     <div class="alert alert-info">Bạn đã đăng ký tài khoản thành công!</div>
                 </div>
-                <div th:if="${error}" class="alert alert-danger">
-                    <p th:text="${error}"></p>
-                </div>
                 <div class="card-body">
                     <form action="#" th:action="@{/saveRegistration}" th:object="${user}" method="post">
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
@@ -111,7 +108,7 @@
                             placeholder="Nhập mã nhân viên"
                             >
                         </div>
-                        <div class="box-footer">
+                        <div class="box-footer" style="margin-top: 25px;">
                             <button type="submit" class="btn btn-primary">
                                 Tạo
                             </button>
