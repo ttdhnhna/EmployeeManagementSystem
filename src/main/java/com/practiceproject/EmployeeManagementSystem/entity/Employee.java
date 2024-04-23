@@ -32,7 +32,7 @@ public class  Employee {
     private Salary idluong;
     
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "iduser", referencedColumnName = "iduser")
+    @JoinColumn(name = "id_user", referencedColumnName = "iduser")
     @JsonBackReference
     private User iduser;
 

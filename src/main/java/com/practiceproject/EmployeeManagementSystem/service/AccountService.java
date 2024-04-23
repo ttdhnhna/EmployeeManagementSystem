@@ -58,8 +58,12 @@ public class AccountService {
     }
 
     public void changePassword(String currentpass, String newpass, String comfirm, User user){
-        if (currentpass == null || newpass == null || comfirm == null) {
-            throw new IllegalArgumentException("Mật khẩu không thể để trống");
+        if (currentpass == null) {
+            throw new IllegalArgumentException("Mật khẩu cũ không thể để trống");
+        }else if (newpass == null) {
+            throw new IllegalArgumentException("Mật khẩu mới không thể để trống");
+        }else if (comfirm == null) {
+            throw new IllegalArgumentException("Mật khẩu nhắc lại không thể để trống");
         }
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
         if(!passwordEncoder.matches(currentpass, user.getPassword())){

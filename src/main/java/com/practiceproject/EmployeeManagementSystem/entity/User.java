@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "tblUser")
 public class User {
     @Id
-    @Column(name = "iduser")
+    @Column(name = "id_user")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long iduser;
     private String hoten;

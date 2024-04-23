@@ -111,4 +111,10 @@ public class AppController {
         this.service.changePassword(currpass, newpass, confirm, user);
         return "redirect:/accounts";
     }
+    @GetMapping("/changePassword/{id}")
+    public String changePassword(@PathVariable(value = "id")long id, Model model){
+        User user=service.getUserByID(id);
+        model.addAttribute("user", user);
+        return "changepassword";
+    }
 }
