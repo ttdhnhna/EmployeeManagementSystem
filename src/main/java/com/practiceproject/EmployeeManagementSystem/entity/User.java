@@ -21,6 +21,9 @@ public class User {
     private String email; 
     private String password;
 
+    @Column(name = "reset_password_token")
+    private String resetPassToken;
+
     @OneToOne(mappedBy = "iduser")
     @JsonManagedReference
     private Employee idnv;
@@ -51,5 +54,16 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+    public String getResetPassToken() {
+        return resetPassToken;
+    }
+    public void setResetPassToken(String resetPassToken) {
+        this.resetPassToken = resetPassToken;
+    }
+    public Employee getIdnv() {
+        return idnv;
+    }
+    public void setIdnv(Employee idnv) {
+        this.idnv = idnv;
+    }
 }
