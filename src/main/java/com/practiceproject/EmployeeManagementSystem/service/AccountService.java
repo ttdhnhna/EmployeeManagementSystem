@@ -58,6 +58,7 @@ public class AccountService {
     }
 
     public void changePassword(String currentpass, String newpass, String comfirm, User user){
+        //Su dung HttpServletRequest vs getParameter de lay thong tin thu xem the nao
         if (currentpass == null) {
             throw new IllegalArgumentException("Mật khẩu cũ không thể để trống");
         }else if (newpass == null) {
