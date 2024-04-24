@@ -32,3 +32,6 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 dễ nhận biết
 
 * Làm phần định dạng tiền tệ cho các trang lương.
+
+Cần loại bỏ các phần security rồi xóa toàn bộ tài khoản trong sql server đi để 
+đăng ký 2 cái khác rồi sẽ test sau.
