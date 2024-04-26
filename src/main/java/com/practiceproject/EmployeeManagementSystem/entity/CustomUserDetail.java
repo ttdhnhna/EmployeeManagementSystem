@@ -24,7 +24,6 @@ public class CustomUserDetail implements UserDetails{
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<User> users=new ArrayList<>();
         return users.stream().map(user->new SimpleGrantedAuthority(user.getEmail())).collect(Collectors.toList());
-        //return null;
     }
 
     @Override

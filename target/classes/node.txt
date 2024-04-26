@@ -35,3 +35,6 @@ dễ nhận biết
 
 Cần loại bỏ các phần security rồi xóa toàn bộ tài khoản trong sql server đi để 
 đăng ký 2 cái khác rồi sẽ test sau.
+
+Cần xóa csdl phần user đi để chạy thử lại cái phần tạo user mới rồi mình sẽ comment
+lại cái đoạn code đấy ở phần service rồi kiểm tra trong csdl rồi mới đăng nhập thử.
