@@ -33,8 +33,6 @@ dễ nhận biết
 
 * Làm phần định dạng tiền tệ cho các trang lương.
 
-Cần loại bỏ các phần security rồi xóa toàn bộ tài khoản trong sql server đi để 
-đăng ký 2 cái khác rồi sẽ test sau.
-
-Cần xóa csdl phần user đi để chạy thử lại cái phần tạo user mới rồi mình sẽ comment
-lại cái đoạn code đấy ở phần service rồi kiểm tra trong csdl rồi mới đăng nhập thử.
+Quên mất nếu không kiểu như kích hoạt hay là ấn nút gì đấy thì service nó sẽ không làm
+gì cả, nên chiều nay sẽ làm phần đấy xong làm phần quên mật khẩu. (Còn đâu thì xóa csdl 
+phần user rồi.)
