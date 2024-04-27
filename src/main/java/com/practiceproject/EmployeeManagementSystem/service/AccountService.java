@@ -78,4 +78,13 @@ public class AccountService {
         user.setPassword(passwordEncoder.encode(newpass));
         this.repository.save(user);
     }
+    //Phần tạo user mới
+    public void testCreateUser(User user){
+        user.setEmail("123@gmail.com");
+        user.setHoten("Dat");
+        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+        String ePass=encoder.encode("12345");
+        user.setPassword(ePass);
+        this.repository.save(user);
+    }
 }
