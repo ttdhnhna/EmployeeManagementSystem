@@ -35,3 +35,5 @@ dễ nhận biết
 
 Cần loại bỏ các phần security rồi xóa toàn bộ tài khoản trong sql server đi để 
 đăng ký 2 cái khác rồi sẽ test sau.
+
+Vẫn lỗi phần login không đăng nhập vào được.
