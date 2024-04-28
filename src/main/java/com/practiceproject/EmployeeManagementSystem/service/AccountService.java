@@ -79,4 +79,28 @@ public class AccountService {
         user.setPassword(passwordEncoder.encode(newpass));
         this.repository.save(user);
     }
+
+    public void updateResetPass(String tokem, String email) throws CustomerNotFoundException{
+        User user = repository.findbyEmail(email);
+        if(user != null){
+            user.setResetPassToken(tokem);
+            repository.save(user);
+        }else{
+            throw new CustomerNotFoundException ("Không thể tìm thấy người dùng với email: "  + email);
+        }
+    }
+
+    public User get(String resetPassToken){
+        return repository.findByResetPassToken(resetPassToken);
+    }
+
+    public void updatePassword(User user, String newPass){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPass = passwordEncoder.encode(newPass); 
+
+        user.setPassword(encodedPass);
+        user.setResetPassToken(null);
+
+        repository.save(user);
+    }
 }

@@ -19,6 +19,7 @@ import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 import com.practiceproject.EmployeeManagementSystem.service.AccountService;
 
+
 @Controller
 public class AppController {
     @Autowired
@@ -116,5 +117,11 @@ public class AppController {
         User user=service.getUserByID(id);
         model.addAttribute("user", user);
         return "changepassword";
+    }
+
+    @GetMapping("/forgotpassword")
+    public String showForgotPassForm(Model model){
+        model.addAttribute("pageTitle", "Forgot Password");
+        return "forgotpassword";
     }
 }
