@@ -3,6 +3,8 @@ package com.practiceproject.EmployeeManagementSystem.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -18,6 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 import com.practiceproject.EmployeeManagementSystem.service.AccountService;
+import com.practiceproject.EmployeeManagementSystem.service.CustomerNotFoundException;
+import com.practiceproject.EmployeeManagementSystem.service.Utility;
+
+import net.bytebuddy.utility.RandomString;
 
 
 @Controller
@@ -119,9 +125,28 @@ public class AppController {
         return "changepassword";
     }
 
+    //Chức năng quên mật khẩu
+
     @GetMapping("/forgotpassword")
     public String showForgotPassForm(Model model){
         model.addAttribute("pageTitle", "Forgot Password");
+        return "forgotpassword";
+    }
+    //Quá trình tạo random token cho email 
+    @PostMapping("/upforgotpassword")
+    public String ProcessforgotPasswordFrom(HttpServletRequest request, Model model){
+        String email = request.getParameter("email");
+        String token = RandomString.make(50);//Cần xem lại trong csdl là mình để nvarchar bao nhiêu rồi thay đổi ở đây.
+        // System.out.println(email);
+        // System.out.println(token);
+        try {
+            service.updateResetPass(token, email);
+            String reserPasswordLink = Utility.getSiteUrl(request) + "/resetpassword?token=" + token;
+            System.out.println(reserPasswordLink);
+            //Gửi email
+        } catch (CustomerNotFoundException e) {
+            model.addAttribute("error", e.getMessage());
+        }
         return "forgotpassword";
     }
 }
