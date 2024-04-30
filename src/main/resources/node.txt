@@ -34,3 +34,6 @@ dễ nhận biết
 * Làm phần định dạng tiền tệ cho các trang lương.
 
 Làm lại phần cập nhật người dùng mới rồi, cần chạy thử.
+
+Thêm được 1 nhân viên rồi nhưng phần sửa tài khoản bị lỗi do nó yêu cầu cần cập nhật
+mật khẩu, có khi nên xóa phần thay đổi mật khẩu trong phần cập nhật thông tin.
