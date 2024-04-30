@@ -3,7 +3,7 @@ package com.practiceproject.EmployeeManagementSystem.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.annotation.PostConstruct;
+// import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -81,14 +81,14 @@ public class AccountService {
         this.repository.save(user);
     }
     //Phần tạo user mới
-    @PostConstruct
-    public void testCreateUser(){
-        User user = new User();
-        user.setEmail("123@gmail.com");
-        user.setHoten("Dat");
-        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-        String ePass=encoder.encode("12345");
-        user.setPassword(ePass);
-        this.repository.save(user);
-    }
+    // @PostConstruct
+    // public void testCreateUser(){
+    //     User user = new User();
+    //     user.setEmail("123@gmail.com");
+    //     user.setHoten("Dat");
+    //     BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+    //     String ePass=encoder.encode("12345");
+    //     user.setPassword(ePass);
+    //     this.repository.save(user);
+    // }
 }
