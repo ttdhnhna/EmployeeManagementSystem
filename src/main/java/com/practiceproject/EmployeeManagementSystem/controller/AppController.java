@@ -1,13 +1,18 @@
 package com.practiceproject.EmployeeManagementSystem.controller;
 
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,9 +35,13 @@ import net.bytebuddy.utility.RandomString;
 public class AppController {
     @Autowired
     UserRepository repository;
+
     @Autowired
     AccountService service;
 
+    //Thư viện giúp gửi email
+    @Autowired
+    JavaMailSender mailSender;
 
     @GetMapping("/registration")
     public String registerPage(Model model){
@@ -142,11 +151,36 @@ public class AppController {
         try {
             service.updateResetPass(token, email);
             String reserPasswordLink = Utility.getSiteUrl(request) + "/resetpassword?token=" + token;
-            System.out.println(reserPasswordLink);
-            //Gửi email
+            //Chức năng gửi email
+            sendEmail(email, reserPasswordLink);   
         } catch (CustomerNotFoundException e) {
             model.addAttribute("error", e.getMessage());
+        } catch (UnsupportedEncodingException e) {
+            model.addAttribute("error", "Lỗi trong quá trình gửi email");
+        } catch (MessagingException e) {
+            model.addAttribute("error", "Lỗi trong quá trình gửi email");
         }
         return "forgotpassword";
+    }
+    private void sendEmail(String email, String reserPasswordLink) throws UnsupportedEncodingException, MessagingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom("contact@ems.com", "EMS Support");
+        helper.setTo(email);
+
+        String subject = "Đây là đường link để reset lại mật khẩu của bạn!";
+        String content = "<p>Xin chào,</p>"
+        + "<p>Bạn đã yêu cầu reset mật khẩu của bạn.</p>"
+        + "<p>Nhấn vào đường link bên dưới để thay đổi mật khẩu của bạn:</p>"
+        + "<p><a href=\"" + reserPasswordLink + "\">Thay đổi mật khẩu</a></p>"
+        + "<br>"
+        + "<p>Bỏ qua email này nếu bạn vẫn nhớ mật khẩu, "
+        + "hoặc là bạn không gửi yêu cầu.</p>";
+
+        helper.setSubject(subject);
+        helper.setText(content, true);
+
+        mailSender.send(message);
     }
 }
