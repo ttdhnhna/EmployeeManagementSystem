@@ -153,6 +153,7 @@ public class AppController {
             String reserPasswordLink = Utility.getSiteUrl(request) + "/resetpassword?token=" + token;
             //Chức năng gửi email
             sendEmail(email, reserPasswordLink);   
+            model.addAttribute("message", "Chúng tôi đã gửi đường link để reset mật khẩu tới email của bạn! Vui lòng kiểm tra.");
         } catch (CustomerNotFoundException e) {
             model.addAttribute("error", e.getMessage());
         } catch (UnsupportedEncodingException e) {
@@ -162,7 +163,7 @@ public class AppController {
         }
         return "forgotpassword";
     }
-    private void sendEmail(String email, String reserPasswordLink) throws UnsupportedEncodingException, MessagingException {
+    private void sendEmail(String email, String resetPasswordLink) throws UnsupportedEncodingException, MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
@@ -173,7 +174,7 @@ public class AppController {
         String content = "<p>Xin chào,</p>"
         + "<p>Bạn đã yêu cầu reset mật khẩu của bạn.</p>"
         + "<p>Nhấn vào đường link bên dưới để thay đổi mật khẩu của bạn:</p>"
-        + "<p><a href=\"" + reserPasswordLink + "\">Thay đổi mật khẩu</a></p>"
+        + "<p><a href=\"" + resetPasswordLink + "\">Thay đổi mật khẩu</a></p>"
         + "<br>"
         + "<p>Bỏ qua email này nếu bạn vẫn nhớ mật khẩu, "
         + "hoặc là bạn không gửi yêu cầu.</p>";
@@ -182,5 +183,28 @@ public class AppController {
         helper.setText(content, true);
 
         mailSender.send(message);
+    }
+    @GetMapping("/resetpassword")
+    public String showResetPassForm(@Param(value = "token")String token, Model model){
+        User user = service.get(token);
+        if(user == null){
+            model.addAttribute("error", "Token không hợp lê!");
+        }
+        model.addAttribute("token", token);
+        return "resetpassword";
+    }
+    @PostMapping("/upresetpassword")
+    public String processResetPass(HttpServletRequest request, Model model){
+        String token = request.getParameter("token");
+        String pass = request.getParameter("password");
+        
+        User user = service.get(token);
+        if(user == null){
+            model.addAttribute("error", "Token không hợp lê!");
+        }else{
+            service.updatePassword(user, pass);
+            model.addAttribute("message", "Bạn đã thay đổi mật khẩu thành công!");
+        }
+        return "login";
     }
 }
