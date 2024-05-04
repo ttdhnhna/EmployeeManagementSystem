@@ -46,7 +46,7 @@ public class AppController {
     @GetMapping("/registration")
     public String registerPage(Model model){
         model.addAttribute("user",new User());
-        return "newaccount";
+        return "registration";
     }
     @PostMapping("/saveRegistration")
     public String saveRegistration(@RequestParam ("confirm") String confirm, 
@@ -84,9 +84,6 @@ public class AppController {
 
     @PostMapping("/saveAccount")
     public String saveAccount(@ModelAttribute("user") User user){
-        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-        String ePass=encoder.encode(user.getPassword());
-        user.setPassword(ePass);
         service.saveAccount(user);
         return "redirect:/accounts";
     }

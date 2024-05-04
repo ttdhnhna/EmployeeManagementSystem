@@ -34,5 +34,3 @@ dễ nhận biết
 * Làm phần định dạng tiền tệ cho các trang lương.
 
 Cần kiểm tra chức năng kiểm tra email có trong csdl ko? và cả chức năng tạo token ngẫu nhiên.
-
-Đã làm xong chức năng quên mật khẩu; cần làm 1 cái email khác để cho vào cái properties kia.
