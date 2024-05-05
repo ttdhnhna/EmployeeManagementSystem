@@ -38,8 +38,8 @@
                 <div th:if="${param.success}">
                     <div class="alert alert-info">Bạn đã đăng ký tài khoản thành công!</div>
                 </div>
-
-                <form th:action="@{/admin/saveRegistration}" method="post" th:object="${user}">
+                <!-- Cần bổ sung thêm thuộc tính id nhân viên và thay đổi action -->
+                <form th:action="@{/saveRegistration}" method="post" th:object="${user}">
                     <div class="form-group">
                         <label class="control-label" for="name">
                             Nhập họ và tên

@@ -83,6 +83,35 @@
                             th:field="*{email}" required autofocus="autofocus"
                             />
                         </div>
+                        <div class="form-group">
+                          <label>Mật khẩu cũ</label>
+                          <input 
+                              type="password"
+                              id="currentpassword"
+                              name="currentpassword"
+                              th:field="*{password}"
+                              class="form-control"
+                          />
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu mới</label>
+                            <input 
+                                type="password"
+                                id="newpassword"
+                                name="newpassword" 
+                                class="form-control"        
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label>Nhập lại mật khẩu mới</label>
+                            <input 
+                                type="password"
+                                id="confirmpassword"   
+                                name="confirmpassword"   
+                                class="form-control"
+                                oninput="ktMatkhauhople(this)"
+                            />
+                        </div>
                         &nbsp;
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">
@@ -91,14 +120,22 @@
                         </div>
                     </form>
                     <hr>
-		            <a th:href="@{/accounts}">Quay lại</a>
+		                <a th:href="@{/accounts}">Quay lại</a>
                     &nbsp;
-		            <a th:href="@{/changePassword/{id}(id=${user.iduser})}">Thay đổi mật khẩu</a>
                 </div>
             </div>
         </div>
     </div>
     <br>
     <br>
+    <script type="text/javascript">
+      function ktMatkhauhople(confirmPass) {
+          if(confirmPass.value != $("#newpassword").val()){
+              confirmPass.setCustomValidity("Mật khẩu không trùng khớp!");
+          }else{
+              confirmPass.setCustomValidity("");
+          }
+      }
+    </script>
 </body>
 </html>

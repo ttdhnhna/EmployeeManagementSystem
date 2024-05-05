@@ -70,14 +70,10 @@ public class AccountService {
         if(!passwordEncoder.matches(currentpass, user.getPassword())){
             throw new IllegalStateException("Sai mật khẩu");
         }
-        if(!newpass.equals(comfirm)){
-            throw new IllegalStateException("Mật khẩu không trùng khớp");
-        }
         if(passwordEncoder.matches(newpass, user.getPassword())){
             throw new IllegalStateException("Mật khẩu mới phải khác mật khẩu cũ");
         }
         user.setPassword(passwordEncoder.encode(newpass));
-        this.repository.save(user);
     }
 
     public void updateResetPass(String tokem, String email) throws CustomerNotFoundException{

@@ -76,16 +76,20 @@ public class AppController {
     }
 
     @GetMapping("/updateAccount/{id}")
-    public String updateAccount(@PathVariable(value = "id")long id, Model model){
+    public String updateAccount(HttpServletRequest request, @PathVariable(value = "id")long id, Model model){
         User user=service.getUserByID(id);
+        //Đây vẫn đang ở trang chủ thì lấy mấy dữ liệu dưới ở đâu?
+        String currentpass = request.getParameter("currentpassword");
+        String newpass = request.getParameter("newpassword");
+        String confirmpass = request.getParameter("confirmpassword");
+        service.changePassword(currentpass, newpass, confirmpass, user);
         model.addAttribute("user", user);
         return "updateaccount";
     }
 
     @PostMapping("/saveAccount")
     public String saveAccount(@ModelAttribute("user") User user){
-        service.saveAccount(user);//Vẫn bị sai ở đây vì nó không giữ nguyên mật khẩu mà 
-        //nó xóa sạch luôn nên sẽ cần phải sửa lại.
+        service.saveAccount(user);
         return "redirect:/accounts";
     }
 
@@ -116,21 +120,6 @@ public class AppController {
         model.addAttribute("ListAccounts", ListAccounts);
         return "accountspage";
     }
-    @PostMapping("/changePassword")
-    public String changePassword(@RequestParam(value = "currentpassword", required = false) String currpass
-    , @RequestParam(value = "newpassword", required = false) String newpass
-    , @RequestParam(value = "confirmpassword", required = false) String confirm
-    , @ModelAttribute("user") User user
-    ){
-        this.service.changePassword(currpass, newpass, confirm, user);
-        return "redirect:/accounts";
-    }
-    @GetMapping("/changePassword/{id}")
-    public String changePassword(@PathVariable(value = "id")long id, Model model){
-        User user=service.getUserByID(id);
-        model.addAttribute("user", user);
-        return "changepassword";
-    }
 
     //Chức năng quên mật khẩu
 
@@ -144,8 +133,6 @@ public class AppController {
     public String ProcessforgotPasswordFrom(HttpServletRequest request, Model model){
         String email = request.getParameter("email");
         String token = RandomString.make(255);
-        // System.out.println(email);
-        // System.out.println(token);
         try {
             service.updateResetPass(token, email);
             String reserPasswordLink = Utility.getSiteUrl(request) + "/resetpassword?token=" + token;
