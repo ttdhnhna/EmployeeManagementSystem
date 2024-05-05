@@ -84,7 +84,8 @@ public class AppController {
 
     @PostMapping("/saveAccount")
     public String saveAccount(@ModelAttribute("user") User user){
-        service.saveAccount(user);
+        service.saveAccount(user);//Vẫn bị sai ở đây vì nó không giữ nguyên mật khẩu mà 
+        //nó xóa sạch luôn nên sẽ cần phải sửa lại.
         return "redirect:/accounts";
     }
 
@@ -142,7 +143,7 @@ public class AppController {
     @PostMapping("/upforgotpassword")
     public String ProcessforgotPasswordFrom(HttpServletRequest request, Model model){
         String email = request.getParameter("email");
-        String token = RandomString.make(50);//Cần xem lại trong csdl là mình để nvarchar bao nhiêu rồi thay đổi ở đây.
+        String token = RandomString.make(255);
         // System.out.println(email);
         // System.out.println(token);
         try {
@@ -164,7 +165,7 @@ public class AppController {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        helper.setFrom("contact@ems.com", "EMS Support");
+        helper.setFrom("employeesmanagementsystem.hou@gmail.com", "EMS Support");
         helper.setTo(email);
 
         String subject = "Đây là đường link để reset lại mật khẩu của bạn!";
