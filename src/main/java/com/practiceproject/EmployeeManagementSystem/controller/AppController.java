@@ -49,17 +49,30 @@ public class AppController {
         return "registration";
     }
     @PostMapping("/saveRegistration")
-    public String saveRegistration(@RequestParam ("confirm") String confirm, 
-    User user){
+    public String saveRegistration(@ModelAttribute("user") User user, Model model){
         BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-        if(!user.getPassword().equals(confirm)){
-            throw new IllegalStateException("Mật khẩu không trùng khớp");
-        }
         String ePass=encoder.encode(user.getPassword());
         user.setPassword(ePass);
         this.repository.save(user);
-        return "redirect:/registration?success";
+        model.addAttribute("successRegismess", "Bạn đã đăng ký tài khoản thành công!");
+        return "login";
     }
+
+    @GetMapping("/addAccount")
+    public String newAccount(Model model){
+        model.addAttribute("user",new User());
+        return "newaccount";
+    }
+
+    @PostMapping("/saveNewAccount")
+    public String saveNewAccount(@ModelAttribute("user") User user){
+        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+        String ePass=encoder.encode(user.getPassword());
+        user.setPassword(ePass);
+        this.repository.save(user);
+        return "redirect:/addAccount?success";
+    }
+
     @GetMapping("/login")
     public String login(){
         return "login";
@@ -76,19 +89,18 @@ public class AppController {
     }
 
     @GetMapping("/updateAccount/{id}")
-    public String updateAccount(HttpServletRequest request, @PathVariable(value = "id")long id, Model model){
+    public String updateAccount( @PathVariable(value = "id")long id, Model model){
         User user=service.getUserByID(id);
-        //Đây vẫn đang ở trang chủ thì lấy mấy dữ liệu dưới ở đâu?
-        String currentpass = request.getParameter("currentpassword");
-        String newpass = request.getParameter("newpassword");
-        String confirmpass = request.getParameter("confirmpassword");
-        service.changePassword(currentpass, newpass, confirmpass, user);
         model.addAttribute("user", user);
         return "updateaccount";
     }
 
     @PostMapping("/saveAccount")
-    public String saveAccount(@ModelAttribute("user") User user){
+    public String saveAccount(HttpServletRequest request, @ModelAttribute("user") User user){
+        String currentpass = request.getParameter("currentpassword");
+        String newpass = request.getParameter("newpassword");
+        String confirmpass = request.getParameter("confirmpassword");
+        service.changePassword(currentpass, newpass, confirmpass, user);
         service.saveAccount(user);
         return "redirect:/accounts";
     }

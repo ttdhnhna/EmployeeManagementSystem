@@ -34,10 +34,6 @@
                 &nbsp;
                 <h1 align="center"> Đăng ký </h1>
                 &nbsp;
-                <!-- Tin nhắn thành công -->
-                <div th:if="${param.success}">
-                    <div class="alert alert-info">Bạn đã đăng ký tài khoản thành công!</div>
-                </div>
                 <!-- Cần bổ sung thêm thuộc tính id nhân viên và thay đổi action -->
                 <form th:action="@{/saveRegistration}" method="post" th:object="${user}">
                     <div class="form-group">

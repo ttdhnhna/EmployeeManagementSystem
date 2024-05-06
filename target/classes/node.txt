@@ -26,17 +26,12 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
 * đâu xử lý.
 
-* Làm chức năng ghi nhớ thông tin đăng nhập và quên mật khẩu.
+* Làm chức năng ghi nhớ thông tin đăng nhập.
 
 * Làm phần giao diện để khi nhấn vào mục nào ở phần header thì nó hiện sáng để 
 dễ nhận biết
 
 * Làm phần định dạng tiền tệ cho các trang lương.
 
-Cần bổ sung thêm thuộc tính id nhân viên và thay đổi action trong trang đăng ký ngoài trang login
-bổ sung thêm trang đăng ký ở sau khi đã đăng nhập 
-
-Phần lưu có thể sẽ cần phải xem xét lại
-
-Đã chạy được thành công chức năng quên mật khẩu rồi, còn phần sửa nhân viên thì bị lỗi không vào được 
-cần sửa lại.
+Đã xử lý xong phần đăng ký vs lưu kia, cần chạy thử. Sau khi làm xong thì sẽ cố xử lý 
+lỗi phần sửa nhân viên.

@@ -61,7 +61,7 @@
                     <div class="alert alert-info">Bạn đã đăng ký tài khoản thành công!</div>
                 </div>
                 <div class="card-body">
-                    <form action="#" th:action="@{/saveRegistration}" th:object="${user}" method="post">
+                    <form action="#" th:action="@{/saveNewAccount}" th:object="${user}" method="post">
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
                         nut gui -->
                         <div class="form-group">
@@ -86,6 +86,7 @@
                                 Nhập mật khẩu
                             </label>
                             <input id="password" class="form-control" type="password"
+                            id="password"
                             name="password"
                             th:field="*{password}" required autofocus="autofocus"
                             placeholder="Nhập mật khẩu">
@@ -95,8 +96,10 @@
                                 Nhập lại mật khẩu
                             </label>
                             <input id="confirm" class="form-control" type="password"
+                            id="confirm"
                             name="confirm"
                             required autofocus="autofocus"
+                            oninput="ktMatkhauhople(this)"
                             placeholder="Nhập mật khẩu">
                         </div>
                         <div class="form-group">
@@ -122,5 +125,14 @@
     </div>
     <br>
     <br>
+    <script type="text/javascript">
+        function ktMatkhauhople(confirmPass) {
+            if(confirmPass.value != $("#password").val()){
+                confirmPass.setCustomValidity("Mật khẩu không trùng khớp!");
+            }else{
+                confirmPass.setCustomValidity("");
+            }
+        }
+    </script>
 </body>
 </html>

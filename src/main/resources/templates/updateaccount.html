@@ -99,6 +99,7 @@
                                 type="password"
                                 id="newpassword"
                                 name="newpassword" 
+                                th:field="*{password}"
                                 class="form-control"        
                             />
                         </div>
@@ -107,7 +108,8 @@
                             <input 
                                 type="password"
                                 id="confirmpassword"   
-                                name="confirmpassword"   
+                                name="confirmpassword"  
+                                th:field="*{password}"
                                 class="form-control"
                                 oninput="ktMatkhauhople(this)"
                             />
