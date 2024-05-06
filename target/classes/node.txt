@@ -37,3 +37,6 @@ Cần bổ sung thêm thuộc tính id nhân viên và thay đổi action trong 
 bổ sung thêm trang đăng ký ở sau khi đã đăng nhập 
 
 Phần lưu có thể sẽ cần phải xem xét lại
+
+Đã chạy được thành công chức năng quên mật khẩu rồi, còn phần sửa nhân viên thì bị lỗi không vào được 
+cần sửa lại.

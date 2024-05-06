@@ -152,7 +152,7 @@ public class AppController {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        helper.setFrom("employeesmanagementsystem.hou@gmail.com", "EMS Support");
+        helper.setFrom("19a10010039@students.hou.edu.vn", "EMS Support");
         helper.setTo(email);
 
         String subject = "Đây là đường link để reset lại mật khẩu của bạn!";
