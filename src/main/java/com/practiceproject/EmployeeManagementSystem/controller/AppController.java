@@ -96,12 +96,26 @@ public class AppController {
     }
 
     @PostMapping("/saveAccount")
-    public String saveAccount(HttpServletRequest request, @ModelAttribute("user") User user){
+    public String saveAccount(@ModelAttribute("user") User user){
+        service.saveAccount(user);
+        return "redirect:/accounts";
+    }
+
+    @GetMapping("/changePassword/{id}")
+    public String changePassword(@PathVariable(value = "id")long id, Model model){
+        User user=service.getUserByID(id);
+        model.addAttribute("user", user);
+        return "changepassword";
+    }
+
+    @PostMapping("/savechangePassword")
+    public String savechangePassword(HttpServletRequest request, @ModelAttribute("user") User user, Model model){
         String currentpass = request.getParameter("currentpassword");
         String newpass = request.getParameter("newpassword");
         String confirmpass = request.getParameter("confirmpassword");
         service.changePassword(currentpass, newpass, confirmpass, user);
         service.saveAccount(user);
+        model.addAttribute("message", "Bạn đã thay đổi mật khẩu thành công cho tài khoản có ID: " + user.getIduser() + "!");
         return "redirect:/accounts";
     }
 
@@ -144,7 +158,7 @@ public class AppController {
     @PostMapping("/upforgotpassword")
     public String ProcessforgotPasswordFrom(HttpServletRequest request, Model model){
         String email = request.getParameter("email");
-        String token = RandomString.make(255);
+        String token = RandomString.make(50);
         try {
             service.updateResetPass(token, email);
             String reserPasswordLink = Utility.getSiteUrl(request) + "/resetpassword?token=" + token;

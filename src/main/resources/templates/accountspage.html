@@ -51,6 +51,10 @@
 
     <!-- Body -->
     <div class="container">
+        <!-- Tin nhắn báo thay đổi mật khẩu thành công -->
+        <div th:if="${message != null}">
+          <div class="alert alert-info">[[${message}]]</div>
+        </div>
         <div class="row">
             &nbsp; &nbsp; 
             <h1> Danh sách Tài khoản</h1>

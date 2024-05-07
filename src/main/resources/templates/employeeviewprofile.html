@@ -186,7 +186,7 @@
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Lương cơ bản</label>
-                    <output class="form-control mb-1">1350000
+                    <output class="form-control mb-1" name="current">1350000
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Hệ số lương</label>
@@ -198,25 +198,29 @@
                     <label class="form-lable">Phụ cấp</label>
                     <input type="text" class="form-control mb-1"
                     name="phucap"
-                    th:field="*{phucap}"> 
+                    th:field="*{phucap}"
+                    name="current"> 
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Bảo hiểm lao động</label>
                     <input type="text" class="form-control mb-1"
                     name="baohiem"
-                    th:field="*{baohiem}"> 
+                    th:field="*{baohiem}"
+                    name="current"> 
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Trừ lương</label>
                     <input type="text" class="form-control mb-1"
                     name="truluong"
-                    th:field="*{truluong}">
+                    th:field="*{truluong}"
+                    name="current">
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Tổng lương</label>
                     <input type="text" class="form-control mb-1"
                     name="tongluong"
-                    th:field="*{tongluong}"> 
+                    th:field="*{tongluong}"
+                    name="current"> 
                   </div>
                 </div>
             </div>
@@ -317,5 +321,18 @@
       <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
       <script type="text/javascript"></script>
+      <script>
+        function formatVND(n, currency) {
+          return currency + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+          var currentElements = document.getElementsByName('current');
+          for (var i = 0; i < currentElements.length; i++) {
+            var currentValue = parseInt(currentElements[i].textContent);
+            currentElements[i].textContent = formatVND(currentValue, '₫');
+          }
+        });
+      </script>
 </body>
 </html>
