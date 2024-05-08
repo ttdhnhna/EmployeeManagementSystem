@@ -79,34 +79,24 @@
                 <hr class="border-light m-0">
                 <div class="card-body"> 
                   <div class="form-group">
-                    <label class="form-lable">Mã nhân viên</label>
-                    <input type="text" class="form-control mb-1" 
-                    name="idnv"
-                    th:field="*{idnv}"> 
+                    <label class="form-lable">Mã nhân viên</label>                     
+                    <output class="form-control mb-1" name="idnv" th:text="${employee.idnv}"></output>
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Họ và tên</label>
-                    <input type="text" class="form-control mb-1" 
-                    name="hoten"
-                    th:field="*{hoten}"> 
+                    <output class="form-control mb-1" name="hoten" th:text="${employee.hoten}"></output>
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Email</label>
-                    <input type="text" class="form-control mb-1"
-                    name="email"
-                    th:field="*{email}"> 
+                    <output class="form-control mb-1" name="email" th:text="${employee.email}"></output>
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Chức vụ</label>
-                    <input type="text" class="form-control mb-1"
-                    name="chucvu"
-                    th:field="*{chucvu}"> 
+                    <output class="form-control mb-1" name="chucvu" th:text="${employee.chucvu}"></output>
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Mã Phòng ban</label>
-                    <input type="text" class="form-control mb-1"
-                    name="idpb"
-                    th:field="*{idpb}"> 
+                    <output class="form-control mb-1" name="idpb" th:text="${employee.idpb}"></output>
                   </div>
                 </div>
               </div>
@@ -116,27 +106,19 @@
                   
                   <div class="form-group">
                     <label class="form-lable">Quê quán</label>
-                    <input type="text" class="form-control mb-1"
-                    name="quequan"
-                    th:field="*{quequan}"> 
+                    <output class="form-control mb-1" name="quequan" th:text="${employee.quequan}"></output>
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Ngày sinh</label>
-                    <input type="text" class="form-control mb-1"
-                    name="ngaysinh"
-                    th:field="*{ngaysinh}"> 
+                    <output class="form-control mb-1" name="ngaysinh" th:text="${employee.ngaysinh}"></output>
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Giới tính</label>
-                    <input type="text" class="form-control mb-1"
-                    name="gt"
-                    th:field="*{gt}"> 
+                    <output class="form-control mb-1" name="gt" th:text="${employee.gt}"></output>
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Dân tộc</label>
-                    <input type="text" class="form-control mb-1"
-                    name="dantoc"
-                    th:field="*{dantoc}"> 
+                    <output class="form-control mb-1" name="dantoc" th:text="${employee.dantoc}"></output>
                   </div>
                 </div>
                 <hr class="border-light m-0">
@@ -144,15 +126,11 @@
                   <h6 class="mb-4">Liên hệ</h6>
                   <div class="form-group">
                     <label class="form-lable">Số điện thọai</label>
-                    <input type="text" class="form-control mb-1"
-                    name="sdt"
-                    th:field="*{sdt}"> 
+                    <output class="form-control mb-1" name="sdt" th:text="${employee.sdt}"></output>
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Email</label>
-                    <input type="text" class="form-control mb-1"
-                    name="email"
-                    th:field="*{email}"> 
+                    <output class="form-control mb-1" name="email" th:text="${employee.email}"></output>
                   </div>
                 </div>
               </div>
@@ -161,17 +139,15 @@
                 <div class="card-body pb-2">
                   <div class="form-group">
                     <label class="form-lable">Email</label>
-                    <input type="text" class="form-control mb-1"
-                    name="email"
-                    th:field="*{email}"> 
+                    <output class="form-control mb-1" name="email" th:text="${employee.email}"></output>
                   </div>
                   <div class="form-group">
-                    <label class="form-label">Tên tài khoản</label>
-                    <input type="text" class="form-control">
+                    <label class="form-label">Tên tài khoản</label>          
+                    <output class="form-control mb-1" name="Tên tài khoản"></output>
                   </div>
                   <div class="form-group">
                     <label class="form-label">Mật khẩu</label>
-                    <input type="password" class="form-control">
+                    <output class="form-control mb-1" name="Tên tài khoản"></output>
                   </div>
                 </div>
               </div>
@@ -180,47 +156,31 @@
                 <div class="card-body pb-2">
                   <div class="form-group">
                     <label class="form-lable">Mã Lương</label>
-                    <input type="text" class="form-control mb-1"
-                    name="idluong"
-                    th:field="*{idluong}"> 
+                    <output class="form-control mb-1" name="idluong" th:text="${salary.idluong}"></output>
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Lương cơ bản</label>
-                    <output class="form-control mb-1" name="current">1350000
+                    <output class="form-control mb-1" name="current">1350000</output>
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Hệ số lương</label>
-                    <input type="text" class="form-control mb-1"
-                    id="hsl"
-                    th:field="*{hsl}"> 
+                    <output class="form-control mb-1" name="hsl" th:text="${salary.hsl}"></output>
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Phụ cấp</label>
-                    <input type="text" class="form-control mb-1"
-                    id="phucap"
-                    th:field="*{phucap}"
-                    name="current"> 
+                    <output class="form-control mb-1" name="current" th:text="${salary.phucap}"></output>
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Bảo hiểm lao động</label>
-                    <input type="text" class="form-control mb-1"
-                    id="baohiem"
-                    th:field="*{baohiem}"
-                    name="current"> 
+                    <output class="form-control mb-1" name="current" th:text="${salary.baohiem}"></output>
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Trừ lương</label>
-                    <input type="text" class="form-control mb-1"
-                    id="truluong"
-                    th:field="*{truluong}"
-                    name="current">
+                    <output class="form-control mb-1" name="current" th:text="${salary.truluong}"></output>
                   </div>
                   <div class="form-group">
                     <label class="form-lable">Tổng lương</label>
-                    <input type="text" class="form-control mb-1"
-                    id="tongluong"
-                    th:field="*{tongluong}"
-                    name="current"> 
+                    <output class="form-control mb-1" name="current" th:text="${salary.tongluong}"></output>
                   </div>
                 </div>
             </div>

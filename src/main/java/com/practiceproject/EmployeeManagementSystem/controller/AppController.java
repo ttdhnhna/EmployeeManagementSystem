@@ -114,7 +114,6 @@ public class AppController {
         String newpass = request.getParameter("newpassword");
         String confirmpass = request.getParameter("confirmpassword");
         service.changePassword(currentpass, newpass, confirmpass, user);
-        service.saveAccount(user);
         model.addAttribute("message", "Bạn đã thay đổi mật khẩu thành công cho tài khoản có ID: " + user.getIduser() + "!");
         return "redirect:/accounts";
     }

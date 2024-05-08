@@ -58,14 +58,6 @@ public class AccountService {
     }
 
     public void changePassword(String currentpass, String newpass, String comfirm, User user){
-        //Su dung HttpServletRequest vs getParameter de lay thong tin thu xem the nao
-        if (currentpass == null) {
-            throw new IllegalArgumentException("Mật khẩu cũ không thể để trống");
-        }else if (newpass == null) {
-            throw new IllegalArgumentException("Mật khẩu mới không thể để trống");
-        }else if (comfirm == null) {
-            throw new IllegalArgumentException("Mật khẩu nhắc lại không thể để trống");
-        }
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
         if(!passwordEncoder.matches(currentpass, user.getPassword())){
             throw new IllegalStateException("Sai mật khẩu");
@@ -73,7 +65,9 @@ public class AccountService {
         if(passwordEncoder.matches(newpass, user.getPassword())){
             throw new IllegalStateException("Mật khẩu mới phải khác mật khẩu cũ");
         }
-        user.setPassword(passwordEncoder.encode(newpass));
+        String encodedPass = passwordEncoder.encode(newpass); 
+        user.setPassword(encodedPass);
+        repository.save(user);
     }
 
     public void updateResetPass(String tokem, String email) throws CustomerNotFoundException{
