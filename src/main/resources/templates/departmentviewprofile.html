@@ -58,39 +58,19 @@
                 <div class="card-body" th:object="${department}">
                   <div class="form-group">
                     <label>Mã phòng ban</label>
-                    <input 
-                        type="text"
-                        name="idpb"
-                        th:field="*{idpb}"
-                        class="form-control"
-                    >
+                    <output class="form-control mb-1" name="idpb" th:text="${department.idpb}"></output>
                   </div>
                   <div class="form-group">
                     <label>Tên phòng ban</label>
-                    <input 
-                        type="text"
-                        name="tenpb"
-                        th:field="*{tenpb}"
-                        class="form-control"
-                    >
+                    <output class="form-control mb-1" name="tenpb" th:text="${department.tenpb}"></output>
                   </div>
                   <div class="form-group">
                     <label>Địa chỉ</label>
-                    <input
-                        type="text"
-                        name="diachi"
-                        th:field="*{diachi}"          
-                        class="form-control"
-                    >
+                    <output class="form-control mb-1" name="diachi" th:text="${department.diachi}"></output>
                   </div>
                   <div class="form-group">
                     <label>Số điện thoại</label>
-                    <input 
-                        type="text"
-                        name="sdt"
-                        th:field="*{sdt}"
-                        class="form-control"
-                    >
+                    <output class="form-control mb-1" name="sdt" th:text="${department.sdt}"></output>
                   </div>
                 </div>
                 <h2 class="text-center">Danh sách Nhân viên</h1>
