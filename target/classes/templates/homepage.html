@@ -60,9 +60,6 @@
                 <a th:href="@{/addEmployee}" class="btn btn-primary btn-sm mb-3">
                     Thêm mới
                 </a>
-                <a th:href="@{/registration}" class="btn btn-primary btn-sm mb-3">
-                    Đăng ký
-                </a>
             </div>
         </div>
         <table class="table thead-light table-bordered">
@@ -131,5 +128,22 @@
         © 2020 Copyright
       </div>
     </footer> -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var links = document.querySelectorAll(".nav-link");
+    
+        links.forEach(function(link) {
+          link.addEventListener("click", function() {
+            // Remove "active" class from all links
+            links.forEach(function(l) {
+              l.classList.remove("active");
+            });
+    
+            // Add "active" class to clicked link
+            this.classList.add("active");
+          });
+        });
+      });
+    </script>
 </body>
 </html>

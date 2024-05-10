@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
+import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
 
 
@@ -108,6 +109,8 @@ public class EmployeeController {
         model.addAttribute("employee", employee);
         Salary salary=service.getsalaryInfo(id);
         model.addAttribute("salary", salary);
+        User user = service.getuserInfo(id);
+        model.addAttribute("user", user);
         return "employeeviewprofile";
     }
 

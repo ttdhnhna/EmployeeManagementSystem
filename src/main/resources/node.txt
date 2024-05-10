@@ -10,8 +10,6 @@ và sau khi đăng nhập thành công thì mới chuyển đến trang chủ
 * Chức năng bổ sung: Sắp xếp theo tên, id, ...; Phân trang; Xem chi tiết nhân viên, phòng ban; Tìm kiếm nhân viên theo id; 
 Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viên trong phòng ban. (Xong)
 
-* Bo sung chi tiet luong cho nhan vien va them phan danh sach tai khoan nguoi dung cho admin.
-
 * Sửa chức năng phân trang, sắp xếp và sửa phòng ban (Xong)
 
 * Làm chức năng đăng nhập và đăng xuất cho người dùng. (Xong)
@@ -29,15 +27,11 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * Làm chức năng ghi nhớ thông tin đăng nhập và quên mật khẩu. (Xong)
 
 * Làm phần giao diện để khi nhấn vào mục nào ở phần header thì nó hiện sáng để 
-dễ nhận biết
+dễ nhận biết. (Xong)
 
 * Làm phần định dạng tiền tệ cho các trang lương.(Xong)
 
-Vẫn lỗi phần thay đổi mật khẩu và cả có bị lỗi phần id phòng ban trong chi tiết 
-nhân viên nữa nên sẽ cần phải sửa lại 
-Giờ có 2 phần chính cần phải sửa là phần sửa lưu nhân viên và lưu mật khẩu mới
+Giờ có 2 phần chính cần phải sửa là phần sửa lưu nhân viên và lưu mật khẩu mới. (Đã làm xong cần chạy thử để xem có lỗi không)
 
 * Làm phần hiện ảnh nhân viên ở chi tiết phòng ban (Xong)
-
-* Làm phần hiện ảnh nhân viên ở phần danh sách tài khoản.
 

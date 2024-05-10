@@ -16,8 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
+import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.SalaryRepository;
+import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 
 
 @Service//Nó được sử dụng để đánh dấu lớp là nhà cung cấp dịch vụ
@@ -28,6 +30,8 @@ public class EmployeeService {
     //Để có thể sử dụng các chức năng của nó trong service.
     @Autowired
     SalaryRepository sRepository;
+    @Autowired
+    UserRepository uRepository;
 
     //Chức năng hiện tất cả nhân viên
     public List<Employee> getEmployees(){
@@ -103,6 +107,17 @@ public class EmployeeService {
             }
         }
         return salaryinfo;
+    }
+
+    //Chức năng lấy thông tin tài khoản cho nhân viên.
+    public User getuserInfo(long id){
+        User userinfo = new User();
+        for(User u : uRepository.findAll()){
+            if(u.getIdnv().getIdnv()==id){
+                userinfo = u;
+            }
+        }
+        return userinfo;
     }
 }
 

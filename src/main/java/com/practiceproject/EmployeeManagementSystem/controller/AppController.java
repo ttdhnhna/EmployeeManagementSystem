@@ -109,11 +109,15 @@ public class AppController {
     }
 
     @PostMapping("/savechangePassword")
-    public String savechangePassword(HttpServletRequest request, @ModelAttribute("user") User user, Model model){
-        String currentpass = request.getParameter("currentpassword");
-        String newpass = request.getParameter("newpassword");
-        String confirmpass = request.getParameter("confirmpassword");
-        service.changePassword(currentpass, newpass, confirmpass, user);
+    public String savechangePassword(@RequestParam("currentpassword") String currentpass,
+    @RequestParam("newpassword") String newpass,
+    @RequestParam("confirmpassword") String confirmpass,
+    @ModelAttribute("user") User user, Model model){
+        try {
+            service.changePassword(currentpass, newpass, confirmpass, user);
+        } catch (IllegalStateException e) {
+            model.addAttribute("alertMessage", e.getMessage());
+        }
         model.addAttribute("message", "Bạn đã thay đổi mật khẩu thành công cho tài khoản có ID: " + user.getIduser() + "!");
         return "redirect:/accounts";
     }
@@ -150,7 +154,7 @@ public class AppController {
 
     @GetMapping("/forgotpassword")
     public String showForgotPassForm(Model model){
-        model.addAttribute("pageTitle", "Forgot Password");
+        // model.addAttribute("pageTitle", "Forgot Password");
         return "forgotpassword";
     }
     //Quá trình tạo random token cho email 
