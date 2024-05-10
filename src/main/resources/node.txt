@@ -37,7 +37,7 @@ Vẫn lỗi phần thay đổi mật khẩu và cả có bị lỗi phần id ph
 nhân viên nữa nên sẽ cần phải sửa lại 
 Giờ có 2 phần chính cần phải sửa là phần sửa lưu nhân viên và lưu mật khẩu mới
 
-* Làm phần hiện ảnh nhân viên ở chi tiết phòng ban
+* Làm phần hiện ảnh nhân viên ở chi tiết phòng ban (Xong)
 
 * Làm phần hiện ảnh nhân viên ở phần danh sách tài khoản.
 
