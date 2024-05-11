@@ -73,8 +73,8 @@
                         </div>
                         <div class="form-group">
                             <label>Mã nhân viên</label>
-                            <input id="iduser" class="form-control" 
-                            th:field="*{iduser}" required autofocus="autofocus"
+                            <input id="idnv" class="form-control" 
+                            th:field="*{idnv}" required autofocus="autofocus"
                             >
                         </div>
                         <div class="form-group">
@@ -82,6 +82,14 @@
                             <input id="email" class="form-control"  type="email"
                             th:field="*{email}" required autofocus="autofocus"
                             />
+                        </div>
+                        <div class="form-group">
+                          <input 
+                              type="hidden"
+                              name="password"
+                              th:field="*{password}"
+                              class="form-control"
+                          />
                         </div>
                         &nbsp;
                         <div class="box-footer">
