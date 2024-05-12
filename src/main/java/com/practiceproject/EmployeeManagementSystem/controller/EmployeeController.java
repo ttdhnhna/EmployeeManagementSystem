@@ -59,11 +59,12 @@ public class EmployeeController {
         @RequestParam("chucvu") String chucvu,
         @RequestParam("idpb") Department idpb,
         @RequestParam("idluong") Salary idluong,
+        @RequestParam("iduser") User iduser,
         @RequestParam("anh")MultipartFile anh){
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
         // service.saveEmployee(employee, multipartFile);
-        service.saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, anh);
+        service.saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
         return "redirect:/";
     }
 

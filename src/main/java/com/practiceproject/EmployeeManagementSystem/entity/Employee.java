@@ -43,7 +43,6 @@ public class  Employee {
     private String dantoc;
     private String sdt;
     private String email;
-    
     private String chucvu;
     
     @Lob

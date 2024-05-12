@@ -44,6 +44,7 @@ public class EmployeeService {
     String email, String chucvu,
     Department idpb,
     Salary idluong,
+    User iduser,
     MultipartFile file){
         Employee employee=new Employee();
         String filename=StringUtils.cleanPath(file.getOriginalFilename());
@@ -65,6 +66,7 @@ public class EmployeeService {
         employee.setChucvu(chucvu);
         employee.setIdpb(idpb);
         employee.setIdluong(idluong);
+        employee.setIduser(iduser);
         this.repository.save(employee);
     }
     
