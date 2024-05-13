@@ -79,12 +79,16 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        function ktMatkhauhople(confirmPass) {
-            if(confirmPass.value != $("#password").val()){
-                confirmPass.setCustomValidity("Mật khẩu không trùng khớp!");
-            }else{
-                confirmPass.setCustomValidity("");
+    <script>
+        function ktMatkhauhople(input) {
+            var passwordInput = document.getElementById('password');
+            var rpasswordInput = document.getElementById('rpassword');
+    
+            // Check if passwords match
+            if (passwordInput.value === rpasswordInput.value) {
+                rpasswordInput.setCustomValidity('');
+            } else {
+                rpasswordInput.setCustomValidity('Mật khẩu không trùng khớp!');
             }
         }
     </script>

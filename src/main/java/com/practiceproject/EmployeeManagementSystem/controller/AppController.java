@@ -108,9 +108,9 @@ public class AppController {
     }
 
     @PostMapping("/savechangePassword")
-    public String savechangePassword(@RequestParam("currentpassword") String currentpass,
-    @RequestParam("newpassword") String newpass,
-    @RequestParam("confirmpassword") String confirmpass,
+    public String savechangePassword(@PathVariable(value = "currentpassword") String currentpass,
+    @PathVariable(value = "newpassword") String newpass,
+    @PathVariable(value = "confirmpassword") String confirmpass,
     @ModelAttribute("user") User user, Model model){
         try {
             service.changePassword(currentpass, newpass, confirmpass, user);
