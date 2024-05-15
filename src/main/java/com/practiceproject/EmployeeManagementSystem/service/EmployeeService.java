@@ -71,7 +71,13 @@ public class EmployeeService {
     }
     
     //Cập nhật nhân viên
-    public void updateEmployee(Employee employee, MultipartFile file){
+    @SuppressWarnings("null")
+    public void updateEmployee(Employee employee, String hoten, String ngaysinh, 
+    String quequan, String gt, String dantoc, String sdt,
+    String email, String chucvu,
+    Department idpb,
+    Salary idluong,
+    User iduser, MultipartFile file){
         String filename=StringUtils.cleanPath(file.getOriginalFilename());
         if(filename.contains("..")){
             System.out.println("File không hợp lệ!");
@@ -81,6 +87,17 @@ public class EmployeeService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        employee.setHoten(hoten);
+        employee.setNgaysinh(ngaysinh);
+        employee.setQuequan(quequan);
+        employee.setGt(gt);
+        employee.setDantoc(dantoc);
+        employee.setSdt(sdt);
+        employee.setEmail(email);
+        employee.setChucvu(chucvu);
+        employee.setIdpb(idpb);
+        employee.setIdluong(idluong);
+        employee.setIduser(iduser);
         this.repository.save(employee);
     }
     //Tìm nhân viên bằng id

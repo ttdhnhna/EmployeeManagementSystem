@@ -71,8 +71,19 @@ public class EmployeeController {
 
     @PostMapping("/updateEmployee")
     public String updateEmployee(@ModelAttribute("employee") Employee employee, 
+    @RequestParam("hoten") String hoten,
+    @RequestParam("ngaysinh") String ngaysinh,
+    @RequestParam("quequan") String quequan,
+    @RequestParam("gt") String gt,
+    @RequestParam("dantoc") String dantoc,
+    @RequestParam("sdt") String sdt,
+    @RequestParam("email") String email,
+    @RequestParam("chucvu") String chucvu,
+    @RequestParam("idpb") Department idpb,
+    @RequestParam("idluong") Salary idluong,
+    @RequestParam("iduser") User iduser,
     @RequestParam("anh")MultipartFile anh){
-        service.updateEmployee(employee, anh);
+        service.updateEmployee(employee, hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
         return "redirect:/";
     }
 
