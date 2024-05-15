@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 // import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,6 +66,13 @@ public class EmployeeController {
         //Lưu vào csdl
         // service.saveEmployee(employee, multipartFile);
         service.saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
+        return "redirect:/";
+    }
+
+    @PostMapping("/updateEmployee")
+    public String updateEmployee(@ModelAttribute("employee") Employee employee, 
+    @RequestParam("anh")MultipartFile anh){
+        service.updateEmployee(employee, anh);
         return "redirect:/";
     }
 

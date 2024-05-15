@@ -70,6 +70,19 @@ public class EmployeeService {
         this.repository.save(employee);
     }
     
+    //Cập nhật nhân viên
+    public void updateEmployee(Employee employee, MultipartFile file){
+        String filename=StringUtils.cleanPath(file.getOriginalFilename());
+        if(filename.contains("..")){
+            System.out.println("File không hợp lệ!");
+        }
+        try {
+            employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.repository.save(employee);
+    }
     //Tìm nhân viên bằng id
     public Employee getEmployeebyID(long id){
         Optional<Employee> optional=repository.findById(id);

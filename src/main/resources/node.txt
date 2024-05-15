@@ -34,10 +34,4 @@ Giờ có 2 phần chính cần phải sửa là phần sửa lưu nhân viên v
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
-Cần xem lại cái tên id trong phần user nếu là id_user thì thôi còn đâu nếu nó là iduser không thôi
-thì mình sẽ thay đổi phần này trong Employee: 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_user", referencedColumnName = "iduser")
-    @JsonBackReference
-    private User iduser;
-và đồng thời xóa cột iduser trong bảng csdl tbl_employee.
+	
