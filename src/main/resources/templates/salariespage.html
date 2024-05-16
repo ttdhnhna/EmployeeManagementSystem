@@ -8,6 +8,25 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
     crossorigin="anonymous">
+    <style>
+      html, body {
+          height: 100%;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+      }
+      .content {
+          flex: 1 0 auto; /* allows content to grow and take up available space */
+      }
+      footer {
+          flex-shrink: 0; /* prevents the footer from shrinking */
+          height: 100px; /* Adjust this value as needed */
+          background-color: rgba(0, 0, 0, 0.2);
+          text-align: center;
+          line-height: 100px; /* Center content vertically */
+          margin-top: 50px;
+      }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -67,9 +86,7 @@
                   <th>
                     <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=idluong&sortDir=' + ${reverseSortDir}}">ID Lương</a>
                   </th>
-                  <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=luongcb&sortDir=' + ${reverseSortDir}}">Lương cơ bản</a>
-                  </th>
+                  <th>Lương cơ bản</th>
                   <th>
                     <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=hsl&sortDir=' + ${reverseSortDir}}">Hệ số lương</a>
                   </th>
@@ -83,7 +100,7 @@
                     <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=truluong&sortDir=' + ${reverseSortDir}}">Trừ lương</a>
                   </th>
                   <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=tongluong&sortDir=' + ${reverseSortDir}}">Trừ lương</a>
+                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=tongluong&sortDir=' + ${reverseSortDir}}">Tổng lương</a>
                   </th>
                   <th>Chức năng</th>
                 </tr>
@@ -91,12 +108,12 @@
             <tbody>
                 <tr th:each = "salary : ${ListSalaries}">
                     <td th:text="${salary.idluong}"></td>
-                    <td th:text="${salary.luongcb}"></td>
+                    <td th:text="${salary.luongcb}" name="current"></td>
                     <td th:text="${salary.hsl}"></td>
-                    <td th:text="${salary.phucap}"></td>
-                    <td th:text="${salary.baohiem}"></td>
-                    <td th:text="${salary.truluong}"></td>
-                    <td th:text="${salary.tongluong}"></td>
+                    <td th:text="${salary.phucap}" name="current"></td>
+                    <td th:text="${salary.baohiem}" name="current"></td>
+                    <td th:text="${salary.truluong}" name="current"></td>
+                    <td th:text="${salary.tongluong}" name="current"></td>
                     <td>
                       <a th:href="@{/updateSalary/{id}(id=${salary.idluong})}" class="btn btn-primary">Sửa</a>
                       <a th:href="@{/deleteSalary/{id}(id=${salary.idluong})}" class="btn btn-danger">Xóa</a>
@@ -132,5 +149,23 @@
           </div>
         </div>
     </div>
+    <footer class="bg-light text-center text-lg-start">
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright
+      </div>
+    </footer>
+    <script>
+      function formatVND(n, currency) {
+        return currency + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+      }
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        var currentElements = document.getElementsByName('current');
+        for (var i = 0; i < currentElements.length; i++) {
+          var currentValue = parseInt(currentElements[i].textContent);
+          currentElements[i].textContent = formatVND(currentValue, '₫');
+        }
+      });
+    </script>
 </body>
 </html>

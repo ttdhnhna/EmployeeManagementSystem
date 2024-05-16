@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 // import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
+import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
 
 
@@ -58,11 +60,30 @@ public class EmployeeController {
         @RequestParam("chucvu") String chucvu,
         @RequestParam("idpb") Department idpb,
         @RequestParam("idluong") Salary idluong,
+        @RequestParam("iduser") User iduser,
         @RequestParam("anh")MultipartFile anh){
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
         // service.saveEmployee(employee, multipartFile);
-        service.saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, anh);
+        service.saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
+        return "redirect:/";
+    }
+
+    @PostMapping("/updateEmployee")
+    public String updateEmployee(@ModelAttribute("employee") Employee employee, 
+    @RequestParam("hoten") String hoten,
+    @RequestParam("ngaysinh") String ngaysinh,
+    @RequestParam("quequan") String quequan,
+    @RequestParam("gt") String gt,
+    @RequestParam("dantoc") String dantoc,
+    @RequestParam("sdt") String sdt,
+    @RequestParam("email") String email,
+    @RequestParam("chucvu") String chucvu,
+    @RequestParam("idpb") Department idpb,
+    @RequestParam("idluong") Salary idluong,
+    @RequestParam("iduser") User iduser,
+    @RequestParam("anh")MultipartFile anh){
+        service.updateEmployee(employee, hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
         return "redirect:/";
     }
 
@@ -108,6 +129,8 @@ public class EmployeeController {
         model.addAttribute("employee", employee);
         Salary salary=service.getsalaryInfo(id);
         model.addAttribute("salary", salary);
+        User user = service.getuserInfo(id);
+        model.addAttribute("user", user);
         return "employeeviewprofile";
     }
 

@@ -8,6 +8,25 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
     crossorigin="anonymous">
+    <style>
+      html, body {
+          height: 100%;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+      }
+      .content {
+          flex: 1 0 auto; /* allows content to grow and take up available space */
+      }
+      footer {
+          flex-shrink: 0; /* prevents the footer from shrinking */
+          height: 100px; /* Adjust this value as needed */
+          background-color: rgba(0, 0, 0, 0.2);
+          text-align: center;
+          line-height: 100px; /* Center content vertically */
+          margin-top: 50px;
+      }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -58,39 +77,19 @@
                 <div class="card-body" th:object="${department}">
                   <div class="form-group">
                     <label>Mã phòng ban</label>
-                    <input 
-                        type="text"
-                        name="idpb"
-                        th:field="*{idpb}"
-                        class="form-control"
-                    >
+                    <output class="form-control mb-1" name="idpb" th:text="${department.idpb}"></output>
                   </div>
                   <div class="form-group">
                     <label>Tên phòng ban</label>
-                    <input 
-                        type="text"
-                        name="tenpb"
-                        th:field="*{tenpb}"
-                        class="form-control"
-                    >
+                    <output class="form-control mb-1" name="tenpb" th:text="${department.tenpb}"></output>
                   </div>
                   <div class="form-group">
                     <label>Địa chỉ</label>
-                    <input
-                        type="text"
-                        name="diachi"
-                        th:field="*{diachi}"          
-                        class="form-control"
-                    >
+                    <output class="form-control mb-1" name="diachi" th:text="${department.diachi}"></output>
                   </div>
                   <div class="form-group">
                     <label>Số điện thoại</label>
-                    <input 
-                        type="text"
-                        name="sdt"
-                        th:field="*{sdt}"
-                        class="form-control"
-                    >
+                    <output class="form-control mb-1" name="sdt" th:text="${department.sdt}"></output>
                   </div>
                 </div>
                 <h2 class="text-center">Danh sách Nhân viên</h1>
@@ -108,7 +107,10 @@
                   <tbody>
                       <tr th:each = "employee : ${ListEmployees}">
                           <td th:text="${employee.idnv}"></td>
-                          <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" height="100" width="100"></td>
+                          <td>
+                            <img th:if="${employee.anh != null}" th:src="${'data:image/jpeg;base64,' + employee.anh}" height="100" width="100">
+                            <img th:if="${employee.anh == null}" src="https://bootdey.com/img/Content/avatar/avatar1.png" height="100" width="100">
+                          </td>
                           <td th:text="${employee.hoten}"></td>
                           <td th:text="${employee.sdt}"></td>
                           <td th:text="${employee.chucvu}"></td>
@@ -126,6 +128,10 @@
     </div>
     <br>
     <br>
-
+    <footer class="bg-light text-center text-lg-start">
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright
+      </div>
+    </footer>
 </body>
 </html>

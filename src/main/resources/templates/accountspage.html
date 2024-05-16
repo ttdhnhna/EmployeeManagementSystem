@@ -8,6 +8,25 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
     crossorigin="anonymous">
+    <style>
+      html, body {
+          height: 100%;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+      }
+      .content {
+          flex: 1 0 auto; /* allows content to grow and take up available space */
+      }
+      footer {
+          flex-shrink: 0; /* prevents the footer from shrinking */
+          height: 100px; /* Adjust this value as needed */
+          background-color: rgba(0, 0, 0, 0.2);
+          text-align: center;
+          line-height: 100px; /* Center content vertically */
+          margin-top: 50px;
+      }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -51,13 +70,17 @@
 
     <!-- Body -->
     <div class="container">
+        <!-- Tin nhắn báo thay đổi mật khẩu thành công -->
+        <div th:if="${message != null}">
+          <div class="alert alert-info">[[${message}]]</div>
+        </div>
         <div class="row">
             &nbsp; &nbsp; 
             <h1> Danh sách Tài khoản</h1>
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <a th:href="@{/registration}" class="btn btn-primary btn-sm mb-3">
+                <a th:href="@{/addAccount}" class="btn btn-primary btn-sm mb-3">
                     Đăng ký
                 </a>
             </div>
@@ -66,8 +89,8 @@
             <thead class="table-dark">
                 <tr>
                     <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortField=iduser&sortDir=' + ${reverseSortDir}}">ID</a></th>
-                    <th>Ảnh hồ sơ</th>
                     <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortField=hoten&sortDir=' + ${reverseSortDir}}">Họ tên</a></th>
+                    <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}">ID Nhân viên</a></th>
                     <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">Email</a></th>
                     <th>Chức năng</th>
                 </tr>
@@ -75,8 +98,8 @@
             <tbody>
                 <tr th:each = "user : ${ListAccounts}">
                     <td th:text="${user.iduser}"></td>
-                    <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" height="100" width="100"></td>
                     <td th:text="${user.hoten}"></td>
+                    <td th:text="${user.idnv}"></td>
                     <td th:text="${user.email}"></td>
                     <td>
                       <a th:href="@{/updateAccount/{id}(id=${user.iduser})}" class="btn btn-primary">Sửa</a>
@@ -113,5 +136,10 @@
           </div>
         </div>
     </div>
+    <footer class="bg-light text-center text-lg-start">
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright
+      </div>
+    </footer>
 </body>
 </html>

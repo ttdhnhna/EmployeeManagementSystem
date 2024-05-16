@@ -16,4 +16,6 @@ public interface UserRepository extends JpaRepository<User,Long>{
     + "OR u.email LIKE %?1%"
     + "OR u.idnv LIKE %?1%")
     public List<User> findAllUsers(String keywords);
+
+    public User findByResetPassToken(String token);
 }

@@ -61,7 +61,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
-                .permitAll();
+                .permitAll()
+            .and()
+            .rememberMe()
+                .key("AbcdefghijKlmno1234567890")
+                .tokenValiditySeconds(24 * 60 * 60);
     }
 
     

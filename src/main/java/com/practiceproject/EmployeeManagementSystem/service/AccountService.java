@@ -60,25 +60,47 @@ public class AccountService {
     }
 
     public void changePassword(String currentpass, String newpass, String comfirm, User user){
-        if (currentpass == null) {
-            throw new IllegalArgumentException("Mật khẩu cũ không thể để trống");
-        }else if (newpass == null) {
-            throw new IllegalArgumentException("Mật khẩu mới không thể để trống");
-        }else if (comfirm == null) {
-            throw new IllegalArgumentException("Mật khẩu nhắc lại không thể để trống");
-        }
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+        if (currentpass == null) {
+            throw new IllegalArgumentException("Không lấy được Mật khẩu cũ");
+        }else if (newpass == null) {
+            throw new IllegalArgumentException("Không lấy được Mật khẩu mới");
+        }else if (comfirm == null) {
+            throw new IllegalArgumentException("Không lấy được Mật khẩu nhắc lại");
+        }
         if(!passwordEncoder.matches(currentpass, user.getPassword())){
             throw new IllegalStateException("Sai mật khẩu");
-        }
-        if(!newpass.equals(comfirm)){
-            throw new IllegalStateException("Mật khẩu không trùng khớp");
         }
         if(passwordEncoder.matches(newpass, user.getPassword())){
             throw new IllegalStateException("Mật khẩu mới phải khác mật khẩu cũ");
         }
-        user.setPassword(passwordEncoder.encode(newpass));
-        this.repository.save(user);
+        String encodedPass = passwordEncoder.encode(newpass); 
+        user.setPassword(encodedPass);
+        repository.save(user);
+    }
+
+    public void updateResetPass(String tokem, String email) throws CustomerNotFoundException{
+        User user = repository.findbyEmail(email);
+        if(user != null){
+            user.setResetPassToken(tokem);
+            repository.save(user);
+        }else{
+            throw new CustomerNotFoundException ("Không thể tìm thấy người dùng với email: "  + email);
+        }
+    }
+
+    public User get(String resetPassToken){
+        return repository.findByResetPassToken(resetPassToken);
+    }
+
+    public void updatePassword(User user, String newPass){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPass = passwordEncoder.encode(newPass); 
+
+        user.setPassword(encodedPass);
+        user.setResetPassToken(null);
+
+        repository.save(user);
     }
     //Phần tạo user mới
     // @PostConstruct

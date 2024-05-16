@@ -10,6 +10,25 @@
     crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.ootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .content {
+            flex: 1 0 auto; /* allows content to grow and take up available space */
+        }
+        footer {
+            flex-shrink: 0; /* prevents the footer from shrinking */
+            height: 100px; /* Adjust this value as needed */
+            background-color: rgba(0, 0, 0, 0.2);
+            text-align: center;
+            line-height: 100px; /* Center content vertically */
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -57,7 +76,7 @@
                 <br>
                 <h1 class="text-center">Chỉnh sửa Thông tin Nhân viên</h1>
                 <div class="card-body">
-                    <form:input action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post"
+                    <form action="#" th:action="@{/updateEmployee}" th:object="${employee}" method="post"
                         enctype="multipart/form-data"
                     >
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
@@ -198,6 +217,11 @@
     </div>
     <br>
     <br>
+    <footer class="bg-light text-center text-lg-start">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2020 Copyright
+        </div>
+    </footer>
     <script type="text/javascript">
         $(document).ready(function(){
             $('#anh').change(function(){
