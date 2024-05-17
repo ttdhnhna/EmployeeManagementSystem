@@ -1,11 +1,14 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -24,9 +27,17 @@ public class User {
     @Column(name = "reset_password_token")
     private String resetPassToken;
 
-    @OneToOne(mappedBy = "iduser")
+    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private Employee idnv;
+    private Set<Employee> idnv;
+
+    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Set<Department> idpb;
+
+    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Set<Salary> idluong;
     
     public User() {
     }
@@ -60,10 +71,11 @@ public class User {
     public void setResetPassToken(String resetPassToken) {
         this.resetPassToken = resetPassToken;
     }
-    public Employee getIdnv() {
+    public Set<Employee> getIdnv() {
         return idnv;
     }
-    public void setIdnv(Employee idnv) {
+    public void setIdnv(Set<Employee> idnv) {
         this.idnv = idnv;
     }
+    
 }

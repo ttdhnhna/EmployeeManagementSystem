@@ -142,14 +142,14 @@ public class EmployeeService {
     }
 
     //Chức năng lấy thông tin tài khoản cho nhân viên.
-    public User getuserInfo(long id){
-        User userinfo = new User();
-        for(User u : uRepository.findAll()){
-            if(u.getIdnv().getIdnv()==id){
-                userinfo = u;
-            }
-        }
-        return userinfo;
-    }
+    // public User getuserInfo(long id){
+    //     User userinfo = new User();
+    //     for(User u : uRepository.findAll()){
+    //         if(u.getIdnv().getIdnv()==id){
+    //             userinfo = u;
+    //         }
+    //     }
+    //     return userinfo;
+    // }
 }
 

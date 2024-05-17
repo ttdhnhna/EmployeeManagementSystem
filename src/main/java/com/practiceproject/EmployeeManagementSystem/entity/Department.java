@@ -2,6 +2,7 @@ package com.practiceproject.EmployeeManagementSystem.entity;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,9 +23,16 @@ public class Department {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id_pb")
     private Long idpb;
+
     @OneToMany(mappedBy = "idpb", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Employee> idnv;
+
+    @ManyToOne
+    @JoinColumn(name = "id_user", nullable = false, referencedColumnName = "id_user")
+    @JsonBackReference
+    private User iduser;
+    
     private String tenpb;
     private String diachi;
     private String sdt;

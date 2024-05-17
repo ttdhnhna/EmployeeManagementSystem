@@ -125,12 +125,12 @@ public class EmployeeController {
     //Xem chi tiết hồ sơ nhân viên
     @GetMapping("/profileemployee/{id}")
     public String viewProfileEmployee(@PathVariable(value = "id") long id, Model model){
-        Employee employee=service.getEmployeebyID(id);
-        model.addAttribute("employee", employee);
-        Salary salary=service.getsalaryInfo(id);
-        model.addAttribute("salary", salary);
-        User user = service.getuserInfo(id);
-        model.addAttribute("user", user);
+        // Employee employee=service.getEmployeebyID(id);
+        // model.addAttribute("employee", employee);
+        // Salary salary=service.getsalaryInfo(id);
+        // model.addAttribute("salary", salary);
+        // User user = service.getuserInfo(id);
+        // model.addAttribute("user", user);
         return "employeeviewprofile";
     }
 
