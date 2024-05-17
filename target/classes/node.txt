@@ -34,4 +34,4 @@ Giờ có 2 phần chính cần phải sửa là phần sửa lưu nhân viên v
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
-Mình có khi làm lại cái cách trước rồi bỏ cái ảnh ra xem ntn chứ cái này khả năng cao là không làm đc đâu.
+Đã làm lại cách cũ cần chạy thử.

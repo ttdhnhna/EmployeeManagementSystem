@@ -46,7 +46,7 @@ public class  Employee {
     private String chucvu;
     
     @Lob
-    private byte[] anh;
+    private String anh;
     
     //Constructor được sử dụng để khởi tạo đối tượng 
     public Employee() {
@@ -141,19 +141,19 @@ public class  Employee {
         this.idluong = idluong;
     }
 
+    public String getAnh() {
+        return anh;
+    }
+
+    public void setAnh(String anh) {
+        this.anh = anh;
+    }
+    
     public User getIduser() {
         return iduser;
     }
 
     public void setIduser(User iduser) {
         this.iduser = iduser;
-    }
-
-    public byte[] getAnh() {
-        return anh;
-    }
-
-    public void setAnh(byte[] anh) {
-        this.anh = anh;
     }
 }

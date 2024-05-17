@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.practiceproject.EmployeeManagementSystem.entity.Department;
 // import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
@@ -51,33 +52,42 @@ public class EmployeeController {
     }
     @SuppressWarnings("null")
     @PostMapping("/saveEmployee")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee,
-        @RequestParam("anh") MultipartFile anh) throws IOException{
+    public String saveEmployee(@RequestParam("hoten") String hoten,
+        @RequestParam("ngaysinh") String ngaysinh,
+        @RequestParam("quequan") String quequan,
+        @RequestParam("gt") String gt,
+        @RequestParam("dantoc") String dantoc,
+        @RequestParam("sdt") String sdt,
+        @RequestParam("email") String email,
+        @RequestParam("chucvu") String chucvu,
+        @RequestParam("idpb") Department idpb,
+        @RequestParam("idluong") Salary idluong,
+        @RequestParam("iduser") User iduser,
+        @RequestParam("anh")MultipartFile anh){
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
         // service.saveEmployee(employee, multipartFile);
-        employee.setAnh(anh.getBytes());
-        service.saveEmployee(employee);
+        service.saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
         return "redirect:/";
     }
 
-    // @PostMapping("/updateEmployee")
-    // public String updateEmployee(@ModelAttribute("employee") Employee employee, 
-    // @RequestParam("hoten") String hoten,
-    // @RequestParam("ngaysinh") String ngaysinh,
-    // @RequestParam("quequan") String quequan,
-    // @RequestParam("gt") String gt,
-    // @RequestParam("dantoc") String dantoc,
-    // @RequestParam("sdt") String sdt,
-    // @RequestParam("email") String email,
-    // @RequestParam("chucvu") String chucvu,
-    // @RequestParam("idpb") Department idpb,
-    // @RequestParam("idluong") Salary idluong,
-    // @RequestParam("iduser") User iduser,
-    // @RequestParam(value = "anh", required = false) MultipartFile anh) throws IOException{
-    //     service.updateEmployee(employee, hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
-    //     return "redirect:/";
-    // }
+    @PostMapping("/updateEmployee")
+    public String updateEmployee(@ModelAttribute("employee") Employee employee, 
+    @RequestParam("hoten") String hoten,
+    @RequestParam("ngaysinh") String ngaysinh,
+    @RequestParam("quequan") String quequan,
+    @RequestParam("gt") String gt,
+    @RequestParam("dantoc") String dantoc,
+    @RequestParam("sdt") String sdt,
+    @RequestParam("email") String email,
+    @RequestParam("chucvu") String chucvu,
+    @RequestParam("idpb") Department idpb,
+    @RequestParam("idluong") Salary idluong,
+    @RequestParam("iduser") User iduser,
+    @RequestParam("anh") MultipartFile anh) throws IOException{
+        service.updateEmployee(employee, hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
+        return "redirect:/";
+    }
 
     @GetMapping("/updateEmployee/{id}")
     public String updateEmployee(@PathVariable(value = "id") long id, Model model){
