@@ -1,5 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +83,7 @@ public class EmployeeController {
     @RequestParam("idpb") Department idpb,
     @RequestParam("idluong") Salary idluong,
     @RequestParam("iduser") User iduser,
-    @RequestParam("anh")MultipartFile anh){
+    @RequestParam MultipartFile anh) throws IOException{
         service.updateEmployee(employee, hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
         return "redirect:/";
     }
