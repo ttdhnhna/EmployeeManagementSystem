@@ -38,6 +38,8 @@ Mình nghĩ lại rồi mình sẽ cần thay đổi lại cấu trúc dự án 
 có thể lưu và tùy chỉnh lại 1 danh sách nhân viên, phòng ban của riêng mình. (Điều này đồng
 nghĩa là phải thay đổi liên kết 1 tk có nhiều nhân viên và các cách hiện lẫn sửa của nó).
 
+Tạo nút quay lại trang login cho phần quên mk.
+
 Lỗi chức năng lưu ảnh nhân viên.(Nhưng cần thử chỉ thay đổi 1 thông tin nào khác xem liệu nó có bị lỗi không?)
 Whitelabel Error Page
 This application has no explicit mapping for /error, so you are seeing this as a fallback.
