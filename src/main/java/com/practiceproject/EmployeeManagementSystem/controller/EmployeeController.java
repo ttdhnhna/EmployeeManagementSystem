@@ -83,7 +83,7 @@ public class EmployeeController {
     @RequestParam("idpb") Department idpb,
     @RequestParam("idluong") Salary idluong,
     @RequestParam("iduser") User iduser,
-    @RequestParam MultipartFile anh) throws IOException{
+    @RequestParam(value = "anh", required = false) MultipartFile anh) throws IOException{
         service.updateEmployee(employee, hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
         return "redirect:/";
     }
