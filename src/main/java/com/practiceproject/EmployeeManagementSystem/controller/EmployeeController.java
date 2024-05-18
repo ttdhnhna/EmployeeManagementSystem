@@ -37,7 +37,8 @@ public class EmployeeController {
 	// Trong TH này là: "http://localhost:8080/" (Trang chủ)
     public String getEmployees(Model model){
         // Chúng ta sử dụng Interface Model để truyền dữ liệu từ Controller sang View để hiển thị
-        return findPaginated(1, "idnv", "asc", model);
+        
+        return "homepage";
     }
     @GetMapping("/addEmployee")
     public String addEmployee(Model model){

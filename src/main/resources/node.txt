@@ -35,3 +35,14 @@ Giờ có 2 phần chính cần phải sửa là phần sửa lưu nhân viên v
 * Bổ sung footer cho trang web (Đã sửa xong)
 
 Đã tạo ra xong phần liên kết giữa các đối tượng trong dự án rồi, giờ sẽ cần phải làm phần hiện thông tin cần thiết cho từng user.
+
+user -> nv
+user <- nv
+
+can iduser sau khi dang nhap da, ngay sau khi lay dc iduser thi se lay 
+duoc phan danh sach nhan vien, phong ban va luong vi chi can dua vao 
+cac iduser da them vao la duoc.
+
+
+
+
