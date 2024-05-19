@@ -1,7 +1,7 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
-import java.io.IOException;
-import java.util.Base64;
+// import java.io.IOException;
+// import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +10,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
+// import org.springframework.util.StringUtils;
+// import org.springframework.web.multipart.MultipartFile;
 
-import com.practiceproject.EmployeeManagementSystem.entity.Department;
+// import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
@@ -44,35 +44,35 @@ public class EmployeeService {
     }
     
     //Cập nhật nhân viên
-    @SuppressWarnings("null")
-    public void updateEmployee(Employee employee, String hoten, String ngaysinh, 
-    String quequan, String gt, String dantoc, String sdt,
-    String email, String chucvu,
-    Department idpb,
-    Salary idluong,
-    User iduser, MultipartFile file){
-        String filename=StringUtils.cleanPath(file.getOriginalFilename());
-        if(filename.contains("..")){
-            System.out.println("File không hợp lệ!");
-        }
-        try {
-            employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        employee.setHoten(hoten);
-        employee.setNgaysinh(ngaysinh);
-        employee.setQuequan(quequan);
-        employee.setGt(gt);
-        employee.setDantoc(dantoc);
-        employee.setSdt(sdt);
-        employee.setEmail(email);
-        employee.setChucvu(chucvu);
-        employee.setIdpb(idpb);
-        employee.setIdluong(idluong);
-        employee.setIduser(iduser);
-        this.repository.save(employee);
-    }
+    // @SuppressWarnings("null")
+    // public void updateEmployee(Employee employee, String hoten, String ngaysinh, 
+    // String quequan, String gt, String dantoc, String sdt,
+    // String email, String chucvu,
+    // Department idpb,
+    // Salary idluong,
+    // User iduser, MultipartFile file){
+    //     String filename=StringUtils.cleanPath(file.getOriginalFilename());
+    //     if(filename.contains("..")){
+    //         System.out.println("File không hợp lệ!");
+    //     }
+    //     try {
+    //         employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
+    //     employee.setHoten(hoten);
+    //     employee.setNgaysinh(ngaysinh);
+    //     employee.setQuequan(quequan);
+    //     employee.setGt(gt);
+    //     employee.setDantoc(dantoc);
+    //     employee.setSdt(sdt);
+    //     employee.setEmail(email);
+    //     employee.setChucvu(chucvu);
+    //     employee.setIdpb(idpb);
+    //     employee.setIdluong(idluong);
+    //     employee.setIduser(iduser);
+    //     this.repository.save(employee);
+    // }
     //Tìm nhân viên bằng id
     public Employee getEmployeebyID(long id){
         Optional<Employee> optional=repository.findById(id);
