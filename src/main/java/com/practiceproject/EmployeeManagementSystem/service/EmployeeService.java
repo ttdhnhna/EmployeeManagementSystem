@@ -39,35 +39,8 @@ public class EmployeeService {
     }
     //Lưu nhân viên
     @SuppressWarnings("null")
-    public void saveEmployee(String hoten, String ngaysinh, 
-    String quequan, String gt, String dantoc, String sdt,
-    String email, String chucvu,
-    Department idpb,
-    Salary idluong,
-    User iduser,
-    MultipartFile file){
-        Employee employee=new Employee();
-        String filename=StringUtils.cleanPath(file.getOriginalFilename());
-        if(filename.contains("..")){
-            System.out.println("File không hợp lệ!");
-        }
-        try {
-            employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        employee.setHoten(hoten);
-        employee.setNgaysinh(ngaysinh);
-        employee.setQuequan(quequan);
-        employee.setGt(gt);
-        employee.setDantoc(dantoc);
-        employee.setSdt(sdt);
-        employee.setEmail(email);
-        employee.setChucvu(chucvu);
-        employee.setIdpb(idpb);
-        employee.setIdluong(idluong);
-        employee.setIduser(iduser);
-        this.repository.save(employee);
+    public Employee saveEmployee(Employee employee){
+        return this.repository.save(employee);
     }
     
     //Cập nhật nhân viên
