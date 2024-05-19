@@ -51,6 +51,7 @@ public class EmployeeController {
         */
         return "newemployee";
     }
+    @SuppressWarnings("null")
     @PostMapping("/saveEmployee")
     public String saveEmployee(@ModelAttribute("employee") Employee employee,
         @RequestParam("anh") MultipartFile anh) throws IOException{
