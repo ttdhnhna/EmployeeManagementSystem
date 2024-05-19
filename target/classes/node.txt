@@ -34,20 +34,4 @@ Giờ có 2 phần chính cần phải sửa là phần sửa lưu nhân viên v
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
-Mình nghĩ lại rồi mình sẽ cần thay đổi lại cấu trúc dự án để mỗi user khi đăng nhập vào sẽ
-có thể lưu và tùy chỉnh lại 1 danh sách nhân viên, phòng ban của riêng mình. (Điều này đồng
-nghĩa là phải thay đổi liên kết 1 tk có nhiều nhân viên và các cách hiện lẫn sửa của nó).
-
-Lỗi chức năng lưu ảnh nhân viên.
-Resolved [org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 
-errors<EOL>Field error in object 'employee' on field 'anh': rejected value [org.springframework.web.multipart.support
-.StandardMultipartHttpServletRequest$StandardMultipartFile@4285f207]; codes [typeMismatch.employee.anh,typeMismatch.anh,
-typeMismatch.java.lang.String,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: 
-codes [employee.anh,anh]; arguments []; default message [anh]]; default message [Failed to convert property value of type 
-'org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile' to required type 
-'java.lang.String' for property 'anh'; nested exception is java.lang.IllegalStateException: Cannot convert value of type 
-'org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile' to required type 
-'java.lang.String' for property 'anh': no matching editors or conversion strategy found]]
-
-Mai sẽ thử theo cách cập nhật gộp các thuộc tính khác và ảnh để riêng xem như thế nào, còn nếu vẫn không được thì lại phải
-tìm cách làm khác vậy vì cái này có vẻ là đường cùng rồi.
+Vừa sửa thử chức năng lưu nhân viên.

@@ -108,7 +108,7 @@
                       <tr th:each = "employee : ${ListEmployees}">
                           <td th:text="${employee.idnv}"></td>
                           <td>
-                            <img th:if="${employee.anh != null}" th:src="${'data:image/jpeg;base64,' + employee.anh}" height="100" width="100">
+                            <img th:if="${employee.anh != null}" th:src="${employee.anh}" height="100" width="100">
                             <img th:if="${employee.anh == null}" src="https://bootdey.com/img/Content/avatar/avatar1.png" height="100" width="100">
                           </td>
                           <td th:text="${employee.hoten}"></td>
