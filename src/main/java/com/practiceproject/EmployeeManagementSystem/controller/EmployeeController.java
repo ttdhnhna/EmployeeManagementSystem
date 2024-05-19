@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 // import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,7 +20,6 @@ import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
-import com.practiceproject.EmployeeManagementSystem.service.FileUploadUtil;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -58,11 +56,8 @@ public class EmployeeController {
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
         // service.saveEmployee(employee, multipartFile);
-        String filename = StringUtils.cleanPath(anh.getOriginalFilename());
-        employee.setAnh(filename);
-        Employee savedEmployee = service.saveEmployee(employee); 
-        String uploadDir = "employeee-images/" + savedEmployee.getIdnv();
-        FileUploadUtil.saveFile(uploadDir, filename, anh);
+        employee.setAnh(anh.getBytes());
+        service.saveEmployee(employee);
         return "redirect:/";
     }
 
