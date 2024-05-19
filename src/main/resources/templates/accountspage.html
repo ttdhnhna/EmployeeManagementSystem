@@ -74,6 +74,10 @@
         <div th:if="${message != null}">
           <div class="alert alert-info">[[${message}]]</div>
         </div>
+        <!-- Tin nhắn thành công -->
+        <div th:if="${param.success}">
+          <div class="alert alert-info">Bạn đã đăng ký tài khoản thành công!</div>
+        </div>
         <div class="row">
             &nbsp; &nbsp; 
             <h1> Danh sách Tài khoản</h1>

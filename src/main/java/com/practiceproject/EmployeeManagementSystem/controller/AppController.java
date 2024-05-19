@@ -70,7 +70,7 @@ public class AppController {
         String ePass=encoder.encode(user.getPassword());
         user.setPassword(ePass);
         this.repository.save(user);
-        return "redirect:/addAccount?success";
+        return "redirect:/accounts?success";
     }
 
     @GetMapping("/login")

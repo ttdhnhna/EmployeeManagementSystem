@@ -75,10 +75,6 @@
             <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
                 <br>
                 <h1 class="text-center">Đăng ký tài khoản</h1>
-                <!-- Tin nhắn thành công -->
-                <div th:if="${param.success}">
-                    <div class="alert alert-info">Bạn đã đăng ký tài khoản thành công!</div>
-                </div>
                 <div class="card-body">
                     <form action="#" th:action="@{/saveNewAccount}" th:object="${user}" method="post">
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
@@ -105,7 +101,6 @@
                                 Nhập mật khẩu
                             </label>
                             <input id="password" class="form-control" type="password"
-                            id="password"
                             name="password"
                             th:field="*{password}" required autofocus="autofocus"
                             placeholder="Nhập mật khẩu">
@@ -115,7 +110,6 @@
                                 Nhập lại mật khẩu
                             </label>
                             <input id="confirm" class="form-control" type="password"
-                            id="confirm"
                             name="confirm"
                             required autofocus="autofocus"
                             oninput="ktMatkhauhople(this)"
@@ -126,7 +120,7 @@
                                 Nhập mã nhân viên
                             </label>
                             <input id="iduser" class="form-control" 
-                            th:field="*{iduser}" required autofocus="autofocus"
+                            th:field="*{iduser}"
                             placeholder="Nhập mã nhân viên"
                             >
                         </div>
