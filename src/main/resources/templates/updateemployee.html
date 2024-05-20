@@ -77,7 +77,7 @@
                 <h1 class="text-center">Chỉnh sửa Thông tin Nhân viên</h1>
                 <div class="card-body">
                     <img th:src="${'data:image/jpeg;base64,' + employee.anh}" height="100" width="100" style="margin-top: 10px; margin-bottom: 15px;">
-                    <form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post"
+                    <form action="#" th:action="@{/updateEmployee}" th:object="${employee}" method="post"
                         enctype="multipart/form-data"
                     >
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
