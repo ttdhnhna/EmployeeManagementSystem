@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 // import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
+import com.practiceproject.EmployeeManagementSystem.entity.EmployeeDto;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
@@ -72,20 +73,12 @@ public class EmployeeController {
     }
 
     @PostMapping("/updateEmployee")
-    public String updateEmployee(@ModelAttribute("employee") Employee employee, 
-    @RequestParam("hoten") String hoten,
-    @RequestParam("ngaysinh") String ngaysinh,
-    @RequestParam("quequan") String quequan,
-    @RequestParam("gt") String gt,
-    @RequestParam("dantoc") String dantoc,
-    @RequestParam("sdt") String sdt,
-    @RequestParam("email") String email,
-    @RequestParam("chucvu") String chucvu,
-    @RequestParam("idpb") Department idpb,
-    @RequestParam("idluong") Salary idluong,
-    @RequestParam("iduser") User iduser,
-    @RequestParam("anh") MultipartFile anh) throws IOException{
-        service.updateEmployee(employee, hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
+    public String updateEmployee(@ModelAttribute("employee") EmployeeDto employeeDto) throws IOException{
+        // service.updateEmployee(employee, hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
+        Employee employee = service.getEmployeebyID(employeeDto.getIdnv());
+        if(employee!=null){
+            service.updateEmployee(employee, employeeDto);
+        }
         return "redirect:/";
     }
 
