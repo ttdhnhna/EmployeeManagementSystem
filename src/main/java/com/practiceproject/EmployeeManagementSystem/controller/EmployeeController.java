@@ -73,11 +73,15 @@ public class EmployeeController {
     }
 
     @PostMapping("/updateEmployee")
-    public String updateEmployee(@ModelAttribute("employee") EmployeeDto employeeDto) throws IOException{
+    public String updateEmployee(@ModelAttribute("employee") EmployeeDto employeeDto, Model model) throws IOException{
         // service.updateEmployee(employee, hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
-        Employee employee = service.getEmployeebyID(employeeDto.getIdnv());
-        if(employee!=null){
-            service.updateEmployee(employee, employeeDto);
+        try {
+            Employee employee = service.getEmployeebyID(employeeDto.getIdnv());
+            if(employee!=null){
+                service.updateEmployee(employee, employeeDto);
+            }
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("alertMessage", e.getMessage());
         }
         return "redirect:/";
     }
