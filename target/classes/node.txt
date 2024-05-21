@@ -28,10 +28,8 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 
 * Làm phần định dạng tiền tệ cho các trang lương.(Xong)
 
-Giờ có 2 phần chính cần phải sửa là phần sửa lưu nhân viên và lưu mật khẩu mới. (Đã sửa xong cần chạy thử để xem có lỗi không)
-
 * Làm phần hiện ảnh nhân viên ở chi tiết phòng ban (Xong)
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
-Đã thử sửa lỗi, cần chạy thử.
+Đã sửa xong chức năng cập nhật nhân viên, còn chức năng thay đổi mật khẩu.

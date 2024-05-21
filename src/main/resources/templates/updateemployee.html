@@ -76,7 +76,6 @@
                 <br>
                 <h1 class="text-center">Chỉnh sửa Thông tin Nhân viên</h1>
                 <div class="card-body">
-                    <img th:src="${'data:image/jpeg;base64,' + employee.anh}" height="100" width="100" style="margin-top: 10px; margin-bottom: 15px;">
                     <form action="#" th:action="@{/updateEmployee}" th:object="${employee}" method="post"
                         enctype="multipart/form-data"
                     >
@@ -189,11 +188,14 @@
                             />
                         </div>
                         <div class="form-group">
-                            <label>Ảnh đại điện: </label>                        
+                            <label>Ảnh đại điện: </label>   
+                            <br>
+                            <img th:src="${'data:image/jpeg;base64,' + employee.anh}" height="100" width="100" style="margin-top: 10px; margin-bottom: 15px;">
                             <br>
                             <input
                                 type="file"
                                 name="anh"
+                                th:field="*{anh}"
                                 id="anh"
                                 accept="img/png, img/jpeg, img/jpg"
                             >
