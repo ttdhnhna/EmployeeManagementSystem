@@ -101,8 +101,9 @@ public class AppController {
         return "redirect:/accounts";
     }
 
-    @GetMapping("/changePassword")
-    public String changePassword(@ModelAttribute("user") User user, Model model){
+    @GetMapping("/changePassword/{id}")
+    public String changePassword(@PathVariable(value = "id")long id, Model model){
+        User user=service.getUserByID(id);
         model.addAttribute("user", user);
         return "changepassword";
     }
