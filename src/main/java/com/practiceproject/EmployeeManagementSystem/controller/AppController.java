@@ -112,12 +112,7 @@ public class AppController {
     @RequestParam(value = "newpassword") String newpass,
     @RequestParam(value = "confirmpassword") String confirmpass,
     @ModelAttribute("user") User user, Model model){
-        try {
-            service.changePassword(currentpass, newpass, confirmpass, user);
-        } catch (IllegalStateException e) {
-            model.addAttribute("alertMessage", e.getMessage());
-            return "redirect:/changePassword";
-        }
+        service.changePassword(currentpass, newpass, confirmpass, user);
         model.addAttribute("message", "Bạn đã thay đổi mật khẩu thành công cho tài khoản có ID: " + user.getIduser() + "!");
         return "redirect:/accounts";
     }
