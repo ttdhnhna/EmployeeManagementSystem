@@ -36,4 +36,5 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 có khi sẽ phải bổ sung để cho chức năng cập nhật nếu chỉ sửa thông tin thì
 ảnh sẽ không bị cập nhật thành null như này.
 
-Đã bổ sung phần sửa cho chức năng thay đổi mật khẩu tài khoảng và lưu nhân viên.
+Chức năng lưu nhân viên thế kia là ổn rồi còn chức năng thay đổi mật khẩu thì lỗi không cập
+nhật thông tin, còn phần lấy thông tin thì có vẻ là chạy ổn rồi.
