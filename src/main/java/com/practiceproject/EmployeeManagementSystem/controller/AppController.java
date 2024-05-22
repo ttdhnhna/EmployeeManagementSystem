@@ -116,6 +116,7 @@ public class AppController {
             service.changePassword(currentpass, newpass, confirmpass, user);
         } catch (IllegalStateException e) {
             model.addAttribute("alertMessage", e.getMessage());
+            return "redirect:/changePassword";
         }
         model.addAttribute("message", "Bạn đã thay đổi mật khẩu thành công cho tài khoản có ID: " + user.getIduser() + "!");
         return "redirect:/accounts";

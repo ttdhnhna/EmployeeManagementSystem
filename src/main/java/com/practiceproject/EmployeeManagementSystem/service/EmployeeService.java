@@ -81,53 +81,37 @@ public class EmployeeService {
     //Cập nhật nhân viên
     @SuppressWarnings({ "null", "unused" })
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
-        String filename=StringUtils.cleanPath(employeeDto.getAnh().getOriginalFilename());
-        if(filename.contains("..")){
-            throw new IllegalArgumentException("File không hợp lệ!");
-        }else if(filename==null){
-            employee.setHoten(employeeDto.getHoten());
-            employee.setNgaysinh(employeeDto.getNgaysinh());
-            employee.setQuequan(employeeDto.getQuequan());
-            employee.setGt(employeeDto.getGt());
-            employee.setDantoc(employeeDto.getDantoc());
-            employee.setSdt(employeeDto.getSdt());
-            employee.setEmail(employeeDto.getEmail());
-            employee.setChucvu(employeeDto.getChucvu());
-
-            Department idpb = dService.getDepartmentID(employeeDto.getIdpb());
-            User iduser = uService.getUserByID(employeeDto.getIduser());
-            Salary idluong  = sService.getSalaryID(employeeDto.getIdluong());
-
-            employee.setIdpb(idpb);
-            employee.setIdluong(idluong);
-            employee.setIduser(iduser);
-
-            this.repository.save(employee);
-        }else{
+        MultipartFile file = employeeDto.getAnh();
+        if (file != null && !file.isEmpty()) {
+            String filename = StringUtils.cleanPath(file.getOriginalFilename());
+            if (filename.contains("..")) {
+                System.out.println("File không hợp lệ!");
+                return;
+            }
             try {
-                employee.setAnh(Base64.getEncoder().encodeToString(employeeDto.getAnh().getBytes()));
+                employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            employee.setHoten(employeeDto.getHoten());
-            employee.setNgaysinh(employeeDto.getNgaysinh());
-            employee.setQuequan(employeeDto.getQuequan());
-            employee.setGt(employeeDto.getGt());
-            employee.setDantoc(employeeDto.getDantoc());
-            employee.setSdt(employeeDto.getSdt());
-            employee.setEmail(employeeDto.getEmail());
-            employee.setChucvu(employeeDto.getChucvu());
+        }
+        employee.setHoten(employeeDto.getHoten());
+        employee.setNgaysinh(employeeDto.getNgaysinh());
+        employee.setQuequan(employeeDto.getQuequan());
+        employee.setGt(employeeDto.getGt());
+        employee.setDantoc(employeeDto.getDantoc());
+        employee.setSdt(employeeDto.getSdt());
+        employee.setEmail(employeeDto.getEmail());
+        employee.setChucvu(employeeDto.getChucvu());
     
-            Department idpb = dService.getDepartmentID(employeeDto.getIdpb());
-            User iduser = uService.getUserByID(employeeDto.getIduser());
-            Salary idluong  = sService.getSalaryID(employeeDto.getIdluong());
+        Department idpb = dService.getDepartmentID(employeeDto.getIdpb());
+        User iduser = uService.getUserByID(employeeDto.getIduser());
+        Salary idluong  = sService.getSalaryID(employeeDto.getIdluong());
     
-            employee.setIdpb(idpb);
-            employee.setIdluong(idluong);
-            employee.setIduser(iduser);
+        employee.setIdpb(idpb);
+        employee.setIdluong(idluong);
+        employee.setIduser(iduser);
     
-            this.repository.save(employee);
-        }  
+        this.repository.save(employee); 
     }
     //Tìm nhân viên bằng id
     public Employee getEmployeebyID(long id){
