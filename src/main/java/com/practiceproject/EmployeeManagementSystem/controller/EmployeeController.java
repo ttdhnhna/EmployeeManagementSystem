@@ -51,7 +51,6 @@ public class EmployeeController {
         */
         return "newemployee";
     }
-    @SuppressWarnings("null")
     @PostMapping("/saveEmployee")
     public String saveEmployee(@RequestParam("hoten") String hoten,
         @RequestParam("ngaysinh") String ngaysinh,

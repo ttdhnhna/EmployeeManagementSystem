@@ -79,7 +79,6 @@ public class EmployeeService {
     }
     
     //Cập nhật nhân viên
-    @SuppressWarnings({ "null", "unused" })
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
         MultipartFile file = employeeDto.getAnh();
         if (file != null && !file.isEmpty()) {
