@@ -113,6 +113,11 @@ public class AppController {
     @RequestParam(value = "newpassword") String newpass,
     @RequestParam(value = "confirmpassword") String confirmpass,
     @ModelAttribute("user") User user, Model model){
+        // Debug logs
+        System.out.println("Current password: " + currentpass);
+        System.out.println("New password: " + newpass);
+        System.out.println("Confirm password: " + confirmpass);
+        System.out.println("User ID: " + user.getIduser());
         try {
             service.changePassword(currentpass, newpass, confirmpass, user);
             model.addAttribute("message", "Bạn đã thay đổi mật khẩu thành công cho tài khoản có ID: " + user.getIduser() + "!");
