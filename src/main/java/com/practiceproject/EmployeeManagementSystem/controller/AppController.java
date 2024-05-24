@@ -113,9 +113,14 @@ public class AppController {
     @RequestParam(value = "newpassword") String newpass,
     @RequestParam(value = "confirmpassword") String confirmpass,
     @ModelAttribute("user") User user, Model model){
-        service.changePassword(currentpass, newpass, confirmpass, user);
-        model.addAttribute("message", "Bạn đã thay đổi mật khẩu thành công cho tài khoản có ID: " + user.getIduser() + "!");
-        return "redirect:/accounts";
+        try {
+            service.changePassword(currentpass, newpass, confirmpass, user);
+            model.addAttribute("message", "Bạn đã thay đổi mật khẩu thành công cho tài khoản có ID: " + user.getIduser() + "!");
+            return "redirect:/accounts";
+        } catch (IllegalStateException | IllegalArgumentException e) {
+            model.addAttribute("alertMessage", e.getMessage());
+            return "changepassword"; 
+        }
     }
 
     @GetMapping("/finduser")

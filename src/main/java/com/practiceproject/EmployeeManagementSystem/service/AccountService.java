@@ -102,15 +102,4 @@ public class AccountService {
 
         repository.save(user);
     }
-    //Phần tạo user mới
-    // @PostConstruct
-    // public void testCreateUser(){
-    //     User user = new User();
-    //     user.setEmail("123@gmail.com");
-    //     user.setHoten("Dat");
-    //     BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-    //     String ePass=encoder.encode("12345");
-    //     user.setPassword(ePass);
-    //     this.repository.save(user);
-    // }
 }
