@@ -82,6 +82,7 @@ public class EmployeeService {
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
         MultipartFile file = employeeDto.getAnh();
         if (file != null && !file.isEmpty()) {
+            @SuppressWarnings("null")
             String filename = StringUtils.cleanPath(file.getOriginalFilename());
             if (filename.contains("..")) {
                 System.out.println("File không hợp lệ!");
