@@ -60,11 +60,6 @@ public class AccountService {
 
     public void changePassword(String currentpass, String newpass, String comfirm, User user){
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
-        // Log the inputs for debugging
-        System.out.println("Current password: " + currentpass);
-        System.out.println("New password: " + newpass);
-        System.out.println("Confirm password: " + comfirm);
-        System.out.println("User stored password: " + user.getPassword());
         if (currentpass == null) {
             throw new IllegalArgumentException("Không lấy được Mật khẩu cũ");
         }else if (newpass == null) {

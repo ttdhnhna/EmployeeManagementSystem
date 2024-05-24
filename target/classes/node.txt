@@ -32,3 +32,4 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
+Đã sửa xong phần chức năng thay đổi mật khẩu thành công.

@@ -94,7 +94,6 @@
                 <tr>
                     <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortField=iduser&sortDir=' + ${reverseSortDir}}">ID</a></th>
                     <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortField=hoten&sortDir=' + ${reverseSortDir}}">Họ tên</a></th>
-                    <!-- <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}">ID Nhân viên</a></th> -->
                     <th><a th:href="@{'/pageAcc/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">Email</a></th>
                     <th>Chức năng</th>
                 </tr>
@@ -103,7 +102,6 @@
                 <tr th:each = "user : ${ListAccounts}">
                     <td th:text="${user.iduser}"></td>
                     <td th:text="${user.hoten}"></td>
-                    <!-- <td th:text="${user.idnv}"></td> -->
                     <td th:text="${user.email}"></td>
                     <td>
                       <a th:href="@{/updateAccount/{id}(id=${user.iduser})}" class="btn btn-primary">Sửa</a>

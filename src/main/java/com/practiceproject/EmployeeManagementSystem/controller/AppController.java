@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
@@ -112,15 +113,12 @@ public class AppController {
     public String savechangePassword(@RequestParam(value = "currentpassword", required = false) String currentpass,
     @RequestParam(value = "newpassword") String newpass,
     @RequestParam(value = "confirmpassword") String confirmpass,
-    @ModelAttribute("user") User user, Model model){
-        // Debug logs
-        System.out.println("Current password: " + currentpass);
-        System.out.println("New password: " + newpass);
-        System.out.println("Confirm password: " + confirmpass);
-        System.out.println("User ID: " + user.getIduser());
+    @ModelAttribute("user") User user, RedirectAttributes redirect,
+    Model model){
+        User fullUser = service.getUserByID(user.getIduser());
         try {
-            service.changePassword(currentpass, newpass, confirmpass, user);
-            model.addAttribute("message", "Bạn đã thay đổi mật khẩu thành công cho tài khoản có ID: " + user.getIduser() + "!");
+            service.changePassword(currentpass, newpass, confirmpass, fullUser);
+            redirect.addFlashAttribute("message", "Bạn đã thay đổi mật khẩu thành công cho tài khoản có ID: " + fullUser.getIduser() + "!");
             return "redirect:/accounts";
         } catch (IllegalStateException | IllegalArgumentException e) {
             model.addAttribute("alertMessage", e.getMessage());
