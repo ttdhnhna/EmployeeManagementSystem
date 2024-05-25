@@ -1,6 +1,7 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -139,6 +140,16 @@ public class EmployeeService {
             }
         }
         return salaryinfo;
+    }
+
+    public List<Employee> getEmployeebyUser(long id){
+        List<Employee> lemployee = new ArrayList<>();
+        for(Employee e : repository.findAll()){
+            if(e.getIduser().getIduser()==id){
+                lemployee.add(e);
+            }
+        }
+        return lemployee;
     }
 
     //Chức năng lấy thông tin tài khoản cho nhân viên.

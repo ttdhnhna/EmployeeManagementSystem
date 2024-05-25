@@ -19,7 +19,7 @@ import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
-
+import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,8 +37,7 @@ public class EmployeeController {
 	// Trong TH này là: "http://localhost:8080/" (Trang chủ)
     public String getEmployees(Model model){
         // Chúng ta sử dụng Interface Model để truyền dữ liệu từ Controller sang View để hiển thị
-        
-        return "homepage";
+        return findPaginated(1, "idnv", "asc", model);
     }
     @GetMapping("/addEmployee")
     public String addEmployee(Model model){
@@ -109,7 +108,8 @@ public class EmployeeController {
         int pageSize=10;
 
         Page<Employee> page=service.findPaginated(pageNo, pageSize, sortField, sortDir);
-        List<Employee> ListEmployees=page.getContent();
+        Long iduser = Utility.getCurrentUserId();
+        List<Employee> ListEmployees = service.getEmployeebyUser(iduser);
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
