@@ -16,7 +16,7 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 
 * Phần tìm kiếm trong lương thì sẽ có cả tìm mã nhân viên, mã lương và tên nhân viên
 
-* Phần tìm kiếm ở trang phòng ban vẫn chưa hoạt động đc 
+* Phần tìm kiếm ở trang phòng ban và lương vẫn chưa hoạt động 
 
 * Làm chức năng ghi nhớ thông tin đăng nhập và quên mật khẩu. (Xong)
 
