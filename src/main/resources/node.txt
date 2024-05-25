@@ -20,9 +20,7 @@ Giờ sẽ cần chạy thử xem việc thêm, hiện lương
 Khong thay dc thuoc tinh idnv o 2 bang luong
 va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 
-* Phần tìm kiếm ở trang phòng ban vẫn chưa hoạt động đc nên sẽ để tạm đấy vậy
-* khi nào xử lý xong việc hiện danh sách nhân viên trong phòng ban thì sẽ bắt
-* đâu xử lý.
+* Phần tìm kiếm ở trang phòng ban và lương vẫn chưa hoạt động 
 
 * Làm chức năng ghi nhớ thông tin đăng nhập và quên mật khẩu. (Xong)
 
@@ -31,5 +29,3 @@ va phong ban, phan sua ma luong o nv thi van on va hien len dc.
 * Làm phần hiện ảnh nhân viên ở chi tiết phòng ban (Xong)
 
 * Bổ sung footer cho trang web (Đã sửa xong)
-
-Đã sửa xong phần chức năng thay đổi mật khẩu thành công.
