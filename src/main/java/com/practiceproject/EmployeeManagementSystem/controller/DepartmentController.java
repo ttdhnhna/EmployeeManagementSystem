@@ -1,8 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.controller;
 
-// import java.util.HashMap;
 import java.util.List;
-// import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
-// import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.service.DepartmentService;
 
 @Controller
@@ -60,7 +57,7 @@ public class DepartmentController {
     public String findPaginated(@PathVariable(value = "pageDepartmentNo")int pageNo, 
     @RequestParam("sortField") String sortField,
     @RequestParam("sortDir") String sortDir, Model model){
-        int pageSize=5;
+        int pageSize=10;
 
         Page<Department> page=service.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<Department> ListDepartments=page.getContent();

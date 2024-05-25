@@ -3,8 +3,6 @@ package com.practiceproject.EmployeeManagementSystem.service;
 import java.util.List;
 import java.util.Optional;
 
-// import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -60,13 +58,6 @@ public class AccountService {
 
     public void changePassword(String currentpass, String newpass, String comfirm, User user){
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
-        if (currentpass == null) {
-            throw new IllegalArgumentException("Không lấy được Mật khẩu cũ");
-        }else if (newpass == null) {
-            throw new IllegalArgumentException("Không lấy được Mật khẩu mới");
-        }else if (comfirm == null) {
-            throw new IllegalArgumentException("Không lấy được Mật khẩu nhắc lại");
-        }
         if(!passwordEncoder.matches(currentpass, user.getPassword())){
             throw new IllegalStateException("Sai mật khẩu");
         }

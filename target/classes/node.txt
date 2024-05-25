@@ -3,7 +3,7 @@
 cái này sẽ cần phải nghiên cứu 1 lúc mới được.(Đã thành công)
 
 * Sau khi làm xong cái chức năng đăng nhập với đăng ký thì sẽ chuyển trang đăng nhập sẽ là trang hiển thị đầu tiên
-và sau khi đăng nhập thành công thì mới chuyển đến trang chủ
+và sau khi đăng nhập thành công thì mới chuyển đến trang chủ (Xong)
 
 * Sửa cái hiện id. (Xong)
 
@@ -14,13 +14,9 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 
 * Làm chức năng đăng nhập và đăng xuất cho người dùng. (Xong)
 
-Ghi chú: Phần tìm kiếm trong lương thì sẽ có cả tìm mã nhân viên, mã lương và tên nhân viên
-Đã thêm được phần sửa vs thêm lương ở nhân viên rồi
-Giờ sẽ cần chạy thử xem việc thêm, hiện lương
-Khong thay dc thuoc tinh idnv o 2 bang luong
-va phong ban, phan sua ma luong o nv thi van on va hien len dc.
+* Phần tìm kiếm trong lương thì sẽ có cả tìm mã nhân viên, mã lương và tên nhân viên
 
-* Phần tìm kiếm ở trang phòng ban và lương vẫn chưa hoạt động 
+* Phần tìm kiếm ở trang phòng ban vẫn chưa hoạt động đc 
 
 * Làm chức năng ghi nhớ thông tin đăng nhập và quên mật khẩu. (Xong)
 
