@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
+import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.repository.DepartmentRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 
@@ -22,12 +23,26 @@ public class DepartmentService {
     DepartmentRepository repository;
     @Autowired
     EmployeeRepository eRepository;
+    @Autowired
+    AccountService aService;
 
     public List<Department> getDepartments(){
         return repository.findAll();
     }
 
+    public List<Department> getDepartmentsbyUser(long id){
+        List<Department> listdepartment = new ArrayList<>();
+        for(Department d : repository.findAll()){
+            if(d.getIduser().getIduser()==id){
+                listdepartment.add(d);
+            }
+        }
+        return listdepartment;
+    }
+
     public void saveDepartment(Department department){
+        User idUser = aService.getUserByID(Utility.getCurrentUserId());
+        department.setIduser(idUser);
         this.repository.save(department);
     }
 

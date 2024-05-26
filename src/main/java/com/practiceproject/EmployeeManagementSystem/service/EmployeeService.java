@@ -33,6 +33,8 @@ public class EmployeeService {
     SalaryRepository sRepository;
     @Autowired
     UserRepository uRepository;
+    @Autowired
+    AccountService aService;
 
     //Chức năng hiện tất cả nhân viên
     public List<Employee> getEmployees(){
@@ -57,6 +59,7 @@ public class EmployeeService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        iduser = aService.getUserByID(Utility.getCurrentUserId());
         employee.setHoten(hoten);
         employee.setNgaysinh(ngaysinh);
         employee.setQuequan(quequan);
@@ -88,6 +91,7 @@ public class EmployeeService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        iduser = aService.getUserByID(Utility.getCurrentUserId());
         employee.setHoten(hoten);
         employee.setNgaysinh(ngaysinh);
         employee.setQuequan(quequan);

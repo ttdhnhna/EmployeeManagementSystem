@@ -34,12 +34,13 @@ Giờ có 2 phần chính cần phải sửa là phần sửa lưu nhân viên v
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
-Đã tạo ra xong phần liên kết giữa các đối tượng trong dự án rồi, giờ sẽ cần phải làm phần hiện thông tin cần thiết cho từng user.
+Đã làm xong các phần hiện, thêm mới, cập nhật thông tin nhân viên, phòng ban, lương rồi.
+Cần chạy thử.
 
-user -> nv
-user <- nv
-
-Vừa cập nhật xong chức năng hiện nhân viên dựa trên iduser rồi nhưng vẫn chưa xong sẽ cần phải sửa thêm.
+Giờ chỉ còn cần phải làm phần thông tin tài khoản thôi. Trong phần này thì mình cần 1 trang
+để hiện thông tin tài khoản rồi sẽ có nút để thay đổi thông tin tài khoản như tên, email, mật
+khẩu. Nếu làm thành công nhanh được thì mình sẽ có thể cho thêm các thuộc tính như ảnh, ngày
+sinh, quê quán, giới tính, dân tộc, SĐT, chức vụ nữa.
 
 
 

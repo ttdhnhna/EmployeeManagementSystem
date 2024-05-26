@@ -69,5 +69,12 @@ public class Department {
     public Set<Employee> getIdnv() {
         return idnv;
     }
+    public User getIduser() {
+        return iduser;
+    }
+    public void setIduser(User iduser) {
+        this.iduser = iduser;
+    }
+    
     
 }

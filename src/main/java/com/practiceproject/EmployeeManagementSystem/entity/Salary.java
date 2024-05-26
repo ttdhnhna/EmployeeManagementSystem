@@ -64,10 +64,6 @@ public class Salary {
         return tongluong;
     }
 
-    public void setTongluong(Float tongluong) {
-        this.tongluong = tongluong;
-    }
-
     public float getPhucap() {
         return phucap;
     }
@@ -102,6 +98,14 @@ public class Salary {
 
     public static float getLuongcb() {
         return luongcb;
+    }
+
+    public User getIduser() {
+        return iduser;
+    }
+
+    public void setIduser(User iduser) {
+        this.iduser = iduser;
     }
     
 }
