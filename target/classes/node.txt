@@ -34,10 +34,9 @@ Giờ có 2 phần chính cần phải sửa là phần sửa lưu nhân viên v
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
-Giờ chỉ còn cần phải làm phần thông tin tài khoản thôi. Trong phần này thì mình cần 1 trang
-để hiện thông tin tài khoản rồi sẽ có nút để thay đổi thông tin tài khoản như tên, email, mật
-khẩu. Nếu làm thành công nhanh được thì mình sẽ có thể cho thêm các thuộc tính như ảnh, ngày
+Nếu làm thành công nhanh được thì mình sẽ có thể cho thêm các thuộc tính như ảnh, ngày
 sinh, quê quán, giới tính, dân tộc, SĐT, chức vụ nữa.
 
-Cần chạy thử.
+Đã chạy thử thành công rồi, giờ sẽ cần merge nhánh này với nhánh master với nếu muốn thì thêm 
+1 vài thông tin bổ sung như trên nếu muốn.
 
