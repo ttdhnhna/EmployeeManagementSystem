@@ -1,6 +1,7 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +34,6 @@ public class EmployeeService {
     SalaryRepository sRepository;
     @Autowired
     UserRepository uRepository;
-
     @Autowired
     DepartmentService dService;
     @Autowired
@@ -64,6 +64,7 @@ public class EmployeeService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        iduser = uService.getUserByID(Utility.getCurrentUserId());
         employee.setHoten(hoten);
         employee.setNgaysinh(ngaysinh);
         employee.setQuequan(quequan);
@@ -104,7 +105,7 @@ public class EmployeeService {
         employee.setChucvu(employeeDto.getChucvu());
     
         Department idpb = dService.getDepartmentID(employeeDto.getIdpb());
-        User iduser = uService.getUserByID(employeeDto.getIduser());
+        User iduser = uService.getUserByID(Utility.getCurrentUserId());
         Salary idluong  = sService.getSalaryID(employeeDto.getIdluong());
     
         employee.setIdpb(idpb);
@@ -154,15 +155,25 @@ public class EmployeeService {
         return salaryinfo;
     }
 
-    //Chức năng lấy thông tin tài khoản cho nhân viên.
-    public User getuserInfo(long id){
-        User userinfo = new User();
-        for(User u : uRepository.findAll()){
-            if(u.getIdnv().getIdnv()==id){
-                userinfo = u;
+    public List<Employee> getEmployeebyUser(long id){
+        List<Employee> lemployee = new ArrayList<>();
+        for(Employee e : repository.findAll()){
+            if(e.getIduser().getIduser()==id){
+                lemployee.add(e);
             }
         }
-        return userinfo;
+        return lemployee;
     }
+
+    //Chức năng lấy thông tin tài khoản cho nhân viên.
+    // public User getuserInfo(long id){
+    //     User userinfo = new User();
+    //     for(User u : uRepository.findAll()){
+    //         if(u.getIdnv().getIdnv()==id){
+    //             userinfo = u;
+    //         }
+    //     }
+    //     return userinfo;
+    // }
 }
 

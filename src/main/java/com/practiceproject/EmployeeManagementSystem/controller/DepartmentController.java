@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.service.DepartmentService;
+import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
 @Controller
 public class DepartmentController {
@@ -60,7 +61,8 @@ public class DepartmentController {
         int pageSize=10;
 
         Page<Department> page=service.findPaginated(pageNo, pageSize, sortField, sortDir);
-        List<Department> ListDepartments=page.getContent();
+        Long iduser = Utility.getCurrentUserId();
+        List<Department> ListDepartments=service.getDepartmentsbyUser(iduser);
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());

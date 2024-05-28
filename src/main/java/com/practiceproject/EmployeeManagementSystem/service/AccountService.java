@@ -4,10 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -36,24 +32,6 @@ public class AccountService {
 
     public void saveAccount(User user){
         this.repository.save(user);
-    }
-
-    public void deleteAccountById(long id){
-        this.repository.deleteById(id);
-    }
-
-    public List<User> findAllUsers(String keyword){
-        if(keyword!=null){
-            return repository.findAllUsers(keyword);
-        }
-        return repository.findAll();
-    }
-
-    public Page<User> findPaginatedAcc(int pageNo, int pageSize, String sortField, String sortDirection){
-        Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
-            Sort.by(sortField).descending();
-        Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
-        return this.repository.findAll(pageable);
     }
 
     public void changePassword(String currentpass, String newpass, String comfirm, User user){

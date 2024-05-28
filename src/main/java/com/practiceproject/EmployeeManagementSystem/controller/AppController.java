@@ -2,14 +2,12 @@ package com.practiceproject.EmployeeManagementSystem.controller;
 
 
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -59,34 +57,16 @@ public class AppController {
         return "login";
     }
 
-    @GetMapping("/addAccount")
-    public String newAccount(Model model){
-        model.addAttribute("user",new User());
-        return "newaccount";
-    }
-
-    @PostMapping("/saveNewAccount")
-    public String saveNewAccount(@ModelAttribute("user") User user){
-        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-        String ePass=encoder.encode(user.getPassword());
-        user.setPassword(ePass);
-        this.repository.save(user);
-        return "redirect:/accounts?success";
-    }
-
     @GetMapping("/login")
     public String login(){
         return "login";
     }
     @GetMapping("/accounts")
     public String showAccountPage(Model model){
-        return findPaginatedAcc(1, "iduser", "asc", model);
-    }
-    
-    @GetMapping("/deleteAccount/{id}")
-    public String deleteAccount(@PathVariable(value = "id") long id){
-        this.service.deleteAccountById(id);
-        return "redirect:/accounts";
+        Long iduser = Utility.getCurrentUserId();
+        User user = service.getUserByID(iduser);
+        model.addAttribute("user", user);
+        return "accountspage";
     }
 
     @GetMapping("/updateAccount/{id}")
@@ -124,34 +104,6 @@ public class AppController {
             model.addAttribute("alertMessage", e.getMessage());
             return "changepassword"; 
         }
-    }
-
-    @GetMapping("/finduser")
-    public String findUsers(Model model, @Param("keyword") String keyword){
-        List<User> ListAccounts=service.findAllUsers(keyword);
-        model.addAttribute("ListAccounts", ListAccounts);
-        return "accountspage";
-    }
-
-    @GetMapping("/pageAcc/{pageAccNo}")
-    public String findPaginatedAcc(@PathVariable(value = "pageAccNo") int pageNo,
-    @RequestParam("sortField") String sortField,
-    @RequestParam("sortDir") String sortDir, Model model){
-        int pageSize=10;
-
-        Page<User> page=service.findPaginatedAcc(pageNo, pageSize, sortField, sortDir);
-        List<User> ListAccounts=page.getContent();
-
-        model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("totalItems", page.getTotalElements());
-
-        model.addAttribute("sortField", sortField);
-        model.addAttribute("sortDir", sortDir);
-        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-
-        model.addAttribute("ListAccounts", ListAccounts);
-        return "accountspage";
     }
 
     //Chức năng quên mật khẩu

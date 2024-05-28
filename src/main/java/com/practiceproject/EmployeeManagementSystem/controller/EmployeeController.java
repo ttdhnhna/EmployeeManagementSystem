@@ -20,6 +20,7 @@ import com.practiceproject.EmployeeManagementSystem.entity.EmployeeDto;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
+import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -60,7 +61,7 @@ public class EmployeeController {
         @RequestParam("chucvu") String chucvu,
         @RequestParam("idpb") Department idpb,
         @RequestParam("idluong") Salary idluong,
-        @RequestParam("iduser") User iduser,
+        User iduser,
         @RequestParam("anh")MultipartFile anh){
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
@@ -103,7 +104,8 @@ public class EmployeeController {
         int pageSize=10;
 
         Page<Employee> page=service.findPaginated(pageNo, pageSize, sortField, sortDir);
-        List<Employee> ListEmployees=page.getContent();
+        Long iduser = Utility.getCurrentUserId();
+        List<Employee> ListEmployees = service.getEmployeebyUser(iduser);
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
@@ -124,8 +126,6 @@ public class EmployeeController {
         model.addAttribute("employee", employee);
         Salary salary=service.getsalaryInfo(id);
         model.addAttribute("salary", salary);
-        User user = service.getuserInfo(id);
-        model.addAttribute("user", user);
         return "employeeviewprofile";
     }
 

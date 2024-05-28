@@ -31,8 +31,8 @@ public class  Employee {
     @JsonBackReference
     private Salary idluong;
     
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_user", referencedColumnName = "id_user")
+    @ManyToOne
+    @JoinColumn(name = "id_user", nullable = false, referencedColumnName = "id_user")
     @JsonBackReference
     private User iduser;
 
