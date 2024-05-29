@@ -134,7 +134,7 @@ public class EmployeeService {
         Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
             Sort.by(sortField).descending();
         Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
-        return this.repository.findAllByUserId(iduser, pageable);
+        return this.repository.findAllByiduser(iduser, pageable);
     }
     //Chức năng tìm kiếm theo keyword
     public List<Employee> findAll(String keyword){
