@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
+import com.practiceproject.EmployeeManagementSystem.entity.User;
 
 @Repository //@Repository được sử dụng để chỉ ra rằng lớp này cung cấp chức năng lưu trữ, truy xuất, tìm kiếm, cập nhật và xóa hoạt động trên các đối tượng
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
@@ -18,5 +19,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
     + "OR p.chucvu LIKE %?1%")
     public List<Employee> findAll(String keywords);
 
-    public Page<Employee> findAllByiduser(Long iduser, Pageable pageable);
+    public Page<Employee> findAllByiduser(User iduser, Pageable pageable);
 }
