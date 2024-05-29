@@ -1,5 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.Column;
@@ -7,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,6 +27,11 @@ public class Salary {
     @OneToOne(mappedBy = "idluong")
     @JsonManagedReference
     private Employee idnv;
+
+    @ManyToOne
+    @JoinColumn(name = "id_user", nullable = false, referencedColumnName = "id_user")
+    @JsonBackReference
+    private User iduser;
 
     private static float luongcb = 1350000;
     private float hsl;
@@ -54,10 +62,6 @@ public class Salary {
     public float getTongluong() {
         tongluong=luongcb*hsl+phucap-baohiem-truluong;
         return tongluong;
-    }
-
-    public void setTongluong(Float tongluong) {
-        this.tongluong = tongluong;
     }
 
     public float getPhucap() {
@@ -94,6 +98,14 @@ public class Salary {
 
     public static float getLuongcb() {
         return luongcb;
+    }
+
+    public User getIduser() {
+        return iduser;
+    }
+
+    public void setIduser(User iduser) {
+        this.iduser = iduser;
     }
     
 }

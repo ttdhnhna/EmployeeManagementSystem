@@ -2,6 +2,8 @@ package com.practiceproject.EmployeeManagementSystem.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,4 +17,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
     + "OR p.idnv LIKE %?1%"
     + "OR p.chucvu LIKE %?1%")
     public List<Employee> findAll(String keywords);
+
+    public Page<Employee> findAllByUserId(Long iduser, Pageable pageable);
 }

@@ -25,3 +25,12 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 * Làm phần hiện ảnh nhân viên ở chi tiết phòng ban (Xong)
 
 * Bổ sung footer cho trang web (Đã sửa xong)
+
+Nếu làm thành công nhanh được thì mình sẽ có thể cho thêm các thuộc tính như ảnh, ngày
+sinh, quê quán, giới tính, dân tộc, SĐT, chức vụ nữa.
+
+Đã chạy thử thành công rồi, giờ sẽ cần merge nhánh này với nhánh master với nếu muốn thì thêm 
+1 vài thông tin bổ sung như trên nếu muốn.
+
+Ngoại trừ chức năng sắp xếp ra thì các chức năng khác hoạt động ổn hết rồi.
+

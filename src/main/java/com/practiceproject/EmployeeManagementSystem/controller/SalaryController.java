@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.service.SalaryService;
+import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
 @Controller
 public class SalaryController {
@@ -59,7 +60,8 @@ public class SalaryController {
        int pageSize=5;
 
        Page<Salary> page=service.findPaginated(pageNo, pageSize, sortField, sortDir);
-       List<Salary> ListSalaries=page.getContent();
+       Long iduser = Utility.getCurrentUserId();
+       List<Salary> ListSalaries= service.getSalarybyUser(iduser);
 
        model.addAttribute("currentPage", pageNo);
        model.addAttribute("totalPages", page.getTotalPages());
