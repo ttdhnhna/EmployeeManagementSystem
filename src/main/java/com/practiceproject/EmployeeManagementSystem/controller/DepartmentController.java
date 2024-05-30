@@ -60,9 +60,9 @@ public class DepartmentController {
     @RequestParam("sortDir") String sortDir, Model model){
         int pageSize=10;
 
-        Page<Department> page=service.findPaginated(pageNo, pageSize, sortField, sortDir);
         Long iduser = Utility.getCurrentUserId();
-        List<Department> ListDepartments=service.getDepartmentsbyUser(iduser);
+        Page<Department> page=service.findPaginated(pageNo, pageSize, sortField, sortDir, iduser);
+        List<Department> ListDepartments=page.getContent();
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());

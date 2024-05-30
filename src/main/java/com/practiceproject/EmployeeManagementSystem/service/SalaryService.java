@@ -58,11 +58,12 @@ public class SalaryService {
         this.repository.deleteById(id);
     }
     //Phan trang va sap xep
-    public Page<Salary> findPaginated(int pageNo, int pageSize, String sortField, String sortDir){
+    public Page<Salary> findPaginated(int pageNo, int pageSize, String sortField, String sortDir, Long iduser){
         Sort sort=sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
             Sort.by(sortField).descending();
         Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
-        return this.repository.findAll(pageable);
+        User user = aService.getUserByID(iduser);
+        return this.repository.findAllByiduser(user, pageable);
     }
     //Chức năng tìm kiếm theo keyword
     public List<Salary>findAllSalaries(String keyword){

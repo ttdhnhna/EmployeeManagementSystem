@@ -59,9 +59,9 @@ public class SalaryController {
     @RequestParam("sortDir") String sortDir, Model model){
        int pageSize=5;
 
-       Page<Salary> page=service.findPaginated(pageNo, pageSize, sortField, sortDir);
        Long iduser = Utility.getCurrentUserId();
-       List<Salary> ListSalaries= service.getSalarybyUser(iduser);
+       Page<Salary> page=service.findPaginated(pageNo, pageSize, sortField, sortDir, iduser);
+       List<Salary> ListSalaries= page.getContent();
 
        model.addAttribute("currentPage", pageNo);
        model.addAttribute("totalPages", page.getTotalPages());
