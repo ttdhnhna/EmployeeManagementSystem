@@ -31,65 +31,6 @@ sinh, quê quán, giới tính, dân tộc, SĐT, chức vụ nữa.
 
 Đã sửa xong phần sắp xếp phòng ban và lương rồi nhung co ve la phan luong con hoi loi
 qua.
-Code phần tìm kiếm: 
-public interface CustomSearchRepository {
-    List<Object[]> searchAllEntities(String keyword);
-}
 
-public class CustomSearchRepositoryImpl implements CustomSearchRepository {
-
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    @Override
-    public List<Object[]> searchAllEntities(String keyword) {
-        String queryStr = "SELECT e.idnv, e.hoten, e.ngaysinh, e.quequan, e.gt, e.dantoc, e.sdt, e.email, e.chucvu, " +
-                          "d.tenpb, d.diachi, d.sdt, " +
-                          "s.idluong, s.hsl, " +
-                          "u.hoten, u.email " +
-                          "FROM Employee e " +
-                          "JOIN e.department d " +
-                          "JOIN e.salary s " +
-                          "JOIN e.user u " +
-                          "WHERE e.hoten LIKE :keyword OR e.ngaysinh LIKE :keyword OR e.quequan LIKE :keyword " +
-                          "OR e.gt LIKE :keyword OR e.dantoc LIKE :keyword OR e.sdt LIKE :keyword OR e.email LIKE :keyword " +
-                          "OR e.chucvu LIKE :keyword OR d.tenpb LIKE :keyword OR d.diachi LIKE :keyword OR d.sdt LIKE :keyword " +
-                          "OR s.idluong LIKE :keyword OR s.hsl LIKE :keyword OR u.hoten LIKE :keyword OR u.email LIKE :keyword";
-        
-        TypedQuery<Object[]> query = entityManager.createQuery(queryStr, Object[].class);
-        query.setParameter("keyword", "%" + keyword + "%");
-
-        return query.getResultList();
-    }
-}
-
-public interface EmployeeRepository extends JpaRepository<Employee, Long>, CustomSearchRepository {
-    // Other query methods
-}
-
-@Service
-public class EmployeeService {
-
-    @Autowired
-    private EmployeeRepository employeeRepository;
-
-    public List<Object[]> searchAll(String keyword) {
-        return employeeRepository.searchAllEntities(keyword);
-    }
-}
-
-@Controller
-public class EmployeeController {
-
-    @Autowired
-    private EmployeeService employeeService;
-
-    @GetMapping("/search")
-    public String search(@RequestParam("keyword") String keyword, Model model) {
-        List<Object[]> results = employeeService.searchAll(keyword);
-        model.addAttribute("results", results);
-        return "searchResults"; // A view to display the results
-    }
-}
-
-
+Có thử sửa phần tìm kiếm lương và phòng ban cần chạy thử. Nhưng mình sẽ bỏ phần tìm kiếm 
+tất cả đi vì nó có vẻ là hơi dư thừa quá.

@@ -107,7 +107,6 @@ public class AppController {
     }
 
     //Chức năng quên mật khẩu
-
     @GetMapping("/forgotpassword")
     public String showForgotPassForm(Model model){
         // model.addAttribute("pageTitle", "Forgot Password");
