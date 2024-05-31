@@ -13,7 +13,11 @@ import com.practiceproject.EmployeeManagementSystem.entity.User;
 
 @Repository
 public interface SalaryRepository extends JpaRepository<Salary, Long>{
-    @Query("SELECT s FROM Salary s WHERE s.idluong LIKE %?1%")
-    public List<Salary> findAllSalaries(String keyword);
+    @Query("SELECT s FROM Salary s WHERE s.iduser = ?1 AND"
+    + "(s.hsl LIKE %?2%"
+    + "OR s.idluong LIKE %?2%"
+    + "OR s.phucap LIKE %?2%"
+    + "OR s.baohiem LIKE %?2%)")
+    public List<Salary> findAllSalaries(User iduser, String keyword);
     public Page<Salary> findAllByiduser(User iduser, Pageable pageable);
 }

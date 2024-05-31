@@ -1,6 +1,7 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,10 +67,11 @@ public class SalaryService {
         return this.repository.findAllByiduser(user, pageable);
     }
     //Chức năng tìm kiếm theo keyword
-    public List<Salary>findAllSalaries(String keyword){
+    public List<Salary>findAllSalaries(String keyword, Long iduser){
+        User user = aService.getUserByID(iduser);
         if(keyword!=null){
-            return repository.findAllSalaries(keyword);
+            return repository.findAllSalaries(user, keyword);
         }
-        return repository.findAll();
+        return Collections.emptyList();
     }
 }

@@ -80,6 +80,10 @@
                 </a>
             </div>
         </div>
+        <!-- Tin nhắn báo đăng ký tài khoản thành công -->
+        <div th:if="${errorMess != null}">
+          <div class="alert alert-danger">[[${errorMess}]]</div>
+        </div>
         <table class="table thead-light table-bordered">
             <thead class="table-dark">
                 <tr>

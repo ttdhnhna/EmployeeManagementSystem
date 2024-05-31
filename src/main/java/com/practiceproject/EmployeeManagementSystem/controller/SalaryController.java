@@ -77,8 +77,12 @@ public class SalaryController {
     //Tìm kiếm
     @GetMapping("/findSalary")
     public String findSalaries(Model model, @Param("keyword") String keyword){
-        List<Salary> ListSalaries=service.findAllSalaries(keyword);
+        Long iduser = Utility.getCurrentUserId();
+        List<Salary> ListSalaries=service.findAllSalaries(keyword, iduser);
         model.addAttribute("ListSalaries", ListSalaries);
+        if(ListSalaries.isEmpty()){
+            model.addAttribute("errorMess", "Không tìm thấy thông tin lương");
+        }
         return "salariespage";
     } 
 }

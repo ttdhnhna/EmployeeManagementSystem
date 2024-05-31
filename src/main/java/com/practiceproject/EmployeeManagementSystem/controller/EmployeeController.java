@@ -132,8 +132,12 @@ public class EmployeeController {
     //Tìm kiếm
     @GetMapping("/findemployee")
     public String findEmployees(Model model, @Param("keyword") String keyword){
-        List<Employee> ListEmployees=service.findAll(keyword);
+        Long iduser = Utility.getCurrentUserId();
+        List<Employee> ListEmployees=service.findAll(keyword, iduser);
         model.addAttribute("ListEmployees", ListEmployees);
+        if (ListEmployees.isEmpty()) {
+            model.addAttribute("errorMess", "Không tìm thấy nhân viên");
+        }
         return "homepage";
     }
 }

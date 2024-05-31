@@ -78,8 +78,12 @@ public class DepartmentController {
     //Tìm kiếm
     @GetMapping("/finddepartment")
     public String findDepartments(Model model, @Param("keyword") String keyword){
-        List<Department> ListDepartments=service.findDepartments(keyword);
+        Long iduser = Utility.getCurrentUserId();
+        List<Department> ListDepartments=service.findDepartments(keyword, iduser);
         model.addAttribute("ListDepartments", ListDepartments);
+        if(ListDepartments.isEmpty()){
+            model.addAttribute("errorMess", "Không tìm thấy phòng ban");
+        }
         return "departmentspage";
     }
 

@@ -32,5 +32,4 @@ sinh, quê quán, giới tính, dân tộc, SĐT, chức vụ nữa.
 Đã sửa xong phần sắp xếp phòng ban và lương rồi nhung co ve la phan luong con hoi loi
 qua.
 
-Có thử sửa phần tìm kiếm lương và phòng ban cần chạy thử. Nhưng mình sẽ bỏ phần tìm kiếm 
-tất cả đi vì nó có vẻ là hơi dư thừa quá.
+Đã sửa và cập nhật phần tìm kiếm cho nhân viên, phòng ban và lương; cần chạy thử

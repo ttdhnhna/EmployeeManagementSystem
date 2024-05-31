@@ -1,6 +1,7 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,11 +71,12 @@ public class DepartmentService {
     }
 
     //Chức năng tìm kiếm theo keyword
-    public List<Department> findDepartments(String keyword){
+    public List<Department> findDepartments(String keyword, Long iduser){
+        User user = aService.getUserByID(iduser);
         if(keyword!=null){
-            return repository.findAllDepartments(keyword);
+            return repository.findAllDepartments(user, keyword);
         }
-        return repository.findAll();
+        return Collections.emptyList();
     }
 
     //Chức năng lấy thông tin nhân viên có cùng id phòng ban

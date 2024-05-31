@@ -3,6 +3,7 @@ package com.practiceproject.EmployeeManagementSystem.service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -138,11 +139,12 @@ public class EmployeeService {
         return this.repository.findAllByiduser(user, pageable);
     }
     //Chức năng tìm kiếm theo keyword
-    public List<Employee> findAll(String keyword){
+    public List<Employee> findAll(String keyword, Long iduser){
+        User user = uService.getUserByID(iduser);
         if(keyword!=null){
-            return repository.findAll(keyword);
+            return repository.findAllbyiduser(user, keyword);
         }
-        return repository.findAll();
+        return Collections.emptyList();
     }
 
     //Chức năng lấy thông tin lương cho nhân viên.
