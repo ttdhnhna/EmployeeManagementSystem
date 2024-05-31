@@ -14,7 +14,7 @@ import com.practiceproject.EmployeeManagementSystem.entity.User;
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
     //Tìm kiếm
-    @Query(value = "SELECT d FROM Department d WHERE d.iuser LIKE ?1"
+    @Query(value = "SELECT d FROM Department d WHERE d.iduser LIKE ?1"
     + "AND (d.tenpb LIKE %?2%"
     + "OR d.idpb LIKE %?2%"
     + "OR d.diachi LIKE %?2%"
