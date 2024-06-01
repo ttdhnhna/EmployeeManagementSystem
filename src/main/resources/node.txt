@@ -29,5 +29,4 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 Nếu làm thành công nhanh được thì mình sẽ có thể cho thêm các thuộc tính như ảnh, ngày
 sinh, quê quán, giới tính, dân tộc, SĐT, chức vụ nữa.
 
-Đã sửa xong phần sắp xếp phòng ban và lương rồi nhung co ve la phan luong con hoi loi
-qua.
+Đã sửa xong phan tim kiem roi nhung phan tim phong ban con bi loi

@@ -31,8 +31,3 @@ sinh, quê quán, giới tính, dân tộc, SĐT, chức vụ nữa.
 
 Đã sửa xong phần sắp xếp phòng ban và lương rồi nhung co ve la phan luong con hoi loi
 qua.
-
-Whitelabel Error Page
-This application has no explicit mapping for /error, so you are seeing this as a fallback.
-
-Sat Jun 01 19:59:15 ICT 2024
