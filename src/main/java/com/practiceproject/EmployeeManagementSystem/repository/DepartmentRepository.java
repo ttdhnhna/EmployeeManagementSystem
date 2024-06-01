@@ -14,11 +14,11 @@ import com.practiceproject.EmployeeManagementSystem.entity.User;
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
     //Tìm kiếm
-    @Query(value = "SELECT d FROM Department d WHERE d.iduser LIKE ?1"
-    + "AND (d.tenpb LIKE %?2%"
-    + "OR d.idpb LIKE %?2%"
-    + "OR d.diachi LIKE %?2%"
-    + "OR d.sdt LIKE %?2%)", nativeQuery = true)
+    @Query(value = "SELECT d FROM Department d WHERE d.iduser LIKE ?1 "
+    + " AND (d.tenpb LIKE %?2% "
+    + " OR d.idpb LIKE %?2% "
+    + " OR d.diachi LIKE %?2% "
+    + " OR d.sdt LIKE %?2%);", nativeQuery = true)
     public List<Department> findAllDepartments(User iduser, String keyword);
 
     public Page<Department> findAllByiduser(User iduser, Pageable pageable);
