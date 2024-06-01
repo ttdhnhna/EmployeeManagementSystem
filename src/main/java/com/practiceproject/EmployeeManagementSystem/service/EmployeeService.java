@@ -74,8 +74,16 @@ public class EmployeeService {
         employee.setSdt(sdt);
         employee.setEmail(email);
         employee.setChucvu(chucvu);
-        employee.setIdpb(idpb);
-        employee.setIdluong(idluong);
+        if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
+            employee.setIdpb(idpb);
+        } else {
+            throw new IllegalArgumentException("ID phòng ban vừa nhập không tồn tại");
+        }
+        if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
+            employee.setIdluong(idluong);
+        } else {
+            throw new IllegalArgumentException("ID lương vừa nhập không tồn tại");
+        }
         employee.setIduser(iduser);
         this.repository.save(employee);
     }
@@ -109,8 +117,16 @@ public class EmployeeService {
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
         Salary idluong  = sService.getSalaryID(employeeDto.getIdluong());
     
-        employee.setIdpb(idpb);
-        employee.setIdluong(idluong);
+        if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
+            employee.setIdpb(idpb);
+        } else {
+            throw new IllegalArgumentException("ID phòng ban vừa nhập không tồn tại");
+        }
+        if (idluong.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
+            employee.setIdluong(idluong);
+        } else {
+            throw new IllegalArgumentException("ID lương vừa nhập không tồn tại");
+        }
         employee.setIduser(iduser);
     
         this.repository.save(employee); 
@@ -167,16 +183,5 @@ public class EmployeeService {
         }
         return lemployee;
     }
-
-    //Chức năng lấy thông tin tài khoản cho nhân viên.
-    // public User getuserInfo(long id){
-    //     User userinfo = new User();
-    //     for(User u : uRepository.findAll()){
-    //         if(u.getIdnv().getIdnv()==id){
-    //             userinfo = u;
-    //         }
-    //     }
-    //     return userinfo;
-    // }
 }
 

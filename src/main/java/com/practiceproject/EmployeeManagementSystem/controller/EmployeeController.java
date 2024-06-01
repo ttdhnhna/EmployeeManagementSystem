@@ -62,10 +62,15 @@ public class EmployeeController {
         @RequestParam("idpb") Department idpb,
         @RequestParam("idluong") Salary idluong,
         User iduser,
-        @RequestParam("anh")MultipartFile anh){
+        @RequestParam("anh")MultipartFile anh,
+        Model model){
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
-        service.saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
+        try {
+            service.saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
+        } catch (IllegalStateException | IllegalArgumentException e) {
+            model.addAttribute("alertMessage", e.getMessage());
+        }
         return "redirect:/";
     }
 
@@ -77,7 +82,7 @@ public class EmployeeController {
             if(employee!=null){
                 service.updateEmployee(employee, employeeDto);
             }
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalStateException | IllegalArgumentException e) {
             model.addAttribute("alertMessage", e.getMessage());
         }
         return "redirect:/";

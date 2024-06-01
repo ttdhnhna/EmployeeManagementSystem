@@ -79,6 +79,10 @@
                     <form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post"
                         enctype="multipart/form-data"
                     >
+                        <!-- Tin nhắn báo lỗi -->
+                        <div th:if="${alertMessage != null}">
+                            <div class="alert alert-danger">[[${alertMessage}]]</div>
+                        </div>
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
                         nut gui -->
                         <div class="form-group">
