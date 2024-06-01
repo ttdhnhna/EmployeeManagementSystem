@@ -74,7 +74,7 @@ public class DepartmentService {
     public List<Department> findDepartments(String keyword, Long iduser){
         User user = aService.getUserByID(iduser);
         if(keyword!=null){
-            return repository.findAllDepartments(user, keyword);
+            return repository.findAllDepartments(user.getIduser(), keyword);
         }
         return Collections.emptyList();
     }

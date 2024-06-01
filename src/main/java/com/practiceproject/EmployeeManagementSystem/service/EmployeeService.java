@@ -142,7 +142,7 @@ public class EmployeeService {
     public List<Employee> findAll(String keyword, Long iduser){
         User user = uService.getUserByID(iduser);
         if(keyword!=null){
-            return repository.findAllbyiduser(user, keyword);
+            return repository.findAllbyiduser(user.getIduser(), keyword);
         }
         return Collections.emptyList();
     }

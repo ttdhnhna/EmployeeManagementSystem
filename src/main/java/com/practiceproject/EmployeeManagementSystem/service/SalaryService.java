@@ -70,7 +70,7 @@ public class SalaryService {
     public List<Salary>findAllSalaries(String keyword, Long iduser){
         User user = aService.getUserByID(iduser);
         if(keyword!=null){
-            return repository.findAllSalaries(user, keyword);
+            return repository.findAllSalaries(user.getIduser(), keyword);
         }
         return Collections.emptyList();
     }
