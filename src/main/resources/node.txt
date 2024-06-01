@@ -35,7 +35,7 @@ qua.
 Whitelabel Error Page
 This application has no explicit mapping for /error, so you are seeing this as a fallback.
 
-Sat Jun 01 17:47:11 ICT 2024
+Sat Jun 01 19:59:15 ICT 2024
 There was an unexpected error (type=Internal Server Error, status=500).
 could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
 org.springframework.dao.InvalidDataAccessResourceUsageException: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
@@ -184,7 +184,7 @@ Caused by: org.hibernate.exception.SQLGrammarException: could not extract Result
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
 	... 101 more
-Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: Invalid object name 'Employee'.
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: Invalid column name 'e'.
 	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:265)
 	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1662)
 	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:615)
