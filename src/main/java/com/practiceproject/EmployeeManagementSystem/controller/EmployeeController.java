@@ -68,8 +68,9 @@ public class EmployeeController {
         //Lưu vào csdl
         try {
             service.saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
-        } catch (IllegalStateException | IllegalArgumentException e) {
+        } catch (IllegalStateException e) {
             model.addAttribute("alertMessage", e.getMessage());
+            return "newemployee";
         }
         return "redirect:/";
     }
@@ -82,8 +83,9 @@ public class EmployeeController {
             if(employee!=null){
                 service.updateEmployee(employee, employeeDto);
             }
-        } catch (IllegalStateException | IllegalArgumentException e) {
+        } catch (IllegalStateException e) {
             model.addAttribute("alertMessage", e.getMessage());
+            return "updateemployee";
         }
         return "redirect:/";
     }

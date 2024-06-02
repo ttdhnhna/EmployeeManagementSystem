@@ -77,14 +77,15 @@ public class EmployeeService {
         if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
             employee.setIdpb(idpb);
         } else {
-            throw new IllegalArgumentException("ID phòng ban vừa nhập không tồn tại");
+            throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại");
         }
         if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
             employee.setIdluong(idluong);
         } else {
-            throw new IllegalArgumentException("ID lương vừa nhập không tồn tại");
+            throw new IllegalStateException("ID lương vừa nhập không tồn tại");
         }
         employee.setIduser(iduser);
+
         this.repository.save(employee);
     }
     
@@ -112,23 +113,21 @@ public class EmployeeService {
         employee.setSdt(employeeDto.getSdt());
         employee.setEmail(employeeDto.getEmail());
         employee.setChucvu(employeeDto.getChucvu());
-    
         Department idpb = dService.getDepartmentID(employeeDto.getIdpb());
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
-        Salary idluong  = sService.getSalaryID(employeeDto.getIdluong());
-    
+        Salary idluong  = sService.getSalaryID(employeeDto.getIdluong()); 
         if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
             employee.setIdpb(idpb);
         } else {
-            throw new IllegalArgumentException("ID phòng ban vừa nhập không tồn tại");
+            throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại");
         }
         if (idluong.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
             employee.setIdluong(idluong);
         } else {
-            throw new IllegalArgumentException("ID lương vừa nhập không tồn tại");
+            throw new IllegalStateException("ID lương vừa nhập không tồn tại");
         }
         employee.setIduser(iduser);
-    
+
         this.repository.save(employee); 
     }
     //Tìm nhân viên bằng id
