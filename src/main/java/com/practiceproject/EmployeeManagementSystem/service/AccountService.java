@@ -25,7 +25,7 @@ public class AccountService {
         if(optional.isPresent()){
             user=optional.get();
         }else{
-            throw new RuntimeException("Không tìm thấy id tài khoản: "+id);
+            throw new IllegalStateException("Không tìm thấy id tài khoản: "+id);
         }
         return user;
     }

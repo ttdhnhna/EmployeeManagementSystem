@@ -29,6 +29,4 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 Nếu làm thành công nhanh được thì mình sẽ có thể cho thêm các thuộc tính như ảnh, ngày
 sinh, quê quán, giới tính, dân tộc, SĐT, chức vụ nữa.
 
-Vẫn cần phải sửa lại phần tìm kiếm phòng ban.
-
-Da chay thu thanh cong
+Chay thanh cong roi
