@@ -53,7 +53,7 @@ public class DepartmentService {
         if(optional.isPresent()){
             department=optional.get();
         }else{
-            throw new RuntimeException("Khong tim thay id phong ban: "+id);
+            throw new IllegalStateException("Khong tim thay id phong ban: "+id);
         }
         return department;
     }
@@ -72,9 +72,8 @@ public class DepartmentService {
 
     //Chức năng tìm kiếm theo keyword
     public List<Department> findDepartments(String keyword, Long iduser){
-        User user = aService.getUserByID(iduser);
         if(keyword!=null){
-            return repository.findAllDepartments(user.getIduser(), keyword);
+            return repository.findAllDepartments(iduser, keyword);
         }
         return Collections.emptyList();
     }

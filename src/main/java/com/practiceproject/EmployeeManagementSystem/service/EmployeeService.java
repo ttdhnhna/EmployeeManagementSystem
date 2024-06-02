@@ -96,8 +96,7 @@ public class EmployeeService {
             @SuppressWarnings("null")
             String filename = StringUtils.cleanPath(file.getOriginalFilename());
             if (filename.contains("..")) {
-                System.out.println("File không hợp lệ!");
-                return;
+                throw new IllegalStateException("File không hợp lệ!");
             }
             try {
                 employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
@@ -137,7 +136,7 @@ public class EmployeeService {
         if(optional.isPresent()){
             employee=optional.get();
         }else{
-            throw new RuntimeException("Không tìm thấy id nhân viên: "+id);
+            throw new IllegalStateException("Không tìm thấy id nhân viên: "+id);
         }
         return employee;
     }
@@ -155,9 +154,8 @@ public class EmployeeService {
     }
     //Chức năng tìm kiếm theo keyword
     public List<Employee> findAll(String keyword, Long iduser){
-        User user = uService.getUserByID(iduser);
         if(keyword!=null){
-            return repository.findAllbyiduser(user.getIduser(), keyword);
+            return repository.findAllbyiduser(iduser, keyword);
         }
         return Collections.emptyList();
     }

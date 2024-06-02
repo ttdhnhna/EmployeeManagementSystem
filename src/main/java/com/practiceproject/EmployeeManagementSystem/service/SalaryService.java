@@ -50,7 +50,7 @@ public class SalaryService {
         if(optional.isPresent()){
             salary=optional.get();
         }else{
-            throw new RuntimeException("Không tìm thấy id lương: "+id);
+            throw new IllegalStateException("Không tìm thấy id lương: "+id);
         }
         return salary;
     }
@@ -68,9 +68,8 @@ public class SalaryService {
     }
     //Chức năng tìm kiếm theo keyword
     public List<Salary>findAllSalaries(String keyword, Long iduser){
-        User user = aService.getUserByID(iduser);
         if(keyword!=null){
-            return repository.findAllSalaries(user.getIduser(), keyword);
+            return repository.findAllSalaries(iduser, keyword);
         }
         return Collections.emptyList();
     }
