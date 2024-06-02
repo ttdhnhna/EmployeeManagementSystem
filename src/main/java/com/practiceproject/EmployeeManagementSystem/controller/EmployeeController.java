@@ -41,8 +41,8 @@ public class EmployeeController {
         return findPaginated(1, "idnv", "asc", model);
     }
     @GetMapping("/addEmployee")
-    public String addEmployee(Model model){
-        Employee employee=new Employee();
+    public String addEmployee(Model model, Employee employee){
+        // Employee employee=new Employee();
         model.addAttribute("employee", employee);
         /*Phương thức addAttribute ở đây sẽ giúp ta truyền nhưng dữ liệu mà đối tượng employee có
          * và truyền vào employee dưới dạng html để ta có thể dùng để hiển thị và chỉnh sửa
