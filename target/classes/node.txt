@@ -26,5 +26,6 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
-Vua test thu chuong trinh thi loi phan hien tong luon, bo sung them neu ma idpb hoac idluong
+Vua test thu chuong trinh thi loi phan hien tong luong, bo sung them neu ma idpb hoac idluong
 la trong tron csdl thi cung hien luon thong bao.
+

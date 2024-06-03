@@ -163,8 +163,9 @@ public class EmployeeService {
     //Chức năng lấy thông tin lương cho nhân viên.
     public Salary getsalaryInfo(long id){
         Salary salaryinfo=new Salary();
+        Long iduser = Utility.getCurrentUserId();
         for(Salary s : sRepository.findAll()){
-            if(s.getIdnv().getIdnv()==id){
+            if(s.getIdnv().getIdnv().equals(id) && s.getIduser().getIduser().equals(iduser)){
                 salaryinfo=s;
             }
         }
