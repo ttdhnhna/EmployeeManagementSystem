@@ -74,12 +74,12 @@ public class EmployeeService {
         employee.setSdt(sdt);
         employee.setEmail(email);
         employee.setChucvu(chucvu);
-        if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
+        if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId()) && !idpb.equals(null)) {
             employee.setIdpb(idpb);
         } else {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại");
         }
-        if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
+        if (idluong.getIduser().getIduser().equals(Utility.getCurrentUserId()) && !idluong.equals(null)) {
             employee.setIdluong(idluong);
         } else {
             throw new IllegalStateException("ID lương vừa nhập không tồn tại");
@@ -164,8 +164,9 @@ public class EmployeeService {
     public Salary getsalaryInfo(long id){
         Salary salaryinfo=new Salary();
         Long iduser = Utility.getCurrentUserId();
+        Employee e = getEmployeebyID(id);
         for(Salary s : sRepository.findAll()){
-            if(s.getIdnv().getIdnv().equals(id) && s.getIduser().getIduser().equals(iduser)){
+            if(s.getIdluong().equals(e.getIdluong().getIdluong()) && s.getIduser().getIduser().equals(iduser)){
                 salaryinfo=s;
             }
         }

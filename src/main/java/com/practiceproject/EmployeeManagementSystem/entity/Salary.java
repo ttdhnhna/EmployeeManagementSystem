@@ -60,8 +60,12 @@ public class Salary {
     }
 
     public float getTongluong() {
-        tongluong=luongcb*hsl+phucap-baohiem-truluong;
         return tongluong;
+    }
+
+    public void setTongluong(float tongluong) {
+        //luongcb*hsl+phucap-baohiem-truluong
+        this.tongluong = this.getHsl()*this.getLuongcb()+ this.getPhucap() - this.getBaohiem() - this.getTruluong();
     }
 
     public float getPhucap() {
