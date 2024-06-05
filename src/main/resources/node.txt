@@ -26,4 +26,7 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
-Đã thử sửa rồi cần chạy thử.
+Phan gui email vs luu tong luong da hoat dong roi nhung phan hien tong luong van con bi loi khong hien ra so
+han hoi, va nen them vao chuc nang xem lieu idluong vua nhap da co trong cac nhan vien khac chua neu co thi
+hien loi con ko thi cu lam viec nhu binh thuong
+Va can co 1 cach de kieu nhu thay doi ma luong 1 cach thuan tien cho nguoi dung hon.
