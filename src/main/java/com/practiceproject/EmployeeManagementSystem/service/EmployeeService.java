@@ -77,12 +77,14 @@ public class EmployeeService {
         if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId()) && !idpb.equals(null)) {
             employee.setIdpb(idpb);
         } else {
-            throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại");
+            throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
         if (idluong.getIduser().getIduser().equals(Utility.getCurrentUserId()) && !idluong.equals(null)) {
             employee.setIdluong(idluong);
+        } else if(idluong.getIdnv().getIdnv() != null){
+            throw new IllegalStateException("ID lương vừa nhập đã được sử dụng!");
         } else {
-            throw new IllegalStateException("ID lương vừa nhập không tồn tại");
+            throw new IllegalStateException("ID lương vừa nhập không tồn tại!");
         }
         employee.setIduser(iduser);
 
@@ -118,12 +120,14 @@ public class EmployeeService {
         if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
             employee.setIdpb(idpb);
         } else {
-            throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại");
+            throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
         if (idluong.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
             employee.setIdluong(idluong);
+        } else if(idluong.getIdnv().getIdnv() != null){
+            throw new IllegalStateException("ID lương vừa nhập đã được sử dụng!");
         } else {
-            throw new IllegalStateException("ID lương vừa nhập không tồn tại");
+            throw new IllegalStateException("ID lương vừa nhập không tồn tại!");
         }
         employee.setIduser(iduser);
 
