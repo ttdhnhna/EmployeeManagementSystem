@@ -79,7 +79,7 @@ public class EmployeeService {
         } else {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
-        if (idluong.getIduser().getIduser().equals(Utility.getCurrentUserId()) && !idluong.equals(null)) {
+        if (idluong.getIduser().getIduser().equals(Utility.getCurrentUserId()) && idluong.getIdnv().getIdnv() == null) {
             employee.setIdluong(idluong);
         } else if(idluong.getIdnv().getIdnv() != null){
             throw new IllegalStateException("ID lương vừa nhập đã được sử dụng!");
@@ -122,7 +122,7 @@ public class EmployeeService {
         } else {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
-        if (idluong.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
+        if (idluong.getIduser().getIduser().equals(Utility.getCurrentUserId()) && idluong.getIdnv().getIdnv() == null) {
             employee.setIdluong(idluong);
         } else if(idluong.getIdnv().getIdnv() != null){
             throw new IllegalStateException("ID lương vừa nhập đã được sử dụng!");

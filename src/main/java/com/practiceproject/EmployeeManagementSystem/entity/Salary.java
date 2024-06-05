@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 /**
@@ -59,16 +57,6 @@ public class Salary {
 
     public void setHsl(float hsl) {
         this.hsl = hsl;
-    }
-
-    public float calculateTongLuong() {
-        return (luongcb * this.hsl + this.phucap) - this.baohiem - this.truluong;
-    }
-
-    @PrePersist
-    @PreUpdate
-    public void preSave() {
-        this.tongluong = calculateTongLuong();
     }
 
     public float getTongluong() {

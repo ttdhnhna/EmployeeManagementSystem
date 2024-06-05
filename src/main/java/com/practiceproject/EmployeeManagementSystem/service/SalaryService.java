@@ -41,7 +41,7 @@ public class SalaryService {
     public void saveSalary(Salary salary){
         User iduser = aService.getUserByID(Utility.getCurrentUserId());
         salary.setIduser(iduser);
-        float tl = salary.calculateTongLuong();
+        float tl = (Salary.getLuongcb() * salary.getHsl() + salary.getPhucap()) - salary.getBaohiem() - salary.getTruluong();
         salary.setTongluong(tl);
         this.repository.save(salary);
     }
