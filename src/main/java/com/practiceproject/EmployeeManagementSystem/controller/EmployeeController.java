@@ -23,6 +23,7 @@ import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
 import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller//chỉ ra rằng một lớp cụ thể đóng vai trò của bộ điều khiển
 /*Hay có thể nói dễ hiểu hơn là lớp này sẽ là lớp được dùng để liên kết và lấy nhưng logic toán học được tạo ra trong service
@@ -76,7 +77,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/updateEmployee")
-    public String updateEmployee(@ModelAttribute("employee") EmployeeDto employeeDto, Model model) throws IOException{
+    public String updateEmployee(@ModelAttribute("employee") EmployeeDto employeeDto, Model model, RedirectAttributes redirectAttributes) throws IOException{
         // service.updateEmployee(employee, hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
         try {
             Employee employee = service.getEmployeebyID(employeeDto.getIdnv());
@@ -84,8 +85,9 @@ public class EmployeeController {
                 service.updateEmployee(employee, employeeDto);
             }
         } catch (IllegalStateException e) {
-            model.addAttribute("alertMessage", e.getMessage());
-            return "updateemployee";
+            redirectAttributes.addFlashAttribute("alertMessage", e.getMessage());
+            redirectAttributes.addFlashAttribute("employee", employeeDto);
+            return "redirect:/updateEmployee/" + employeeDto.getIdnv();
         }
         return "redirect:/";
     }

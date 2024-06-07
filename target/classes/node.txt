@@ -26,3 +26,5 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
+Can sua lai phan cap nhat sau khi bi loi can phai giu lai id nv de con thoa man dieu kien vua lam trong
+phan cap nhat luong.
