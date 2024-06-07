@@ -26,3 +26,5 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
+Can bo sung phan dieu kien o phan cap nhat idluong de co the cap nhat cac thong tin khac
+thuan tien hon.
