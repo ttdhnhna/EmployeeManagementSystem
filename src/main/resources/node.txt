@@ -26,4 +26,4 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
-1.305E7
+₫500,000.00
