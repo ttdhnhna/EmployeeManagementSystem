@@ -103,7 +103,9 @@
                   <th>
                     <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=truluong&sortDir=' + ${reverseSortDir}}">Trừ lương</a>
                   </th>
-                  <th>Tổng lương</th>
+                  <th>
+                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=truluong&sortDir=' + ${reverseSortDir}}"></a>Tổng lương</a>
+                  </th>
                   <th>Chức năng</th>
                 </tr>
             </thead>
@@ -115,7 +117,7 @@
                     <td th:text="${salary.phucap}" name="current"></td>
                     <td th:text="${salary.baohiem}" name="current"></td>
                     <td th:text="${salary.truluong}" name="current"></td>
-                    <td th:text="${salary.tongluong}" name="current"></td>
+                    <td th:text="${salary.tongluong}"></td>
                     <td>
                       <a th:href="@{/updateSalary/{id}(id=${salary.idluong})}" class="btn btn-primary">Sửa</a>
                       <a th:href="@{/deleteSalary/{id}(id=${salary.idluong})}" class="btn btn-danger">Xóa</a>
