@@ -114,9 +114,9 @@
                     <td th:text="${salary.idluong}"></td>
                     <td th:text="${salary.luongcb}" name="current"></td>
                     <td th:text="${salary.hsl}"></td>
-                    <td th:text="${salary.phucap}" name="current"></td>
-                    <td th:text="${salary.baohiem}" name="current"></td>
-                    <td th:text="${salary.truluong}" name="current"></td>
+                    <td th:text="${'₫' +#numbers.formatDecimal(salary.phucap 1, 'COMMA', 2, 'POINT')}"></td>
+                    <td th:text="${'₫' +#numbers.formatDecimal(salary.baohiem, 1, 'COMMA', 2, 'POINT')}"></td>
+                    <td th:text="${'₫' +#numbers.formatDecimal(salary.truluong, 1, 'COMMA', 2, 'POINT')}"></td>
                     <td th:text="${'₫' +#numbers.formatDecimal(salary.tongluong, 1, 'COMMA', 2, 'POINT')}"></td>
                     <td>
                       <a th:href="@{/updateSalary/{id}(id=${salary.idluong})}" class="btn btn-primary">Sửa</a>
