@@ -122,10 +122,12 @@ public class EmployeeService {
         } else {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
-        if (idluong.getIduser().getIduser().equals(Utility.getCurrentUserId()) && idluong.getIdnv().getIdnv() == null || idluong.getIdnv().getIdnv() == employee.getIdnv()) {
-            employee.setIdluong(idluong);
-        } else if(idluong.getIdnv().getIdnv() != null || idluong.getIdnv().getIdnv() != employee.getIdnv()){
-            throw new IllegalStateException("ID lương vừa nhập đã được sử dụng!");
+        if (idluong != null && idluong.getIduser() != null && idluong.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
+            if (idluong.getIdnv() == null || idluong.getIdnv().getIdnv() == null || idluong.getIdnv().getIdnv().equals(employee.getIdnv())) {
+                employee.setIdluong(idluong);
+            } else {
+                throw new IllegalStateException("ID lương vừa nhập đã được sử dụng!");
+            }
         } else {
             throw new IllegalStateException("ID lương vừa nhập không tồn tại!");
         }
