@@ -26,5 +26,3 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
-Van lỗi phần chi tiết.
-2024-06-09 11:43:13.892 ERROR 4452 --- [nio-8080-exec-5] s.e.ErrorMvcAutoConfiguration$StaticView : Cannot render error page for request [/profileemployee/1] and exception [An error happened during template parsing (template: "class path resource [templates/employeeviewprofile.html]")] as the response has already been committed. As a result, the response may have the wrong status code.
