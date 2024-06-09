@@ -44,10 +44,10 @@ public class SalaryService {
         float tl = (Salary.getLuongcb() * salary.getHsl() + salary.getPhucap()) - salary.getBaohiem() - salary.getTruluong();
         if(tl<=0){
             salary.setTongluong(0);
-            salary.setNo(0-tl);
+            salary.setTienno(0-tl);;
         }else{
             salary.setTongluong(tl);
-            salary.setNo(0);
+            salary.setTienno(0);;
         }
         this.repository.save(salary);
     }

@@ -112,11 +112,11 @@ public class Salary {
         this.iduser = iduser;
     }
 
-    public float getNo() {
+    public float getTienno() {
         return tienno;
     }
 
-    public void setNo(float tienno) {
+    public void setTienno(float tienno) {
         this.tienno = tienno;
     }
     
