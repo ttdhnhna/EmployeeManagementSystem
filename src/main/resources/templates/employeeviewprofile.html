@@ -194,7 +194,7 @@
                     <label class="form-lable">Trừ lương</label>
                     <output class="form-control mb-1" th:text="${'₫' + #numbers.formatDecimal(salary.truluong, 1, 'COMMA', 2, 'POINT')}"></output>
                   </div>
-                  <div th:if="${salary.tienno != null}">
+                  <div th:if="${salary.tienno != 0}">
                     <div class="form-group">
                         <label class="form-label">Nợ</label>
                         <output class="form-control mb-1" th:text="${'₫' + #numbers.formatDecimal(salary.tienno, 1, 'COMMA', 2, 'POINT')}"></output>
