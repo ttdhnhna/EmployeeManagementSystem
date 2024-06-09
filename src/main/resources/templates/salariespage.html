@@ -126,7 +126,7 @@
             <tbody>
                 <tr th:each = "salary : ${ListSalaries}">
                     <td th:text="${salary.idluong}"></td>
-                    <td th:text="${salary.luongcb}" name="current"></td>
+                    <td th:text="${salary.tienno}" name="current"></td>
                     <td th:text="${salary.hsl}"></td>
                     <td th:text="${'₫' + #numbers.formatDecimal(salary.phucap, 1, 'COMMA', 2, 'POINT')}"></td>
                     <td th:text="${'₫' + #numbers.formatDecimal(salary.baohiem, 1, 'COMMA', 2, 'POINT')}"></td>

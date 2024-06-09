@@ -39,7 +39,7 @@ public class Salary {
     private float baohiem;
     private float truluong;
     private float tongluong;
-    private float no;
+    private float tienno;
     
     public Salary() {
     }
@@ -113,11 +113,11 @@ public class Salary {
     }
 
     public float getNo() {
-        return no;
+        return tienno;
     }
 
-    public void setNo(float no) {
-        this.no = no;
+    public void setNo(float tienno) {
+        this.tienno = tienno;
     }
     
 }
