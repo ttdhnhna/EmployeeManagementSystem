@@ -26,4 +26,4 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
-Cập nhật footer cho trang web và sửa lỗi phần chi tiết.
+Van lỗi phần chi tiết.
