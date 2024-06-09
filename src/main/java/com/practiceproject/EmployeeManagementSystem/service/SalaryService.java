@@ -42,7 +42,13 @@ public class SalaryService {
         User iduser = aService.getUserByID(Utility.getCurrentUserId());
         salary.setIduser(iduser);
         float tl = (Salary.getLuongcb() * salary.getHsl() + salary.getPhucap()) - salary.getBaohiem() - salary.getTruluong();
-        salary.setTongluong(tl);
+        if(tl<=0){
+            salary.setTongluong(0);
+            salary.setNo(0-tl);
+        }else{
+            salary.setTongluong(tl);
+            salary.setNo(0);
+        }
         this.repository.save(salary);
     }
     //Tim id luong

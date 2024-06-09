@@ -39,6 +39,7 @@ public class Salary {
     private float baohiem;
     private float truluong;
     private float tongluong;
+    private float no;
     
     public Salary() {
     }
@@ -109,6 +110,14 @@ public class Salary {
 
     public void setIduser(User iduser) {
         this.iduser = iduser;
+    }
+
+    public float getNo() {
+        return no;
+    }
+
+    public void setNo(float no) {
+        this.no = no;
     }
     
 }
