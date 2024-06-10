@@ -142,7 +142,7 @@ public class EmployeeService {
         if(optional.isPresent()){
             employee=optional.get();
         }else{
-            throw new IllegalStateException("Không tìm thấy id nhân viên: "+id);
+            throw new IllegalStateException("Không tìm thấy ID nhân viên: "+id);
         }
         return employee;
     }

@@ -53,7 +53,7 @@ public class DepartmentService {
         if(optional.isPresent()){
             department=optional.get();
         }else{
-            throw new IllegalStateException("Khong tim thay id phong ban: "+id);
+            throw new IllegalStateException("Không tìm thấy ID phòng ban: "+id);
         }
         return department;
     }

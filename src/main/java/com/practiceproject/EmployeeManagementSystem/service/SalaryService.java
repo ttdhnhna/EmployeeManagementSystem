@@ -58,7 +58,7 @@ public class SalaryService {
         if(optional.isPresent()){
             salary=optional.get();
         }else{
-            throw new IllegalStateException("Không tìm thấy id lương: "+id);
+            throw new IllegalStateException("Không tìm thấy ID lương: "+id);
         }
         return salary;
     }
