@@ -26,4 +26,5 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
+nc -vz 125.235.4.59 5432
 
