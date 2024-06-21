@@ -26,5 +26,26 @@ Tính lương và cật nhật lương, Hiện bảng thông tin các nhân viê
 
 * Bổ sung footer cho trang web (Đã sửa xong)
 
-nc -vz 125.235.4.59 5432
+De lien ket csdl vs render thi can bo sung trong file pom:
+        <dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
+
+Va loai bo
+        <!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency> -->
+
+Con trong file property thi
+trong phan spring.datasource.url = lay link external va chi lay tu phan dpg thoi
+bo sung:
+    server.tomcat.accesslog.enabled=true
+    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
