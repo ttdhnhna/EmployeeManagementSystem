@@ -61,14 +61,13 @@ public class EmployeeController {
         @RequestParam("email") String email,
         @RequestParam("chucvu") String chucvu,
         @RequestParam("idpb") Department idpb,
-        @RequestParam("idluong") Salary idluong,
         User iduser,
         @RequestParam("anh")MultipartFile anh,
         Model model){
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
         try {
-            service.saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
+            service.saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, iduser, anh);
         } catch (IllegalStateException e) {
             model.addAttribute("alertMessage", e.getMessage());
             return "newemployee";

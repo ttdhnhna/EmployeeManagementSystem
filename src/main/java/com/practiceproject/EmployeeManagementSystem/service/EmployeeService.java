@@ -52,10 +52,11 @@ public class EmployeeService {
     String quequan, String gt, String dantoc, String sdt,
     String email, String chucvu,
     Department idpb,
-    Salary idluong,
     User iduser,
     MultipartFile file){
         Employee employee=new Employee();
+        Salary salary=new Salary();
+
         String filename=StringUtils.cleanPath(file.getOriginalFilename());
         if(filename.contains("..")){
             System.out.println("File không hợp lệ!");
@@ -79,13 +80,10 @@ public class EmployeeService {
         } else {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
-        if (idluong.getIduser().getIduser().equals(Utility.getCurrentUserId()) && idluong.getIdnv().getIdnv() == null) {
-            employee.setIdluong(idluong);
-        } else if(idluong.getIdnv().getIdnv() != null){
-            throw new IllegalStateException("ID lương vừa nhập đã được sử dụng!");
-        } else {
-            throw new IllegalStateException("ID lương vừa nhập không tồn tại!");
-        }
+        salary.setIdnv(employee);
+        Salary savedSalary = sRepository.save(salary);
+        employee.setIdluong(savedSalary);
+
         employee.setIduser(iduser);
 
         this.repository.save(employee);
