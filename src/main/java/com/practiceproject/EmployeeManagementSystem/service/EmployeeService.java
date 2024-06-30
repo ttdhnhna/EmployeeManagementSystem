@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -47,6 +48,7 @@ public class EmployeeService {
         return repository.findAll();
     }
     //Lưu nhân viên
+    @Transactional
     @SuppressWarnings("null")
     public void saveEmployee(String hoten, String ngaysinh, 
     String quequan, String gt, String dantoc, String sdt,
@@ -80,13 +82,21 @@ public class EmployeeService {
         } else {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
-        salary.setIdnv(employee);
+        salary.setIduser(iduser);
         Salary savedSalary = sRepository.save(salary);
         employee.setIdluong(savedSalary);
-
         employee.setIduser(iduser);
+        Employee savedEmployee =  this.repository.save(employee);
 
-        this.repository.save(employee);
+        savedSalary.setIdnv(savedEmployee);
+        sRepository.save(savedSalary);
+        /*salary.setIduser(iduser);
+        Salary savedSalary = sRepository.save(salary);
+        employee.setIdluong(savedSalary);
+        Employee savedEmployee = this.repository.save(employee);
+
+        savedSalary.setIdnv(savedEmployee);
+        sRepository.save(savedSalary); */
     }
     
     //Cập nhật nhân viên
@@ -114,20 +124,10 @@ public class EmployeeService {
         employee.setChucvu(employeeDto.getChucvu());
         Department idpb = dService.getDepartmentID(employeeDto.getIdpb());
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
-        Salary idluong  = sService.getSalaryID(employeeDto.getIdluong()); 
         if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
             employee.setIdpb(idpb);
         } else {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
-        }
-        if (idluong != null && idluong.getIduser() != null && idluong.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
-            if (idluong.getIdnv() == null || idluong.getIdnv().getIdnv() == null || idluong.getIdnv().getIdnv().equals(employee.getIdnv())) {
-                employee.setIdluong(idluong);
-            } else {
-                throw new IllegalStateException("ID lương vừa nhập đã được sử dụng!");
-            }
-        } else {
-            throw new IllegalStateException("ID lương vừa nhập không tồn tại!");
         }
         employee.setIduser(iduser);
 
