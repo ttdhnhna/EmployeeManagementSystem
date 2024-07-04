@@ -100,6 +100,7 @@ public class EmployeeService {
     }
     
     //Cập nhật nhân viên
+    @Transactional
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
         MultipartFile file = employeeDto.getAnh();
         if (file != null && !file.isEmpty()) {
