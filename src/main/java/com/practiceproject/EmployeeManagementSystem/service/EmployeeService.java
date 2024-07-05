@@ -55,7 +55,9 @@ public class EmployeeService {
     String email, String chucvu,
     Department idpb,
     User iduser,
-    MultipartFile file){
+    MultipartFile file,
+    float hsl,
+    float phucap){
         Employee employee=new Employee();
         Salary salary=new Salary();
 
@@ -83,20 +85,16 @@ public class EmployeeService {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
         salary.setIduser(iduser);
+        salary.setHsl(hsl);
+        salary.setPhucap(phucap);
         Salary savedSalary = sRepository.save(salary);
+        
         employee.setIdluong(savedSalary);
         employee.setIduser(iduser);
         Employee savedEmployee =  this.repository.save(employee);
 
         savedSalary.setIdnv(savedEmployee);
         sRepository.save(savedSalary);
-        /*salary.setIduser(iduser);
-        Salary savedSalary = sRepository.save(salary);
-        employee.setIdluong(savedSalary);
-        Employee savedEmployee = this.repository.save(employee);
-
-        savedSalary.setIdnv(savedEmployee);
-        sRepository.save(savedSalary); */
     }
     
     //Cập nhật nhân viên

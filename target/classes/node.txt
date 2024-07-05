@@ -49,4 +49,8 @@ bo sung:
     server.tomcat.accesslog.enabled=true
     spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
+Chạy được rồi phần nhân viên đã hiện được ảnh rồi nhưng hơi chậm, đã cập nhật phần thêm lương
+khi tạo nhân viên mới rồi. Giờ cần xóa phần xóa lương đi và khi xóa nhân viên thì đồng thời xóa 
+lương luôn, không được sửa phần id lương trong sửa nhân viên, tạo trong phần lương hiện ra tên
+nhân viên với tổng lương thôi xóa bớt các phần khác đi.
 
