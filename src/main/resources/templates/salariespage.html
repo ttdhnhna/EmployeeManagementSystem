@@ -87,13 +87,13 @@
             &nbsp; &nbsp; 
             <h1> Danh sách Lương</h1>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-lg-3">
                 <a th:href="@{/addSalary}" class="btn btn-primary btn-sm mb-3">
                     Thêm mới
                 </a>
             </div>
-        </div>
+        </div> -->
         <!-- Tin nhắn báo lỗi -->
         <div th:if="${errorMess != null}">
           <div class="alert alert-danger">[[${errorMess}]]</div>
@@ -104,18 +104,10 @@
                   <th>
                     <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=idluong&sortDir=' + ${reverseSortDir}}">ID Lương</a>
                   </th>
-                  <th>Lương cơ bản</th>
+                  <th>Họ tên</th>
+                  <th>Chức vụ</th>
                   <th>
                     <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=hsl&sortDir=' + ${reverseSortDir}}">Hệ số lương</a>
-                  </th>
-                  <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=phucap&sortDir=' + ${reverseSortDir}}">Phụ cấp</a>
-                  </th>
-                  <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=baohiem&sortDir=' + ${reverseSortDir}}">Bảo hiểm</a>
-                  </th>
-                  <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=truluong&sortDir=' + ${reverseSortDir}}">Trừ lương</a>
                   </th>
                   <th>
                     <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=tongluong&sortDir=' + ${reverseSortDir}}">Tổng lương</a>
@@ -126,14 +118,12 @@
             <tbody>
                 <tr th:each = "salary : ${ListSalaries}">
                     <td th:text="${salary.idluong}"></td>
-                    <td th:text="${salary.luongcb}" name="current"></td>
+                    <td th:text="${salary.idnv != null ? salary.idnv.hoten : 'No Employee Assigned'}"></td>
+                    <td th:text="${salary.idnv != null ? salary.idnv.chucvu : 'No Employee Assigned'}"></td>
                     <td th:text="${salary.hsl}"></td>
-                    <td th:text="${'₫' + #numbers.formatDecimal(salary.phucap, 1, 'COMMA', 2, 'POINT')}"></td>
-                    <td th:text="${'₫' + #numbers.formatDecimal(salary.baohiem, 1, 'COMMA', 2, 'POINT')}"></td>
-                    <td th:text="${'₫' + #numbers.formatDecimal(salary.truluong, 1, 'COMMA', 2, 'POINT')}"></td>
                     <td th:text="${'₫' + #numbers.formatDecimal(salary.tongluong, 1, 'COMMA', 2, 'POINT')}"></td>
                     <td>
-                      <a th:href="@{/updateSalary/{id}(id=${salary.idluong})}" class="btn btn-primary">Sửa</a>
+                      <a th:href="@{/updateSalary/{id}(id=${salary.idluong})}" class="btn btn-primary">Cập nhật</a>
                       <a th:href="@{/deleteSalary/{id}(id=${salary.idluong})}" class="btn btn-danger">Xóa</a>
                   </td>
                 </tr>

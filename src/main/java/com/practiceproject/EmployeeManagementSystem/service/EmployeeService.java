@@ -145,6 +145,8 @@ public class EmployeeService {
     }
     //Xóa nhân viên bằng id
     public void deleteEmployeebyID(long id){
+        Employee employee = getEmployeebyID(id);
+        sRepository.deleteById(employee.getIdluong().getIdluong());
         this.repository.deleteById(id);
     }
     //Phân trang và sắp xếp
