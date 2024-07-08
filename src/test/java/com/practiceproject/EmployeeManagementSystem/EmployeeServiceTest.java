@@ -3,9 +3,12 @@ package com.practiceproject.EmployeeManagementSystem;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -18,6 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
+import com.practiceproject.EmployeeManagementSystem.entity.EmployeeDto;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.repository.DepartmentRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
@@ -114,5 +118,65 @@ public class EmployeeServiceTest {
         assertNotNull(savedEmployee);
         assertEquals("Dat", savedEmployee.getHoten());
         verify(repository, times(1));
+    }
+
+    @Test
+    //loi
+    void testDeleteEmployee(){
+        User user = new User();
+        user.setEmail("vidu@gmail.com");
+        user.setHoten("dat");
+        user.setPassword("123");
+        user = urepository.save(user);
+
+        Department department = new Department();
+        department.setTenpb("vidu1");
+        department.setDiachi("hanoi");
+        department.setIduser(user);
+        department = drepository.save(department);
+
+        Employee employee = new Employee();
+        employee.setIdnv(1L);
+        employee.setAnh(null);
+        employee.setHoten("Dat");
+        employee.setNgaysinh("24-10-2001");
+        employee.setQuequan("Hanoi");
+        employee.setGt("Nam");
+        employee.setDantoc("Kinh");
+        employee.setSdt("0928789025");
+        employee.setEmail("123@gmail.com");
+        employee.setChucvu("Quan ly");
+        employee.setIdpb(department);
+        employee.setIduser(user);
+
+        when(repository.findById(1L)).thenReturn(Optional.of(employee));
+        doNothing().when(repository).delete(employee);
+        service.deleteEmployeebyID(1L);
+        verify(repository, times(1));
+    }
+
+    @Test
+    void updatedEmployee(){
+        User user = new User();
+        user.setIduser(1L);
+        Department department = new Department();
+        department.setIdpb(1L);
+        department.setIduser(user);
+        Employee employee = new Employee();
+        employee.setIdnv(1L);
+
+        EmployeeDto employeeDto = new EmployeeDto();
+        employeeDto.setHoten("John Doe");
+        employeeDto.setNgaysinh("2000-01-01");
+        employeeDto.setQuequan("Hanoi");
+        employeeDto.setGt("Male");
+        employeeDto.setDantoc("Kinh");
+        employeeDto.setSdt("0123456789");
+        employeeDto.setEmail("john.doe@example.com");
+        employeeDto.setChucvu("Developer");
+        employeeDto.setIdpb(1L);
+        employeeDto.setAnh(null);
+        
+
     }
 }
