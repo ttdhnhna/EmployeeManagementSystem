@@ -26,7 +26,10 @@ import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.repository.DepartmentRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
+import com.practiceproject.EmployeeManagementSystem.service.AccountService;
+import com.practiceproject.EmployeeManagementSystem.service.DepartmentService;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
+import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
 @SpringBootTest
 public class EmployeeServiceTest {
@@ -36,6 +39,12 @@ public class EmployeeServiceTest {
     private DepartmentRepository drepository;
     @Mock
     private UserRepository urepository;
+    @Mock
+    private DepartmentService dservice;
+    @Mock
+    private AccountService uservice;
+    @Mock
+    private Utility utility;
 
     @InjectMocks//Tạo đối tượng này để các đối tượng mock có thể tác động tới đối tượng này(Dùng để tự động inject các mock đã tạo vào đối tượng mà bạn muốn kiểm thử).
     private EmployeeService service;
@@ -68,22 +77,53 @@ public class EmployeeServiceTest {
         verify(employeeRepository, times(1)).delete(employee);
     }
 
-    @Test
-    void testUpdateEmployee() {
-        Employee employee = new Employee("John", "Doe");
+    void testUpdateEmployee() throws IOException {
+        // Prepare test data
+        Department department = new Department();
+        department.setIdpb(1L);
+        User currentUser = new User();
+        currentUser.setIduser(1L);
+        department.setIduser(currentUser);
+
+        Employee employee = new Employee();
         employee.setId(1L);
-        when(employeeRepository.findById(1L)).thenReturn(Optional.of(employee));
-        when(employeeRepository.save(any(Employee.class))).thenReturn(employee);
 
-        Employee updatedEmployee = new Employee("Jane", "Doe");
-        updatedEmployee.setId(1L);
+        EmployeeDto employeeDto = new EmployeeDto();
+        employeeDto.setHoten("John Doe");
+        employeeDto.setNgaysinh("2000-01-01");
+        employeeDto.setQuequan("Hanoi");
+        employeeDto.setGt("Male");
+        employeeDto.setDantoc("Kinh");
+        employeeDto.setSdt("0123456789");
+        employeeDto.setEmail("john.doe@example.com");
+        employeeDto.setChucvu("Developer");
+        employeeDto.setIdpb(1L);
 
-        Employee result = employeeService.updateEmployee(1L, updatedEmployee);
+        MockMultipartFile file = new MockMultipartFile("file", "test.png", "image/png", "image content".getBytes());
+        employeeDto.setAnh(file);
 
-        assertNotNull(result);
-        assertEquals("Jane", result.getFirstName());
-        verify(employeeRepository, times(1)).save(updatedEmployee);
-    } */
+        // Mock dependencies
+        when(departmentService.getDepartmentID(1L)).thenReturn(department);
+        when(userService.getUserByID(1L)).thenReturn(currentUser);
+        when(Utility.getCurrentUserId()).thenReturn(1L);
+
+        // Call the method
+        employeeService.updateEmployee(employee, employeeDto);
+
+        // Verify results
+        verify(employeeRepository).save(employee);
+        assertEquals("John Doe", employee.getHoten());
+        assertEquals("2000-01-01", employee.getNgaysinh());
+        assertEquals("Hanoi", employee.getQuequan());
+        assertEquals("Male", employee.getGt());
+        assertEquals("Kinh", employee.getDantoc());
+        assertEquals("0123456789", employee.getSdt());
+        assertEquals("john.doe@example.com", employee.getEmail());
+        assertEquals("Developer", employee.getChucvu());
+        assertEquals(department, employee.getIdpb());
+        assertEquals(currentUser, employee.getIduser());
+        assertEquals(Base64.getEncoder().encodeToString(file.getBytes()), employee.getAnh());
+    }*/
     @Test
     @Transactional
     void testSaveEmployee(){
@@ -177,6 +217,22 @@ public class EmployeeServiceTest {
         employeeDto.setIdpb(1L);
         employeeDto.setAnh(null);
         
+        when(dservice.getDepartmentID(1L)).thenReturn(department);
+        when(uservice.getUserByID(1L)).thenReturn(user);
+        // when(utility.getCurrentUserId()).thenReturn(1L);
 
+        service.updateEmployee(employee, employeeDto);
+
+        verify(repository).save(employee);
+        assertEquals("John Doe", employee.getHoten());
+        assertEquals("2000-01-01", employee.getNgaysinh());
+        assertEquals("Hanoi", employee.getQuequan());
+        assertEquals("Male", employee.getGt());
+        assertEquals("Kinh", employee.getDantoc());
+        assertEquals("0123456789", employee.getSdt());
+        assertEquals("john.doe@example.com", employee.getEmail());
+        assertEquals("Developer", employee.getChucvu());
+        assertEquals(department, employee.getIdpb());
+        assertEquals(user, employee.getIduser());
     }
 }
