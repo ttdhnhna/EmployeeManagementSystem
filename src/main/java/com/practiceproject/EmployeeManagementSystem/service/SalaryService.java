@@ -1,6 +1,5 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -25,16 +24,6 @@ public class SalaryService {
     //Hien ds luong
     public List<Salary> getSalaries(){
         return repository.findAll();
-    }
-    //Hien ds luong theo id nguoi dang nhap
-    public List<Salary> getSalarybyUser(long id){
-        List<Salary> listsalary = new ArrayList<>();
-        for(Salary s : repository.findAll()){
-            if(s.getIduser().getIduser() == id){
-                listsalary.add(s);
-            }
-        }
-        return listsalary;
     }
 
     //Luu luong

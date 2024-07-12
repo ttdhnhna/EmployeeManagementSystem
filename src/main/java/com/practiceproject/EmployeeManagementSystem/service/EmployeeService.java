@@ -12,7 +12,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,7 +47,6 @@ public class EmployeeService {
         return repository.findAll();
     }
     //Lưu nhân viên
-    @Transactional
     @SuppressWarnings("null")
     public void saveEmployee(String hoten, String ngaysinh, 
     String quequan, String gt, String dantoc, String sdt,
@@ -98,7 +96,6 @@ public class EmployeeService {
     }
     
     //Cập nhật nhân viên
-    @Transactional
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
         MultipartFile file = employeeDto.getAnh();
         if (file != null && !file.isEmpty()) {
