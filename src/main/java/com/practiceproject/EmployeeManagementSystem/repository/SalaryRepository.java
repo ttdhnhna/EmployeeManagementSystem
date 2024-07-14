@@ -17,5 +17,6 @@ public interface SalaryRepository extends JpaRepository<Salary, Long>{
     + " AND (s.hsl LIKE %?2% "
     + " OR s.id_luong LIKE %?2%);", nativeQuery = true)
     public List<Salary> findAllSalaries(Long iduser, String keyword);
-    public Page<Salary> findAllByiduser(User iduser, Pageable pageable);
+
+    public Page<Salary> findAllByIdnvIdpbIduser(User iduser, Pageable pageable);
 }

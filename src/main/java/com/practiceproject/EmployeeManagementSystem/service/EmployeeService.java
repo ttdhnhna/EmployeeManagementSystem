@@ -1,7 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +21,6 @@ import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.SalaryRepository;
-import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 
 
 @Service//Nó được sử dụng để đánh dấu lớp là nhà cung cấp dịch vụ
@@ -34,11 +32,7 @@ public class EmployeeService {
     @Autowired
     SalaryRepository sRepository;
     @Autowired
-    UserRepository uRepository;
-    @Autowired
     DepartmentService dService;
-    @Autowired
-    SalaryService sService;
     @Autowired
     AccountService uService;
 
@@ -52,7 +46,6 @@ public class EmployeeService {
     String quequan, String gt, String dantoc, String sdt,
     String email, String chucvu,
     Department idpb,
-    User iduser,
     MultipartFile file,
     float hsl,
     float phucap){
@@ -68,7 +61,6 @@ public class EmployeeService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        iduser = uService.getUserByID(Utility.getCurrentUserId());
         employee.setHoten(hoten);
         employee.setNgaysinh(ngaysinh);
         employee.setQuequan(quequan);
@@ -82,13 +74,12 @@ public class EmployeeService {
         } else {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
-        salary.setIduser(iduser);
+
         salary.setHsl(hsl);
         salary.setPhucap(phucap);
         Salary savedSalary = sRepository.save(salary);
         
         employee.setIdluong(savedSalary);
-        employee.setIduser(iduser);
         Employee savedEmployee =  this.repository.save(employee);
 
         savedSalary.setIdnv(savedEmployee);
@@ -119,16 +110,15 @@ public class EmployeeService {
         employee.setEmail(employeeDto.getEmail());
         employee.setChucvu(employeeDto.getChucvu());
         Department idpb = dService.getDepartmentID(employeeDto.getIdpb());
-        User iduser = uService.getUserByID(Utility.getCurrentUserId());
         if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
             employee.setIdpb(idpb);
         } else {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
-        employee.setIduser(iduser);
 
         this.repository.save(employee); 
     }
+    
     //Tìm nhân viên bằng id
     public Employee getEmployeebyID(long id){
         Optional<Employee> optional=repository.findById(id);
@@ -140,49 +130,29 @@ public class EmployeeService {
         }
         return employee;
     }
+
     //Xóa nhân viên bằng id
     public void deleteEmployeebyID(long id){
         Employee employee = getEmployeebyID(id);
         sRepository.deleteById(employee.getIdluong().getIdluong());
         this.repository.deleteById(id);
     }
+
     //Phân trang và sắp xếp
     public Page<Employee> findPaginated(int pageNo,  int pageSize, String sortField, String sortDirection, Long iduser){
         Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
             Sort.by(sortField).descending();
         Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
         User user = uService.getUserByID(iduser);
-        return this.repository.findAllByiduser(user, pageable);
+        return this.repository.findAllByIdpbIduser(user, pageable);
     }
+
     //Chức năng tìm kiếm theo keyword
     public List<Employee> findAll(String keyword, Long iduser){
         if(keyword!=null){
             return repository.findAllbyiduser(iduser, keyword);
         }
         return Collections.emptyList();
-    }
-
-    //Chức năng lấy thông tin lương cho nhân viên.
-    public Salary getsalaryInfo(long id){
-        Salary salaryinfo=new Salary();
-        Long iduser = Utility.getCurrentUserId();
-        Employee e = getEmployeebyID(id);
-        for(Salary s : sRepository.findAll()){
-            if(s.getIdluong().equals(e.getIdluong().getIdluong()) && s.getIduser().getIduser().equals(iduser)){
-                salaryinfo=s;
-            }
-        }
-        return salaryinfo;
-    }
-
-    public List<Employee> getEmployeebyUser(long id){
-        List<Employee> lemployee = new ArrayList<>();
-        for(Employee e : repository.findAll()){
-            if(e.getIduser().getIduser()==id){
-                lemployee.add(e);
-            }
-        }
-        return lemployee;
     }
 }
 

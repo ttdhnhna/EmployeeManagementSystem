@@ -2,7 +2,10 @@ package com.practiceproject.EmployeeManagementSystem;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+// import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -26,26 +29,29 @@ public class AccountServiceTest {
     @InjectMocks
     private AccountService serivce;
 
+    private BCryptPasswordEncoder passwordEncoder;
+
     @BeforeEach
     void SetUp(){
         MockitoAnnotations.openMocks(this);
+        passwordEncoder=new BCryptPasswordEncoder();
     }
 
     @Test
     @Transactional
     void testChangepassword(){
-        BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
         User user = new User();
         user.setEmail("vidu@gmail.com");
         user.setHoten("dat");
         String encodedPass = passwordEncoder.encode("123"); 
         user.setPassword(encodedPass);
-        repository.save(user);
 
-        when(repository.save(any(User.class))).thenReturn(user);
+        when(repository.save(any(User.class))).thenReturn(user); // 
+        // when(repository.findById(any(Long.class))).thenReturn(Optional.of(user)); //Được sử dụng với giả định rằng chức năng mình đang test có tìm kiếm user theo ID
+
         serivce.changePassword("123", "256", "256", user);
 
-        // verify(repository).save(user);
+        verify(repository).save(user);//Được sử dụng để đảm bảo rằng 1 phương thức nào đó(ở đây là repository) ở một đối tượng mock được gọi thực hiện các chức năng cụ thể trong bài test
         assertEquals("vidu@gmail.com", user.getEmail());
         assertEquals("dat", user.getHoten());
         assertEquals(true, passwordEncoder.matches("256", user.getPassword()));

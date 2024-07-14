@@ -27,17 +27,17 @@ public class User {
     @Column(name = "reset_password_token")
     private String resetPassToken;
 
-    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private Set<Employee> idnv;
+    // @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL)
+    // @JsonManagedReference
+    // private Set<Employee> idnv;
 
     @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Department> idpb;
 
-    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private Set<Salary> idluong;
+    // @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL)
+    // @JsonManagedReference
+    // private Set<Salary> idluong;
     
     public User() {
     }
@@ -71,11 +71,11 @@ public class User {
     public void setResetPassToken(String resetPassToken) {
         this.resetPassToken = resetPassToken;
     }
-    public Set<Employee> getIdnv() {
-        return idnv;
-    }
-    public void setIdnv(Set<Employee> idnv) {
-        this.idnv = idnv;
-    }
+    // public Set<Employee> getIdnv() {
+    //     return idnv;
+    // }
+    // public void setIdnv(Set<Employee> idnv) {
+    //     this.idnv = idnv;
+    // }
     
 }

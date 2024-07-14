@@ -150,7 +150,7 @@ public class EmployeeServiceTest {
         employee.setEmail("123@gmail.com");
         employee.setChucvu("Quan ly");
         employee.setIdpb(department);
-        employee.setIduser(user);
+        // employee.setIduser(user);
         when(repository.save(any(Employee.class))).thenReturn(employee);
 
         Employee savedEmployee = repository.save(employee);
@@ -187,7 +187,7 @@ public class EmployeeServiceTest {
         employee.setEmail("123@gmail.com");
         employee.setChucvu("Quan ly");
         employee.setIdpb(department);
-        employee.setIduser(user);
+        // employee.setIduser(user);
 
         when(repository.findById(1L)).thenReturn(Optional.of(employee));
         doNothing().when(repository).delete(employee);
@@ -233,6 +233,6 @@ public class EmployeeServiceTest {
         assertEquals("john.doe@example.com", employee.getEmail());
         assertEquals("Developer", employee.getChucvu());
         assertEquals(department, employee.getIdpb());
-        assertEquals(user, employee.getIduser());
+        // assertEquals(user, employee.getIduser());
     }
 }

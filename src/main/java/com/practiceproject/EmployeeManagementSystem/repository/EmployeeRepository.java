@@ -19,5 +19,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
     + " OR e.chucvu LIKE %?2%);", nativeQuery = true)
     public List<Employee> findAllbyiduser(Long iduser, String keywords);
 
-    public Page<Employee> findAllByiduser(User iduser, Pageable pageable);
+    public Page<Employee> findAllByIdpbIduser(User iduser, Pageable pageable);
 }
