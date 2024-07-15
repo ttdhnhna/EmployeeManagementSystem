@@ -52,11 +52,6 @@ public class SalaryService {
         return salary;
     }
 
-    //Xoa
-    // public void deleteSalarybyID(long id){
-    //     this.repository.deleteById(id);
-    // }
-
     //Phan trang va sap xep
     public Page<Salary> findPaginated(int pageNo, int pageSize, String sortField, String sortDir, Long iduser){
         Sort sort=sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :

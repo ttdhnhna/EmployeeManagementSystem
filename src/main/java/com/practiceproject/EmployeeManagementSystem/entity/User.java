@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,18 +28,10 @@ public class User {
     @Column(name = "reset_password_token")
     private String resetPassToken;
 
-    // @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL)
-    // @JsonManagedReference
-    // private Set<Employee> idnv;
-
-    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonManagedReference
     private Set<Department> idpb;
 
-    // @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL)
-    // @JsonManagedReference
-    // private Set<Salary> idluong;
-    
     public User() {
     }
     public Long getIduser() {

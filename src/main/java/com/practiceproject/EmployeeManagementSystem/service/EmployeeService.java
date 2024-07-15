@@ -40,6 +40,7 @@ public class EmployeeService {
     public List<Employee> getEmployees(){
         return repository.findAll();
     }
+    
     //Lưu nhân viên
     @SuppressWarnings("null")
     public void saveEmployee(String hoten, String ngaysinh, 
