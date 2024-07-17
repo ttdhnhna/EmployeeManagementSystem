@@ -28,7 +28,7 @@ public class User {
     @Column(name = "reset_password_token")
     private String resetPassToken;
 
-    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonManagedReference
     private Set<Department> idpb;
 

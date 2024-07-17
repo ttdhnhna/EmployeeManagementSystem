@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,20 +38,18 @@ public class EmployeeService {
     AccountService uService;
 
     //Chức năng hiện tất cả nhân viên
+    @Transactional(readOnly = true)
     public List<Employee> getEmployees(){
         return repository.findAll();
     }
     
     //Lưu nhân viên
+    @Transactional
     @SuppressWarnings("null")
-    public void saveEmployee(String hoten, String ngaysinh, 
-    String quequan, String gt, String dantoc, String sdt,
-    String email, String chucvu,
-    Department idpb,
+    public void saveEmployee(Employee employee,
     MultipartFile file,
     float hsl,
     float phucap){
-        Employee employee=new Employee();
         Salary salary=new Salary();
 
         String filename=StringUtils.cleanPath(file.getOriginalFilename());
@@ -62,17 +61,9 @@ public class EmployeeService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        employee.setHoten(hoten);
-        employee.setNgaysinh(ngaysinh);
-        employee.setQuequan(quequan);
-        employee.setGt(gt);
-        employee.setDantoc(dantoc);
-        employee.setSdt(sdt);
-        employee.setEmail(email);
-        employee.setChucvu(chucvu);
-        if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId()) && !idpb.equals(null)) {
-            employee.setIdpb(idpb);
-        } else {
+        if (employee.getIdpb().getIduser().getIduser().equals(Utility.getCurrentUserId()) && !employee.getIdpb().equals(null)) {
+            employee.setIdpb(employee.getIdpb());
+        } else if(employee.getIdpb().equals(null)){
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
 
@@ -88,6 +79,7 @@ public class EmployeeService {
     }
     
     //Cập nhật nhân viên
+    @Transactional
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
         MultipartFile file = employeeDto.getAnh();
         if (file != null && !file.isEmpty()) {
@@ -121,6 +113,7 @@ public class EmployeeService {
     }
     
     //Tìm nhân viên bằng id
+    @Transactional(readOnly = true)
     public Employee getEmployeebyID(long id){
         Optional<Employee> optional=repository.findById(id);
         Employee employee=null;
@@ -133,6 +126,7 @@ public class EmployeeService {
     }
 
     //Xóa nhân viên bằng id
+    @Transactional
     public void deleteEmployeebyID(long id){
         Employee employee = getEmployeebyID(id);
         sRepository.deleteById(employee.getIdluong().getIdluong());
@@ -140,6 +134,7 @@ public class EmployeeService {
     }
 
     //Phân trang và sắp xếp
+    @Transactional(readOnly = true)
     public Page<Employee> findPaginated(int pageNo,  int pageSize, String sortField, String sortDirection, Long iduser){
         Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
             Sort.by(sortField).descending();
@@ -149,6 +144,7 @@ public class EmployeeService {
     }
 
     //Chức năng tìm kiếm theo keyword
+    @Transactional(readOnly = true)
     public List<Employee> findAll(String keyword, Long iduser){
         if(keyword!=null){
             return repository.findAllbyiduser(iduser, keyword);

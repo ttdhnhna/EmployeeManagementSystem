@@ -25,11 +25,11 @@ public class Department {
     @Column(name = "id_pb")
     private Long idpb;
 
-    @OneToMany(mappedBy = "idpb", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "idpb", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonManagedReference
     private Set<Employee> idnv;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user", nullable = false, referencedColumnName = "id_user")
     @JsonBackReference
     private User iduser;

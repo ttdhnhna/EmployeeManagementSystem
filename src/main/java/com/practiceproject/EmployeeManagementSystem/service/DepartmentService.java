@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
@@ -27,16 +28,19 @@ public class DepartmentService {
     @Autowired
     AccountService aService;
 
+    @Transactional(readOnly = true)
     public List<Department> getDepartments(){
         return repository.findAll();
     }
 
+    @Transactional
     public void saveDepartment(Department department){
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
         department.setIduser(idUser);
         this.repository.save(department);
     }
 
+    @Transactional(readOnly = true)
     public Department getDepartmentID(long id){
         Optional<Department> optional=repository.findById(id);
         Department department=null;
@@ -48,10 +52,12 @@ public class DepartmentService {
         return department;
     }
 
+    @Transactional
     public void deleteDepartmentID(long id){
         this.repository.deleteById(id);
     }
 
+    @Transactional(readOnly = true)
     public Page<Department> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection, Long iduser){
         Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending():
             Sort.by(sortField).descending();
@@ -60,6 +66,7 @@ public class DepartmentService {
         return this.repository.findAllByiduser(user,pageable);
     }
 
+    @Transactional(readOnly = true)
     //Chức năng tìm kiếm theo keyword
     public List<Department> findDepartments(String keyword, Long iduser){
         if(keyword!=null){
@@ -68,6 +75,7 @@ public class DepartmentService {
         return Collections.emptyList();
     }
 
+    @Transactional(readOnly = true)
     //Chức năng lấy thông tin nhân viên có cùng id phòng ban
     public List<Employee> getNVInformationbyID(long id){
         List<Employee> ListEmployees=new ArrayList<>();

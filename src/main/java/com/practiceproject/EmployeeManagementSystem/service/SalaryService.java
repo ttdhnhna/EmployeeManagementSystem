@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
@@ -23,11 +24,13 @@ public class SalaryService {
     AccountService aService;
 
     //Hien ds luong
+    @Transactional(readOnly = true)
     public List<Salary> getSalaries(){
         return repository.findAll();
     }
 
     //Luu luong
+    @Transactional
     public void saveSalary(Salary salary){
         float tl = (Salary.getLuongcb() * salary.getHsl() + salary.getPhucap()) - salary.getBaohiem() - salary.getTruluong();
         if(tl<=0){
@@ -41,6 +44,7 @@ public class SalaryService {
     }
 
     //Tim id luong
+    @Transactional(readOnly = true)
     public Salary getSalaryID(long id){
         Optional<Salary> optional=repository.findById(id);
         Salary salary=null;
@@ -53,6 +57,7 @@ public class SalaryService {
     }
 
     //Phan trang va sap xep
+    @Transactional(readOnly = true)
     public Page<Salary> findPaginated(int pageNo, int pageSize, String sortField, String sortDir, Long iduser){
         Sort sort=sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
             Sort.by(sortField).descending();
@@ -62,6 +67,7 @@ public class SalaryService {
     }
 
     //Chức năng tìm kiếm theo keyword
+    @Transactional(readOnly = true)
     public List<Salary>findAllSalaries(String keyword, Long iduser){
         if(keyword!=null){
             return repository.findAllSalaries(iduser, keyword);

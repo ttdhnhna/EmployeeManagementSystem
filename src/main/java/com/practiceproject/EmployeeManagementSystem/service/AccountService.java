@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
@@ -15,10 +16,12 @@ public class AccountService {
     @Autowired
     UserRepository repository;
 
+    @Transactional(readOnly = true)
     public List<User> getAccounts(){
         return repository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public User getUserByID(long id){
         Optional<User> optional=repository.findById(id);
         User user=null;
@@ -30,10 +33,12 @@ public class AccountService {
         return user;
     }
 
+    @Transactional
     public void saveAccount(User user){
         this.repository.save(user);
     }
 
+    @Transactional
     public void changePassword(String currentpass, String newpass, String comfirm, User user){
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
         if(!passwordEncoder.matches(currentpass, user.getPassword())){
@@ -47,6 +52,7 @@ public class AccountService {
         repository.save(user);
     }
 
+    @Transactional
     public void updateResetPass(String tokem, String email) throws CustomerNotFoundException{
         User user = repository.findbyEmail(email);
         if(user != null){
@@ -57,10 +63,12 @@ public class AccountService {
         }
     }
 
+    @Transactional(readOnly = true)
     public User get(String resetPassToken){
         return repository.findByResetPassToken(resetPassToken);
     }
 
+    @Transactional
     public void updatePassword(User user, String newPass){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPass = passwordEncoder.encode(newPass); 

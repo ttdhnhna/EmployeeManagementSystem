@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.EmployeeDto;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
@@ -51,15 +50,7 @@ public class EmployeeController {
         return "newemployee";
     }
     @PostMapping("/saveEmployee")
-    public String saveEmployee(@RequestParam("hoten") String hoten,
-        @RequestParam("ngaysinh") String ngaysinh,
-        @RequestParam("quequan") String quequan,
-        @RequestParam("gt") String gt,
-        @RequestParam("dantoc") String dantoc,
-        @RequestParam("sdt") String sdt,
-        @RequestParam("email") String email,
-        @RequestParam("chucvu") String chucvu,
-        @RequestParam("idpb") Department idpb,
+    public String saveEmployee(@ModelAttribute("employee") Employee employee,
         @RequestParam("anh")MultipartFile anh,
         @RequestParam("hsl") float hsl,
         @RequestParam("phucap") float phucap,
@@ -67,7 +58,7 @@ public class EmployeeController {
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
         try {
-            service.saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, anh, hsl, phucap);
+            service.saveEmployee(employee, anh, hsl, phucap);
         } catch (IllegalStateException e) {
             model.addAttribute("alertMessage", e.getMessage());
             return "newemployee";
