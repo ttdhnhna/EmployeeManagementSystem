@@ -56,10 +56,3 @@ rồi mới thêm chức năng và giao diện mới.
 
 Lỗi tìm kiếm và việc chỉnh sửa lại cấu trúc liên kết và thêm mấy cái lazy kia vẫn không được, dữ liệu vẫn
 luôn bị lặp lại và phần thêm nhân viên hay thậm chí sắp xếp cũng mất rất nhiều thời gian.
-
-
-(MockedStatic<SecurityContextHolder> mockedSecurityContextHolder = Mockito.mockStatic(SecurityContextHolder.class)) {
-            mockedSecurityContextHolder.when(SecurityContextHolder::getContext).thenReturn(securityContext);
-            when(securityContext.getAuthentication()).thenReturn(authentication);
-            when(authentication.getPrincipal()).thenReturn(customUserDetail);
-            when(customUserDetail.getUserId()).thenReturn(expectedUserId);

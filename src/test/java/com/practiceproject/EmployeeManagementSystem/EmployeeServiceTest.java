@@ -28,9 +28,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.EmployeeDto;
+import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.repository.DepartmentRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
+import com.practiceproject.EmployeeManagementSystem.repository.SalaryRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 import com.practiceproject.EmployeeManagementSystem.service.AccountService;
 import com.practiceproject.EmployeeManagementSystem.service.DepartmentService;
@@ -46,6 +48,8 @@ public class EmployeeServiceTest {
     @Mock
     private UserRepository urepository;
     @Mock
+    private SalaryRepository sRepository;
+    @Mock
     private DepartmentService dservice;
     @Mock
     private AccountService uservice;
@@ -58,6 +62,7 @@ public class EmployeeServiceTest {
     private Employee employee;
     private Department department;
     private User user;
+    private Salary salary;
     private MultipartFile file;
 
     @BeforeEach//Thiết lập các mock trước mỗi lần kiểm thử
@@ -82,29 +87,32 @@ public class EmployeeServiceTest {
         employee.setChucvu("Quan ly");
         employee.setIdpb(department);
         file = new MockMultipartFile("file", "test.png", "image/png", "image content".getBytes());
-
+        salary = new Salary();
     }
     @Test
     @Transactional
     void testSaveEmployee() throws IOException{
         try (MockedStatic<Utility> utilityMockedStatic = Mockito.mockStatic(Utility.class)) {
             utilityMockedStatic.when(Utility::getCurrentUserId).thenReturn(1L);
+            float hsl = 10;
+            float phucap = 100000;
 
             when(repository.save(any(Employee.class))).thenReturn(employee);
             when(drepository.save(any(Department.class))).thenReturn(department);
             when(urepository.save(any(User.class))).thenReturn(user);
+            when(sRepository.save(any(Salary.class))).thenReturn(salary);
 
-            service.saveEmployee(employee, file, 10, 100000);
+            service.saveEmployee(employee, file, hsl, phucap);
 
             assertNotNull(employee);
             assertEquals("Dat", employee.getHoten());
-            assertEquals("24-10-2001", employee.getHoten());
-            assertEquals("Hanoi", employee.getHoten());
-            assertEquals("Nam", employee.getHoten());
-            assertEquals("Kinh", employee.getHoten());
-            assertEquals("0928789025", employee.getHoten());
-            assertEquals("123@gmail.com", employee.getHoten());
-            assertEquals("Quan ly", employee.getHoten());
+            assertEquals("24-10-2001", employee.getNgaysinh());
+            assertEquals("Hanoi", employee.getQuequan());
+            assertEquals("Nam", employee.getGt());
+            assertEquals("Kinh", employee.getDantoc());
+            assertEquals("0928789025", employee.getSdt());
+            assertEquals("123@gmail.com", employee.getEmail());
+            assertEquals("Quan ly", employee.getChucvu());
             assertEquals(Base64.getEncoder().encodeToString(file.getBytes()), employee.getAnh());
 
             verify(repository, times(1));
@@ -185,5 +193,17 @@ public class EmployeeServiceTest {
         assertEquals("Developer", employee.getChucvu());
         assertEquals(department, employee.getIdpb());
         // assertEquals(user, employee.getIduser());
+    }
+
+    @Test
+    void testSearchfunc_shouldreturnEmployeeinfor(){
+        String keyword = "Dat";
+        Long iduser = 1L;
+        // when(repository.findAllbyiduser(iduser, keyword)).thenReturn(employee);
+
+        service.findAll(keyword, iduser);
+
+        assertNotNull(employee);
+
     }
 }
