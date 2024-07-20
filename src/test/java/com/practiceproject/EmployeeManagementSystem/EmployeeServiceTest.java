@@ -9,7 +9,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -60,6 +62,7 @@ public class EmployeeServiceTest {
     private EmployeeService service;
 
     private Employee employee;
+    private Employee employee2;
     private Department department;
     private User user;
     private Salary salary;
@@ -87,6 +90,18 @@ public class EmployeeServiceTest {
         employee.setChucvu("Quan ly");
         employee.setIdpb(department);
         file = new MockMultipartFile("file", "test.png", "image/png", "image content".getBytes());
+
+        employee2 = new Employee();
+        employee.setHoten("Ngan");
+        employee.setNgaysinh("12-5-2003");
+        employee.setQuequan("Hanoi");
+        employee.setGt("Nu");
+        employee.setDantoc("Kinh");
+        employee.setSdt("0995637875");
+        employee.setEmail("456@gmail.com");
+        employee.setChucvu("Nhan vien");
+        employee.setIdpb(department);
+
         salary = new Salary();
     }
     @Test
@@ -197,13 +212,13 @@ public class EmployeeServiceTest {
 
     @Test
     void testSearchfunc_shouldreturnEmployeeinfor(){
-        String keyword = "Dat";
+        String keyword = "Ngan";
         Long iduser = 1L;
-        // when(repository.findAllbyiduser(iduser, keyword)).thenReturn(employee);
+        List<Employee> expectedList = Arrays.asList(employee2);
+        
+        List<Employee> actualList = service.findAll(keyword, iduser);
 
-        service.findAll(keyword, iduser);
-
-        assertNotNull(employee);
-
+        assertEquals(expectedList, actualList);
+        verify(repository, times(1)).findAllbyiduser(iduser, keyword);
     }
 }
