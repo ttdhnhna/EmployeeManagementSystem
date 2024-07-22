@@ -24,10 +24,10 @@ public class SalaryService {
     AccountService aService;
 
     //Hien ds luong
-    @Transactional(readOnly = true)
-    public List<Salary> getSalaries(){
-        return repository.findAll();
-    }
+    // @Transactional(readOnly = true)
+    // public List<Salary> getSalaries(){
+    //     return repository.findAll();
+    // }
 
     //Luu luong
     @Transactional

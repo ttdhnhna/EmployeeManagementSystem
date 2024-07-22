@@ -38,10 +38,10 @@ public class EmployeeService {
     AccountService uService;
 
     //Chức năng hiện tất cả nhân viên
-    @Transactional(readOnly = true)
-    public List<Employee> getEmployees(){
-        return repository.findAll();
-    }
+    // @Transactional(readOnly = true)
+    // public List<Employee> getEmployees(){
+    //     return repository.findAll();
+    // }
     
     //Lưu nhân viên
     @Transactional
@@ -134,6 +134,7 @@ public class EmployeeService {
     }
 
     //Phân trang và sắp xếp
+    
     @Transactional(readOnly = true)
     public Page<Employee> findPaginated(int pageNo,  int pageSize, String sortField, String sortDirection, Long iduser){
         Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :

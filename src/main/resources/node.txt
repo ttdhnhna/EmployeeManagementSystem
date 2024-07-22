@@ -83,4 +83,3 @@ Thời gian khởi động ứng dụng của bạn là **28.397 giây**. Điề
   - **Profile Management**: Sử dụng các profile khác nhau cho môi trường phát triển và sản xuất để giảm thiểu thời gian khởi động trong môi trường phát triển.
   - **Lazily Initialize Beans**: Chỉ khởi tạo các bean khi chúng thực sự được sử dụng.
 
-Hy vọng các thông tin trên giúp bạn hiểu rõ hơn về thời gian khởi động của ứng dụng và cung cấp một số gợi ý để tối ưu hóa nếu cần thiết.

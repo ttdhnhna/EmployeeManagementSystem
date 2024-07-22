@@ -49,15 +49,15 @@
  			<artifactId>spring-boot-starter-security</artifactId>
  		</dependency>
 
-		<dependency>
+		<!-- <dependency>
     		<groupId>org.springframework.security</groupId>
     		<artifactId>spring-security-core</artifactId>
-		</dependency>
+		</dependency> -->
 
-		<dependency>
+		<!-- <dependency>
     		<groupId>org.springframework.security</groupId>
    			<artifactId>spring-security-web</artifactId>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
     		<groupId>org.springframework.security</groupId>
@@ -91,13 +91,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- Được sử dụng để xử lý và tạo các trang html, css,...  -->
-		<dependency>
+
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
-		</dependency>
+		</dependency> -->
 		<!-- Các ứng dụng sẻ tự khởi động lại khi có thay đổi trong mã nguồn
 			rất hữu ích vì mang lại phải hồi rất nhanh khi có thay đổi -->
 		<!-- <dependency>
