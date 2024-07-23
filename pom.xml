@@ -19,6 +19,27 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.cache</groupId>
+			<artifactId>cache-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jcache</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+		</dependency>
+		
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
@@ -49,15 +70,15 @@
  			<artifactId>spring-boot-starter-security</artifactId>
  		</dependency>
 
-		<!-- <dependency>
+		<dependency>
     		<groupId>org.springframework.security</groupId>
     		<artifactId>spring-security-core</artifactId>
-		</dependency> -->
+		</dependency>
 
-		<!-- <dependency>
+		<dependency>
     		<groupId>org.springframework.security</groupId>
    			<artifactId>spring-security-web</artifactId>
-		</dependency> -->
+		</dependency>
 
 		<dependency>
     		<groupId>org.springframework.security</groupId>
@@ -92,12 +113,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
-		</dependency> -->
+		</dependency>
 		<!-- Các ứng dụng sẻ tự khởi động lại khi có thay đổi trong mã nguồn
 			rất hữu ích vì mang lại phải hồi rất nhanh khi có thay đổi -->
 		<!-- <dependency>
