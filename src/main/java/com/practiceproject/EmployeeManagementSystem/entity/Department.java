@@ -17,6 +17,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.BatchSize;
+
+
 @Entity
 @Table(name = "tblDepartment")
 public class Department {
@@ -25,13 +28,15 @@ public class Department {
     @Column(name = "id_pb")
     private Long idpb;
 
-    @OneToMany(mappedBy = "idpb", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "idpb", cascade = CascadeType.ALL)
     @JsonManagedReference
+    @BatchSize(size = 10)
     private Set<Employee> idnv;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user", nullable = false, referencedColumnName = "id_user")
     @JsonBackReference
+    @BatchSize(size = 10)
     private User iduser;
     
     private String tenpb;

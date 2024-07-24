@@ -5,12 +5,14 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.BatchSize;
+
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -28,8 +30,9 @@ public class User {
     @Column(name = "reset_password_token")
     private String resetPassToken;
 
-    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL)
     @JsonManagedReference
+    @BatchSize(size = 10)
     private Set<Department> idpb;
 
     public User() {

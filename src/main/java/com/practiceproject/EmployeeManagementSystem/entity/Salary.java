@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.BatchSize;
+
 /**
  * Salary
  */
@@ -26,6 +28,7 @@ public class Salary {
     @JsonIgnore
     @OneToOne(mappedBy = "idluong", fetch = FetchType.LAZY, orphanRemoval = true)
     // @JsonManagedReference
+    @BatchSize(size = 10)
     private Employee idnv;
 
     private static float luongcb = 1350000;

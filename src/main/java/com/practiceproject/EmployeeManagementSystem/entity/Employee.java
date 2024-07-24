@@ -11,10 +11,30 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.BatchSize;
+
 @Entity//Chỉ định rằng lớp là một thực thể và được ánh xạ tới bảng cơ sở dữ liệu
+@NamedEntityGraph(
+    name = "Employee.detail",
+    attributeNodes = {
+        @NamedAttributeNode("idpb"),
+        @NamedAttributeNode(value = "idpb", subgraph = "department-user")
+    },
+    subgraphs = {
+        @NamedSubgraph(
+            name = "department-user",
+            attributeNodes = {
+                @NamedAttributeNode("iduser")
+            }
+        )
+    }
+)
 @Table(name = "tblEmployee")//Chỉ định tên của bảng cơ sở dữ liệu sẽ được sử dụng để ánh xạ
 public class  Employee {
     @Id//Chỉ định khóa chính của một thực thể
@@ -25,11 +45,13 @@ public class  Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pb", nullable = false, referencedColumnName = "id_pb")
     @JsonBackReference
+    @BatchSize(size = 10)
     private Department idpb;
     
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_luong", referencedColumnName = "id_luong")
     @JsonBackReference
+    @BatchSize(size = 10)
     private Salary idluong;
     
     // @ManyToOne
