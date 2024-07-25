@@ -28,10 +28,10 @@ public class DepartmentService {
     @Autowired
     AccountService aService;
 
-    @Transactional(readOnly = true)
-    public List<Department> getDepartments(){
-        return repository.findAll();
-    }
+    // @Transactional(readOnly = true)
+    // public List<Department> getDepartments(){
+    //     return repository.findAll();
+    // }
 
     @Transactional
     public void saveDepartment(Department department){

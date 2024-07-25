@@ -1,6 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
-import java.util.List;
+// import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ public class AccountService {
     @Autowired
     UserRepository repository;
 
-    @Transactional(readOnly = true)
-    public List<User> getAccounts(){
-        return repository.findAll();
-    }
+    // @Transactional(readOnly = true)
+    // public List<User> getAccounts(){
+    //     return repository.findAll();
+    // }
 
     @Transactional(readOnly = true)
     public User getUserByID(long id){
@@ -35,6 +35,17 @@ public class AccountService {
 
     @Transactional
     public void saveAccount(User user){
+        this.repository.save(user);
+    }
+
+    @Transactional
+    public void saveRegistration(User user){
+        if(user.equals(null)){
+            throw new IllegalStateException("Thông tin không được bỏ trống");
+        }
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String ePass = passwordEncoder.encode(user.getPassword());
+        user.setPassword(ePass);
         this.repository.save(user);
     }
 

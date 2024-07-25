@@ -54,33 +54,5 @@ dụng gì đối với thời gian thực thi chương trình cả, nên sẽ t
 Sau khi hoàn thành xong việc giúp chương trình chạy nhanh hơn mình mới bắt đầu tối giản code sau
 rồi mới thêm chức năng và giao diện mới.
 
-Lỗi tìm kiếm và việc chỉnh sửa lại cấu trúc liên kết và thêm mấy cái lazy kia vẫn không được, dữ liệu vẫn
-luôn bị lặp lại và phần thêm nhân viên hay thậm chí sắp xếp cũng mất rất nhiều thời gian.
+Vẫn bị lỗi lặp lại.
 
-Dựa trên thông tin bạn cung cấp từ endpoint `http://localhost:8080/actuator/metrics/application.started.time`, chúng ta có thể giải thích như sau:
-
-- **name**: `application.started.time`: Đây là tên của metric, cho biết thời gian khởi động ứng dụng.
-- **description**: `Time taken (ms) to start the application`: Miêu tả metric này, cho biết thời gian (tính bằng mili giây) để khởi động ứng dụng.
-- **baseUnit**: `seconds`: Đơn vị cơ bản của metric này là giây.
-- **measurements**:
-  - **statistic**: `VALUE`: Loại thống kê (trong trường hợp này là giá trị duy nhất).
-  - **value**: `28.397`: Giá trị đo được, trong trường hợp này là 28.397 giây.
-- **availableTags**:
-  - **tag**: `main-application-class`: Thẻ này chứa tên của lớp chính của ứng dụng.
-  - **values**: `com.practiceproject.EmployeeManagementSystem.EmployeeManagementSystemApplication`: Giá trị của thẻ, là tên đầy đủ của lớp chính của ứng dụng.
-
-### Giải thích
-
-Thời gian khởi động ứng dụng của bạn là **28.397 giây**. Điều này có nghĩa là từ lúc bạn bắt đầu chạy ứng dụng cho đến khi ứng dụng sẵn sàng để xử lý các yêu cầu mất khoảng 28.397 giây.
-
-### Đánh giá
-
-- **28.397 giây** là một khoảng thời gian khá dài cho việc khởi động một ứng dụng Spring Boot. Thông thường, các ứng dụng Spring Boot thường khởi động trong khoảng vài giây đến dưới 20 giây, tùy thuộc vào độ phức tạp và số lượng phụ thuộc mà ứng dụng cần tải.
-- Nếu thời gian khởi động này là quá dài đối với nhu cầu của bạn, có thể bạn nên xem xét tối ưu hóa ứng dụng bằng các cách sau:
-  - **Giảm số lượng phụ thuộc**: Loại bỏ các thư viện hoặc dependency không cần thiết.
-  - **Sử dụng Spring Boot DevTools**: Nếu đang phát triển, Spring Boot DevTools có thể giúp tăng tốc độ khởi động.
-  - **Kiểm tra các bean không cần thiết**: Đảm bảo rằng chỉ có các bean thực sự cần thiết được khởi tạo khi khởi động ứng dụng.
-  - **Profile Management**: Sử dụng các profile khác nhau cho môi trường phát triển và sản xuất để giảm thiểu thời gian khởi động trong môi trường phát triển.
-  - **Lazily Initialize Beans**: Chỉ khởi tạo các bean khi chúng thực sự được sử dụng.
-
-Hy vọng các thông tin trên giúp bạn hiểu rõ hơn về thời gian khởi động của ứng dụng và cung cấp một số gợi ý để tối ưu hóa nếu cần thiết.

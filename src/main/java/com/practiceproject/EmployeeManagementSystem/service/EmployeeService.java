@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -38,14 +39,13 @@ public class EmployeeService {
     AccountService uService;
 
     //Chức năng hiện tất cả nhân viên
-    @Transactional(readOnly = true)
-    public List<Employee> getEmployees(){
-        return repository.findAll();
-    }
+    // @Transactional(readOnly = true)
+    // public List<Employee> getEmployees(){
+    //     return repository.findAll();
+    // }
     
     //Lưu nhân viên
     @Transactional
-    @SuppressWarnings("null")
     public void saveEmployee(Employee employee,
     MultipartFile file,
     float hsl,
@@ -61,9 +61,7 @@ public class EmployeeService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (employee.getIdpb().getIduser().getIduser().equals(Utility.getCurrentUserId()) && !employee.getIdpb().equals(null)) {
-            employee.setIdpb(employee.getIdpb());
-        } else if(employee.getIdpb().equals(null)){
+        if (!employee.getIdpb().getIduser().getIduser().equals(Utility.getCurrentUserId()) || employee.getIdpb() == null) {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
 
@@ -134,7 +132,8 @@ public class EmployeeService {
     }
 
     //Phân trang và sắp xếp
-    @Transactional(readOnly = true)
+    @Cacheable(value = "employees", key = "#pageNo + '-' + #pageSize + '-' + #sortField + '-' + #sortDirection + '-' + #iduser")
+    // @Transactional(readOnly = true)
     public Page<Employee> findPaginated(int pageNo,  int pageSize, String sortField, String sortDirection, Long iduser){
         Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
             Sort.by(sortField).descending();

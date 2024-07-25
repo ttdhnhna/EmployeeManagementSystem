@@ -1,7 +1,7 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+// import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.BatchSize;
 
 /**
  * Salary
@@ -25,7 +27,8 @@ public class Salary {
     
     @JsonIgnore
     @OneToOne(mappedBy = "idluong", fetch = FetchType.LAZY, orphanRemoval = true)
-    @JsonManagedReference
+    // @JsonManagedReference
+    @BatchSize(size = 10)
     private Employee idnv;
 
     private static float luongcb = 1350000;

@@ -17,6 +17,25 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.cache</groupId>
+			<artifactId>cache-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jcache</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -28,15 +47,15 @@
 			<artifactId>mockito-inline</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.session</groupId>
-			<artifactId>spring-session-core</artifactId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.session</groupId>-->
+<!--			<artifactId>spring-session-core</artifactId>-->
+<!--		</dependency>-->
 		
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -70,10 +89,10 @@
 			<artifactId>jaxb-api</artifactId>
 		</dependency>
 
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency> -->
+		</dependency>
 		
 		<!-- Default -->
 		
@@ -91,7 +110,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- Được sử dụng để xử lý và tạo các trang html, css,...  -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -100,11 +119,12 @@
 		</dependency>
 		<!-- Các ứng dụng sẻ tự khởi động lại khi có thay đổi trong mã nguồn
 			rất hữu ích vì mang lại phải hồi rất nhanh khi có thay đổi -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
+			<version>9.4.1.jre8</version>
 			<scope>runtime</scope>
-		</dependency> -->
+		</dependency>
 		<!-- Cung cấp khả năng kết nối với CSDL Java từ bất kỳ ứng dụng Java nào
 			 -->
 		<dependency>

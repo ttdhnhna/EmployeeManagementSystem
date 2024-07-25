@@ -49,18 +49,21 @@ public class AppController {
     }
     @PostMapping("/saveRegistration")
     public String saveRegistration(@ModelAttribute("user") User user, Model model){
-        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-        String ePass=encoder.encode(user.getPassword());
-        user.setPassword(ePass);
-        this.repository.save(user);
-        model.addAttribute("successRegismess", "Bạn đã đăng ký tài khoản thành công!");
-        return "login";
+        try {
+            service.saveRegistration(user);
+            model.addAttribute("successRegismess", "Bạn đã đăng ký tài khoản thành công!");
+            return "login";
+        }catch (IllegalStateException e){
+            model.addAttribute("alertMessage", e.getMessage());
+            return "registration";
+        }
     }
 
     @GetMapping("/login")
     public String login(){
         return "login";
     }
+
     @GetMapping("/accounts")
     public String showAccountPage(Model model){
         Long iduser = Utility.getCurrentUserId();
@@ -132,6 +135,7 @@ public class AppController {
         }
         return "forgotpassword";
     }
+
     private void sendEmail(String email, String resetPasswordLink) throws UnsupportedEncodingException, MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -153,6 +157,7 @@ public class AppController {
 
         mailSender.send(message);
     }
+
     @GetMapping("/resetpassword")
     public String showResetPassForm(@Param(value = "token")String token, Model model){
         User user = service.get(token);
@@ -162,6 +167,7 @@ public class AppController {
         model.addAttribute("token", token);
         return "resetpassword";
     }
+
     @PostMapping("/upresetpassword")
     public String processResetPass(HttpServletRequest request, Model model){
         String token = request.getParameter("token");
@@ -176,4 +182,5 @@ public class AppController {
         }
         return "login";
     }
+    
 }
