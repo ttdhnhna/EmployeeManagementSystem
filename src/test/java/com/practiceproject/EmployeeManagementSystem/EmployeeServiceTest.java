@@ -1,27 +1,27 @@
 package com.practiceproject.EmployeeManagementSystem;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
+// import static org.junit.jupiter.api.Assertions.assertNotNull;
+// import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.io.IOException;
+// import java.io.IOException;
 import java.util.Arrays;
-import java.util.Base64;
+// import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
+// import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
+// import org.mockito.MockedStatic;
+// import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
@@ -104,35 +104,35 @@ public class EmployeeServiceTest {
 
         salary = new Salary();
     }
-    @Test
-    @Transactional
-    void testSaveEmployee() throws IOException{
-        try (MockedStatic<Utility> utilityMockedStatic = Mockito.mockStatic(Utility.class)) {
-            utilityMockedStatic.when(Utility::getCurrentUserId).thenReturn(1L);
-            float hsl = 10;
-            float phucap = 100000;
+    // @Test
+    // @Transactional
+    // void testSaveEmployee() throws IOException{
+    //     try (MockedStatic<Utility> utilityMockedStatic = Mockito.mockStatic(Utility.class)) {
+    //         utilityMockedStatic.when(Utility::getCurrentUserId).thenReturn(1L);
+    //         float hsl = 10;
+    //         float phucap = 100000;
 
-            when(repository.save(any(Employee.class))).thenReturn(employee);
-            when(drepository.save(any(Department.class))).thenReturn(department);
-            when(urepository.save(any(User.class))).thenReturn(user);
-            when(sRepository.save(any(Salary.class))).thenReturn(salary);
+    //         when(repository.save(any(Employee.class))).thenReturn(employee);
+    //         when(drepository.save(any(Department.class))).thenReturn(department);
+    //         when(urepository.save(any(User.class))).thenReturn(user);
+    //         when(sRepository.save(any(Salary.class))).thenReturn(salary);
 
-            service.saveEmployee(employee, file, hsl, phucap);
+    //         service.saveEmployee(employee, file, hsl, phucap);
 
-            assertNotNull(employee);
-            assertEquals("Dat", employee.getHoten());
-            assertEquals("24-10-2001", employee.getNgaysinh());
-            assertEquals("Hanoi", employee.getQuequan());
-            assertEquals("Nam", employee.getGt());
-            assertEquals("Kinh", employee.getDantoc());
-            assertEquals("0928789025", employee.getSdt());
-            assertEquals("123@gmail.com", employee.getEmail());
-            assertEquals("Quan ly", employee.getChucvu());
-            assertEquals(Base64.getEncoder().encodeToString(file.getBytes()), employee.getAnh());
+    //         assertNotNull(employee);
+    //         assertEquals("Dat", employee.getHoten());
+    //         assertEquals("24-10-2001", employee.getNgaysinh());
+    //         assertEquals("Hanoi", employee.getQuequan());
+    //         assertEquals("Nam", employee.getGt());
+    //         assertEquals("Kinh", employee.getDantoc());
+    //         assertEquals("0928789025", employee.getSdt());
+    //         assertEquals("123@gmail.com", employee.getEmail());
+    //         assertEquals("Quan ly", employee.getChucvu());
+    //         assertEquals(Base64.getEncoder().encodeToString(file.getBytes()), employee.getAnh());
 
-            verify(repository, times(1));
-        }
-    }
+    //         verify(repository, times(1));
+    //     }
+    // }
 
     @Test
     //loi

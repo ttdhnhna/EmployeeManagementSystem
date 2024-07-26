@@ -40,8 +40,8 @@ public class EmployeeController {
     }
     @GetMapping("/addEmployee")
     public String addEmployee(Model model){
-        Employee employee=new Employee();
-        model.addAttribute("employee", employee);
+        EmployeeDto employeeDto=new EmployeeDto();
+        model.addAttribute("employee", employeeDto);
         /*Phương thức addAttribute ở đây sẽ giúp ta truyền nhưng dữ liệu mà đối tượng employee có
          * và truyền vào employee dưới dạng html để ta có thể dùng để hiển thị và chỉnh sửa
          * trên trang web
@@ -55,8 +55,8 @@ public class EmployeeController {
         Model model){
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
+        Employee employee = new Employee();
         try {
-            Employee employee = service.getEmployeebyID(employeeDto.getIdnv());
             service.saveEmployee(employee, employeeDto, hsl, phucap);
         } catch (IllegalStateException e) {
             model.addAttribute("alertMessage", e.getMessage());
