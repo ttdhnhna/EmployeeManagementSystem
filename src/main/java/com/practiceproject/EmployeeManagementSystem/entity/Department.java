@@ -1,5 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -14,13 +15,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.BatchSize;
-
-
 @Entity
+@NamedEntityGraph(
+    name = "Department.detail",
+    attributeNodes = {
+        @NamedAttributeNode("iduser"),
+        @NamedAttributeNode(value = "idnv", subgraph = "employees")
+    },
+    subgraphs = {
+        @NamedSubgraph(
+            name = "employees", 
+            attributeNodes = { 
+                @NamedAttributeNode("iduser") // Nếu bạn cần tải thêm thuộc tính từ Employee, thêm vào đây
+            }
+        )
+    }
+)
 @Table(name = "tblDepartment")
 public class Department {
     @Id
@@ -30,13 +46,11 @@ public class Department {
 
     @OneToMany(mappedBy = "idpb", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    @BatchSize(size = 10)
-    private Set<Employee> idnv;
+    private Set<Employee> idnv = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user", nullable = false)
     @JsonBackReference
-    @BatchSize(size = 10)
     private User iduser;
     
     private String tenpb;

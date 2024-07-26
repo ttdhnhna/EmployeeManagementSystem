@@ -9,15 +9,18 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.BatchSize;
-
-/**
- * Salary
- */
 @Entity
+@NamedEntityGraph(
+    name = "Salary.detail",
+    attributeNodes = {
+        @NamedAttributeNode("idnv") // Truy vấn Employee liên quan
+    }
+)
 @Table(name="tblSalary")
 public class Salary {
     @Id
@@ -28,7 +31,6 @@ public class Salary {
     @JsonIgnore
     @OneToOne(mappedBy = "idluong", fetch = FetchType.LAZY, orphanRemoval = true)
     // @JsonManagedReference
-    @BatchSize(size = 10)
     private Employee idnv;
 
     private static float luongcb = 1350000;

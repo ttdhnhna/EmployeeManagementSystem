@@ -1,5 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -8,15 +9,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.BatchSize;
-
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
+@NamedEntityGraph(
+    name = "User.detail",
+    attributeNodes = {
+        @NamedAttributeNode("idpb") // Truy vấn Employee liên quan
+    }
+)
 @Table(name = "tblUser")
 public class User {
     @Id
@@ -32,8 +38,7 @@ public class User {
 
     @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    @BatchSize(size = 10)
-    private Set<Department> idpb;
+    private Set<Department> idpb = new HashSet<>();
 
     public User() {
     }

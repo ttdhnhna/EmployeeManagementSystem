@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -21,5 +22,6 @@ public interface SalaryRepository extends JpaRepository<Salary, Long>{
     + " OR CAST(s.id_luong AS TEXT) LIKE %?2%);", nativeQuery = true)
     public List<Salary> findAllSalaries(Long iduser, String keyword);
 
+    @EntityGraph(value = "Salary.detail", type = EntityGraph.EntityGraphType.LOAD)
     public Page<Salary> findAllByIdnvIdpbIduser(User iduser, Pageable pageable);
 }

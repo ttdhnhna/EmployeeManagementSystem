@@ -17,8 +17,6 @@ import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.BatchSize;
-
 @Entity//Chỉ định rằng lớp là một thực thể và được ánh xạ tới bảng cơ sở dữ liệu
 @NamedEntityGraph(
     name = "Employee.detail",
@@ -45,13 +43,11 @@ public class  Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pb", nullable = false, referencedColumnName = "id_pb")
     @JsonBackReference
-    @BatchSize(size = 10)
     private Department idpb;
     
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_luong", referencedColumnName = "id_luong")
     @JsonBackReference
-    @BatchSize(size = 10)
     private Salary idluong;
     
     // @ManyToOne

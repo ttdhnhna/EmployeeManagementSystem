@@ -4,14 +4,11 @@ package com.practiceproject.EmployeeManagementSystem.controller;
 import java.io.UnsupportedEncodingException;
 
 import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -112,7 +109,6 @@ public class AppController {
     //Chức năng quên mật khẩu
     @GetMapping("/forgotpassword")
     public String showForgotPassForm(Model model){
-        // model.addAttribute("pageTitle", "Forgot Password");
         return "forgotpassword";
     }
     //Quá trình tạo random token cho email 
@@ -124,7 +120,7 @@ public class AppController {
             service.updateResetPass(token, email);
             String reserPasswordLink = Utility.getSiteUrl(request) + "/resetpassword?token=" + token;
             //Chức năng gửi email
-            sendEmail(email, reserPasswordLink);   
+            service.sendEmail(email, reserPasswordLink);   
             model.addAttribute("message", "Chúng tôi đã gửi đường link để reset mật khẩu tới email của bạn! Vui lòng kiểm tra.");
         } catch (CustomerNotFoundException e) {
             model.addAttribute("error", e.getMessage());
@@ -134,28 +130,6 @@ public class AppController {
             model.addAttribute("error", "Lỗi trong quá trình gửi email");
         }
         return "forgotpassword";
-    }
-
-    private void sendEmail(String email, String resetPasswordLink) throws UnsupportedEncodingException, MessagingException {
-        MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
-
-        helper.setFrom("19a10010039@students.hou.edu.vn", "EMS Support");
-        helper.setTo(email);
-
-        String subject = "Đây là đường link để reset lại mật khẩu của bạn!";
-        String content = "<p>Xin chào,</p>"
-        + "<p>Bạn đã yêu cầu reset mật khẩu của bạn.</p>"
-        + "<p>Nhấn vào đường link bên dưới để thay đổi mật khẩu của bạn:</p>"
-        + "<p><a href=\"" + resetPasswordLink + "\">Thay đổi mật khẩu</a></p>"
-        + "<br>"
-        + "<p>Bỏ qua email này nếu bạn vẫn nhớ mật khẩu, "
-        + "hoặc là bạn không gửi yêu cầu.</p>";
-
-        helper.setSubject(subject);
-        helper.setText(content, true);
-
-        mailSender.send(message);
     }
 
     @GetMapping("/resetpassword")
