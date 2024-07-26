@@ -47,11 +47,12 @@ public class EmployeeService {
     //Lưu nhân viên
     @Transactional
     public void saveEmployee(Employee employee,
-    MultipartFile file,
+    EmployeeDto employeeDto,
     float hsl,
     float phucap){
         Salary salary=new Salary();
 
+        MultipartFile file = employeeDto.getAnh();
         String filename=StringUtils.cleanPath(file.getOriginalFilename());
         if(filename.contains("..")){
             System.out.println("File không hợp lệ!");
@@ -61,9 +62,19 @@ public class EmployeeService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (!employee.getIdpb().getIduser().getIduser().equals(Utility.getCurrentUserId()) || employee.getIdpb() == null) {
+        employee.setHoten(employeeDto.getHoten());
+        employee.setNgaysinh(employeeDto.getNgaysinh());
+        employee.setQuequan(employeeDto.getQuequan());
+        employee.setGt(employeeDto.getGt());
+        employee.setDantoc(employeeDto.getDantoc());
+        employee.setSdt(employeeDto.getSdt());
+        employee.setEmail(employeeDto.getEmail());
+        employee.setChucvu(employeeDto.getChucvu());
+        Department idpb = dService.getDepartmentID(employeeDto.getIdpb());
+        if (!employee.getIdpb().getIduser().getIduser().equals(Utility.getCurrentUserId()) || idpb == null) {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
+        employee.setIdpb(idpb);
 
         salary.setHsl(hsl);
         salary.setPhucap(phucap);

@@ -19,7 +19,6 @@ import com.practiceproject.EmployeeManagementSystem.entity.EmployeeDto;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
 import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller//chỉ ra rằng một lớp cụ thể đóng vai trò của bộ điều khiển
@@ -41,8 +40,8 @@ public class EmployeeController {
     }
     @GetMapping("/addEmployee")
     public String addEmployee(Model model){
-        Employee employee=new Employee();
-        model.addAttribute("employee", employee);
+        EmployeeDto employeeDto=new EmployeeDto();
+        model.addAttribute("employee", employeeDto);
         /*Phương thức addAttribute ở đây sẽ giúp ta truyền nhưng dữ liệu mà đối tượng employee có
          * và truyền vào employee dưới dạng html để ta có thể dùng để hiển thị và chỉnh sửa
          * trên trang web
@@ -50,15 +49,15 @@ public class EmployeeController {
         return "newemployee";
     }
     @PostMapping("/saveEmployee")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee,
-        @RequestParam("anh")MultipartFile anh,
+    public String saveEmployee(@ModelAttribute("employee") EmployeeDto employeeDto,
         @RequestParam("hsl") float hsl,
         @RequestParam("phucap") float phucap,
         Model model){
         //@ModelAttribute là chú thích liên kết tham số phương thức hoặc giá trị trả về của phương thức với thuộc tính mô hình được đặt tên và sau đó hiển thị nó ở chế độ xem web. 
         //Lưu vào csdl
+        Employee employee = new Employee();
         try {
-            service.saveEmployee(employee, anh, hsl, phucap);
+            service.saveEmployee(employee, employeeDto, hsl, phucap);
         } catch (IllegalStateException e) {
             model.addAttribute("alertMessage", e.getMessage());
             return "newemployee";
