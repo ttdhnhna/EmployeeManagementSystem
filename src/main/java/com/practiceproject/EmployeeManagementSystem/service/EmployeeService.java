@@ -45,14 +45,17 @@ public class EmployeeService {
     // }
     
     //Lưu nhân viên
-    @Transactional
-    public void saveEmployee(Employee employee,
-    EmployeeDto employeeDto,
+    @SuppressWarnings("null")
+    public void saveEmployee(String hoten, String ngaysinh, 
+    String quequan, String gt, String dantoc, String sdt,
+    String email, String chucvu,
+    Department idpb,
+    MultipartFile file,
     float hsl,
     float phucap){
+        Employee employee=new Employee();
         Salary salary=new Salary();
 
-        MultipartFile file = employeeDto.getAnh();
         String filename=StringUtils.cleanPath(file.getOriginalFilename());
         if(filename.contains("..")){
             System.out.println("File không hợp lệ!");
@@ -62,19 +65,19 @@ public class EmployeeService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        employee.setHoten(employeeDto.getHoten());
-        employee.setNgaysinh(employeeDto.getNgaysinh());
-        employee.setQuequan(employeeDto.getQuequan());
-        employee.setGt(employeeDto.getGt());
-        employee.setDantoc(employeeDto.getDantoc());
-        employee.setSdt(employeeDto.getSdt());
-        employee.setEmail(employeeDto.getEmail());
-        employee.setChucvu(employeeDto.getChucvu());
-        Department idpb = dService.getDepartmentID(employeeDto.getIdpb());
-        if (!employee.getIdpb().getIduser().getIduser().equals(Utility.getCurrentUserId()) || idpb == null) {
+        employee.setHoten(hoten);
+        employee.setNgaysinh(ngaysinh);
+        employee.setQuequan(quequan);
+        employee.setGt(gt);
+        employee.setDantoc(dantoc);
+        employee.setSdt(sdt);
+        employee.setEmail(email);
+        employee.setChucvu(chucvu);
+        if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId()) || idpb.equals(null)) {
+            employee.setIdpb(idpb);
+        } else {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
-        employee.setIdpb(idpb);
 
         salary.setHsl(hsl);
         salary.setPhucap(phucap);
