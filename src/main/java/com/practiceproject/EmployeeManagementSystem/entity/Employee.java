@@ -11,28 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
-import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
 @Entity//Chỉ định rằng lớp là một thực thể và được ánh xạ tới bảng cơ sở dữ liệu
-@NamedEntityGraph(
-    name = "Employee.detail",
-    attributeNodes = {
-        @NamedAttributeNode("idpb"),
-        @NamedAttributeNode(value = "idpb", subgraph = "department-user")
-    },
-    subgraphs = {
-        @NamedSubgraph(
-            name = "department-user",
-            attributeNodes = {
-                @NamedAttributeNode("iduser")
-            }
-        )
-    }
-)
 @Table(name = "tblEmployee")//Chỉ định tên của bảng cơ sở dữ liệu sẽ được sử dụng để ánh xạ
 public class  Employee {
     @Id//Chỉ định khóa chính của một thực thể

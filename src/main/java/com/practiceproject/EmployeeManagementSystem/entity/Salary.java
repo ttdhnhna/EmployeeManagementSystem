@@ -9,18 +9,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@NamedEntityGraph(
-    name = "Salary.detail",
-    attributeNodes = {
-        @NamedAttributeNode("idnv") // Truy vấn Employee liên quan
-    }
-)
 @Table(name="tblSalary")
 public class Salary {
     @Id
