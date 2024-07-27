@@ -21,6 +21,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long iduser;
     private String hoten;
+    @Column(nullable = false, unique = true)
     private String email; 
     private String password;
 
