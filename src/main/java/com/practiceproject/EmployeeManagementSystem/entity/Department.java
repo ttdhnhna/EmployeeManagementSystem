@@ -18,6 +18,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 @Table(name = "tblDepartment")
 public class Department {
@@ -27,6 +30,7 @@ public class Department {
     private Long idpb;
 
     @OneToMany(mappedBy = "idpb", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Fetch(FetchMode.SUBSELECT)
     @JsonManagedReference
     private Set<Employee> idnv = new HashSet<>();
 
