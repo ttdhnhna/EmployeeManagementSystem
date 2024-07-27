@@ -34,6 +34,17 @@ public class AccountService {
         this.repository.save(user);
     }
 
+    public void saveRegistration(User user){
+        User existingUser = repository.findbyEmail(user.getEmail());
+        if(existingUser != null){
+            throw new IllegalStateException("Email đã tồn tại");
+        }
+        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+        String ePass=encoder.encode(user.getPassword());
+        user.setPassword(ePass);
+        this.repository.save(user);
+    }
+
     public void changePassword(String currentpass, String newpass, String comfirm, User user){
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
         if(!passwordEncoder.matches(currentpass, user.getPassword())){
