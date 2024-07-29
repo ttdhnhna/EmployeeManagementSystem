@@ -21,6 +21,5 @@ public interface SalaryRepository extends JpaRepository<Salary, Long>{
     + " OR CAST(s.id_luong AS TEXT) LIKE %?2%);", nativeQuery = true)
     public List<Salary> findAllSalaries(Long iduser, String keyword);
 
-    @Query("SELECT s FROM Salary s JOIN FETCH s.idnv e JOIN FETCH e.idpb d WHERE d.iduser = :iduser")
     public Page<Salary> findAllByIdnvIdpbIduser(User iduser, Pageable pageable);
 }
