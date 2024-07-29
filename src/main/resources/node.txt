@@ -54,3 +54,4 @@ dụng gì đối với thời gian thực thi chương trình cả, nên sẽ t
 Sau khi hoàn thành xong việc giúp chương trình chạy nhanh hơn mình mới bắt đầu tối giản code sau
 rồi mới thêm chức năng và giao diện mới.
 
+Nen xoa bo phan cache
