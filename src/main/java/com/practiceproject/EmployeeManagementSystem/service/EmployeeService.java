@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -146,8 +145,7 @@ public class EmployeeService {
     }
 
     //Phân trang và sắp xếp
-    @Cacheable(value = "employees", key = "#pageNo + '-' + #pageSize + '-' + #sortField + '-' + #sortDirection + '-' + #iduser")
-    // @Transactional(readOnly = true)
+    @Transactional(readOnly = true)
     public Page<Employee> findPaginated(int pageNo,  int pageSize, String sortField, String sortDirection, Long iduser){
         Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
             Sort.by(sortField).descending();
