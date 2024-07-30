@@ -33,10 +33,6 @@ public class  Employee {
     @JsonBackReference
     private Salary idluong;
     
-    // @ManyToOne
-    // @JoinColumn(name = "id_user", nullable = false, referencedColumnName = "id_user")
-    // @JsonBackReference
-    // private User iduser;
 
     private String hoten;
     private String ngaysinh;
@@ -150,12 +146,4 @@ public class  Employee {
     public void setAnh(String anh) {
         this.anh = anh;
     }
-    
-    // public User getIduser() {
-    //     return iduser;
-    // }
-
-    // public void setIduser(User iduser) {
-    //     this.iduser = iduser;
-    // }
 }
