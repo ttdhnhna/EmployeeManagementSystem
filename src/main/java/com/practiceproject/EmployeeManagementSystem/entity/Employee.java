@@ -11,12 +11,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
 @Entity//Chỉ định rằng lớp là một thực thể và được ánh xạ tới bảng cơ sở dữ liệu
 @Table(name = "tblEmployee")//Chỉ định tên của bảng cơ sở dữ liệu sẽ được sử dụng để ánh xạ
+@NamedEntityGraph(name = "nv.luong",
+    attributeNodes = @NamedAttributeNode("idluong")
+)
 public class  Employee {
     @Id//Chỉ định khóa chính của một thực thể
     @GeneratedValue (strategy = GenerationType.IDENTITY)//Cung cấp thông số kỹ thuật của strategy tạo các giá trị cho khóa chính
