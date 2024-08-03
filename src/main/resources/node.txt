@@ -55,4 +55,180 @@ Sau khi hoàn thành xong việc giúp chương trình chạy nhanh hơn mình m
 rồi mới thêm chức năng và giao diện mới.
 
 Khi nao sua xong phan loi hieu nang thi nho phai chinh lai phan tim kiem.
-https://vladmihalcea.com/join-fetch-pagination-spring/
+
+2024-08-03 20:31:40.556 DEBUG 2760 --- [nio-8080-exec-1] org.hibernate.SQL                        :
+    /* SELECT
+        u
+    FROM
+        User u
+    WHERE
+        u.email=?1 */ select
+            user0_.id_user as id_user1_3_,
+            user0_.email as email2_3_,
+            user0_.hoten as hoten3_3_,
+            user0_.password as password4_3_,
+            user0_.reset_password_token as reset_pa5_3_
+        from
+            tbl_user user0_
+        where
+            user0_.email=?
+Hibernate:
+    /* SELECT
+        u
+    FROM
+        User u
+    WHERE
+        u.email=?1 */ select
+            user0_.id_user as id_user1_3_,
+            user0_.email as email2_3_,
+            user0_.hoten as hoten3_3_,
+            user0_.password as password4_3_,
+            user0_.reset_password_token as reset_pa5_3_
+        from
+            tbl_user user0_
+        where
+            user0_.email=?
+2024-08-03 20:31:40.583 TRACE 2760 --- [nio-8080-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [thanhdatduong24102001@gmail.com]
+2024-08-03 20:31:40.659  INFO 2760 --- [nio-8080-exec-1] i.StatisticalLoggingSessionEventListener : Session Metrics {
+    15323800 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    15757600 nanoseconds spent preparing 1 JDBC statements;
+    22875700 nanoseconds spent executing 1 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
+}
+2024-08-03 20:31:41.357  WARN 2760 --- [nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [649] milliseconds.
+2024-08-03 20:31:41.605 DEBUG 2760 --- [nio-8080-exec-1] org.hibernate.SQL                        :
+    select
+        user0_.id_user as id_user1_3_0_,
+        user0_.email as email2_3_0_,
+        user0_.hoten as hoten3_3_0_,
+        user0_.password as password4_3_0_,
+        user0_.reset_password_token as reset_pa5_3_0_
+    from
+        tbl_user user0_
+    where
+        user0_.id_user=?
+Hibernate:
+    select
+        user0_.id_user as id_user1_3_0_,
+        user0_.email as email2_3_0_,
+        user0_.hoten as hoten3_3_0_,
+        user0_.password as password4_3_0_,
+        user0_.reset_password_token as reset_pa5_3_0_
+    from
+        tbl_user user0_
+    where
+        user0_.id_user=?
+2024-08-03 20:31:41.615 TRACE 2760 --- [nio-8080-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [1]
+2024-08-03 20:31:41.724 DEBUG 2760 --- [nio-8080-exec-1] org.hibernate.SQL                        :
+    /* select
+        generatedAlias0
+    from
+        Employee as generatedAlias0
+    left join
+        generatedAlias0.idpb as generatedAlias1
+    left join
+        generatedAlias1.iduser as generatedAlias2
+    where
+        generatedAlias2=:param0
+    order by
+        generatedAlias0.idnv asc */ select
+            employee0_.idnv as idnv1_1_0_,
+            salary3_.id_luong as id_luong1_2_1_,
+            employee0_.anh as anh2_1_0_,
+            employee0_.chucvu as chucvu3_1_0_,
+            employee0_.dantoc as dantoc4_1_0_,
+            employee0_.email as email5_1_0_,
+            employee0_.gt as gt6_1_0_,
+            employee0_.hoten as hoten7_1_0_,
+            employee0_.id_luong as id_luon11_1_0_,
+            employee0_.id_pb as id_pb12_1_0_,
+            employee0_.ngaysinh as ngaysinh8_1_0_,
+            employee0_.quequan as quequan9_1_0_,
+            employee0_.sdt as sdt10_1_0_,
+            salary3_.baohiem as baohiem2_2_1_,
+            salary3_.hsl as hsl3_2_1_,
+            salary3_.phucap as phucap4_2_1_,
+            salary3_.tienno as tienno5_2_1_,
+            salary3_.tongluong as tongluon6_2_1_,
+            salary3_.truluong as truluong7_2_1_
+        from
+            tbl_employee employee0_
+        left outer join
+            tbl_department department1_
+                on employee0_.id_pb=department1_.id_pb
+        left outer join
+            tbl_user user2_
+                on department1_.id_user=user2_.id_user
+        left outer join
+            tbl_salary salary3_
+                on employee0_.id_luong=salary3_.id_luong
+        where
+            user2_.id_user=?
+        order by
+            employee0_.idnv asc offset 0 rows fetch next ? rows only
+Hibernate:
+    /* select
+        generatedAlias0
+    from
+        Employee as generatedAlias0
+    left join
+        generatedAlias0.idpb as generatedAlias1
+    left join
+        generatedAlias1.iduser as generatedAlias2
+    where
+        generatedAlias2=:param0
+    order by
+        generatedAlias0.idnv asc */ select
+            employee0_.idnv as idnv1_1_0_,
+            salary3_.id_luong as id_luong1_2_1_,
+            employee0_.anh as anh2_1_0_,
+            employee0_.chucvu as chucvu3_1_0_,
+            employee0_.dantoc as dantoc4_1_0_,
+            employee0_.email as email5_1_0_,
+            employee0_.gt as gt6_1_0_,
+            employee0_.hoten as hoten7_1_0_,
+            employee0_.id_luong as id_luon11_1_0_,
+            employee0_.id_pb as id_pb12_1_0_,
+            employee0_.ngaysinh as ngaysinh8_1_0_,
+            employee0_.quequan as quequan9_1_0_,
+            employee0_.sdt as sdt10_1_0_,
+            salary3_.baohiem as baohiem2_2_1_,
+            salary3_.hsl as hsl3_2_1_,
+            salary3_.phucap as phucap4_2_1_,
+            salary3_.tienno as tienno5_2_1_,
+            salary3_.tongluong as tongluon6_2_1_,
+            salary3_.truluong as truluong7_2_1_
+        from
+            tbl_employee employee0_
+        left outer join
+            tbl_department department1_
+                on employee0_.id_pb=department1_.id_pb
+        left outer join
+            tbl_user user2_
+                on department1_.id_user=user2_.id_user
+        left outer join
+            tbl_salary salary3_
+                on employee0_.id_luong=salary3_.id_luong
+        where
+            user2_.id_user=?
+        order by
+            employee0_.idnv asc offset 0 rows fetch next ? rows only
+2024-08-03 20:31:41.727 TRACE 2760 --- [nio-8080-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [1]
+2024-08-03 20:31:43.284  INFO 2760 --- [nio-8080-exec-1] i.StatisticalLoggingSessionEventListener : Session Metrics {
+    11675700 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    634000 nanoseconds spent preparing 2 JDBC statements;
+    47584500 nanoseconds spent executing 2 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    33400 nanoseconds spent executing 1 partial-flushes (flushing a total of 0 entities and 0 collections)
+}

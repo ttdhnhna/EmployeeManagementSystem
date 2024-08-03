@@ -15,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,6 +25,9 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "tblDepartment")
+@NamedEntityGraph(name = "pb.nv",
+    attributeNodes = @NamedAttributeNode("idnv")
+)
 public class Department {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
