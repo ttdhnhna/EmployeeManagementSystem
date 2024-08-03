@@ -2,16 +2,7 @@ package com.practiceproject.EmployeeManagementSystem.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity//Chỉ định rằng lớp là một thực thể và được ánh xạ tới bảng cơ sở dữ liệu
 @Table(name = "tblEmployee")//Chỉ định tên của bảng cơ sở dữ liệu sẽ được sử dụng để ánh xạ
@@ -21,17 +12,17 @@ public class  Employee {
     //Để tự động tạo các giá trị duy nhất cho các cột khóa chính trong các bảng cơ sở dữ liệu của chúng ta.
     private Long idnv;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pb", nullable = false, referencedColumnName = "id_pb")
     @JsonBackReference
     private Department idpb;
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_luong", referencedColumnName = "id_luong")
     @JsonBackReference
     private Salary idluong;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user", nullable = false, referencedColumnName = "id_user")
     @JsonBackReference
     private User iduser;

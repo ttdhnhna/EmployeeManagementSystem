@@ -4,17 +4,10 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "tblDepartment")
@@ -24,11 +17,12 @@ public class Department {
     @Column(name = "id_pb")
     private Long idpb;
 
-    @OneToMany(mappedBy = "idpb", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "idpb", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @Fetch(FetchMode.SUBSELECT)
     @JsonManagedReference
     private Set<Employee> idnv;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user", nullable = false, referencedColumnName = "id_user")
     @JsonBackReference
     private User iduser;

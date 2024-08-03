@@ -5,13 +5,17 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "tblUser")
@@ -28,15 +32,18 @@ public class User {
     @Column(name = "reset_password_token")
     private String resetPassToken;
 
-    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @Fetch(FetchMode.SUBSELECT)
     @JsonManagedReference
     private Set<Employee> idnv;
 
-    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @Fetch(FetchMode.SUBSELECT)
     @JsonManagedReference
     private Set<Department> idpb;
 
-    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @Fetch(FetchMode.SUBSELECT)
     @JsonManagedReference
     private Set<Salary> idluong;
     
