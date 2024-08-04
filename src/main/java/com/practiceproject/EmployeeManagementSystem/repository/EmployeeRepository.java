@@ -15,18 +15,16 @@ import com.practiceproject.EmployeeManagementSystem.entity.User;
 @Repository //@Repository được sử dụng để chỉ ra rằng lớp này cung cấp chức năng lưu trữ, truy xuất, tìm kiếm, cập nhật và xóa hoạt động trên các đối tượng
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 //Lớp này được dùng để quản lý dữ liệu quan hệ trong các ứng dụng Java, cho phép ta truy cập và lưu trữ dữ liệu giữa các đối tượng Java và CSDL.
-    // @Query(value = "SELECT e.* FROM tbl_employee e INNER JOIN tbl_department d " 
-    // + " ON e.id_pb = d.id_pb"
-    // + " WHERE d.id_user = ?1 AND (e.hoten LIKE %?2% "
+    // @Query(value = "SELECT e.* FROM tbl_employee e" 
+    // + " WHERE e.id_user = ?1 AND (e.hoten LIKE %?2% "
     // + " OR CAST(e.idnv AS TEXT) LIKE %?2% " 
     // + " OR e.chucvu LIKE %?2%);", nativeQuery = true)
-    @Query(value = "SELECT e.* FROM tbl_employee e INNER JOIN tbl_department d " 
-    + " ON e.id_pb = d.id_pb"
-    + " WHERE d.id_user = ?1 AND (e.hoten LIKE %?2% "
+    @Query(value = "SELECT e.* FROM tbl_employee e" 
+    + " WHERE e.id_user = ?1 AND (e.hoten LIKE %?2% "
     + " OR e.idnv LIKE %?2% " 
     + " OR e.chucvu LIKE %?2%);", nativeQuery = true)
     public List<Employee> findAllbyiduser(Long iduser, String keywords);
 
     @EntityGraph(value = "nv.luong", type = EntityGraph.EntityGraphType.LOAD)
-    public Page<Employee> findAllByIdpbIduser(User iduser, Pageable pageable);
+    public Page<Employee> findAllByIduser(User iduser, Pageable pageable);
 }
