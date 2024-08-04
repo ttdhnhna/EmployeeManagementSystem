@@ -40,6 +40,11 @@ public class User {
     @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @Fetch(FetchMode.SUBSELECT)
     @JsonManagedReference
+    private Set<Employee> idnv = new HashSet<>();
+
+    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @Fetch(FetchMode.SUBSELECT)
+    @JsonManagedReference
     private Set<Department> idpb = new HashSet<>();
 
     public User() {

@@ -77,7 +77,6 @@ public class EmployeeController {
 
     @PostMapping("/updateEmployee")
     public String updateEmployee(@ModelAttribute("employee") EmployeeDto employeeDto, Model model, RedirectAttributes redirectAttributes) throws IOException{
-        // service.updateEmployee(employee, hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, idluong, iduser, anh);
         try {
             Employee employee = service.getEmployeebyID(employeeDto.getIdnv());
             if(employee!=null){

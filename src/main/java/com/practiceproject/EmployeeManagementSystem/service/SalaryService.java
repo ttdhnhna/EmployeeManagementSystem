@@ -63,7 +63,7 @@ public class SalaryService {
             Sort.by(sortField).descending();
         Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
         User user = aService.getUserByID(iduser);
-        return this.repository.findAllByIdnvIdpbIduser(user, pageable);
+        return this.repository.findAllByIdnvIduser(user, pageable);
     }
 
     //Chức năng tìm kiếm theo keyword

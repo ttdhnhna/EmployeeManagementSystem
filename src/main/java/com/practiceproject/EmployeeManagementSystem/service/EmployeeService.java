@@ -54,6 +54,7 @@ public class EmployeeService {
     float phucap){
         Employee employee=new Employee();
         Salary salary=new Salary();
+        User iduser = uService.getUserByID(Utility.getCurrentUserId());
 
         String filename=StringUtils.cleanPath(file.getOriginalFilename());
         if(filename.contains("..")){
@@ -72,6 +73,7 @@ public class EmployeeService {
         employee.setSdt(sdt);
         employee.setEmail(email);
         employee.setChucvu(chucvu);
+        employee.setIduser(iduser);
         if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId()) || idpb.equals(null)) {
             employee.setIdpb(idpb);
         } else {
@@ -151,7 +153,7 @@ public class EmployeeService {
             Sort.by(sortField).descending();
         Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
         User user = uService.getUserByID(iduser);
-        return this.repository.findAllByIdpbIduser(user, pageable);
+        return this.repository.findAllByIduser(user, pageable);
     }
 
     //Chức năng tìm kiếm theo keyword
