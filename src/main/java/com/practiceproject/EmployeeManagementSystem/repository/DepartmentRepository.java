@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.EntityGraph;
+// import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -23,6 +23,7 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     + " OR d.id_pb LIKE %?2%);", nativeQuery = true)
     public List<Department> findAllDepartments(Long iduser, String keyword);
 
-    @EntityGraph(attributePaths = {"idnv", "iduser"})
+    // @EntityGraph(attributePaths = {"idnv", "iduser"})
+    @Query("SELECT e FROM Employee e JOIN FETCH e.department d JOIN FETCH d.user u JOIN FETCH e.salary WHERE u = :iduser")
     public Page<Department> findAllByiduser(User iduser, Pageable pageable);
 }
