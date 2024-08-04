@@ -12,6 +12,6 @@ public interface UserRepository extends JpaRepository<User,Long>{
     @Query("SELECT u FROM User u WHERE u.email=?1")
     User findbyEmail(String email);
 
-    @EntityGraph(value = "user.pb", type = EntityGraph.EntityGraphType.LOAD)
+    @EntityGraph(attributePaths = {"idnv","idpb"})
     public User findByResetPassToken(String token);
 }

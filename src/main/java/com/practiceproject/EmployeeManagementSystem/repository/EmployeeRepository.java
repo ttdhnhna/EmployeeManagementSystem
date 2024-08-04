@@ -25,6 +25,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
     + " OR e.chucvu LIKE %?2%);", nativeQuery = true)
     public List<Employee> findAllbyiduser(Long iduser, String keywords);
 
-    @EntityGraph(value = "nv.luong", type = EntityGraph.EntityGraphType.LOAD)
+    @EntityGraph(attributePaths = {"idpb", "idluong"})
     public Page<Employee> findAllByIduser(User iduser, Pageable pageable);
 }

@@ -23,6 +23,6 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     + " OR d.id_pb LIKE %?2%);", nativeQuery = true)
     public List<Department> findAllDepartments(Long iduser, String keyword);
 
-    @EntityGraph(value = "pb.nv", type = EntityGraph.EntityGraphType.LOAD)
+    @EntityGraph(attributePaths = {"idnv", "iduser"})
     public Page<Department> findAllByiduser(User iduser, Pageable pageable);
 }

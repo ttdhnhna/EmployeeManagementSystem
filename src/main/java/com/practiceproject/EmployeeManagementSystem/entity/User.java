@@ -10,21 +10,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "tblUser")
-@NamedEntityGraph(name = "user.pb",
-    attributeNodes = @NamedAttributeNode("idpb")    
-)
 public class User {
     @Id
     @Column(name = "id_user")
@@ -38,12 +30,10 @@ public class User {
     private String resetPassToken;
 
     @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @Fetch(FetchMode.SUBSELECT)
     @JsonManagedReference
     private Set<Employee> idnv = new HashSet<>();
 
     @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @Fetch(FetchMode.SUBSELECT)
     @JsonManagedReference
     private Set<Department> idpb = new HashSet<>();
 
