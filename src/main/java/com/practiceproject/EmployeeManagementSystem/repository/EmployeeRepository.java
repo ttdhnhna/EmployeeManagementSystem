@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.EntityGraph;
+// import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -25,6 +25,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
     + " OR e.chucvu LIKE %?2%);", nativeQuery = true)
     public List<Employee> findAllbyiduser(Long iduser, String keywords);
 
-    @EntityGraph(attributePaths = {"idpb", "idluong"})
+    // @EntityGraph(attributePaths = {"idpb", "idluong"})
+    @Query("SELECT e FROM Employee e JOIN FETCH e.department d JOIN FETCH d.user u JOIN FETCH e.salary WHERE u = :iduser")
     public Page<Employee> findAllByIduser(User iduser, Pageable pageable);
 }
