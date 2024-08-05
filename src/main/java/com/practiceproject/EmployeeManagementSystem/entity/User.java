@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -31,10 +34,12 @@ public class User {
 
     @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonManagedReference
+    @Fetch(FetchMode.SUBSELECT)
     private Set<Employee> idnv = new HashSet<>();
 
     @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonManagedReference
+    @Fetch(FetchMode.SUBSELECT)
     private Set<Department> idpb = new HashSet<>();
 
     public User() {
