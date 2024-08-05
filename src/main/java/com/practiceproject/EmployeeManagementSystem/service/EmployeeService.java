@@ -11,7 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -92,7 +91,6 @@ public class EmployeeService {
     }
     
     //Cập nhật nhân viên
-    @Transactional
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
         MultipartFile file = employeeDto.getAnh();
         if (file != null && !file.isEmpty()) {
@@ -126,7 +124,6 @@ public class EmployeeService {
     }
     
     //Tìm nhân viên bằng id
-    @Transactional(readOnly = true)
     public Employee getEmployeebyID(long id){
         Optional<Employee> optional=repository.findById(id);
         Employee employee=null;
@@ -139,7 +136,6 @@ public class EmployeeService {
     }
 
     //Xóa nhân viên bằng id
-    @Transactional
     public void deleteEmployeebyID(long id){
         Employee employee = getEmployeebyID(id);
         sRepository.deleteById(employee.getIdluong().getIdluong());
@@ -147,7 +143,6 @@ public class EmployeeService {
     }
 
     //Phân trang và sắp xếp
-    @Transactional(readOnly = true)
     public Page<Employee> findPaginated(int pageNo,  int pageSize, String sortField, String sortDirection, Long iduser){
         Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
             Sort.by(sortField).descending();
@@ -157,7 +152,6 @@ public class EmployeeService {
     }
 
     //Chức năng tìm kiếm theo keyword
-    @Transactional(readOnly = true)
     public List<Employee> findAll(String keyword, Long iduser){
         if(keyword!=null){
             return repository.findAllbyiduser(iduser, keyword);

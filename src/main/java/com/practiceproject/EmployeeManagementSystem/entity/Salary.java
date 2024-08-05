@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +20,7 @@ public class Salary {
     private Long idluong;
     
     @JsonIgnore
-    @OneToOne(mappedBy = "idluong", fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToOne(mappedBy = "idluong")
     @JsonManagedReference
     private Employee idnv;
 
