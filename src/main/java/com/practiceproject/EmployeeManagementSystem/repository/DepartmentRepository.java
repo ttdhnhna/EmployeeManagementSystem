@@ -24,5 +24,7 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     public List<Department> findAllDepartments(Long iduser, String keyword);
 
     // @EntityGraph(attributePaths = {"idnv", "iduser"})
+    @Query(value = "SELECT d FROM Department d JOIN FETCH d.idnv e JOIN FETCH e.iduser u WHERE u = :iduser", 
+        countQuery = "SELECT COUNT(d) FROM Department d WHERE d.iduser = :iduser")
     public Page<Department> findAllByiduser(User iduser, Pageable pageable);
 }
