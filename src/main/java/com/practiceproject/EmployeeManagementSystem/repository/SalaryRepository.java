@@ -26,6 +26,6 @@ public interface SalaryRepository extends JpaRepository<Salary, Long>{
     public List<Salary> findAllSalaries(Long iduser, String keyword);
 
     @Query(value = "SELECT s FROM Salary s JOIN FETCH s.idnv e JOIN FETCH e.iduser u WHERE u = :iduser", 
-        countQuery = "SELECT COUNT(s) FROM Salary s JOIN FETCH s.idnv e WHERE e.iduser = :iduser")
+        countQuery = "SELECT COUNT(s) FROM Salary s JOIN s.idnv e WHERE e.iduser = :iduser")
     public Page<Salary> findAllByIdnvIduser(User iduser, Pageable pageable);
 }
