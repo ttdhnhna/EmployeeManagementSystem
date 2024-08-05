@@ -25,5 +25,7 @@ public interface SalaryRepository extends JpaRepository<Salary, Long>{
     + " OR s.id_luong LIKE %?2%);", nativeQuery = true)
     public List<Salary> findAllSalaries(Long iduser, String keyword);
 
+    @Query(value = "SELECT s FROM Salary s JOIN FETCH s.idnv e JOIN FETCH e.iduser u WHERE u = :iduser", 
+        countQuery = "SELECT COUNT(s) FROM Salary s JOIN FETCH s.idnv e WHERE e.iduser = :iduser")
     public Page<Salary> findAllByIdnvIduser(User iduser, Pageable pageable);
 }
