@@ -14,9 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 @Entity//Chỉ định rằng lớp là một thực thể và được ánh xạ tới bảng cơ sở dữ liệu
 @Table(name = "tblEmployee")//Chỉ định tên của bảng cơ sở dữ liệu sẽ được sử dụng để ánh xạ
 public class  Employee {
@@ -32,7 +29,6 @@ public class  Employee {
     
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_luong", referencedColumnName = "id_luong")
-    @Fetch(FetchMode.SUBSELECT)
     @JsonBackReference
     private Salary idluong;
     
