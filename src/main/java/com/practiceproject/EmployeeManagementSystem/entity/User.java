@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.BatchSize;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -30,10 +32,12 @@ public class User {
     private String resetPassToken;
 
     @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @BatchSize(size = 16)
     @JsonManagedReference
     private Set<Employee> idnv = new HashSet<>();
 
     @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @BatchSize(size = 16)
     @JsonManagedReference
     private Set<Department> idpb = new HashSet<>();
 

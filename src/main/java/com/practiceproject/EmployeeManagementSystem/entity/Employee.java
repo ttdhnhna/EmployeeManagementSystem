@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.BatchSize;
+
 @Entity//Chỉ định rằng lớp là một thực thể và được ánh xạ tới bảng cơ sở dữ liệu
 @Table(name = "tblEmployee")//Chỉ định tên của bảng cơ sở dữ liệu sẽ được sử dụng để ánh xạ
 public class  Employee {
@@ -24,16 +26,19 @@ public class  Employee {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pb", nullable = false, referencedColumnName = "id_pb")
+    @BatchSize(size = 16)
     @JsonBackReference
     private Department idpb;
     
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_luong", referencedColumnName = "id_luong")
+    @BatchSize(size = 16)
     @JsonBackReference
     private Salary idluong;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user", nullable = false, referencedColumnName = "id_user")
+    @BatchSize(size = 16)
     @JsonBackReference
     private User iduser;
 

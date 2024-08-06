@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.BatchSize;
+
 @Entity
 @Table(name="tblSalary")
 public class Salary {
@@ -20,6 +22,7 @@ public class Salary {
     private Long idluong;
     
     @OneToOne(mappedBy = "idluong", fetch = FetchType.LAZY)
+    @BatchSize(size = 16)
     @JsonManagedReference
     private Employee idnv;
 
