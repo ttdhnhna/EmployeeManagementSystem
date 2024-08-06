@@ -3,6 +3,8 @@ package com.practiceproject.EmployeeManagementSystem.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -146,5 +148,14 @@ public class EmployeeController {
             model.addAttribute("errorMess", "Không tìm thấy nhân viên");
         }
         return "homepage";
+    }
+
+    @GetMapping("/excel")
+    public void generateExcel(HttpServletResponse response) throws IOException{
+        response.setContentType("application/octet-stream");
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment;filename=emp.xls";
+        response.setHeader(headerKey, headerValue);
+        service.generateExcel(response);
     }
 }

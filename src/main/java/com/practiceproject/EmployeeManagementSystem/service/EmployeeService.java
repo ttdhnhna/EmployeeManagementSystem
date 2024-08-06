@@ -5,6 +5,13 @@ import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -157,6 +164,44 @@ public class EmployeeService {
             return repository.findAllbyiduser(iduser, keyword);
         }
         return Collections.emptyList();
+    }
+
+    //Chức năng tải file excel
+    public void generateExcel(HttpServletResponse response) throws IOException{
+        List<Employee> employees = repository.findAll();
+
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet("Employee Info");
+        HSSFRow row = sheet.createRow(0);
+
+        row.createCell(0).setCellValue("ID");
+        row.createCell(1).setCellValue("Họ tên");
+        row.createCell(2).setCellValue("Ngày sinh");
+        row.createCell(3).setCellValue("Quê quán");
+        row.createCell(4).setCellValue("Giới tính");
+        row.createCell(5).setCellValue("Dân tộc");
+        row.createCell(6).setCellValue("SDT");
+        row.createCell(7).setCellValue("Email");
+        row.createCell(8).setCellValue("Chức vụ");
+
+        int dataRowIndex = 1;
+        for(Employee e : employees){
+            HSSFRow dataRow = sheet.createRow(dataRowIndex);
+            dataRow.createCell(0).setCellValue(e.getIdnv());
+            dataRow.createCell(1).setCellValue(e.getHoten());
+            dataRow.createCell(2).setCellValue(e.getNgaysinh());
+            dataRow.createCell(3).setCellValue(e.getQuequan());
+            dataRow.createCell(4).setCellValue(e.getGt());
+            dataRow.createCell(5).setCellValue(e.getDantoc());
+            dataRow.createCell(6).setCellValue(e.getSdt());
+            dataRow.createCell(7).setCellValue(e.getEmail());
+            dataRow.createCell(8).setCellValue(e.getChucvu());
+            dataRowIndex++;
+        }
+        ServletOutputStream outputStream = response.getOutputStream();
+        workbook.write(outputStream);
+        workbook.close();
+        outputStream.close();
     }
 }
 
