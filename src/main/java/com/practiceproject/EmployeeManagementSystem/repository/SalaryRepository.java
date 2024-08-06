@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -27,5 +28,6 @@ public interface SalaryRepository extends JpaRepository<Salary, Long>{
 
 //    @Query(value = "SELECT s FROM Salary s JOIN FETCH s.idnv e JOIN FETCH e.iduser u WHERE u = :iduser",
 //        countQuery = "SELECT COUNT(s) FROM Salary s JOIN s.idnv e WHERE e.iduser = :iduser")
+    @EntityGraph(attributePaths = {"idnv"})
     public Page<Salary> findAllByIdnvIduser(User iduser, Pageable pageable);
 }
