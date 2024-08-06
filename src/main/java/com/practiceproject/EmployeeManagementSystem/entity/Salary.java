@@ -1,10 +1,10 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,8 +19,7 @@ public class Salary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idluong;
     
-    @JsonIgnore
-    @OneToOne(mappedBy = "idluong")
+    @OneToOne(mappedBy = "idluong", fetch = FetchType.LAZY)
     @JsonManagedReference
     private Employee idnv;
 
