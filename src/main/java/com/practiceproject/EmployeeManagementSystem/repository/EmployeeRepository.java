@@ -26,7 +26,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
     public List<Employee> findAllbyiduser(Long iduser, String keywords);
 
     // @EntityGraph(attributePaths = {"idpb", "idluong"})
-    @Query(value = "SELECT e FROM Employee e JOIN FETCH e.idpb d JOIN FETCH d.iduser u JOIN FETCH e.idluong WHERE u = :iduser", 
-        countQuery = "SELECT COUNT(e) FROM Employee e WHERE e.iduser = :iduser")
+//    @Query(value = "SELECT e FROM Employee e JOIN FETCH e.idpb d JOIN FETCH d.iduser u JOIN FETCH e.idluong WHERE u = :iduser",
+//        countQuery = "SELECT COUNT(e) FROM Employee e WHERE e.iduser = :iduser")
     public Page<Employee> findAllByIduser(User iduser, Pageable pageable);
 }
