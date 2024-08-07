@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
+<head th:replace="loading :: head">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,7 +44,7 @@
 </head>
 <body>
     <!-- Header -->
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark" th:replace="loading :: content">
         <!-- Brand -->
         <a class="navbar-brand" th:href="@{/}">Hệ thống Quản lý Nhân viên</a>
       
@@ -83,7 +83,7 @@
       <br>
     
     <!-- Body -->
-    <div class="container">
+    <div class="container" th:replace="loading :: content">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
                 <br>
@@ -136,7 +136,7 @@
     </div>
     <br>
     <br>
-    <footer class="bg-light text-center text-lg-start">
+    <footer class="bg-light text-center text-lg-start" th:replace="loading :: content">
         <div class="footer-content text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
           <div class="footer-left"> 
             <b>Copyright©2024 Dương Thành Đạt.</b> All rights reserved.

@@ -8,36 +8,21 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div id="loader" class="loader" style="display:none;"></div>
-    <div id="content">
-        <!-- Nội dung trang web của bạn -->
-        <button onclick="navigateToNewPage()">Chuyển trang</button>
+    <div id="loader" class="loader"></div>
+    <div id="content" style="display:none;">
+        <th:block th:replace="fragments/header :: header"></th:block>
+        <div th:replace="${page}"></div>
+        <th:block th:replace="fragments/footer :: footer"></th:block>
     </div>
 
     <script>
-        function showLoader() {
-            document.getElementById('loader').style.display = 'block';
-            document.getElementById('content').style.display = 'none';
-        }
-
-        function hideLoader() {
+        document.addEventListener("DOMContentLoaded", function() {
+            // Ẩn loader và hiển thị nội dung sau khi trang tải xong
             document.getElementById('loader').style.display = 'none';
             document.getElementById('content').style.display = 'block';
-        }
 
-        function navigateToNewPage() {
-            showLoader();
-            // Giả sử đây là một yêu cầu AJAX đến trang mới
-            setTimeout(function() {
-                // Xử lý tải xong
-                hideLoader();
-                // Thay đổi nội dung trang, ví dụ:
-                document.getElementById('content').innerHTML = 'Nội dung trang mới';
-            }, 2000); // Giả sử mất 2 giây để tải
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            hideLoader();
+            // Khôi phục thanh cuộn sau khi nội dung đã tải
+            document.body.style.overflow = 'auto';
         });
     </script>
 </body>
