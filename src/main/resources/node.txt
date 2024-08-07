@@ -55,3 +55,6 @@ Sau khi hoàn thành xong việc giúp chương trình chạy nhanh hơn mình m
 rồi mới thêm chức năng và giao diện mới.
 
 Khi nao sua xong phan loi hieu nang thi nho phai chinh lai phan tim kiem.
+
+Phan hien tai thi se tam bo de lam phan tai len file excel, phan nay van dang lam do phan service 
+chua lay duoc file dc cap nhat va chua set idpb va user.

@@ -1,5 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.Collections;
@@ -12,6 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -202,6 +208,38 @@ public class EmployeeService {
         workbook.write(outputStream);
         workbook.close();
         outputStream.close();
+    }
+
+    public void updateExcel(HttpServletResponse response, MultipartFile file) throws IOException{
+        Workbook workbook = WorkbookFactory.create(new File("null"));
+        for(Sheet sheet : workbook){
+            DataFormatter dataFormatter = new DataFormatter();
+            for(Row row : sheet){
+                long id = row.getCell(0).getColumnIndex();
+                String hoten = row.getCell(1).getStringCellValue();
+                String ngaysinh = row.getCell(2).getStringCellValue();
+                String quequan = row.getCell(3).getStringCellValue();
+                String gt = row.getCell(4).getStringCellValue();
+                String dantoc = row.getCell(5).getStringCellValue();
+                String sdt = row.getCell(6).getStringCellValue();
+                String email = row.getCell(7).getStringCellValue();
+                String chucvu = row.getCell(8).getStringCellValue();
+
+                Employee employee = new Employee();
+                employee.setIdnv(id);
+                employee.setHoten(hoten);
+                employee.setNgaysinh(ngaysinh);
+                employee.setQuequan(quequan);
+                employee.setGt(gt);
+                employee.setDantoc(dantoc);
+                employee.setEmail(email);
+                employee.setSdt(sdt);
+                employee.setChucvu(chucvu);
+
+                this.repository.save(employee);
+            }
+        }
+        workbook.close();
     }
 }
 
