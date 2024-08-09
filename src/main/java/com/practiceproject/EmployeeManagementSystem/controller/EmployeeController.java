@@ -158,4 +158,19 @@ public class EmployeeController {
         response.setHeader(headerKey, headerValue);
         service.generateExcel(response);
     }
+
+    @GetMapping("/uploadexcel")
+    public String uploadExcelPage(){
+        return "uploadexcel";
+    }
+    @PostMapping("/uploadexcel")
+    public String uploadExcel(@RequestParam("file") MultipartFile file, Model model) throws IOException{
+        try {
+            service.uploadExcel(file);
+        } catch (IllegalStateException e) {
+            model.addAttribute("alertMessage", e.getMessage());
+            return "uploadexcel";
+        }
+        return "redirect:/";
+    }
 }

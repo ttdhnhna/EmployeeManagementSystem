@@ -1,7 +1,7 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,6 +32,7 @@ import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.EmployeeDto;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
+import com.practiceproject.EmployeeManagementSystem.repository.DepartmentRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.SalaryRepository;
 
@@ -44,6 +45,8 @@ public class EmployeeService {
     //Để có thể sử dụng các chức năng của nó trong service.
     @Autowired
     SalaryRepository sRepository;
+    @Autowired
+    DepartmentRepository dRepository;
     @Autowired
     DepartmentService dService;
     @Autowired
@@ -210,36 +213,52 @@ public class EmployeeService {
         outputStream.close();
     }
 
-    public void updateExcel(HttpServletResponse response, MultipartFile file) throws IOException{
-        Workbook workbook = WorkbookFactory.create(new File("null"));
-        for(Sheet sheet : workbook){
-            DataFormatter dataFormatter = new DataFormatter();
-            for(Row row : sheet){
-                long id = row.getCell(0).getColumnIndex();
-                String hoten = row.getCell(1).getStringCellValue();
-                String ngaysinh = row.getCell(2).getStringCellValue();
-                String quequan = row.getCell(3).getStringCellValue();
-                String gt = row.getCell(4).getStringCellValue();
-                String dantoc = row.getCell(5).getStringCellValue();
-                String sdt = row.getCell(6).getStringCellValue();
-                String email = row.getCell(7).getStringCellValue();
-                String chucvu = row.getCell(8).getStringCellValue();
-
-                Employee employee = new Employee();
-                employee.setIdnv(id);
-                employee.setHoten(hoten);
-                employee.setNgaysinh(ngaysinh);
-                employee.setQuequan(quequan);
-                employee.setGt(gt);
-                employee.setDantoc(dantoc);
-                employee.setEmail(email);
-                employee.setSdt(sdt);
-                employee.setChucvu(chucvu);
-
-                this.repository.save(employee);
-            }
+    public void uploadExcel(MultipartFile file) throws IOException{
+        if(file.isEmpty()){
+            throw new IllegalStateException("Không tìm thấy file");
         }
-        workbook.close();
+        try (InputStream inputStream = file.getInputStream();
+        Workbook workbook = new XSSFWorkbook(inputStream)) {
+            for (Sheet sheet : workbook) {
+                for (Row row : sheet) {
+                    String hoten = getCellValue(row.getCell(0));
+                    String ngaysinh = getCellValue(row.getCell(1));
+                    String quequan = getCellValue(row.getCell(2));
+                    String gt = getCellValue(row.getCell(3));
+                    String dantoc = getCellValue(row.getCell(4));
+                    String sdt = getCellValue(row.getCell(5));
+                    String email = getCellValue(row.getCell(6));
+                    String chucvu = getCellValue(row.getCell(7));
+                    String tenpb = getCellValue(row.getCell(8));
+                    String diachi = getCellValue(row.getCell(9));
+                    String sdtpb = getCellValue(row.getCell(10));
+                    float hsl = (float) row.getCell(11).getNumericCellValue();
+                    float phucap = (float) row.getCell(12).getNumericCellValue();
+                    
+                    if (this.repository.findByHoten(hoten) != null) {
+                        continue; // Nếu đã tồn tại nhân viên, bỏ qua dòng này
+                    }
+                    
+                    Department idpb = dRepository.findByTenpb(tenpb);
+                    if (idpb == null) {
+                        idpb = new Department();
+                        idpb.setIduser(uService.getUserByID(Utility.getCurrentUserId())); 
+                        idpb.setDiachi(diachi);
+                        idpb.setSdt(sdtpb);
+                        idpb.setTenpb(tenpb);
+                        idpb = dRepository.save(idpb);
+                    }
+                    
+                    saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, null, hsl, phucap);
+                }
+            }
+        } catch (IllegalStateException e) {
+            throw new IllegalStateException("Lỗi khi đọc file Excel", e);
+        }
+    }
+
+    private String getCellValue(Cell cell) {
+        return cell != null ? cell.getStringCellValue() : "";
     }
 }
 

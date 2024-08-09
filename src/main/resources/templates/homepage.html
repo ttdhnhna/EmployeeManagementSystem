@@ -94,11 +94,14 @@
                     Thêm mới
                 </a>
                 <a th:href="@{/excel}" class="btn btn-primary btn-sm mb-3">
-                  Tải File Excel
-              </a>
+                  Tải xuống
+                </a>
+                <a th:href="@{/uploadexcel}" class="btn btn-primary btn-sm mb-3">
+                  Tải lên
+                </a>
             </div>
         </div>
-        <!-- Tin nhắn báo đăng ký tài khoản thành công -->
+        <!-- Tin nhắn  -->
         <div th:if="${errorMess != null}">
           <div class="alert alert-danger">[[${errorMess}]]</div>
         </div>
@@ -142,6 +145,17 @@
               &nbsp; &nbsp;
               Tổng hàng: [[${totalItems}]]
               &nbsp; &nbsp;
+            </div>
+            <div class="coL-sm-1">
+              <a th:if="${currentPage > 1}" th:href="@{'/page/' + 1 + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu</a>
+              <span th:unless="${currentPage > 1}">Đầu</span>
+              &nbsp;
+            </div>
+
+            <div class="coL-sm-1">
+                <a th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trước</a>
+                <span th:unless="${currentPage > 1}">Trước</span>
+                &nbsp;
             </div>
             <div class="coL-sm-1">
               <span th:each="i: ${#numbers.sequence(1, totalPages)}">

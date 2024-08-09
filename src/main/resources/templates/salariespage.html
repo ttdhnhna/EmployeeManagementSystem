@@ -138,6 +138,18 @@
               &nbsp; &nbsp;
             </div>
             <div class="coL-sm-1">
+              <a th:if="${currentPage > 1}" th:href="@{'/pageSalary/' + 1 + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu</a>
+              <span th:unless="${currentPage > 1}">Đầu</span>
+              &nbsp;
+            </div>
+
+            <div class="coL-sm-1">
+                <a th:if="${currentPage > 1}" th:href="@{'/pageSalary/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trước</a>
+                <span th:unless="${currentPage > 1}">Trước</span>
+                &nbsp;
+            </div>
+
+            <div class="coL-sm-1">
               <span th:each="i: ${#numbers.sequence(1, totalPages)}">
                 <a th:if="${currentPage != i}" th:href="@{'/pageSalary/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
                 <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;

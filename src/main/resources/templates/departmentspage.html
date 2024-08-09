@@ -136,6 +136,19 @@
               Tổng hàng: [[${totalItems}]]
               &nbsp; &nbsp;
             </div>
+
+            <div class="coL-sm-1">
+              <a th:if="${currentPage > 1}" th:href="@{'/pageDepartment/' + 1 + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu</a>
+              <span th:unless="${currentPage > 1}">Đầu</span>
+              &nbsp;
+            </div>
+
+            <div class="coL-sm-1">
+                <a th:if="${currentPage > 1}" th:href="@{'/pageDepartment/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trước</a>
+                <span th:unless="${currentPage > 1}">Trước</span>
+                &nbsp;
+            </div>
+
             <div class="coL-sm-1">
               <span th:each="i: ${#numbers.sequence(1, totalPages)}">
                 <a th:if="${currentPage != i}" th:href="@{'/pageDepartment/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
