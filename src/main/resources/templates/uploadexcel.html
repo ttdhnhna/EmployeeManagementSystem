@@ -112,7 +112,7 @@
                       Đảm bảo rằng file có định dạng hợp lệ và các thông tin cần thiết như dưới đây.
                   </p>
                   <div class="text-center">
-                      <img src="/src/main/resources/Screenshot (350).png" alt="Hình minh họa file Excel hợp lệ" class="img-fluid mb-3" style="max-height: 200px;">
+                      <img src="/src/main/resources/static/Screenshot (350).png" alt="Hình minh họa file Excel hợp lệ" class="img-fluid mb-3" style="max-height: 200px;">
                   </div>
                   <form action="#" th:action="@{/uploadexcel}" method="post" enctype="multipart/form-data">
                       <!-- Tin nhắn báo lỗi -->
@@ -122,15 +122,15 @@
                       <div class="form-group">
                           <label for="fileexcel" class="form-label">Chọn File</label>
                           <div class="drop-zone" id="drop-zone">
-                              <!-- <span class="drop-zone-text">Kéo và thả file Excel vào đây</span> -->
+                              <span class="drop-zone-text">Kéo và thả file Excel vào đây</span>
                               <input 
                                   type="file" 
                                   id="file" 
                                   name="file"
                                   accept=".xlsx" 
-                                  
-                                  
-                                  
+                                  class="form-control-file drop-zone-input" 
+                                  style="display:none;"
+                                  onchange="handleFileSelect(this)"
                               />
                           </div>
                         </div>
