@@ -72,15 +72,20 @@ public class EmployeeService {
         Salary salary=new Salary();
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
 
-        String filename=StringUtils.cleanPath(file.getOriginalFilename());
-        if(filename.contains("..")){
-            System.out.println("File không hợp lệ!");
+        if (file != null && !file.isEmpty()) {
+            String filename = StringUtils.cleanPath(file.getOriginalFilename());
+            if (filename.contains("..")) {
+                throw new IllegalStateException("File không hợp lệ!");
+            }
+            try {
+                employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
+            } catch (IOException e) {
+                throw new IllegalStateException("Lỗi khi đọc file ảnh", e);
+            }
+        } else {
+            employee.setAnh(null); 
         }
-        try {
-            employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         employee.setHoten(hoten);
         employee.setNgaysinh(ngaysinh);
         employee.setQuequan(quequan);
@@ -90,7 +95,8 @@ public class EmployeeService {
         employee.setEmail(email);
         employee.setChucvu(chucvu);
         employee.setIduser(iduser);
-        if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId()) || idpb.equals(null)) {
+
+        if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId()) && idpb!=null) {
             employee.setIdpb(idpb);
         } else {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
