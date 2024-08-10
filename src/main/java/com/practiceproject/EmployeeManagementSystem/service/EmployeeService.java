@@ -215,8 +215,8 @@ public class EmployeeService {
     }
 
     public void uploadExcel(MultipartFile file) throws IOException{
-        if(file.isEmpty()){
-            throw new IllegalStateException("Không tìm thấy file");
+        if(file.isEmpty() || file==null){
+            throw new IllegalStateException("Không tìm thấy file. Vui lòng chọn file để tải lên.");
         }
         try (InputStream inputStream = file.getInputStream();
         Workbook workbook = new XSSFWorkbook(inputStream)) {
