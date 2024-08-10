@@ -72,6 +72,13 @@ public class EmployeeService {
         Salary salary=new Salary();
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
 
+        if (idpb == null) {
+            throw new IllegalStateException("Phòng ban không tồn tại hoặc không hợp lệ!");
+        }  
+        if (!idpb.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
+            throw new IllegalStateException("ID phòng ban vừa nhập không khớp với người dùng hiện tại!");
+        }
+
         if (file != null && !file.isEmpty()) {
             String filename = StringUtils.cleanPath(file.getOriginalFilename());
             if (filename.contains("..")) {
@@ -95,12 +102,7 @@ public class EmployeeService {
         employee.setEmail(email);
         employee.setChucvu(chucvu);
         employee.setIduser(iduser);
-
-        if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId()) && idpb!=null) {
-            employee.setIdpb(idpb);
-        } else {
-            throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
-        }
+        employee.setIdpb(idpb);
 
         salary.setHsl(hsl);
         salary.setPhucap(phucap);
@@ -233,14 +235,18 @@ public class EmployeeService {
                 String quequan = getCellValue(row.getCell(2));
                 String gt = getCellValue(row.getCell(3));
                 String dantoc = getCellValue(row.getCell(4));
+
                 Cell sdtCell = row.getCell(5);
                 String sdt = sdtCell.getCellType() == CellType.NUMERIC ? String.valueOf((long) sdtCell.getNumericCellValue()) : sdtCell.getStringCellValue();
+                
                 String email = getCellValue(row.getCell(6));
                 String chucvu = getCellValue(row.getCell(7));
                 String tenpb = getCellValue(row.getCell(8));
                 String diachi = getCellValue(row.getCell(9));
+
                 Cell sdtpbCell = row.getCell(10);
                 String sdtpb = sdtpbCell.getCellType() == CellType.NUMERIC ? String.valueOf((long) sdtpbCell.getNumericCellValue()) : sdtpbCell.getStringCellValue();
+                
                 float hsl = (float) row.getCell(11).getNumericCellValue();
                 float phucap = (float) row.getCell(12).getNumericCellValue();
                 
@@ -257,6 +263,7 @@ public class EmployeeService {
                     idpb.setSdt(sdtpb);
                     idpb.setTenpb(tenpb);
                     idpb = dRepository.save(idpb);
+                    System.out.println("Phòng ban có tên: " + idpb.getTenpb());
                 }
                 
                 saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, null, hsl, phucap);
