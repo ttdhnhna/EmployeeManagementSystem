@@ -219,45 +219,44 @@ public class EmployeeService {
         }
         try (InputStream inputStream = file.getInputStream();
         Workbook workbook = new XSSFWorkbook(inputStream)) {
-            for (Sheet sheet : workbook) {
-                for (Row row : sheet) {
-                    String hoten = getCellValue(row.getCell(0));
-                    String ngaysinh = getCellValue(row.getCell(1));
-                    String quequan = getCellValue(row.getCell(2));
-                    String gt = getCellValue(row.getCell(3));
-                    String dantoc = getCellValue(row.getCell(4));
-                    String sdt = getCellValue(row.getCell(5));
-                    String email = getCellValue(row.getCell(6));
-                    String chucvu = getCellValue(row.getCell(7));
-                    String tenpb = getCellValue(row.getCell(8));
-                    String diachi = getCellValue(row.getCell(9));
-                    String sdtpb = getCellValue(row.getCell(10));
-                    float hsl = (float) row.getCell(11).getNumericCellValue();
-                    float phucap = (float) row.getCell(12).getNumericCellValue();
-                    
-                    if (this.repository.findByHoten(hoten) != null) {
-                        continue; // Nếu đã tồn tại nhân viên, bỏ qua dòng này
-                    }
-                    
-                    Department idpb = dRepository.findByTenpb(tenpb);
-                    if (idpb == null) {
-                        idpb = new Department();
-                        idpb.setIduser(uService.getUserByID(Utility.getCurrentUserId())); 
-                        idpb.setDiachi(diachi);
-                        idpb.setSdt(sdtpb);
-                        idpb.setTenpb(tenpb);
-                        idpb = dRepository.save(idpb);
-                    }
-                    
-                    saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, null, hsl, phucap);
+            Sheet sheet = workbook.getSheetAt(0);
+            for (Row row : sheet) {
+                String hoten = getCellValue(row.getCell(0));
+                String ngaysinh = getCellValue(row.getCell(1));
+                String quequan = getCellValue(row.getCell(2));
+                String gt = getCellValue(row.getCell(3));
+                String dantoc = getCellValue(row.getCell(4));
+                String sdt = getCellValue(row.getCell(5));
+                String email = getCellValue(row.getCell(6));
+                String chucvu = getCellValue(row.getCell(7));
+                String tenpb = getCellValue(row.getCell(8));
+                String diachi = getCellValue(row.getCell(9));
+                String sdtpb = getCellValue(row.getCell(10));
+                float hsl = (float) row.getCell(11).getNumericCellValue();
+                float phucap = (float) row.getCell(12).getNumericCellValue();
+                
+                if (this.repository.findByHoten(hoten) != null) {
+                    continue; // Nếu đã tồn tại nhân viên, bỏ qua dòng này
                 }
+                
+                Department idpb = dRepository.findByTenpb(tenpb);
+                if (idpb == null) {
+                    idpb = new Department();
+                    idpb.setIduser(uService.getUserByID(Utility.getCurrentUserId())); 
+                    idpb.setDiachi(diachi);
+                    idpb.setSdt(sdtpb);
+                    idpb.setTenpb(tenpb);
+                    idpb = dRepository.save(idpb);
+                }
+                
+                saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, null, hsl, phucap);
             }
-        } catch (IllegalStateException e) {
+        } catch (IOException e) {
             throw new IllegalStateException("Lỗi khi đọc file Excel", e);
         }
     }
 
-    private String getCellValue(Cell cell) {
+    private String getCellValue(Cell cell) {//Đề phòng với dữ liệu đầu vào là null thì sẽ lưu dữ liệu vào là rỗng
         return cell != null ? cell.getStringCellValue() : "";
     }
 }
