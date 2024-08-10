@@ -56,5 +56,3 @@ rồi mới thêm chức năng và lam phan web ben dien thoai.
 
 Khi nao sua xong phan loi hieu nang thi nho phai chinh lai phan tim kiem.
 
-Loi khi doc file excel, co ve la se can phai bo sung them 1 vai truong hop loi de no hien
-thong tin len cho nguoi dung
