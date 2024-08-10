@@ -72,15 +72,20 @@ public class EmployeeService {
         Salary salary=new Salary();
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
 
-        String filename=StringUtils.cleanPath(file.getOriginalFilename());
-        if(filename.contains("..")){
-            System.out.println("File không hợp lệ!");
+        if (file != null && !file.isEmpty()) {
+            String filename = StringUtils.cleanPath(file.getOriginalFilename());
+            if (filename.contains("..")) {
+                throw new IllegalStateException("File không hợp lệ!");
+            }
+            try {
+                employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
+            } catch (IOException e) {
+                throw new IllegalStateException("Lỗi khi đọc file ảnh", e);
+            }
+        } else {
+            employee.setAnh(null); 
         }
-        try {
-            employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         employee.setHoten(hoten);
         employee.setNgaysinh(ngaysinh);
         employee.setQuequan(quequan);
