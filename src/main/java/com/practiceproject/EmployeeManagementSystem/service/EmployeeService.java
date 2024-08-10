@@ -14,6 +14,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -226,12 +227,14 @@ public class EmployeeService {
                 String quequan = getCellValue(row.getCell(2));
                 String gt = getCellValue(row.getCell(3));
                 String dantoc = getCellValue(row.getCell(4));
-                String sdt = getCellValue(row.getCell(5));
+                Cell sdtCell = row.getCell(5);
+                String sdt = sdtCell.getCellType() == CellType.NUMERIC ? String.valueOf((long) sdtCell.getNumericCellValue()) : sdtCell.getStringCellValue();
                 String email = getCellValue(row.getCell(6));
                 String chucvu = getCellValue(row.getCell(7));
                 String tenpb = getCellValue(row.getCell(8));
                 String diachi = getCellValue(row.getCell(9));
-                String sdtpb = getCellValue(row.getCell(10));
+                Cell sdtpbCell = row.getCell(10);
+                String sdtpb = sdtpbCell.getCellType() == CellType.NUMERIC ? String.valueOf((long) sdtpbCell.getNumericCellValue()) : sdtpbCell.getStringCellValue();
                 float hsl = (float) row.getCell(11).getNumericCellValue();
                 float phucap = (float) row.getCell(12).getNumericCellValue();
                 
@@ -240,6 +243,7 @@ public class EmployeeService {
                 }
                 
                 Department idpb = dRepository.findByTenpb(tenpb);
+                //Nếu chưa tồn tại phòng ban thì khởi tạo phòng ban mới dựa theo thông tin đưa vào
                 if (idpb == null) {
                     idpb = new Department();
                     idpb.setIduser(uService.getUserByID(Utility.getCurrentUserId())); 
