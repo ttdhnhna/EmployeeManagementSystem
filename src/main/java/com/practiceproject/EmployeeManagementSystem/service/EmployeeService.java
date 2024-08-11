@@ -223,7 +223,8 @@ public class EmployeeService {
     }
 
     public void uploadExcel(MultipartFile file) throws IOException{
-        Long iduser = Utility.getCurrentUserId();
+        User iduser = uService.getUserByID(Utility.getCurrentUserId());
+
         if(file.isEmpty() || file==null){
             throw new IllegalStateException("Không tìm thấy file. Vui lòng chọn file để tải lên.");
         }
@@ -264,7 +265,6 @@ public class EmployeeService {
                     idpb.setSdt(sdtpb);
                     idpb.setTenpb(tenpb);
                     idpb = dRepository.save(idpb);
-                    System.out.println("Phòng ban có tên: " + idpb.getTenpb());
                 }
                 
                 saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, null, hsl, phucap);

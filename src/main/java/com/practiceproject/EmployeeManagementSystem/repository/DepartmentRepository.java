@@ -29,5 +29,5 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     public Page<Department> findAllByiduser(User iduser, Pageable pageable);
 
     @Query(value = "SELECT d FROM Department d WHERE d.iduser = :iduser AND d.tenpb = :tenpb")
-    public Department findByTenpb(Long iduser, String tenpb);
+    public Department findByTenpb(User iduser, String tenpb);
 }

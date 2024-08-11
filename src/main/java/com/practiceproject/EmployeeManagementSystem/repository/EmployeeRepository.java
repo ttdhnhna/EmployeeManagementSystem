@@ -31,5 +31,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
     public Page<Employee> findAllByIduser(User iduser, Pageable pageable);
     
     @Query(value = "SELECT e FROM Employee e WHERE e.iduser = :iduser AND e.hoten = :tennv")
-    public Employee findByHoten(Long iduser, String tennv);
+    public Employee findByHoten(User iduser, String tennv);
 }
