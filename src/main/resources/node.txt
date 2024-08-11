@@ -55,3 +55,5 @@ Sau khi hoàn thành xong việc giúp chương trình chạy nhanh hơn mình m
 rồi mới thêm chức năng và lam phan web ben dien thoai.
 
 Khi nao sua xong phan loi hieu nang thi nho phai chinh lai phan tim kiem.
+
+ID phòng ban vừa nhập không khớp với người dùng hiện tại!
