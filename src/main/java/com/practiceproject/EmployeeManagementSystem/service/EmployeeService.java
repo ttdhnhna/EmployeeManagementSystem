@@ -201,6 +201,17 @@ public class EmployeeService {
         row.createCell(6).setCellValue("SDT");
         row.createCell(7).setCellValue("Email");
         row.createCell(8).setCellValue("Chức vụ");
+        row.createCell(9).setCellValue("ID Phòng ban");
+        row.createCell(10).setCellValue("Tên phòng ban");
+        row.createCell(11).setCellValue("Địa chỉ");
+        row.createCell(12).setCellValue("SĐT");
+        row.createCell(13).setCellValue("ID Lương");
+        row.createCell(14).setCellValue("Hệ số lương");
+        row.createCell(15).setCellValue("Phụ cấp");
+        row.createCell(16).setCellValue("Bảo hiểm");
+        row.createCell(17).setCellValue("Trừ lương");
+        row.createCell(18).setCellValue("Tổng lương");
+        row.createCell(19).setCellValue("Nợ");
 
         int dataRowIndex = 1;
         for(Employee e : employees){
@@ -214,6 +225,17 @@ public class EmployeeService {
             dataRow.createCell(6).setCellValue(e.getSdt());
             dataRow.createCell(7).setCellValue(e.getEmail());
             dataRow.createCell(8).setCellValue(e.getChucvu());
+            dataRow.createCell(9).setCellValue(e.getIdpb().getIdpb());
+            dataRow.createCell(10).setCellValue(e.getIdpb().getTenpb());
+            dataRow.createCell(11).setCellValue(e.getIdpb().getDiachi());
+            dataRow.createCell(12).setCellValue(e.getIdpb().getSdt());
+            dataRow.createCell(13).setCellValue(e.getIdluong().getIdluong());
+            dataRow.createCell(14).setCellValue(e.getIdluong().getHsl());
+            dataRow.createCell(15).setCellValue(e.getIdluong().getPhucap());
+            dataRow.createCell(16).setCellValue(e.getIdluong().getBaohiem());
+            dataRow.createCell(17).setCellValue(e.getIdluong().getTruluong());
+            dataRow.createCell(18).setCellValue(e.getIdluong().getTongluong());
+            dataRow.createCell(19).setCellValue(e.getIdluong().getTienno());
             dataRowIndex++;
         }
         ServletOutputStream outputStream = response.getOutputStream();
