@@ -223,6 +223,7 @@ public class EmployeeService {
     }
 
     public void uploadExcel(MultipartFile file) throws IOException{
+        Long iduser = Utility.getCurrentUserId();
         if(file.isEmpty() || file==null){
             throw new IllegalStateException("Không tìm thấy file. Vui lòng chọn file để tải lên.");
         }
@@ -250,11 +251,11 @@ public class EmployeeService {
                 float hsl = (float) row.getCell(11).getNumericCellValue();
                 float phucap = (float) row.getCell(12).getNumericCellValue();
                 
-                if (this.repository.findByHoten(hoten) != null) {
+                if (this.repository.findByHoten(iduser, hoten) != null) {
                     continue; // Nếu đã tồn tại nhân viên, bỏ qua dòng này
                 }
                 
-                Department idpb = dRepository.findByTenpb(tenpb);
+                Department idpb = dRepository.findByTenpb(iduser, tenpb);
                 //Nếu chưa tồn tại phòng ban thì khởi tạo phòng ban mới dựa theo thông tin đưa vào
                 if (idpb == null) {
                     idpb = new Department();

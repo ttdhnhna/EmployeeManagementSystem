@@ -28,6 +28,6 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
 //        countQuery = "SELECT COUNT(d) FROM Department d WHERE d.iduser = :iduser")
     public Page<Department> findAllByiduser(User iduser, Pageable pageable);
 
-    @Query(value = "SELECT d FROM Department d WHERE d.tenpb = :tenpb")
-    public Department findByTenpb(String tenpb);
+    @Query(value = "SELECT d FROM Department d WHERE d.iduser = :iduser AND d.tenpb = :tenpb")
+    public Department findByTenpb(Long iduser, String tenpb);
 }

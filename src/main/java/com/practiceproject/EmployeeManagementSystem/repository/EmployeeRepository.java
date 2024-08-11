@@ -30,6 +30,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 //        countQuery = "SELECT COUNT(e) FROM Employee e WHERE e.iduser = :iduser")
     public Page<Employee> findAllByIduser(User iduser, Pageable pageable);
     
-    @Query(value = "SELECT e FROM Employee e WHERE e.hoten = :tennv")
-    public Employee findByHoten(String tennv);
+    @Query(value = "SELECT e FROM Employee e WHERE e.iduser = :iduser AND e.hoten = :tennv")
+    public Employee findByHoten(Long iduser, String tennv);
 }
