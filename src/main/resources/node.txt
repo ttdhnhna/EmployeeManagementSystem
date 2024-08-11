@@ -49,4 +49,4 @@ bo sung:
     server.tomcat.accesslog.enabled=true
     spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
-
+Can sua lai phan keo tha file o trang tai len va chinh cho no phu hop vs tren di dong.
