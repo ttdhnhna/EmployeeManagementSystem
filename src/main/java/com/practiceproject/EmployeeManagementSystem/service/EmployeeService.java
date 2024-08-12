@@ -278,7 +278,7 @@ public class EmployeeService {
                     throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Giới tính không hợp lệ.");
                 }else if (dantocCell == null || dantocCell.getCellType() != CellType.STRING) {
                     throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Dân tộc không hợp lệ.");
-                }else if (sdtCell == null || sdtCell.getCellType() != CellType.STRING || sdtCell.getCellType() != CellType.NUMERIC) {
+                }else if (sdtCell == null || sdtCell.getCellType() != CellType.STRING && sdtCell.getCellType() != CellType.NUMERIC) {
                     throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": SDT không hợp lệ.");
                 }else if (emailCell == null || emailCell.getCellType() != CellType.STRING) {
                     throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Email không hợp lệ.");
@@ -288,7 +288,7 @@ public class EmployeeService {
                     throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Tên phòng ban không hợp lệ.");
                 }else if (diachiCell == null || diachiCell.getCellType() != CellType.STRING) {
                     throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Địa chỉ không hợp lệ.");
-                }else if (sdtpbCell == null || sdtpbCell.getCellType() != CellType.STRING || sdtpbCell.getCellType() != CellType.NUMERIC) {
+                }else if (sdtpbCell == null || sdtpbCell.getCellType() != CellType.STRING && sdtpbCell.getCellType() != CellType.NUMERIC) {
                     throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": SDT phòng ban không hợp lệ.");
                 }else if (hslCell == null || hslCell.getCellType() != CellType.NUMERIC) {
                     throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Hệ số lương không hợp lệ.");
