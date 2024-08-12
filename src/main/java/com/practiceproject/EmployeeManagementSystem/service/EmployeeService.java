@@ -254,26 +254,73 @@ public class EmployeeService {
         Workbook workbook = new XSSFWorkbook(inputStream)) {
             Sheet sheet = workbook.getSheetAt(0);
             for (Row row : sheet) {
-                String hoten = getCellValue(row.getCell(0));
-                String ngaysinh = getCellValue(row.getCell(1));
-                String quequan = getCellValue(row.getCell(2));
-                String gt = getCellValue(row.getCell(3));
-                String dantoc = getCellValue(row.getCell(4));
+                Cell hotenCell = row.getCell(0);
+                String hoten = getCellValue(hotenCell);
+
+                Cell ngaysinhCell = row.getCell(1);
+                String ngaysinh = getCellValue(ngaysinhCell);
+
+                Cell quequanCell = row.getCell(2);
+                String quequan = getCellValue(quequanCell);
+
+                Cell gtCell = row.getCell(3);
+                String gt = getCellValue(gtCell);
+
+                Cell dantocCell = row.getCell(4);
+                String dantoc = getCellValue(dantocCell);
 
                 Cell sdtCell = row.getCell(5);
                 String sdt = sdtCell.getCellType() == CellType.NUMERIC ? String.valueOf((long) sdtCell.getNumericCellValue()) : sdtCell.getStringCellValue();
                 
-                String email = getCellValue(row.getCell(6));
-                String chucvu = getCellValue(row.getCell(7));
-                String tenpb = getCellValue(row.getCell(8));
-                String diachi = getCellValue(row.getCell(9));
+                Cell emailCell = row.getCell(6);
+                String email = getCellValue(emailCell);
+
+                Cell chucvuCell = row.getCell(7);
+                String chucvu = getCellValue(chucvuCell);
+
+                Cell tenpbCell = row.getCell(8);
+                String tenpb = getCellValue(tenpbCell);
+
+                Cell diachiCell = row.getCell(9);
+                String diachi = getCellValue(diachiCell);
 
                 Cell sdtpbCell = row.getCell(10);
                 String sdtpb = sdtpbCell.getCellType() == CellType.NUMERIC ? String.valueOf((long) sdtpbCell.getNumericCellValue()) : sdtpbCell.getStringCellValue();
                 
-                float hsl = (float) row.getCell(11).getNumericCellValue();
-                float phucap = (float) row.getCell(12).getNumericCellValue();
+                Cell hslCell = row.getCell(11);
+                float hsl = (float) hslCell.getNumericCellValue();
+
+                Cell phucapCell = row.getCell(12);
+                float phucap = (float) phucapCell.getNumericCellValue();
                 
+                if (hotenCell == null || hotenCell.getCellType() != CellType.STRING) {
+                    throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Họ tên không hợp lệ.");
+                }else if (ngaysinhCell == null || ngaysinhCell.getCellType() != CellType.STRING) {
+                    throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Ngày sinh không hợp lệ.");
+                }else if (quequanCell == null || quequanCell.getCellType() != CellType.STRING) {
+                    throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Quê quán không hợp lệ.");
+                }else if (gtCell == null || gtCell.getCellType() != CellType.STRING) {
+                    throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Giới tính không hợp lệ.");
+                }else if (dantocCell == null || dantocCell.getCellType() != CellType.STRING) {
+                    throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Dân tộc không hợp lệ.");
+                }else if (sdtCell == null || sdtCell.getCellType() != CellType.STRING || sdtCell.getCellType() != CellType.NUMERIC) {
+                    throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": SDT không hợp lệ.");
+                }else if (emailCell == null || emailCell.getCellType() != CellType.STRING) {
+                    throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Email không hợp lệ.");
+                }else if (chucvuCell == null || chucvuCell.getCellType() != CellType.STRING) {
+                    throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Chức vụ không hợp lệ.");
+                }else if (tenpbCell == null || tenpbCell.getCellType() != CellType.STRING) {
+                    throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Tên phòng ban không hợp lệ.");
+                }else if (diachiCell == null || diachiCell.getCellType() != CellType.STRING) {
+                    throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Địa chỉ không hợp lệ.");
+                }else if (sdtpbCell == null || sdtpbCell.getCellType() != CellType.STRING || sdtpbCell.getCellType() != CellType.NUMERIC) {
+                    throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": SDT phòng ban không hợp lệ.");
+                }else if (hslCell == null || hslCell.getCellType() != CellType.NUMERIC) {
+                    throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Hệ số lương không hợp lệ.");
+                }else if (phucapCell == null || phucapCell.getCellType() != CellType.NUMERIC) {
+                    throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Phụ cấp không hợp lệ.");
+                }
+
                 if (this.repository.findByHoten(iduser, hoten) != null) {
                     continue; // Nếu đã tồn tại nhân viên, bỏ qua dòng này
                 }
