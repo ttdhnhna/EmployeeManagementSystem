@@ -27,19 +27,10 @@ public class DepartmentService {
     @Autowired
     AccountService aService;
 
-    public List<Department> getDepartments(){
-        return repository.findAll();
-    }
-
-    public List<Department> getDepartmentsbyUser(long id){
-        List<Department> listdepartment = new ArrayList<>();
-        for(Department d : repository.findAll()){
-            if(d.getIduser().getIduser()==id){
-                listdepartment.add(d);
-            }
-        }
-        return listdepartment;
-    }
+    // @Transactional(readOnly = true)
+    // public List<Department> getDepartments(){
+    //     return repository.findAll();
+    // }
 
     public void saveDepartment(Department department){
         User idUser = aService.getUserByID(Utility.getCurrentUserId());

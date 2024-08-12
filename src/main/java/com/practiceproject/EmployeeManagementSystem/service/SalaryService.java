@@ -21,15 +21,15 @@ public class SalaryService {
     SalaryRepository repository;
     @Autowired
     AccountService aService;
+
     //Hien ds luong
-    public List<Salary> getSalaries(){
-        return repository.findAll();
-    }
+    // @Transactional(readOnly = true)
+    // public List<Salary> getSalaries(){
+    //     return repository.findAll();
+    // }
 
     //Luu luong
     public void saveSalary(Salary salary){
-        User iduser = aService.getUserByID(Utility.getCurrentUserId());
-        salary.setIduser(iduser);
         float tl = (Salary.getLuongcb() * salary.getHsl() + salary.getPhucap()) - salary.getBaohiem() - salary.getTruluong();
         if(tl<=0){
             salary.setTongluong(0);
@@ -40,6 +40,7 @@ public class SalaryService {
         }
         this.repository.save(salary);
     }
+
     //Tim id luong
     public Salary getSalaryID(long id){
         Optional<Salary> optional=repository.findById(id);
@@ -51,18 +52,16 @@ public class SalaryService {
         }
         return salary;
     }
-    //Xoa
-    public void deleteSalarybyID(long id){
-        this.repository.deleteById(id);
-    }
+
     //Phan trang va sap xep
     public Page<Salary> findPaginated(int pageNo, int pageSize, String sortField, String sortDir, Long iduser){
         Sort sort=sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
             Sort.by(sortField).descending();
         Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
         User user = aService.getUserByID(iduser);
-        return this.repository.findAllByiduser(user, pageable);
+        return this.repository.findAllByIdnvIduser(user, pageable);
     }
+
     //Chức năng tìm kiếm theo keyword
     public List<Salary>findAllSalaries(String keyword, Long iduser){
         if(keyword!=null){

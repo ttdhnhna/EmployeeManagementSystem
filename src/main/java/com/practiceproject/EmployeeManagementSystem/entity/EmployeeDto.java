@@ -17,14 +17,13 @@ public class EmployeeDto {
     private String chucvu;
     private Long idpb;
     private Long idluong;
-    private Long iduser;
     private MultipartFile anh;
     
     public EmployeeDto() {
     }
 
     public EmployeeDto(Long idnv, String hoten, String ngaysinh, String quequan, String gt, String dantoc, String sdt,
-            String email, String chucvu, Long idpb, Long idluong, Long iduser, MultipartFile anh) {
+            String email, String chucvu, Long idpb, Long idluong, MultipartFile anh) {
         this.idnv = idnv;
         this.hoten = hoten;
         this.ngaysinh = ngaysinh;
@@ -36,7 +35,6 @@ public class EmployeeDto {
         this.chucvu = chucvu;
         this.idpb = idpb;
         this.idluong = idluong;
-        this.iduser = iduser;
         this.anh = anh;
     }
 
@@ -126,14 +124,6 @@ public class EmployeeDto {
 
     public void setIdluong(Long idluong) {
         this.idluong = idluong;
-    }
-
-    public Long getIduser() {
-        return iduser;
-    }
-
-    public void setIduser(Long iduser) {
-        this.iduser = iduser;
     }
 
     public MultipartFile getAnh() {

@@ -33,12 +33,12 @@ public class SalaryController {
         return "redirect:/salaries";
     }
 
-    @GetMapping("/addSalary")
-    public String addSalary(Model model){
-        Salary salary=new Salary();
-        model.addAttribute("salary", salary);
-        return "newsalary";
-    }
+    // @GetMapping("/addSalary")
+    // public String addSalary(Model model){
+    //     Salary salary=new Salary();
+    //     model.addAttribute("salary", salary);
+    //     return "newsalary";
+    // }
 
     @GetMapping("/updateSalary/{id}")
     public String updateEmployee(@PathVariable(value = "id") long id, Model model){
@@ -47,19 +47,19 @@ public class SalaryController {
         return "updatesalary";
     }
 
-    @GetMapping("/deleteSalary/{id}")
-    public String deleteSalary(@PathVariable(value = "id") long id){
-        this.service.deleteSalarybyID(id);
-        return "redirect:/salaries";
-    }
+    // @GetMapping("/deleteSalary/{id}")
+    // public String deleteSalary(@PathVariable(value = "id") long id){
+    //     this.service.deleteSalarybyID(id);
+    //     return "redirect:/salaries";
+    // }
 
     @GetMapping("/pageSalary/{pageSalaryNo}")
     public String findPaginated(@PathVariable(value = "pageSalaryNo") int pageNo,
     @RequestParam("sortField") String sortField,
     @RequestParam("sortDir") String sortDir, Model model){
-       int pageSize=5;
-
+       int pageSize=10;
        Long iduser = Utility.getCurrentUserId();
+
        Page<Salary> page=service.findPaginated(pageNo, pageSize, sortField, sortDir, iduser);
        List<Salary> ListSalaries= page.getContent();
 

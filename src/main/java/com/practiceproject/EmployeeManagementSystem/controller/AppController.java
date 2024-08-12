@@ -4,13 +4,11 @@ package com.practiceproject.EmployeeManagementSystem.controller;
 import java.io.UnsupportedEncodingException;
 
 import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,7 +50,7 @@ public class AppController {
             service.saveRegistration(user);
             model.addAttribute("successRegismess", "Bạn đã đăng ký tài khoản thành công!");
             return "login";
-        } catch (IllegalStateException e) {
+        }catch (IllegalStateException e){
             model.addAttribute("alertMessage", e.getMessage());
             return "registration";
         }
@@ -62,6 +60,7 @@ public class AppController {
     public String login(){
         return "login";
     }
+
     @GetMapping("/accounts")
     public String showAccountPage(Model model){
         Long iduser = Utility.getCurrentUserId();
@@ -110,7 +109,6 @@ public class AppController {
     //Chức năng quên mật khẩu
     @GetMapping("/forgotpassword")
     public String showForgotPassForm(Model model){
-        // model.addAttribute("pageTitle", "Forgot Password");
         return "forgotpassword";
     }
     //Quá trình tạo random token cho email 
@@ -122,7 +120,7 @@ public class AppController {
             service.updateResetPass(token, email);
             String reserPasswordLink = Utility.getSiteUrl(request) + "/resetpassword?token=" + token;
             //Chức năng gửi email
-            sendEmail(email, reserPasswordLink);   
+            service.sendEmail(email, reserPasswordLink);   
             model.addAttribute("message", "Chúng tôi đã gửi đường link để reset mật khẩu tới email của bạn! Vui lòng kiểm tra.");
         } catch (CustomerNotFoundException e) {
             model.addAttribute("error", e.getMessage());
@@ -133,27 +131,7 @@ public class AppController {
         }
         return "forgotpassword";
     }
-    private void sendEmail(String email, String resetPasswordLink) throws UnsupportedEncodingException, MessagingException {
-        MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        helper.setFrom("19a10010039@students.hou.edu.vn", "EMS Support");
-        helper.setTo(email);
-
-        String subject = "Đây là đường link để reset lại mật khẩu của bạn!";
-        String content = "<p>Xin chào,</p>"
-        + "<p>Bạn đã yêu cầu reset mật khẩu của bạn.</p>"
-        + "<p>Nhấn vào đường link bên dưới để thay đổi mật khẩu của bạn:</p>"
-        + "<p><a href=\"" + resetPasswordLink + "\">Thay đổi mật khẩu</a></p>"
-        + "<br>"
-        + "<p>Bỏ qua email này nếu bạn vẫn nhớ mật khẩu, "
-        + "hoặc là bạn không gửi yêu cầu.</p>";
-
-        helper.setSubject(subject);
-        helper.setText(content, true);
-
-        mailSender.send(message);
-    }
     @GetMapping("/resetpassword")
     public String showResetPassForm(@Param(value = "token")String token, Model model){
         User user = service.get(token);
@@ -163,6 +141,7 @@ public class AppController {
         model.addAttribute("token", token);
         return "resetpassword";
     }
+
     @PostMapping("/upresetpassword")
     public String processResetPass(HttpServletRequest request, Model model){
         String token = request.getParameter("token");
@@ -177,4 +156,5 @@ public class AppController {
         }
         return "login";
     }
+    
 }

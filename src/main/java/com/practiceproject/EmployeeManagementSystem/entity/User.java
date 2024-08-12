@@ -1,5 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,10 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.BatchSize;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "tblUser")
@@ -32,21 +32,16 @@ public class User {
     @Column(name = "reset_password_token")
     private String resetPassToken;
 
-    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @Fetch(FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @BatchSize(size = 16)
     @JsonManagedReference
-    private Set<Employee> idnv;
+    private Set<Employee> idnv = new HashSet<>();
 
-    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @Fetch(FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @BatchSize(size = 16)
     @JsonManagedReference
-    private Set<Department> idpb;
+    private Set<Department> idpb = new HashSet<>();
 
-    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @Fetch(FetchMode.SUBSELECT)
-    @JsonManagedReference
-    private Set<Salary> idluong;
-    
     public User() {
     }
     public Long getIduser() {
@@ -79,11 +74,11 @@ public class User {
     public void setResetPassToken(String resetPassToken) {
         this.resetPassToken = resetPassToken;
     }
-    public Set<Employee> getIdnv() {
-        return idnv;
-    }
-    public void setIdnv(Set<Employee> idnv) {
-        this.idnv = idnv;
-    }
+    // public Set<Employee> getIdnv() {
+    //     return idnv;
+    // }
+    // public void setIdnv(Set<Employee> idnv) {
+    //     this.idnv = idnv;
+    // }
     
 }

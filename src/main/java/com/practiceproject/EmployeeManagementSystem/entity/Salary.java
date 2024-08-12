@@ -1,13 +1,18 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-/**
- * Salary
- */
+import org.hibernate.annotations.BatchSize;
+
 @Entity
 @Table(name="tblSalary")
 public class Salary {
@@ -16,14 +21,10 @@ public class Salary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idluong;
     
-    @OneToOne(mappedBy = "idluong", fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToOne(mappedBy = "idluong", fetch = FetchType.LAZY)
+    @BatchSize(size = 16)
     @JsonManagedReference
     private Employee idnv;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_user", nullable = false, referencedColumnName = "id_user")
-    @JsonBackReference
-    private User iduser;
 
     private static float luongcb = 1350000;
     private float hsl;
@@ -96,13 +97,13 @@ public class Salary {
         return luongcb;
     }
 
-    public User getIduser() {
-        return iduser;
-    }
+    // public User getIduser() {
+    //     return iduser;
+    // }
 
-    public void setIduser(User iduser) {
-        this.iduser = iduser;
-    }
+    // public void setIduser(User iduser) {
+    //     this.iduser = iduser;
+    // }
 
     public float getTienno() {
         return tienno;
