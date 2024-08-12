@@ -57,7 +57,7 @@ public class SalaryController {
     public String findPaginated(@PathVariable(value = "pageSalaryNo") int pageNo,
     @RequestParam("sortField") String sortField,
     @RequestParam("sortDir") String sortDir, Model model){
-       int pageSize=5;
+       int pageSize=10;
        Long iduser = Utility.getCurrentUserId();
 
        Page<Salary> page=service.findPaginated(pageNo, pageSize, sortField, sortDir, iduser);
