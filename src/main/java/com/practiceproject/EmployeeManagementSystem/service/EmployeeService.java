@@ -255,44 +255,19 @@ public class EmployeeService {
             Sheet sheet = workbook.getSheetAt(0);
             for (Row row : sheet) {
                 Cell hotenCell = row.getCell(0);
-                String hoten = getCellValue(hotenCell);
-
                 Cell ngaysinhCell = row.getCell(1);
-                String ngaysinh = getCellValue(ngaysinhCell);
-
                 Cell quequanCell = row.getCell(2);
-                String quequan = getCellValue(quequanCell);
-
                 Cell gtCell = row.getCell(3);
-                String gt = getCellValue(gtCell);
-
                 Cell dantocCell = row.getCell(4);
-                String dantoc = getCellValue(dantocCell);
-
                 Cell sdtCell = row.getCell(5);
-                String sdt = sdtCell.getCellType() == CellType.NUMERIC ? String.valueOf((long) sdtCell.getNumericCellValue()) : sdtCell.getStringCellValue();
-                
                 Cell emailCell = row.getCell(6);
-                String email = getCellValue(emailCell);
-
                 Cell chucvuCell = row.getCell(7);
-                String chucvu = getCellValue(chucvuCell);
-
                 Cell tenpbCell = row.getCell(8);
-                String tenpb = getCellValue(tenpbCell);
-
                 Cell diachiCell = row.getCell(9);
-                String diachi = getCellValue(diachiCell);
-
                 Cell sdtpbCell = row.getCell(10);
-                String sdtpb = sdtpbCell.getCellType() == CellType.NUMERIC ? String.valueOf((long) sdtpbCell.getNumericCellValue()) : sdtpbCell.getStringCellValue();
-                
                 Cell hslCell = row.getCell(11);
-                float hsl = (float) hslCell.getNumericCellValue();
-
                 Cell phucapCell = row.getCell(12);
-                float phucap = (float) phucapCell.getNumericCellValue();
-                
+
                 if (hotenCell == null || hotenCell.getCellType() != CellType.STRING) {
                     throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Họ tên không hợp lệ.");
                 }else if (ngaysinhCell == null || ngaysinhCell.getCellType() != CellType.STRING) {
@@ -320,6 +295,20 @@ public class EmployeeService {
                 }else if (phucapCell == null || phucapCell.getCellType() != CellType.NUMERIC) {
                     throw new IllegalStateException("Dòng " + (row.getRowNum() + 1) + ": Phụ cấp không hợp lệ.");
                 }
+
+                String hoten = getCellValue(hotenCell);
+                String ngaysinh = getCellValue(ngaysinhCell);
+                String quequan = getCellValue(quequanCell);
+                String gt = getCellValue(gtCell);
+                String dantoc = getCellValue(dantocCell);
+                String sdt = sdtCell.getCellType() == CellType.NUMERIC ? String.valueOf((long) sdtCell.getNumericCellValue()) : sdtCell.getStringCellValue();        
+                String email = getCellValue(emailCell);
+                String chucvu = getCellValue(chucvuCell);
+                String tenpb = getCellValue(tenpbCell);
+                String diachi = getCellValue(diachiCell);
+                String sdtpb = sdtpbCell.getCellType() == CellType.NUMERIC ? String.valueOf((long) sdtpbCell.getNumericCellValue()) : sdtpbCell.getStringCellValue();             
+                float hsl = (float) hslCell.getNumericCellValue();
+                float phucap = (float) phucapCell.getNumericCellValue();
 
                 if (this.repository.findByHoten(iduser, hoten) != null) {
                     continue; // Nếu đã tồn tại nhân viên, bỏ qua dòng này
