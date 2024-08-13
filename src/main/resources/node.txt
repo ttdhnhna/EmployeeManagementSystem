@@ -49,6 +49,4 @@ bo sung:
     server.tomcat.accesslog.enabled=true
     spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
-Sẽ cần phải chỉnh lại csdl để có thể liên kết với phần cập nhật mới này nên mai sẽ làm luôn
-vậy.
-Tạo 1 CSDL mới và liên kết vs dự án.
+

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.exceptions.OLE2NotOfficeXmlFileException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -327,7 +328,11 @@ public class EmployeeService {
                 
                 saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, null, hsl, phucap);
             }
-        } catch (IOException e) {
+        } catch (OLE2NotOfficeXmlFileException e) {
+            // Bắt lỗi định dạng file và trả về thông báo cho người dùng
+            throw new IllegalStateException("Định dạng file không đúng. Vui lòng tải lên file .xlsx (Excel 2007 trở lên).");
+        }
+        catch (IOException e) {
             throw new IllegalStateException("Lỗi khi đọc file Excel", e);
         }
     }
