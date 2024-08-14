@@ -41,6 +41,11 @@ public class User {
     @JsonManagedReference
     private Set<Department> idpb = new HashSet<>();
 
+    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @BatchSize(size = 16)
+    @JsonManagedReference
+    private Set<AuditLog> idlog = new HashSet<>();
+
     public User() {
     }
     public Long getIduser() {

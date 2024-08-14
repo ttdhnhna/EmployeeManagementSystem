@@ -49,4 +49,27 @@ bo sung:
     server.tomcat.accesslog.enabled=true
     spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
+Nhiệm vụ mới: Tạo các chức năng sau:
+
+* Lịch sử hoạt động (Audit Log):
+Mô tả: Ghi lại các hoạt động quan trọng của người dùng như đăng nhập, chỉnh sửa, xóa dữ liệu.
+Lợi ích: Tăng cường bảo mật và giúp theo dõi các thay đổi trên hệ thống.
+
+* Hệ thống thông báo (Notifications):
+Mô tả: Thông báo khi có sự kiện quan trọng như cập nhật lương, đăng ký thành công, v.v.
+Lợi ích: Cải thiện trải nghiệm người dùng bằng cách cung cấp thông tin kịp thời.
+
+* Hỗ trợ đa ngôn ngữ (Multi-Language Support):
+Mô tả: Cung cấp giao diện bằng nhiều ngôn ngữ khác nhau để phục vụ đa dạng người dùng.
+Lợi ích: Mở rộng phạm vi sử dụng của ứng dụng cho người dùng ở nhiều quốc gia.
+
+Nếu làm được thì thêm mấy chức năng này:
+
+Quản lý chấm công (Attendance Management):
+Mô tả: Ghi lại thời gian làm việc, giờ vào, giờ ra của nhân viên.
+Lợi ích: Hỗ trợ việc tính toán lương và theo dõi thời gian làm việc chính xác.
+
+Hệ thống phê duyệt (Approval Workflow):
+Mô tả: Thiết lập quy trình phê duyệt cho các yêu cầu như nghỉ phép, cập nhật thông tin cá nhân.
+Lợi ích: Đảm bảo các quyết định quan trọng được thông qua bởi người có thẩm quyền.
 
