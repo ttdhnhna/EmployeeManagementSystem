@@ -2,12 +2,17 @@ package com.practiceproject.EmployeeManagementSystem.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,6 +30,11 @@ public class Salary {
     @BatchSize(size = 16)
     @JsonManagedReference
     private Employee idnv;
+
+    @OneToMany(mappedBy = "idluong", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @BatchSize(size = 16)
+    @JsonManagedReference
+    private Set<AuditLog> idlog = new HashSet<>();
 
     private static float luongcb = 1350000;
     private float hsl;
@@ -112,5 +122,13 @@ public class Salary {
     public void setTienno(float tienno) {
         this.tienno = tienno;
     }
-    
+
+    public Set<AuditLog> getIdlog() {
+        return idlog;
+    }
+
+    public void setIdlog(Set<AuditLog> idlog) {
+        this.idlog = idlog;
+    }
+ 
 }

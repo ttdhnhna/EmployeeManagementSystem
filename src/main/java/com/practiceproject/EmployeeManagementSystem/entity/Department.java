@@ -33,6 +33,11 @@ public class Department {
     @JsonManagedReference
     private Set<Employee> idnv = new HashSet<>();
 
+    @OneToMany(mappedBy = "idpb", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @BatchSize(size = 16)
+    @JsonManagedReference
+    private Set<AuditLog> idlog = new HashSet<>();
+
     @ManyToOne(fetch = FetchType.LAZY)
     @BatchSize(size = 16)
     @JoinColumn(name = "id_user", nullable = false)
@@ -81,6 +86,10 @@ public class Department {
     public void setIduser(User iduser) {
         this.iduser = iduser;
     }
-    
-    
+    public Set<AuditLog> getIdlog() {
+        return idlog;
+    }
+    public void setIdlog(Set<AuditLog> idlog) {
+        this.idlog = idlog;
+    }
 }

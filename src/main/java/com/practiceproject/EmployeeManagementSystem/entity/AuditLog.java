@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class AuditLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_log")
     private Long idlog;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -35,12 +36,27 @@ public class AuditLog {
     @Column(name = "ngayth", updatable = false)
     private LocalDateTime ngayth; 
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_nv", nullable = false, referencedColumnName = "id_nv")
+    @BatchSize(size = 16)
+    @JsonBackReference
     @Column(nullable = true)
     private Employee idnv;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_pb", nullable = false, referencedColumnName = "id_pb")
+    @BatchSize(size = 16)
+    @JsonBackReference
     @Column(nullable = true)
     private Department idpb;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_luong", nullable = false, referencedColumnName = "id_luong")
+    @BatchSize(size = 16)
+    @JsonBackReference
     @Column(nullable = true)
     private Salary idluong;
+
     private Act act;
 
     @PrePersist
