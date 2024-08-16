@@ -59,7 +59,6 @@ public class EmployeeService {
     @Autowired
     AccountService uService;
 
-    public User iduser = uService.getUserByID(Utility.getCurrentUserId());
     //Chức năng hiện tất cả nhân viên
     // @Transactional(readOnly = true)
     // public List<Employee> getEmployees(){
@@ -128,6 +127,7 @@ public class EmployeeService {
     //Cập nhật nhân viên
     @Transactional
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
+        User iduser = uService.getUserByID(Utility.getCurrentUserId());
         MultipartFile file = employeeDto.getAnh();
         if (file != null && !file.isEmpty()) {
             @SuppressWarnings("null")
@@ -175,6 +175,7 @@ public class EmployeeService {
     //Xóa nhân viên bằng id
     @Transactional
     public void deleteEmployeebyID(long id){
+        User iduser = uService.getUserByID(Utility.getCurrentUserId());
         Employee employee = getEmployeebyID(id);
         sRepository.deleteById(employee.getIdluong().getIdluong());
         this.repository.deleteById(id);

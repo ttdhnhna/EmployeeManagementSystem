@@ -37,7 +37,7 @@ public class AuditLog {
     private LocalDateTime ngayth; 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_nv", nullable = true, referencedColumnName = "id_nv")
+    @JoinColumn(name = "idnv", nullable = true, referencedColumnName = "idnv")
     @BatchSize(size = 16)
     @JsonBackReference
     private Employee idnv;
