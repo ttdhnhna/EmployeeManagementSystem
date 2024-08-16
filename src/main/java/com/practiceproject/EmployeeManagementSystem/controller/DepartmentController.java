@@ -41,6 +41,12 @@ public class DepartmentController {
         return "redirect:/departments";
     }
 
+    @PostMapping("/updateDepartment")
+    public String updateDepartment(@ModelAttribute("department") Department department){
+        service.updateDepartment(department); 
+        return "redirect:/departments";
+    }
+
     @GetMapping("/deleteDepartment/{id}")
     public String deleteDepartment(@PathVariable(value = "id") long id){
         this.service.deleteDepartmentID(id);

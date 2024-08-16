@@ -33,6 +33,12 @@ public class SalaryController {
         return "redirect:/salaries";
     }
 
+    @PostMapping("/updateSalary")
+    public String updateSalary(@ModelAttribute("salary") Salary salary){
+        service.updateSalary(salary);
+        return "redirect:/salaries";
+    }
+
     // @GetMapping("/addSalary")
     // public String addSalary(Model model){
     //     Salary salary=new Salary();

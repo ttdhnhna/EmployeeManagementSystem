@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,13 +14,19 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.practiceproject.EmployeeManagementSystem.repository.AuditLogRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
+import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
+import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
 
 @Service
 public class AccountService {
     @Autowired
     UserRepository repository;
+
+    @Autowired
+    AuditLogRepository aRepository;
 
     @Autowired
     JavaMailSender mailSender;
@@ -44,6 +51,7 @@ public class AccountService {
         this.repository.save(user);
     }
 
+    @Transactional
     public void saveRegistration(User user){
         if(user.equals(null)){
             throw new IllegalStateException("Thông tin không được bỏ trống");
@@ -52,8 +60,11 @@ public class AccountService {
         String ePass = passwordEncoder.encode(user.getPassword());
         user.setPassword(ePass);
         this.repository.save(user);
+
+        logAuditOperation(user, Act.ADD);
     }
 
+    @Transactional
     public void changePassword(String currentpass, String newpass, String comfirm, User user){
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
         if(!passwordEncoder.matches(currentpass, user.getPassword())){
@@ -65,8 +76,11 @@ public class AccountService {
         String encodedPass = passwordEncoder.encode(newpass); 
         user.setPassword(encodedPass);
         repository.save(user);
+
+        logAuditOperation(user, Act.UPDATE);
     }
 
+    @Transactional
     public void updateResetPass(String tokem, String email) throws CustomerNotFoundException{
         User user = repository.findbyEmail(email);
         if(user != null){
@@ -75,12 +89,14 @@ public class AccountService {
         }else{
             throw new CustomerNotFoundException ("Không thể tìm thấy người dùng với email: "  + email);
         }
+        logAuditOperation(user, Act.UPDATE);
     }
 
     public User get(String resetPassToken){
         return repository.findByResetPassToken(resetPassToken);
     }
 
+    @Transactional
     public void updatePassword(User user, String newPass){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPass = passwordEncoder.encode(newPass); 
@@ -89,6 +105,8 @@ public class AccountService {
         user.setResetPassToken(null);
 
         repository.save(user);
+
+        logAuditOperation(user, Act.UPDATE);
     }
 
     public void sendEmail(String email, String resetPasswordLink) throws UnsupportedEncodingException, MessagingException {
@@ -111,5 +129,12 @@ public class AccountService {
         helper.setText(content, true);
 
         mailSender.send(message);
+    }
+
+    public void logAuditOperation(User user, Act action){
+        AuditLog auditLog = new AuditLog();
+        auditLog.setIduser(user);
+        auditLog.setAct(action);
+        aRepository.save(auditLog);
     }
 }
