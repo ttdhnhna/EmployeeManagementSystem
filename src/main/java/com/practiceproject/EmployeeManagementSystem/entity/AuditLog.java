@@ -35,24 +35,12 @@ public class AuditLog {
 
     @Column(name = "ngayth", updatable = false)
     private LocalDateTime ngayth; 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idnv", nullable = true, referencedColumnName = "idnv")
-    @BatchSize(size = 16)
-    @JsonBackReference
-    private Employee idnv;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_pb", nullable = true, referencedColumnName = "id_pb")
-    @BatchSize(size = 16)
-    @JsonBackReference
-    private Department idpb;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_luong", nullable = true, referencedColumnName = "id_luong")
-    @BatchSize(size = 16)
-    @JsonBackReference
-    private Salary idluong;
+    @Column(nullable = true)
+    private Long idnv;
+    @Column(nullable = true)
+    private Long idpb;
+    @Column(nullable = true)
+    private Long idluong;
 
     private Act act;
 
@@ -79,28 +67,28 @@ public class AuditLog {
     public void setIduser(User iduser) {
         this.iduser = iduser;
     }
-
-    public Employee getIdnv() {
+    
+    public Long getIdnv() {
         return idnv;
     }
 
-    public void setIdnv(Employee idnv) {
+    public void setIdnv(Long idnv) {
         this.idnv = idnv;
     }
 
-    public Department getIdpb() {
+    public Long getIdpb() {
         return idpb;
     }
 
-    public void setIdpb(Department idpb) {
+    public void setIdpb(Long idpb) {
         this.idpb = idpb;
     }
 
-    public Salary getIdluong() {
+    public Long getIdluong() {
         return idluong;
     }
 
-    public void setIdluong(Salary idluong) {
+    public void setIdluong(Long idluong) {
         this.idluong = idluong;
     }
 

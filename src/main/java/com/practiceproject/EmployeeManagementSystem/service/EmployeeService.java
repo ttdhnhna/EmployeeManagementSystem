@@ -121,7 +121,7 @@ public class EmployeeService {
         savedSalary.setIdnv(savedEmployee);
         sRepository.save(savedSalary);
 
-        logAuditOperation(iduser, savedEmployee, Act.ADD);
+        logAuditOperation(iduser, savedEmployee.getIdnv(), Act.ADD);
     }
     
     //Cập nhật nhân viên
@@ -157,7 +157,7 @@ public class EmployeeService {
         }
 
         Employee savedEmployee = this.repository.save(employee); 
-        logAuditOperation(iduser, savedEmployee, Act.UPDATE);
+        logAuditOperation(iduser, savedEmployee.getIdnv(), Act.UPDATE);
     }
     
     //Tìm nhân viên bằng id
@@ -179,7 +179,7 @@ public class EmployeeService {
         Employee employee = getEmployeebyID(id);
         sRepository.deleteById(employee.getIdluong().getIdluong());
         this.repository.deleteById(id);
-        logAuditOperation(iduser, employee, Act.DELETE);
+        logAuditOperation(iduser, id, Act.DELETE);
     }
 
     //Phân trang và sắp xếp
@@ -351,7 +351,7 @@ public class EmployeeService {
         return cell != null ? cell.getStringCellValue() : "";
     }
 
-    public void logAuditOperation(User user, Employee employee, Act action){
+    public void logAuditOperation(User user, Long employee, Act action){
         AuditLog auditLog = new AuditLog();
         auditLog.setIduser(user);
         auditLog.setIdnv(employee);

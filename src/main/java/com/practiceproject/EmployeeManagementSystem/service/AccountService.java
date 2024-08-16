@@ -36,6 +36,14 @@ public class AccountService {
     //     return repository.findAll();
     // }
 
+    public User getUserByEmail(String email){
+        User user=repository.findbyEmail(email);
+        if(user==null){
+            throw new IllegalStateException("Không tìm thấy tài khoản: "+email);
+        }
+        return user;
+    }
+
     public User getUserByID(long id){
         Optional<User> optional=repository.findById(id);
         User user=null;

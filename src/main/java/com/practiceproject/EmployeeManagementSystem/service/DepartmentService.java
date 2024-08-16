@@ -42,16 +42,16 @@ public class DepartmentService {
     public void saveDepartment(Department department){
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
         department.setIduser(idUser);
-        this.repository.save(department);
-        logAuditOperation(idUser, department, Act.ADD);
+        Department savedDepartment = this.repository.save(department);
+        logAuditOperation(idUser, savedDepartment.getIdpb(), Act.ADD);
     }
 
     @Transactional
     public void updateDepartment(Department department){
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
         department.setIduser(idUser);
-        this.repository.save(department);
-        logAuditOperation(idUser, department, Act.UPDATE);
+        Department savedDepartment = this.repository.save(department);
+        logAuditOperation(idUser, savedDepartment.getIdpb(), Act.UPDATE);
     }
 
     public Department getDepartmentID(long id){
@@ -68,7 +68,6 @@ public class DepartmentService {
     @Transactional
     public void deleteDepartmentID(long id){
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
-        Department department = getDepartmentID(id);
         List<Employee> list = getNVInformationbyID(id);
         if(list != null){
             for(Employee e : list){
@@ -76,7 +75,7 @@ public class DepartmentService {
             }
         }
         this.repository.deleteById(id);
-        logAuditOperation(idUser, department, Act.DELETE);
+        logAuditOperation(idUser, id, Act.DELETE);
     }
 
     public Page<Department> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection, Long iduser){
@@ -106,7 +105,7 @@ public class DepartmentService {
         return ListEmployees;
     }
 
-    public void logAuditOperation(User user, Department department, Act action){
+    public void logAuditOperation(User user, Long department, Act action){
         AuditLog auditLog = new AuditLog();
         auditLog.setIduser(user);
         auditLog.setIdpb(department);

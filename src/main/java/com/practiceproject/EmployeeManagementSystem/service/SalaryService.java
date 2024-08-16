@@ -47,9 +47,9 @@ public class SalaryService {
             salary.setTongluong(tl);
             salary.setTienno(0);;
         }
-        this.repository.save(salary);
+        Salary saveSalary = this.repository.save(salary);
 
-        logAuditOperation(iduser, salary, Act.ADD);
+        logAuditOperation(iduser, saveSalary.getIdluong(), Act.ADD);
     }
 
     @Transactional
@@ -63,9 +63,9 @@ public class SalaryService {
             salary.setTongluong(tl);
             salary.setTienno(0);;
         }
-        this.repository.save(salary);
+        Salary saveSalary = this.repository.save(salary);
 
-        logAuditOperation(iduser, salary, Act.UPDATE);
+        logAuditOperation(iduser, saveSalary.getIdluong(), Act.UPDATE);
     }
 
     //Tim id luong
@@ -97,7 +97,7 @@ public class SalaryService {
         return Collections.emptyList();
     }
 
-    public void logAuditOperation(User user, Salary salary, Act action){
+    public void logAuditOperation(User user, Long salary, Act action){
         AuditLog auditLog = new AuditLog();
         auditLog.setIduser(user);
         auditLog.setIdluong(salary);

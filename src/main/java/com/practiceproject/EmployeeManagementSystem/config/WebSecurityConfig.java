@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.practiceproject.EmployeeManagementSystem.service.CustomLogoutSuccessHandler;
 import com.practiceproject.EmployeeManagementSystem.service.CustomUserDetailsService;
 
 @Configuration
@@ -21,6 +22,8 @@ import com.practiceproject.EmployeeManagementSystem.service.CustomUserDetailsSer
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     DataSource dataSource;
+    @Autowired
+    private CustomLogoutSuccessHandler logout;
 
     @Bean
     public UserDetailsService userDetailsService(){
@@ -60,7 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessHandler(logout)
                 .permitAll()
             .and()
             .rememberMe()
