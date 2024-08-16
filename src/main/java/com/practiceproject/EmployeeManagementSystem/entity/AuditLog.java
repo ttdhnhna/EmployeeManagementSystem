@@ -37,24 +37,21 @@ public class AuditLog {
     private LocalDateTime ngayth; 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_nv", nullable = false, referencedColumnName = "id_nv")
+    @JoinColumn(name = "id_nv", nullable = true, referencedColumnName = "id_nv")
     @BatchSize(size = 16)
     @JsonBackReference
-    @Column(nullable = true)
     private Employee idnv;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_pb", nullable = false, referencedColumnName = "id_pb")
+    @JoinColumn(name = "id_pb", nullable = true, referencedColumnName = "id_pb")
     @BatchSize(size = 16)
     @JsonBackReference
-    @Column(nullable = true)
     private Department idpb;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_luong", nullable = false, referencedColumnName = "id_luong")
+    @JoinColumn(name = "id_luong", nullable = true, referencedColumnName = "id_luong")
     @BatchSize(size = 16)
     @JsonBackReference
-    @Column(nullable = true)
     private Salary idluong;
 
     private Act act;
