@@ -55,6 +55,8 @@ public class EmployeeService {
     @Autowired
     AuditLogRepository aRepository;
     @Autowired
+    SalaryService sService;
+    @Autowired
     DepartmentService dService;
     @Autowired
     AccountService uService;
@@ -119,7 +121,7 @@ public class EmployeeService {
         Employee savedEmployee =  this.repository.save(employee);
 
         savedSalary.setIdnv(savedEmployee);
-        sRepository.save(savedSalary);
+        sService.saveSalary(savedSalary);
 
         logAuditOperation(iduser, savedEmployee.getIdnv(), Act.ADD);
     }

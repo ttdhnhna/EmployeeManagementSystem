@@ -57,6 +57,7 @@ public class AccountService {
 
     public void saveAccount(User user){
         this.repository.save(user);
+        logAuditOperation(user, Act.UPDATE);
     }
 
     @Transactional

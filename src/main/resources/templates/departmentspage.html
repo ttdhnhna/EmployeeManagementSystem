@@ -97,7 +97,7 @@
                       <a th:href="@{/updateDepartment/{id}(id=${department.idpb})}" class="btn btn-primary">Sửa</a>
                       <a th:href="@{/viewDepartmentdetail/{id}(id=${department.idpb})}" class="btn btn-primary">Chi tiết</a>
                       <a th:href="@{/deleteDepartment/{id}(id=${department.idpb})}" 
-                      th:onclick="${#lists.size(department.employees) > 0} ? 'return confirmDelete()' : ''"
+                      th:onclick="${#lists.size(department.idnv) > 0} ? 'return confirmDelete()' : ''"
                       class="btn btn-danger">Xóa</a>
                     </td>
                 </tr>
