@@ -32,6 +32,8 @@ public class DepartmentService {
     @Autowired
     AuditLogRepository aRepository;
     @Autowired
+    EmployeeService eService;
+    @Autowired
     AccountService aService;
 
     // @Transactional(readOnly = true)
@@ -71,7 +73,7 @@ public class DepartmentService {
         List<Employee> list = getNVInformationbyID(id);
         if(list != null){
             for(Employee e : list){
-                eRepository.delete(e);
+                eService.deleteEmployeebyID(e.getIdnv());
             }
         }
         this.repository.deleteById(id);

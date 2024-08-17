@@ -186,8 +186,9 @@ public class EmployeeService {
 
     //Phân trang và sắp xếp
     public Page<Employee> findPaginated(int pageNo,  int pageSize, String sortField, String sortDirection, Long iduser){
-        Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
-            Sort.by(sortField).descending();
+        Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) 
+            ? Sort.by(sortField).ascending() 
+            : Sort.by(sortField).descending();
         Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
         User user = uService.getUserByID(iduser);
         return this.repository.findAllByIduser(user, pageable);
