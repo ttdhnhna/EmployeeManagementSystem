@@ -73,4 +73,4 @@ Hệ thống phê duyệt (Approval Workflow):
 Mô tả: Thiết lập quy trình phê duyệt cho các yêu cầu như nghỉ phép, cập nhật thông tin cá nhân.
 Lợi ích: Đảm bảo các quyết định quan trọng được thông qua bởi người có thẩm quyền.
 
-2024-08-16T21:32:50.726384400
+
