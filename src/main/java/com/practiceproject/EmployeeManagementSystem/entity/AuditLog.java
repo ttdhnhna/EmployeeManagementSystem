@@ -100,4 +100,7 @@ public class AuditLog {
         this.act = act;
     }
 
+    public LocalDateTime getNgayth() {
+        return ngayth;
+    }
 }
