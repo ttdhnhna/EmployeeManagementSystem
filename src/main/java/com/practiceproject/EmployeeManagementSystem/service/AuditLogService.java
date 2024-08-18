@@ -31,11 +31,11 @@ public class AuditLogService {
         return auditLog;
     }
 
-    public Page<AuditLog> findPaginated(int pageNo, int pageSize, String sortFeild, 
+    public Page<AuditLog> findPaginated(int pageNo, int pageSize, String sortField, 
     String sortDirection, Long iduser){
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
-            ? Sort.by(sortFeild).ascending()
-            : Sort.by(sortFeild).descending();
+            ? Sort.by(sortField).ascending()
+            : Sort.by(sortField).descending();
         Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
         User user = uService.getUserByID(iduser);
         return this.repository.findAllByIduser(user, pageable);

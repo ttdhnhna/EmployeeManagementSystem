@@ -38,7 +38,7 @@
               <a class="nav-link" th:href="@{/accounts} ">Tài khoản</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/accounts} ">Lịch sử</a>
+              <a class="nav-link" th:href="@{/auditlogs} ">Lịch sử</a>
             </li>
             <li sec:authorize="isAuthenticated()" class="nav-item">
               <a class="nav-link" th:href="@{/logout} ">Đăng xuất</a>
@@ -63,21 +63,80 @@
             <table class="table table-striped table-bordered">
                 <thead>
                   <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Thời điểm</th>
-                    <th scope="col">Bảng tác động</th>
+                    <th scope="col">
+                      <a th:href="@{'/pageLog/' + ${currentPage} + '?sortField=idlog&sortDir=' + ${reverseSortDir}}">ID</a>
+                    </th>
+                    <th scope="col">
+                      <a th:href="@{'/pageLog/' + ${currentPage} + '?sortField=idlog&sortDir=' + ${reverseSortDir}}">Thời điểm</a>
+                    </th>
                     <th scope="col">Hành động</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                  <tr th:each = "log : ${ListLogs}">
+                    <th scope="row" th:text="${log.idlog}"></th>
+                    <td th:text="${log.ngayth}"></td>
+                    <td>
+                      Người dùng <span th:text="${log.iduser.email}"></span> đã 
+                      <span th:if="${log.act == 0}">đăng nhập</span>
+                      <span th:if="${log.act == 1}">đăng xuất</span>
+                      <span th:if="${log.act == 2}">thêm 
+                          <span th:if="${log.idnv != null}">mới mã nhân viên <span th:text="${log.idnv}"></span></span>
+                          <span th:if="${log.idpb != null}">mới mã phòng ban <span th:text="${log.idpb}"></span></span>
+                          <span th:if="${log.idluong != null}">mới mã lương <span th:text="${log.idluong}"></span></span>
+                      </span>
+                      <span th:if="${log.act == 3}">cập nhật 
+                          <span th:if="${log.idnv != null}">nhân viên mã <span th:text="${log.idnv}"></span></span>
+                          <span th:if="${log.idpb != null}">phòng ban mã <span th:text="${log.idpb}"></span></span>
+                          <span th:if="${log.idluong != null}">mã lương <span th:text="${log.idluong}"></span></span>
+                      </span>
+                      <span th:if="${log.act == 4}">xóa 
+                          <span th:if="${log.idnv != null}">mã nhân viên <span th:text="${log.idnv}"></span></span>
+                          <span th:if="${log.idpb != null}">mã phòng ban <span th:text="${log.idpb}"></span></span>
+                          <span th:if="${log.idluong != null}">mã lương <span th:text="${log.idluong}"></span></span>
+                      </span>
+                    </td>
                   </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div th:if="${totalPages>1}">
+          <div class="row coL-sm-10">
+            <div class="coL-sm-2">
+              &nbsp; &nbsp;
+              Tổng hàng: [[${totalItems}]]
+              &nbsp; &nbsp;
+            </div>
+            <div class="coL-sm-1">
+              <a th:if="${currentPage > 1}" th:href="@{'/pageLog/' + 1 + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu</a>
+              <span th:unless="${currentPage > 1}">Đầu</span>
+              &nbsp;
+            </div>
+
+            <div class="coL-sm-1">
+                <a th:if="${currentPage > 1}" th:href="@{'/pageLog/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trước</a>
+                <span th:unless="${currentPage > 1}">Trước</span>
+                &nbsp;
+            </div>
+            <div class="coL-sm-1">
+              <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                <a th:if="${currentPage != i}" th:href="@{'/pageLog/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+              </span>
+            </div>
+
+            <div class="coL-sm-1">
+              <a th:if="${currentPage < totalPages}" th:href="@{'/pageLog/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Tiếp</a>
+              <span th:unless="${currentPage < totalPages}">Tiếp</span>
+              &nbsp;
+            </div>
+
+            <div class="coL-sm-1">
+              <a th:if="${currentPage < totalPages}" th:href="@{'/pageLog/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Cuối</a>
+              <span th:unless="${currentPage < totalPages}">Cuối</span>
+            </div>
+          </div>
         </div>
     </div>
 
