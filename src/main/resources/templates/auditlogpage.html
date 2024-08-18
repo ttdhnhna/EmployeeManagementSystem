@@ -75,7 +75,7 @@
                 <tbody>
                   <tr th:each = "log : ${ListLogs}">
                     <th scope="row" th:text="${log.idlog}"></th>
-                    <td th:text="${#dates.format(log.ngayth, 'yyyy-MM-dd HH:mm')}"></td>
+                    <td th:text="${log.ngayth}"></td>
                     <!-- <td>
                       Người dùng <span th:text="${log.iduser.email}"></span> đã 
                       <span th:if="${log.act == 0}">đăng nhập</span>
@@ -97,7 +97,7 @@
                       </span>
                     </td> -->
                     <td>
-                      <span th:text="'Act value: ' + ${log.act}"></span>
+                      <span th:text="${log.act}"></span>
                     </td>
                   </tr>
                 </tbody>
