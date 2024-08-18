@@ -73,25 +73,4 @@ Hệ thống phê duyệt (Approval Workflow):
 Mô tả: Thiết lập quy trình phê duyệt cho các yêu cầu như nghỉ phép, cập nhật thông tin cá nhân.
 Lợi ích: Đảm bảo các quyết định quan trọng được thông qua bởi người có thẩm quyền.
 
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-The dependencies of some of the beans in the application context form a cycle:
-
-   departmentController (field com.practiceproject.EmployeeManagementSystem.service.DepartmentService com.practiceproject.EmployeeManagementSystem.controller.DepartmentController.service)
-┌─────┐
-|  departmentService (field com.practiceproject.EmployeeManagementSystem.service.EmployeeService com.practiceproject.EmployeeManagementSystem.service.DepartmentService.eService)
-↑     ↓
-|  employeeService (field com.practiceproject.EmployeeManagementSystem.service.DepartmentService com.practiceproject.EmployeeManagementSystem.service.EmployeeService.dService)
-└─────┘
-
-
-Action:
-
-Relying upon circular references is discouraged and they are prohibited by default. Update your application to remove the dependency cycle between beans. As a last resort, it may be possible to break the cycle automatically by setting spring.main.allow-circular-references to true.
-
-
 

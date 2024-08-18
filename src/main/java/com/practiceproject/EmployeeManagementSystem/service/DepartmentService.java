@@ -32,8 +32,6 @@ public class DepartmentService {
     @Autowired
     AuditLogRepository aRepository;
     @Autowired
-    EmployeeService eService;
-    @Autowired
     AccountService aService;
 
     // @Transactional(readOnly = true)
@@ -45,7 +43,7 @@ public class DepartmentService {
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
         department.setIduser(idUser);
         Department savedDepartment = this.repository.save(department);
-        logAuditOperation(idUser, savedDepartment.getIdpb(), Act.ADD);
+        logAuditOperation(idUser, savedDepartment.getIdpb(), null, Act.ADD);
     }
 
     @Transactional
@@ -53,7 +51,7 @@ public class DepartmentService {
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
         department.setIduser(idUser);
         Department savedDepartment = this.repository.save(department);
-        logAuditOperation(idUser, savedDepartment.getIdpb(), Act.UPDATE);
+        logAuditOperation(idUser, savedDepartment.getIdpb(), null, Act.UPDATE);
     }
 
     public Department getDepartmentID(long id){
@@ -73,11 +71,12 @@ public class DepartmentService {
         List<Employee> list = getNVInformationbyID(id);
         if(list != null){
             for(Employee e : list){
-                eService.deleteEmployeebyID(e.getIdnv());
+                logAuditOperation(idUser, null, e.getIdnv(), Act.DELETE);
+                eRepository.delete(e); 
             }
         }
         this.repository.deleteById(id);
-        logAuditOperation(idUser, id, Act.DELETE);
+        logAuditOperation(idUser, id, null, Act.DELETE);
     }
 
     public Page<Department> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection, Long iduser){
@@ -107,10 +106,11 @@ public class DepartmentService {
         return ListEmployees;
     }
 
-    public void logAuditOperation(User user, Long department, Act action){
+    public void logAuditOperation(User user, Long department, Long employee, Act action){
         AuditLog auditLog = new AuditLog();
         auditLog.setIduser(user);
         auditLog.setIdpb(department);
+        auditLog.setIdnv(employee);
         auditLog.setAct(action);
         aRepository.save(auditLog);
     }
