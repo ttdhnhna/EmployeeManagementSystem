@@ -68,10 +68,16 @@
                 <thead>
                   <tr>
                     <th scope="col">
-                      <a th:href="@{'/pageLog/' + ${currentPage} + '?sortField=idlog&sortDir=' + ${reverseSortDir}}">ID</a>
+                      <span th:if="${isSearch}">
+                        ID
+                      </span>
+                      <a th:if="${!isSearch}" th:href="@{'/pageLog/' + ${currentPage} + '?sortField=idlog&sortDir=' + ${reverseSortDir}}">ID</a>
                     </th>
                     <th scope="col">
-                      <a th:href="@{'/pageLog/' + ${currentPage} + '?sortField=idlog&sortDir=' + ${reverseSortDir}}">Thời điểm</a>
+                      <span th:if="${isSearch}">
+                        Thời điểm
+                      </span>
+                      <a th:if="${!isSearch}" th:href="@{'/pageLog/' + ${currentPage} + '?sortField=idlog&sortDir=' + ${reverseSortDir}}">Thời điểm</a>
                     </th>
                     <th scope="col">Hành động</th>
                   </tr>

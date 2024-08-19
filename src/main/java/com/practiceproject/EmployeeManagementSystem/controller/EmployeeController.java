@@ -127,6 +127,8 @@ public class EmployeeController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("ListEmployees", ListEmployees); 
+        model.addAttribute("isSearch", false); 
+
         return "homepage";
     }
 
@@ -144,6 +146,8 @@ public class EmployeeController {
         Long iduser = Utility.getCurrentUserId();
         List<Employee> ListEmployees=service.findAll(keyword, iduser);
         model.addAttribute("ListEmployees", ListEmployees);
+        model.addAttribute("isSearch", true); 
+
         if (ListEmployees.isEmpty()) {
             model.addAttribute("errorMess", "Không tìm thấy nhân viên");
         }

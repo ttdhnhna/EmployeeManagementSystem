@@ -79,6 +79,8 @@ public class DepartmentController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("ListDepartments", ListDepartments);
+        model.addAttribute("isSearch", false); 
+
         return "departmentspage";
     }
     //Tìm kiếm
@@ -87,6 +89,8 @@ public class DepartmentController {
         Long iduser = Utility.getCurrentUserId();
         List<Department> ListDepartments=service.findDepartments(keyword, iduser);
         model.addAttribute("ListDepartments", ListDepartments);
+        model.addAttribute("isSearch", true); 
+
         if(ListDepartments.isEmpty()){
             model.addAttribute("errorMess", "Không tìm thấy phòng ban");
         }

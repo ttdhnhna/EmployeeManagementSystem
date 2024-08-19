@@ -44,6 +44,7 @@ public class AuditlogController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("ListLogs", ListLogs); 
+        model.addAttribute("isSearch", false); 
         return "auditlogpage";
     }
 
@@ -52,8 +53,10 @@ public class AuditlogController {
         Long iduser = Utility.getCurrentUserId();
         List<AuditLog> ListLogs = service.findAll(iduser, keyword);
         model.addAttribute("ListLogs", ListLogs); 
+        model.addAttribute("isSearch", true); 
+        
         if(ListLogs.isEmpty()){
-            model.addAttribute("errorMess", "Không tìm thấy nhân viên");
+            model.addAttribute("errorMess", "Không tìm thấy log vừa nhập");
         }
         return "auditlogpage";
     }

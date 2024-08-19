@@ -78,6 +78,8 @@ public class SalaryController {
        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
        model.addAttribute("ListSalaries", ListSalaries);
+       model.addAttribute("isSearch", false); 
+
        return "salariespage";
    }
     //Tìm kiếm
@@ -86,6 +88,8 @@ public class SalaryController {
         Long iduser = Utility.getCurrentUserId();
         List<Salary> ListSalaries=service.findAllSalaries(keyword, iduser);
         model.addAttribute("ListSalaries", ListSalaries);
+        model.addAttribute("isSearch", true); 
+
         if(ListSalaries.isEmpty()){
             model.addAttribute("errorMess", "Không tìm thấy thông tin lương");
         }

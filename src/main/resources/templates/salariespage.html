@@ -76,15 +76,24 @@
             <thead class="table-dark">
                 <tr>
                   <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=idluong&sortDir=' + ${reverseSortDir}}">ID Lương</a>
+                    <span th:if="${isSearch}">
+                      ID Lương
+                    </span>
+                    <a th:if="${!isSearch}" th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=idluong&sortDir=' + ${reverseSortDir}}">ID Lương</a>
                   </th>
                   <th>Họ tên</th>
                   <th>Chức vụ</th>
                   <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=hsl&sortDir=' + ${reverseSortDir}}">Hệ số lương</a>
+                    <span th:if="${isSearch}">
+                      Hệ số lương
+                    </span>
+                    <a th:if="${!isSearch}" th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=hsl&sortDir=' + ${reverseSortDir}}">Hệ số lương</a>
                   </th>
                   <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=tongluong&sortDir=' + ${reverseSortDir}}">Tổng lương</a>
+                    <span th:if="${isSearch}">
+                      Tổng lương
+                    </span>
+                    <a th:if="${!isSearch}" th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=tongluong&sortDir=' + ${reverseSortDir}}">Tổng lương</a>
                   </th>
                   <th>Chức năng</th>
                 </tr>

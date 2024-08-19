@@ -80,14 +80,23 @@
             <thead class="table-dark">
                 <tr>
                     <th>
-                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}">ID</a>
+                      <span th:if="${isSearch}">
+                        ID
+                      </span>
+                      <a th:if="${!isSearch}" th:href="@{'/page/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}">ID</a>
                     </th>
                     <th>Ảnh hồ sơ</th>
                     <th>
-                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=hoten&sortDir=' + ${reverseSortDir}}">Họ tên</a>
+                      <span th:if="${isSearch}">
+                        Họ tên
+                      </span>
+                      <a th:if="${!isSearch}" th:href="@{'/page/' + ${currentPage} + '?sortField=hoten&sortDir=' + ${reverseSortDir}}">Họ tên</a>
                     </th>
                     <th>
-                      <a th:href="@{'/page/' + ${currentPage} + '?sortField=chucvu&sortDir='+${reverseSortDir}}">Chức vụ</a>
+                      <span th:if="${isSearch}">
+                        Chức vụ
+                      </span>
+                      <a th:if="${!isSearch}" th:href="@{'/page/' + ${currentPage} + '?sortField=chucvu&sortDir='+${reverseSortDir}}">Chức vụ</a>
                     </th>
                     <th>Chức năng</th>
                 </tr>
