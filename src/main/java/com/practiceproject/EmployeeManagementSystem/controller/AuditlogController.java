@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,7 @@ public class AuditlogController {
 
     @GetMapping("/auditlogs")
     public String getLogs(Model model){
-        return findPaginated(1, "idlog", "asc", model);
+        return findPaginated(1, "idlog", "desc", model);
     }
 
     @GetMapping("/pageLog/{pageNo}")
@@ -43,6 +44,17 @@ public class AuditlogController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("ListLogs", ListLogs); 
+        return "auditlogpage";
+    }
+
+    @GetMapping("/findlog")
+    public String findLogs(Model model, @Param("keyword") String keyword){
+        Long iduser = Utility.getCurrentUserId();
+        List<AuditLog> ListLogs = service.findAll(iduser, keyword);
+        model.addAttribute("ListLogs", ListLogs); 
+        if(ListLogs.isEmpty()){
+            model.addAttribute("errorMess", "Không tìm thấy nhân viên");
+        }
         return "auditlogpage";
     }
 }

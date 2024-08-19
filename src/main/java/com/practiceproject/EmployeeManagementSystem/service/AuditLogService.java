@@ -1,5 +1,7 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +41,12 @@ public class AuditLogService {
         Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
         User user = uService.getUserByID(iduser);
         return this.repository.findAllByIduser(user, pageable);
+    }
+
+    public List<AuditLog> findAll(Long iduser, String keyword){
+        if(keyword!=null){
+            return repository.findAll(iduser, keyword);
+        }
+        return Collections.emptyList();
     }
 }
