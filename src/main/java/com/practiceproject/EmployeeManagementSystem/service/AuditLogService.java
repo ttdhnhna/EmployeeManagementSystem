@@ -1,14 +1,18 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
@@ -48,5 +52,23 @@ public class AuditLogService {
             return repository.findAll(iduser, keyword);
         }
         return Collections.emptyList();
+    }
+
+    @Scheduled(cron = "0 0 0 * * ?")//Chức năng sẽ tự chạy sau mỗi nửa đêm.
+    public void autoDeletelog(){
+        LocalDateTime now = LocalDateTime.now();
+        //Xóa toàn bộ các log có tuổi đời lớn hơn 120 ngày trực tiếp từ csdl.
+        List<AuditLog> list = this.repository.findAll().stream()
+            .filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now)>120)
+            .collect(Collectors.toList());
+        /*List<AuditLog> list = this.repository.findAll(): có tác dụng là lấy tất cả các log và cho vào list
+         * .stream(): giúp tạo các log thành 1 chuỗi các phần tử có thể được xử lý song song hoặc theo trình tự
+         * để thực hiện hoạt động lọc loại bỏ.
+         * .filter(log -> ...): áp dụng bộ lọc cho stream nó sẽ chỉ giữ các phần tử mà hàm lọc trả về true.
+         * ChronoUnit.DAYS.between(log.getNgayth(), now): Phương thức này tính toán số ngày giữa 2 biến.
+         * .collect(Collectors.toList()): Thu thập các phần tử của stream vào 1 list 
+         * Collectors.toList() là một trình thu thập tích lũy các phần tử đã lọc vào một List<AuditLog> mới.
+         */
+        this.repository.deleteAll(list);
     }
 }
