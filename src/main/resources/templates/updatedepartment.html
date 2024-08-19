@@ -36,6 +36,9 @@
             <li class="nav-item">
               <a class="nav-link" th:href="@{/accounts} ">Tài khoản</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/auditlogs} ">Lịch sử</a>
+            </li>
             <li sec:authorize="isAuthenticated()" class="nav-item">
               <a class="nav-link" th:href="@{/logout} ">Đăng xuất</a>
             </li>

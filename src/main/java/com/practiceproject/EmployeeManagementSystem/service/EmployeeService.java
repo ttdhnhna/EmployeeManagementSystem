@@ -123,7 +123,7 @@ public class EmployeeService {
         savedSalary.setIdnv(savedEmployee);
         sService.saveSalary(savedSalary);
 
-        logAuditOperation(iduser, savedEmployee.getIdnv(), null, Act.ADD);
+        logAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.ADD);
     }
     
     //Cập nhật nhân viên
@@ -159,7 +159,7 @@ public class EmployeeService {
         }
 
         Employee savedEmployee = this.repository.save(employee); 
-        logAuditOperation(iduser, savedEmployee.getIdnv(), null, Act.UPDATE);
+        logAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.UPDATE);
     }
     
     //Tìm nhân viên bằng id
@@ -180,9 +180,9 @@ public class EmployeeService {
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
         Employee employee = getEmployeebyID(id);
         sRepository.deleteById(employee.getIdluong().getIdluong());
-        logAuditOperation(iduser, null, employee.getIdluong().getIdluong(), Act.DELETE);
+        logAuditOperation(iduser, null, employee.getIdluong().getIdluong(), null, Act.DELETE);
         this.repository.deleteById(id);
-        logAuditOperation(iduser, id, null, Act.DELETE);
+        logAuditOperation(iduser, id, null, null, Act.DELETE);
     }
 
     //Phân trang và sắp xếp
@@ -342,6 +342,7 @@ public class EmployeeService {
                     idpb.setSdt(sdtpb);
                     idpb.setTenpb(tenpb);
                     idpb = dRepository.save(idpb);
+                    logAuditOperation(iduser, null, null, idpb.getIdpb(), Act.ADD);
                 }
                 
                 saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, null, hsl, phucap);
@@ -355,11 +356,12 @@ public class EmployeeService {
         return cell != null ? cell.getStringCellValue() : "";
     }
 
-    public void logAuditOperation(User user, Long employee, Long salary, Act action){
+    public void logAuditOperation(User user, Long employee, Long salary, Long department, Act action){
         AuditLog auditLog = new AuditLog();
         auditLog.setIduser(user);
         auditLog.setIdnv(employee);
         auditLog.setIdluong(salary);
+        auditLog.setIdpb(department);
         auditLog.setAct(action);
         aRepository.save(auditLog);
     }
