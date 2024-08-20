@@ -20,5 +20,5 @@ public interface AuditLogRepository extends JpaRepository<AuditLog, Long>{
     + " OR a.id_log LIKE %?2%);", nativeQuery = true)
     public List<AuditLog> findAll(Long iduser, String keywords);
 
-    public List<AuditLog> findTop10ByIduserOrderByNgaythDesc(Long iduser);
+    public List<AuditLog> findTop10ByIduserOrderByNgaythDesc(User iduser);
 }
