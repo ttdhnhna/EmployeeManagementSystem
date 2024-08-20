@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.EmployeeDto;
+import com.practiceproject.EmployeeManagementSystem.service.AuditLogService;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
 import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
@@ -33,6 +35,8 @@ public class EmployeeController {
     @Autowired 
     //Điều này có nghĩa là ta sẽ lấy được bean đc tạo tự động bởi Spring
     EmployeeService service;
+    @Autowired
+    AuditLogService aService;
 
     //Hiển thị trang chủ
     @GetMapping("/")
@@ -117,6 +121,7 @@ public class EmployeeController {
 
         Page<Employee> page=service.findPaginated(pageNo, pageSize, sortField, sortDir, iduser);
         List<Employee> ListEmployees = page.getContent();
+        List<AuditLog> ListLogs = aService.getListLogs();
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
@@ -127,6 +132,8 @@ public class EmployeeController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("ListEmployees", ListEmployees); 
+        model.addAttribute("ListLogs", ListLogs); 
+
         model.addAttribute("isSearch", false); 
 
         return "homepage";

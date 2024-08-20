@@ -73,4 +73,9 @@ public class AuditLogService {
          */
         this.repository.deleteAll(list);
     }
+
+    public List<AuditLog> getListLogs(){
+        Long iduser = Utility.getCurrentUserId();
+        return this.repository.findTop10ByIduserOrderByNgaythDesc(iduser);
+    }
 }

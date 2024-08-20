@@ -73,3 +73,90 @@ Hệ thống phê duyệt (Approval Workflow):
 Mô tả: Thiết lập quy trình phê duyệt cho các yêu cầu như nghỉ phép, cập nhật thông tin cá nhân.
 Lợi ích: Đảm bảo các quyết định quan trọng được thông qua bởi người có thẩm quyền.
 
+Batching in the context of logging entries refers to the practice of grouping multiple log entries into a single batch, which is then persisted to the database in one go, rather than saving each entry individually. This can significantly improve performance by reducing the number of database operations, especially when dealing with a large volume of logs.
+
+### Why Batching is Important
+- **Performance**: Reduces the number of database round-trips, lowering latency and increasing throughput.
+- **Resource Efficiency**: Minimizes database connections and transaction overhead.
+- **Consistency**: Ensures that a group of log entries is either all saved or none at all, improving data integrity.
+
+### 2. **Implementing Batching in Spring Boot**
+
+Here's how you can implement batching for log entries in your Spring Boot project:
+
+#### 1. **Enable JDBC Batching**
+You can configure your `application.properties` or `application.yml` to enable batching for your entire JPA/Hibernate setup:
+
+**`application.properties`**:
+```properties
+spring.jpa.properties.hibernate.jdbc.batch_size=50
+spring.jpa.properties.hibernate.order_inserts=true
+spring.jpa.properties.hibernate.order_updates=true
+spring.jpa.properties.hibernate.batch_versioned_data=true
+```
+
+- `hibernate.jdbc.batch_size`: Defines the batch size. Adjust according to your needs.
+- `hibernate.order_inserts`: Orders insert statements in a batch to reduce deadlocks in the database.
+- `hibernate.order_updates`: Orders update statements in a batch.
+- `hibernate.batch_versioned_data`: Enables batching of versioned entities (entities with optimistic locking).
+
+#### 2. **Batching Log Entries in Code**
+
+If you want more control, you can manually manage batching in your service or repository layer:
+
+```java
+@Service
+public class AuditLogService {
+
+    @Autowired
+    private AuditLogRepository auditLogRepository;
+
+    @Transactional
+    public void saveLogsInBatch(List<AuditLog> logs) {
+        int batchSize = 50; // Adjust as needed
+        for (int i = 0; i < logs.size(); i++) {
+            auditLogRepository.save(logs.get(i));
+            if (i % batchSize == 0 && i > 0) {
+                auditLogRepository.flush(); // Flush to the database
+                auditLogRepository.clear(); // Clear the persistence context to avoid memory issues
+            }
+        }
+    }
+}
+```
+
+- **`saveLogsInBatch` Method**: This method saves the list of logs in batches. The `flush()` method ensures that the batch is persisted to the database, and `clear()` removes the entities from the persistence context to avoid memory issues.
+
+#### 3. **Inserting Logs in Batches**
+
+If you need to insert logs in a batch, you can do it like this:
+
+```java
+List<AuditLog> logs = new ArrayList<>();
+// Add logs to the list
+auditLogService.saveLogsInBatch(logs);
+```
+
+### 3. **Using `saveAll` Method**
+Alternatively, you can use the `saveAll` method from the `JpaRepository` to save a list of logs in one go:
+
+```java
+public void saveLogs(List<AuditLog> logs) {
+    auditLogRepository.saveAll(logs);
+}
+```
+
+However, this approach does not allow for finer control over the batch size and persistence context management.
+
+### 4. **Configure Transaction Management**
+Ensure that your batching operations are wrapped in a transaction to maintain consistency:
+
+```java
+@Transactional
+public void batchProcessLogs(List<AuditLog> logs) {
+    saveLogsInBatch(logs);
+}
+```
+
+### Conclusion
+Batching log entries is a powerful technique to enhance the performance and efficiency of your logging system, especially when dealing with a high volume of logs. By leveraging Hibernate's batching capabilities or implementing custom batch processing logic, you can significantly reduce the load on your database and improve the overall performance of your application.

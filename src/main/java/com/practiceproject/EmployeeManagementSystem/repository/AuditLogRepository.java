@@ -19,4 +19,6 @@ public interface AuditLogRepository extends JpaRepository<AuditLog, Long>{
     + " WHERE a.id_user = ?1 AND (a.ngayth LIKE %?2% "
     + " OR a.id_log LIKE %?2%);", nativeQuery = true)
     public List<AuditLog> findAll(Long iduser, String keywords);
+
+    public List<AuditLog> findTop10ByIduserOrderByNgaythDesc(Long iduser);
 }
