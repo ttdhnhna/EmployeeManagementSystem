@@ -75,7 +75,7 @@ public class AuditLogService {
     }
 
     public List<AuditLog> getListLogs(){
-        Long iduser = Utility.getCurrentUserId();
+        User iduser = uService.getUserByID(Utility.getCurrentUserId());
         return this.repository.findTop10ByIduserOrderByNgaythDesc(iduser);
     }
 }
