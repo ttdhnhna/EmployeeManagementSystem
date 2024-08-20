@@ -60,6 +60,8 @@ public class AuditLogService {
         //Xóa toàn bộ các log có tuổi đời lớn hơn 120 ngày trực tiếp từ csdl.
         List<AuditLog> list = this.repository.findAll().stream()
             .filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now)>120)
+            //.filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now)>1)
+
             .collect(Collectors.toList());
         /*List<AuditLog> list = this.repository.findAll(): có tác dụng là lấy tất cả các log và cho vào list
          * .stream(): giúp tạo các log thành 1 chuỗi các phần tử có thể được xử lý song song hoặc theo trình tự
