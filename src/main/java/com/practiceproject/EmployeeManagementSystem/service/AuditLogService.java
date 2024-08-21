@@ -59,8 +59,8 @@ public class AuditLogService {
         LocalDateTime now = LocalDateTime.now();
         //Xóa toàn bộ các log có tuổi đời lớn hơn 120 ngày trực tiếp từ csdl.
         List<AuditLog> list = this.repository.findAll().stream()
-            .filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now)>120)
-            //.filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now)>1)
+//            .filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now)>120)
+            .filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now)>1)
 
             .collect(Collectors.toList());
         /*List<AuditLog> list = this.repository.findAll(): có tác dụng là lấy tất cả các log và cho vào list
@@ -77,7 +77,6 @@ public class AuditLogService {
     public List<AuditLog> getListLogs(){
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
         List<AuditLog> logs = this.repository.findTop10ByIduserOrderByNgaythDesc(iduser);
-        System.out.println("Retrieved logs size: " + logs.size());
         return logs;
     }
 }
