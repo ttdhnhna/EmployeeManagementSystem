@@ -76,6 +76,8 @@ public class AuditLogService {
 
     public List<AuditLog> getListLogs(){
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
-        return this.repository.findTop10ByIduserOrderByNgaythDesc(iduser);
+        List<AuditLog> logs = this.repository.findTop10ByIduserOrderByNgaythDesc(iduser);
+        System.out.println("Retrieved logs size: " + logs.size());
+        return logs;
     }
 }
