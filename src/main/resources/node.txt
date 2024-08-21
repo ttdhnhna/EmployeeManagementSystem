@@ -159,4 +159,15 @@ public void batchProcessLogs(List<AuditLog> logs) {
 ```
 
 ### Conclusion
-Batching log entries is a powerful technique to enhance the performance and efficiency of your logging system, especially when dealing with a high volume of logs. By leveraging Hibernate's batching capabilities or implementing custom batch processing logic, you can significantly reduce the load on your database and improve the overall performance of your application.
+Batching log entries is a powerful technique to enhance the performance and efficiency of your
+logging system, especially when dealing with a high volume of logs. By leveraging Hibernate's
+batching capabilities or implementing custom batch processing logic, you can significantly
+reduce the load on your database and improve the overall performance of your application.
+
+Da sua duoc loi thong bao roi gio se bo sung phan link dan den chinh thong bao day trong phan
+trang auditlogpage de nguoi dung co the xem hoac co khi nen tao phan trang chi tiet lich su
+xong se lam the nao de neu no dai qua thi minh se cho no xuong dong de van o trong container
+Tao phan hien so thong bao moi
+Va sau khi xong cai nay minh se bo sung them phan chinh sua nhung cai gi va xoa nhan vien,
+phong ban co ten gi luong se co hsl la bao nhieu (Hoac phan nay se la phan chi tiet lich
+su khi nguoi dung nhan vao).
