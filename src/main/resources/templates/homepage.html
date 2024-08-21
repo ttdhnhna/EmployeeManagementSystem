@@ -44,12 +44,12 @@
                 <a class="dropdown-item" th:href="@{/auditlogs} ">Lịch sử</a>
               </ul>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" th:each = "log : ${ListLogs}">
               <a class="nav-link" href="#" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-bell"></i>
                 <!-- <span class="badge badge-danger" id="notificationCount">3</span> -->
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown" th:each = "log : ${ListLogs}">       
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
                 <a class="dropdown-item" href="#">Bạn đã 
                   <span th:if="${log.act.name() == 'LOGIN'}">đăng nhập</span>
                   <span th:if="${log.act.name() == 'LOGOUT'}">đăng xuất</span>
