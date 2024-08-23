@@ -170,5 +170,3 @@ Tao phan hien so thong bao moi
 Va sau khi xong cai nay minh se bo sung them phan chinh sua nhung cai gi va xoa nhan vien,
 phong ban co ten gi luong se co hsl la bao nhieu (Hoac phan nay se la phan chi tiet lich
 su khi nguoi dung nhan vao).
-
-Thieu phan chuong thong bao o may trang kia va nen chinh lai phan footer style nhu cu.

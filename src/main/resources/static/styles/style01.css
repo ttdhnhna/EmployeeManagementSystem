@@ -17,8 +17,10 @@ html, body {
 }
 
 .dropdown-menu {
+    width: 300px;
     max-height: 300px; 
     overflow-y: auto; 
+    white-space: normal;
 }
 
 footer {
@@ -40,7 +42,7 @@ footer {
 }
 .footer-left, .footer-right {
     display: inline-block;
-    margin: 10px 200px; 
+    margin: 10px 300px; 
 }
 
 .drop-zone {
