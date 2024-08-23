@@ -2,6 +2,7 @@ package com.practiceproject.EmployeeManagementSystem.controller;
 
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +19,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 import com.practiceproject.EmployeeManagementSystem.service.AccountService;
+import com.practiceproject.EmployeeManagementSystem.service.AuditLogService;
 import com.practiceproject.EmployeeManagementSystem.service.CustomerNotFoundException;
 import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
@@ -31,9 +34,10 @@ import net.bytebuddy.utility.RandomString;
 public class AppController {
     @Autowired
     UserRepository repository;
-
     @Autowired
     AccountService service;
+    @Autowired
+    AuditLogService aService;
 
     //Thư viện giúp gửi email
     @Autowired
@@ -44,6 +48,7 @@ public class AppController {
         model.addAttribute("user",new User());
         return "registration";
     }
+
     @PostMapping("/saveRegistration")
     public String saveRegistration(@ModelAttribute("user") User user, Model model){
         try {
@@ -64,6 +69,8 @@ public class AppController {
     @GetMapping("/accounts")
     public String showAccountPage(Model model){
         Long iduser = Utility.getCurrentUserId();
+        List<AuditLog> ListLogs = aService.getListLogs();
+        model.addAttribute("ListLogs", ListLogs); 
         User user = service.getUserByID(iduser);
         model.addAttribute("user", user);
         return "accountspage";
@@ -71,6 +78,8 @@ public class AppController {
 
     @GetMapping("/updateAccount/{id}")
     public String updateAccount( @PathVariable(value = "id")long id, Model model){
+        List<AuditLog> ListLogs = aService.getListLogs();
+        model.addAttribute("ListLogs", ListLogs); 
         User user=service.getUserByID(id);
         model.addAttribute("user", user);
         return "updateaccount";
@@ -84,6 +93,8 @@ public class AppController {
 
     @GetMapping("/changePassword/{id}")
     public String changePassword(@PathVariable(value = "id")long id, Model model){
+        List<AuditLog> ListLogs = aService.getListLogs();
+        model.addAttribute("ListLogs", ListLogs); 
         User user=service.getUserByID(id);
         model.addAttribute("user", user);
         return "changepassword";
@@ -101,8 +112,12 @@ public class AppController {
             redirect.addFlashAttribute("message", "Bạn đã thay đổi mật khẩu thành công cho tài khoản có ID: " + fullUser.getIduser() + "!");
             return "redirect:/accounts";
         } catch (IllegalStateException | IllegalArgumentException e) {
-            model.addAttribute("alertMessage", e.getMessage());
-            return "changepassword"; 
+            redirect.addFlashAttribute("alertMessage", e.getMessage());
+            redirect.addFlashAttribute("currentpassword", currentpass);
+            redirect.addFlashAttribute("newpassword", newpass);
+            redirect.addFlashAttribute("confirmpassword", confirmpass);
+            redirect.addFlashAttribute("user", user);
+            return "redirect:/changePassword/"+ user.getIduser() ; 
         }
     }
 

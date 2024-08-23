@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
+import com.practiceproject.EmployeeManagementSystem.service.AuditLogService;
 import com.practiceproject.EmployeeManagementSystem.service.DepartmentService;
 import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
@@ -22,6 +24,8 @@ import com.practiceproject.EmployeeManagementSystem.service.Utility;
 public class DepartmentController {
     @Autowired
     DepartmentService service;
+    @Autowired
+    AuditLogService aService;
 
     @GetMapping("/departments")
     public String getDepartments(Model model){
@@ -30,6 +34,8 @@ public class DepartmentController {
 
     @GetMapping("/addDepartment")
     public String addDepartment(Model model){
+        List<AuditLog> ListLogs = aService.getListLogs();
+        model.addAttribute("ListLogs", ListLogs); 
         Department department=new Department();
         model.addAttribute("department", department);
         return "newdepartment";
@@ -55,6 +61,8 @@ public class DepartmentController {
 
     @GetMapping("/updateDepartment/{id}")
     public String updateDepartment(@PathVariable(value = "id") long id, Model model){
+        List<AuditLog> ListLogs = aService.getListLogs();
+        model.addAttribute("ListLogs", ListLogs); 
         Department department=service.getDepartmentID(id);
         model.addAttribute("department", department);
         return "updatedepartment";
@@ -69,6 +77,7 @@ public class DepartmentController {
 
         Page<Department> page=service.findPaginated(pageNo, pageSize, sortField, sortDir, iduser);
         List<Department> ListDepartments=page.getContent();
+        List<AuditLog> ListLogs = aService.getListLogs();
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
@@ -79,6 +88,7 @@ public class DepartmentController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("ListDepartments", ListDepartments);
+        model.addAttribute("ListLogs", ListLogs); 
         model.addAttribute("isSearch", false); 
 
         return "departmentspage";
@@ -88,7 +98,9 @@ public class DepartmentController {
     public String findDepartments(Model model, @Param("keyword") String keyword){
         Long iduser = Utility.getCurrentUserId();
         List<Department> ListDepartments=service.findDepartments(keyword, iduser);
+        List<AuditLog> ListLogs = aService.getListLogs();
         model.addAttribute("ListDepartments", ListDepartments);
+        model.addAttribute("ListLogs", ListLogs); 
         model.addAttribute("isSearch", true); 
 
         if(ListDepartments.isEmpty()){
@@ -100,6 +112,8 @@ public class DepartmentController {
     //Trang chi tiết phòng ban.
     @GetMapping("/viewDepartmentdetail/{id}")
     public String viewDepartmentdetail(@PathVariable(value = "id") long id, Model model){
+        List<AuditLog> ListLogs = aService.getListLogs();
+        model.addAttribute("ListLogs", ListLogs); 
         Department department=service.getDepartmentID(id);
         model.addAttribute("department", department);
         List<Employee> ListEmployees=service.getNVInformationbyID(id);
