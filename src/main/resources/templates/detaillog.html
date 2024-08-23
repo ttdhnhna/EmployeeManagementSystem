@@ -45,7 +45,7 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" th:href="@{/detaillog/{id}(id=${log.idlog})}" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link" href="#" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-bell"></i>
                 <!-- <span class="badge badge-danger" id="notificationCount">3</span> -->
               </a>
@@ -80,7 +80,7 @@
               <a class="nav-link" th:href="@{/logout} ">Đăng xuất</a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0" th:action="@{/findemployee}">
+          <form class="form-inline my-2 my-lg-0" th:action="@{/findlog}">
             <input class="form-control mr-sm-2" type="search" name = "keyword" placeholder="Tìm kiếm">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
           </form>
@@ -89,122 +89,18 @@
     <br>
 
     <!-- Body -->
-    <div class="container">
-        <div class="row">
-            &nbsp; &nbsp; 
-            <h1> Danh sách Nhân viên</h1>
-        </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <a th:href="@{/addEmployee}" class="btn btn-primary btn-sm mb-3">
-                    Thêm mới
-                </a>
-                <a th:href="@{/excel}" class="btn btn-primary btn-sm mb-3">
-                  Tải xuống
-                </a>
-                <a th:href="@{/uploadexcel}" class="btn btn-primary btn-sm mb-3">
-                  Tải lên
-                </a>
-            </div>
-        </div>
-        <!-- Tin nhắn  -->
-        <div th:if="${errorMess != null}">
-          <div class="alert alert-danger">[[${errorMess}]]</div>
-        </div>
-        <div class="table-responsive">
-          <table class="table thead-light table-bordered ">
-            <thead class="table-dark">
-                <tr>
-                    <th>
-                      <span th:if="${isSearch}">
-                        ID
-                      </span>
-                      <a th:if="${!isSearch}" th:href="@{'/page/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}">ID</a>
-                    </th>
-                    <th>Ảnh hồ sơ</th>
-                    <th>
-                      <span th:if="${isSearch}">
-                        Họ tên
-                      </span>
-                      <a th:if="${!isSearch}" th:href="@{'/page/' + ${currentPage} + '?sortField=hoten&sortDir=' + ${reverseSortDir}}">Họ tên</a>
-                    </th>
-                    <th>
-                      <span th:if="${isSearch}">
-                        Chức vụ
-                      </span>
-                      <a th:if="${!isSearch}" th:href="@{'/page/' + ${currentPage} + '?sortField=chucvu&sortDir='+${reverseSortDir}}">Chức vụ</a>
-                    </th>
-                    <th>Chức năng</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each = "employee : ${ListEmployees}">
-                    <td th:text="${employee.idnv}"></td>
-                    <td>
-                      <img th:if="${employee.anh != null}" th:src="${'data:image/jpeg;base64,' + employee.anh}" height="100" width="100">
-                      <img th:if="${employee.anh == null}" src="https://bootdey.com/img/Content/avatar/avatar1.png" height="100" width="100">
-                    </td>
-                    <td th:text="${employee.hoten}"></td>
-                    <td th:text="${employee.chucvu}"></td>
-                    <td>
-                      <a th:href="@{/updateEmployee/{id}(id=${employee.idnv})}" class="btn btn-primary">Sửa</a>
-                      <a th:href="@{/profileemployee/{id}(id=${employee.idnv})}" class="btn btn-primary">Chi tiết</a>
-                      <a th:href="@{/deleteEmployee/{id}(id=${employee.idnv})}" class="btn btn-danger">Xóa</a>
-                    </td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
 
-        <div th:if="${totalPages>1}">
-          <div class="row coL-sm-10">
-            <div class="coL-sm-2">
-              &nbsp; &nbsp;
-              Tổng hàng: [[${totalItems}]]
-              &nbsp; &nbsp;
-            </div>
-            <div class="coL-sm-1">
-              <a th:if="${currentPage > 1}" th:href="@{'/page/' + 1 + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu</a>
-              <span th:unless="${currentPage > 1}">Đầu</span>
-              &nbsp;
-            </div>
-
-            <div class="coL-sm-1">
-                <a th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trước</a>
-                <span th:unless="${currentPage > 1}">Trước</span>
-                &nbsp;
-            </div>
-            <div class="coL-sm-1">
-              <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
-                <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
-              </span>
-            </div>
-
-            <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Tiếp</a>
-              <span th:unless="${currentPage < totalPages}">Tiếp</span>
-              &nbsp;
-            </div>
-
-            <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Cuối</a>
-              <span th:unless="${currentPage < totalPages}">Cuối</span>
-            </div>
-          </div>
-        </div>
-    </div>
-
+    
     <!-- Footer -->
     <footer class="bg-light text-center text-lg-start">
-      <div class="footer-content text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        <div class="footer-left"> 
-          <b>Copyright©2024 Dương Thành Đạt.</b> All rights reserved.
+        <div class="footer-content text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          <div class="footer-left"> 
+            <b>Copyright©2024 Dương Thành Đạt.</b> All rights reserved.
+          </div>
+          <div class="footer-right">
+            <b>Version</b> 1.0.0
+          </div>
         </div>
-        <div class="footer-right">
-          <b>Version</b> 1.0.0
-        </div>
-      </div>
     </footer>  
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
     crossorigin="anonymous"></script>

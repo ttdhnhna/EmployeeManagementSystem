@@ -60,4 +60,11 @@ public class AuditlogController {
         }
         return "auditlogpage";
     }
+
+    @GetMapping("/detaillog/{id}")
+    public String detailLog(@PathVariable(value = "id") long id, Model model){
+        AuditLog auditLog = service.getLogByID(id);
+        model.addAttribute("auditLog", auditLog);
+        return "detaillog";
+    }
 }
