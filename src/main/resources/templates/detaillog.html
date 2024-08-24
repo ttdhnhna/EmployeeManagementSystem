@@ -89,7 +89,44 @@
     <br>
 
     <!-- Body -->
-
+    <div class="container">
+      <div class="card">
+        <div class="card-body" th:object="${auditLog}">
+          <h2 class="card-title">Chi tiết hoạt động</h2>
+          <hr>
+          <h5 class="card-title">ID</h5>
+          <p class="card-text" th:text="${auditLog.idlog}"></p>
+          <h5 class="card-title">Ngày thực hiện</h5>
+          <p class="card-text" th:text="${#temporals.format(auditLog.ngayth, 'yyyy-MM-dd HH:mm')}"></p>
+          <h5 class="card-title">Chi tiết</h5>
+          <p class="card-text">
+            Người dùng <span th:text="${auditLog.iduser.email}"></span> đã 
+            <span th:if="${auditLog.act.name() == 'LOGIN'}">đăng nhập</span>
+            <span th:if="${auditLog.act.name() == 'LOGOUT'}">đăng xuất</span>
+            <span th:if="${auditLog.act.name() == 'ADD'}">
+                <span th:if="${auditLog.idnv != null}"> thêm mới mã nhân viên <span th:text="${auditLog.idnv}"></span></span>
+                <span th:if="${auditLog.idpb != null}">thêm mới mã phòng ban <span th:text="${auditLog.idpb}"></span></span>
+                <span th:if="${auditLog.idluong != null}">thêm mới mã lương <span th:text="${auditLog.idluong}"></span></span>
+                <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}">đăng ký tài khoản <span th:text="${auditLog.idluong}"></span></span>
+            </span>
+            <span th:if="${auditLog.act.name() == 'UPDATE'}">
+                <span th:if="${auditLog.idnv != null}">cập nhật nhân viên mã <span th:text="${auditLog.idnv}"></span></span>
+                <span th:if="${auditLog.idpb != null}">cập nhật phòng ban mã <span th:text="${auditLog.idpb}"></span></span>
+                <span th:if="${auditLog.idluong != null}">cập nhật mã lương <span th:text="${auditLog.idluong}"></span></span>
+                <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}">cập nhật thông tin tài khoản <span th:text="${auditLog.idluong}"></span></span>
+            </span>
+            <span th:if="${auditLog.act.name() == 'DELETE'}">xóa 
+                <span th:if="${auditLog.idnv != null}">mã nhân viên <span th:text="${auditLog.idnv}"></span></span>
+                <span th:if="${auditLog.idpb != null}">mã phòng ban <span th:text="${auditLog.idpb}"></span></span>
+                <span th:if="${auditLog.idluong != null}">mã lương <span th:text="${auditLog.idluong}"></span></span>
+            </span>
+          </p>
+          <br>
+          <a th:href="@{/auditlogs}" class="btn btn-danger">Quay lại</a>
+        </div>
+      </div>
+    </div>
+    &nbsp; &nbsp; 
     
     <!-- Footer -->
     <footer class="bg-light text-center text-lg-start">

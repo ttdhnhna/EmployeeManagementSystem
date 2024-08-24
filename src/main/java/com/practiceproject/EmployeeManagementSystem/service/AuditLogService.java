@@ -1,5 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
+import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
@@ -78,5 +79,22 @@ public class AuditLogService {
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
         List<AuditLog> logs = this.repository.findTop10ByIduserOrderByNgaythDesc(iduser);
         return logs;
+    }
+
+    public void trackChanges(Object oldEntity, Object newEntity, Long iduser){
+        Class<?> clasz = oldEntity.getClass();
+        Field[] fields = clasz.getDeclaredFields();
+
+        for(Field field:fields){
+            field.setAccessible(true);
+
+            try {
+                Object oldValue = field.get(oldEntity);
+                Object newValue = field.get(newEntity);
+                
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+        }
     }
 }

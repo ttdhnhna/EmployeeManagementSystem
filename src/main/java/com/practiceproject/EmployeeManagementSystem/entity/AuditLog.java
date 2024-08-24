@@ -49,6 +49,11 @@ public class AuditLog {
         ngayth = LocalDateTime.now();
     }
 
+    private String entityType; //Employee, Department, Salary
+    private String fieldName; 
+    private String oldValue; 
+    private String newValue;
+
     public AuditLog() {
     }
 
@@ -103,4 +108,38 @@ public class AuditLog {
     public LocalDateTime getNgayth() {
         return ngayth;
     }
+
+    public String getEntityType() {
+        return entityType;
+    }
+
+    public void setEntityType(String entityType) {
+        this.entityType = entityType;
+    }
+
+    public String getFieldName() {
+        return fieldName;
+    }
+
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
+    }
+
+    public String getOldValue() {
+        return oldValue;
+    }
+
+    public void setOldValue(String oldValue) {
+        this.oldValue = oldValue;
+    }
+
+    public String getNewValue() {
+        return newValue;
+    }
+
+    public void setNewValue(String newValue) {
+        this.newValue = newValue;
+    }
+
+    
 }
