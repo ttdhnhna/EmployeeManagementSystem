@@ -17,7 +17,6 @@ import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
-import com.practiceproject.EmployeeManagementSystem.repository.AuditLogRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.SalaryRepository;
 
 @Service
@@ -25,7 +24,7 @@ public class SalaryService {
     @Autowired
     SalaryRepository repository;
     @Autowired
-    AuditLogRepository aRepository;
+    AuditLogService aService;
     @Autowired
     AccountService uService;
 
@@ -49,11 +48,12 @@ public class SalaryService {
         }
         Salary saveSalary = this.repository.save(salary);
 
-        logAuditOperation(iduser, saveSalary.getIdluong(), Act.ADD);
+        aService.logAuditOperation(iduser, null, saveSalary.getIdluong(), null, Act.ADD);
     }
 
     @Transactional
     public void updateSalary(Salary salary){
+        Salary oldSalary = getSalaryID(salary.getIdluong());
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
         float tl = (Salary.getLuongcb() * salary.getHsl() + salary.getPhucap()) - salary.getBaohiem() - salary.getTruluong();
         if(tl<=0){
@@ -65,7 +65,8 @@ public class SalaryService {
         }
         Salary saveSalary = this.repository.save(salary);
 
-        logAuditOperation(iduser, saveSalary.getIdluong(), Act.UPDATE);
+        AuditLog savedLog = aService.updateAuditOperation(iduser, null, saveSalary.getIdluong(), null, Act.UPDATE);
+        aService.trackChanges(oldSalary, saveSalary, savedLog);
     }
 
     //Tim id luong
@@ -95,13 +96,5 @@ public class SalaryService {
             return repository.findAllSalaries(iduser, keyword);
         }
         return Collections.emptyList();
-    }
-
-    public void logAuditOperation(User user, Long salary, Act action){
-        AuditLog auditLog = new AuditLog();
-        auditLog.setIduser(user);
-        auditLog.setIdluong(salary);
-        auditLog.setAct(action);
-        aRepository.save(auditLog);
     }
 }

@@ -14,7 +14,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.practiceproject.EmployeeManagementSystem.repository.AuditLogRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
@@ -26,7 +25,7 @@ public class AccountService {
     UserRepository repository;
 
     @Autowired
-    AuditLogRepository aRepository;
+    AuditLogService aService;
 
     @Autowired
     JavaMailSender mailSender;
@@ -55,9 +54,12 @@ public class AccountService {
         return user;
     }
 
+    @Transactional
     public void saveAccount(User user){
-        this.repository.save(user);
-        logAuditOperation(user, Act.UPDATE);
+        User oldUser = getUserByID(user.getIduser());
+        User newUser =  this.repository.save(user);
+        AuditLog savedLog = aService.updateAuditOperation(user, null, null, null, Act.UPDATE);
+        aService.trackChanges(oldUser, newUser, savedLog);
     }
 
     @Transactional
@@ -70,7 +72,7 @@ public class AccountService {
         user.setPassword(ePass);
         this.repository.save(user);
 
-        logAuditOperation(user, Act.ADD);
+        aService.logAuditOperation(user, null, null, null, Act.ADD);
     }
 
     @Transactional
@@ -86,19 +88,18 @@ public class AccountService {
         user.setPassword(encodedPass);
         repository.save(user);
 
-        logAuditOperation(user, Act.UPDATE);
+        aService.logAuditOperation(user, null, null, null, Act.CHANGEPASS);
     }
 
     @Transactional
-    public void updateResetPass(String tokem, String email) throws CustomerNotFoundException{
+    public void updateResetPass(String token, String email) throws CustomerNotFoundException{
         User user = repository.findbyEmail(email);
         if(user != null){
-            user.setResetPassToken(tokem);
+            user.setResetPassToken(token);
             repository.save(user);
         }else{
             throw new CustomerNotFoundException ("Không thể tìm thấy người dùng với email: "  + email);
         }
-        logAuditOperation(user, Act.UPDATE);
     }
 
     public User get(String resetPassToken){
@@ -115,7 +116,7 @@ public class AccountService {
 
         repository.save(user);
 
-        logAuditOperation(user, Act.UPDATE);
+        aService.logAuditOperation(user, null, null, null, Act.CHANGEPASS);
     }
 
     public void sendEmail(String email, String resetPasswordLink) throws UnsupportedEncodingException, MessagingException {
@@ -138,12 +139,5 @@ public class AccountService {
         helper.setText(content, true);
 
         mailSender.send(message);
-    }
-
-    public void logAuditOperation(User user, Act action){
-        AuditLog auditLog = new AuditLog();
-        auditLog.setIduser(user);
-        auditLog.setAct(action);
-        aRepository.save(auditLog);
     }
 }

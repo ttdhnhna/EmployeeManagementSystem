@@ -1,7 +1,10 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,11 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 
 import org.hibernate.annotations.BatchSize;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class AuditLog {
@@ -29,8 +34,13 @@ public class AuditLog {
     @JsonBackReference
     private User iduser;
     
+    @OneToMany(mappedBy = "idlog", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @BatchSize(size = 16)
+    @JsonManagedReference
+    private Set<EntityChanges> idchange = new HashSet<>();
+
     public enum Act{
-        LOGIN, LOGOUT, ADD, UPDATE, DELETE
+        LOGIN, LOGOUT, ADD, UPDATE, DELETE, CHANGEPASS
     }
 
     @Column(name = "ngayth", updatable = false)
@@ -48,11 +58,6 @@ public class AuditLog {
     protected void onCreate() {
         ngayth = LocalDateTime.now();
     }
-
-    private String entityType; //Employee, Department, Salary
-    private String fieldName; 
-    private String oldValue; 
-    private String newValue;
 
     public AuditLog() {
     }
@@ -72,7 +77,15 @@ public class AuditLog {
     public void setIduser(User iduser) {
         this.iduser = iduser;
     }
-    
+     
+    public Set<EntityChanges> getIdchange() {
+        return idchange;
+    }
+
+    public void setIdchange(Set<EntityChanges> idchange) {
+        this.idchange = idchange;
+    }
+
     public Long getIdnv() {
         return idnv;
     }
@@ -108,38 +121,4 @@ public class AuditLog {
     public LocalDateTime getNgayth() {
         return ngayth;
     }
-
-    public String getEntityType() {
-        return entityType;
-    }
-
-    public void setEntityType(String entityType) {
-        this.entityType = entityType;
-    }
-
-    public String getFieldName() {
-        return fieldName;
-    }
-
-    public void setFieldName(String fieldName) {
-        this.fieldName = fieldName;
-    }
-
-    public String getOldValue() {
-        return oldValue;
-    }
-
-    public void setOldValue(String oldValue) {
-        this.oldValue = oldValue;
-    }
-
-    public String getNewValue() {
-        return newValue;
-    }
-
-    public void setNewValue(String newValue) {
-        this.newValue = newValue;
-    }
-
-    
 }

@@ -172,4 +172,9 @@ phong ban co ten gi luong se co hsl la bao nhieu (Hoac phan nay se la phan chi t
 su khi nguoi dung nhan vao).
 Voi ca nen tao phan css vs js de hien giao dien khi co thong bao moi.
 
-Dang lam do phan trang chi tiet log, can lam xong da thi se bo sung not cho may cai kia sau.
+Đã làm xong được phần phát hiện thay đổi khi cập nhật các đối tượng rồi, có thể lấy những
+phần chi tiết đấy dựa theo id log và có thể cho vào 1 danh sách để hiện trong phần chi tiết
+rồi, giờ sẽ cần hoàn thành phần hiện như thế nào cho hợp lý rồi sẽ tạo phần link liên kết 
+sau rồi chạy thử
+
+Và cần bổ sung phần thông báo được bổ sung ở phần auditlogpage.

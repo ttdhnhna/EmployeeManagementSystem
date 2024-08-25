@@ -19,7 +19,6 @@ import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
-import com.practiceproject.EmployeeManagementSystem.repository.AuditLogRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.DepartmentRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 
@@ -30,7 +29,7 @@ public class DepartmentService {
     @Autowired
     EmployeeRepository eRepository;
     @Autowired
-    AuditLogRepository aRepository;
+    AuditLogService lService;
     @Autowired
     AccountService aService;
 
@@ -43,15 +42,16 @@ public class DepartmentService {
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
         department.setIduser(idUser);
         Department savedDepartment = this.repository.save(department);
-        logAuditOperation(idUser, savedDepartment.getIdpb(), null, null, Act.ADD);
+        lService.logAuditOperation(idUser, savedDepartment.getIdpb(), null, null, Act.ADD);
     }
 
     @Transactional
     public void updateDepartment(Department department){
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
-        department.setIduser(idUser);
+        Department oldDepartment = getDepartmentID(department.getIdpb());
         Department savedDepartment = this.repository.save(department);
-        logAuditOperation(idUser, savedDepartment.getIdpb(), null, null, Act.UPDATE);
+        AuditLog savedLog = lService.updateAuditOperation(idUser, savedDepartment.getIdpb(), null, null, Act.UPDATE);
+        lService.trackChanges(oldDepartment, savedDepartment, savedLog);
     }
 
     public Department getDepartmentID(long id){
@@ -71,13 +71,13 @@ public class DepartmentService {
         List<Employee> list = getNVInformationbyID(id);
         if(list != null){
             for(Employee e : list){
-                logAuditOperation(idUser, null, e.getIdnv(), null, Act.DELETE);
-                logAuditOperation(idUser, null, null, e.getIdluong().getIdluong(), Act.DELETE);
+                lService.logAuditOperation(idUser, null, e.getIdnv(), null, Act.DELETE);
+                lService.logAuditOperation(idUser, null, null, e.getIdluong().getIdluong(), Act.DELETE);
                 eRepository.delete(e); 
             }
         }
         this.repository.deleteById(id);
-        logAuditOperation(idUser, id, null, null, Act.DELETE);
+        lService.logAuditOperation(idUser, id, null, null, Act.DELETE);
     }
 
     public Page<Department> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection, Long iduser){
@@ -105,15 +105,5 @@ public class DepartmentService {
             }
         }
         return ListEmployees;
-    }
-
-    public void logAuditOperation(User user, Long department, Long employee, Long salary, Act action){
-        AuditLog auditLog = new AuditLog();
-        auditLog.setIduser(user);
-        auditLog.setIdpb(department);
-        auditLog.setIdnv(employee);
-        auditLog.setIdluong(salary);
-        auditLog.setAct(action);
-        aRepository.save(auditLog);
     }
 }

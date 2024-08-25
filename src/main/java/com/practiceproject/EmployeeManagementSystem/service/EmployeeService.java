@@ -36,7 +36,6 @@ import com.practiceproject.EmployeeManagementSystem.entity.EmployeeDto;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
-import com.practiceproject.EmployeeManagementSystem.repository.AuditLogRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.DepartmentRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.SalaryRepository;
@@ -53,13 +52,13 @@ public class EmployeeService {
     @Autowired
     DepartmentRepository dRepository;
     @Autowired
-    AuditLogRepository aRepository;
-    @Autowired
     SalaryService sService;
     @Autowired
     DepartmentService dService;
     @Autowired
     AccountService uService;
+    @Autowired
+    AuditLogService aService;
 
     //Chức năng hiện tất cả nhân viên
     // @Transactional(readOnly = true)
@@ -123,12 +122,13 @@ public class EmployeeService {
         savedSalary.setIdnv(savedEmployee);
         sService.saveSalary(savedSalary);
 
-        logAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.ADD);
+        aService.logAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.ADD);
     }
     
     //Cập nhật nhân viên
     @Transactional
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
+        Employee oldEmployee = getEmployeebyID(employee.getIdnv());
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
         MultipartFile file = employeeDto.getAnh();
         if (file != null && !file.isEmpty()) {
@@ -159,7 +159,8 @@ public class EmployeeService {
         }
 
         Employee savedEmployee = this.repository.save(employee); 
-        logAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.UPDATE);
+        AuditLog savedLog = aService.updateAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.UPDATE);
+        aService.trackChanges(oldEmployee, savedEmployee, savedLog);
     }
     
     //Tìm nhân viên bằng id
@@ -180,9 +181,9 @@ public class EmployeeService {
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
         Employee employee = getEmployeebyID(id);
         sRepository.deleteById(employee.getIdluong().getIdluong());
-        logAuditOperation(iduser, null, employee.getIdluong().getIdluong(), null, Act.DELETE);
+        aService.logAuditOperation(iduser, null, employee.getIdluong().getIdluong(), null, Act.DELETE);
         this.repository.deleteById(id);
-        logAuditOperation(iduser, id, null, null, Act.DELETE);
+        aService.logAuditOperation(iduser, id, null, null, Act.DELETE);
     }
 
     //Phân trang và sắp xếp
@@ -342,7 +343,7 @@ public class EmployeeService {
                     idpb.setSdt(sdtpb);
                     idpb.setTenpb(tenpb);
                     idpb = dRepository.save(idpb);
-                    logAuditOperation(iduser, null, null, idpb.getIdpb(), Act.ADD);
+                    aService.logAuditOperation(iduser, null, null, idpb.getIdpb(), Act.ADD);
                 }
                 
                 saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, null, hsl, phucap);
@@ -354,16 +355,6 @@ public class EmployeeService {
 
     private String getCellValue(Cell cell) {//Đề phòng với dữ liệu đầu vào là null thì sẽ lưu dữ liệu vào là rỗng
         return cell != null ? cell.getStringCellValue() : "";
-    }
-
-    public void logAuditOperation(User user, Long employee, Long salary, Long department, Act action){
-        AuditLog auditLog = new AuditLog();
-        auditLog.setIduser(user);
-        auditLog.setIdnv(employee);
-        auditLog.setIdluong(salary);
-        auditLog.setIdpb(department);
-        auditLog.setAct(action);
-        aRepository.save(auditLog);
     }
 }
 

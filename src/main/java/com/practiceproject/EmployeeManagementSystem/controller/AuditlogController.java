@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
+import com.practiceproject.EmployeeManagementSystem.entity.EntityChanges;
 import com.practiceproject.EmployeeManagementSystem.service.AuditLogService;
 import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
@@ -64,7 +65,9 @@ public class AuditlogController {
     @GetMapping("/detaillog/{id}")
     public String detailLog(@PathVariable(value = "id") long id, Model model){
         AuditLog auditLog = service.getLogByID(id);
+        List<EntityChanges> entityChanges = service.getDetailLog(auditLog);
         model.addAttribute("auditLog", auditLog);
+        model.addAttribute("entityChanges", entityChanges);
         return "detaillog";
     }
 }

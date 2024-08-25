@@ -143,6 +143,7 @@
                           <span th:if="${log.idpb != null}">mã phòng ban <span th:text="${log.idpb}"></span></span>
                           <span th:if="${log.idluong != null}">mã lương <span th:text="${log.idluong}"></span></span>
                       </span>
+                      <span th:if="${log.act.name() == 'CHANGEPASS'}">thay đổi mật khẩu</span>
                     </td>
                   </tr>
                 </tbody>
