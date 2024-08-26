@@ -172,3 +172,13 @@ phong ban co ten gi luong se co hsl la bao nhieu (Hoac phan nay se la phan chi t
 su khi nguoi dung nhan vao).
 Voi ca nen tao phan css vs js de hien giao dien khi co thong bao moi.
 
+The dependencies of some of the beans in the application context form a cycle:
+
+   webSecurityConfig (field private com.practiceproject.EmployeeManagementSystem.service.CustomLogoutSuccessHandler com.practiceproject.EmployeeManagementSystem.config.WebSecurityConfig.logout)
+      ↓
+   customLogoutSuccessHandler (field private com.practiceproject.EmployeeManagementSystem.service.AccountService com.practiceproject.EmployeeManagementSystem.service.CustomLogoutSuccessHandler.uService)
+┌─────┐
+|  accountService (field com.practiceproject.EmployeeManagementSystem.service.AuditLogService com.practiceproject.EmployeeManagementSystem.service.AccountService.aService)
+↑     ↓
+|  auditLogService (field com.practiceproject.EmployeeManagementSystem.service.AccountService com.practiceproject.EmployeeManagementSystem.service.AuditLogService.uService)
+└─────┘
