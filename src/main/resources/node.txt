@@ -172,3 +172,7 @@ phong ban co ten gi luong se co hsl la bao nhieu (Hoac phan nay se la phan chi t
 su khi nguoi dung nhan vao).
 Voi ca nen tao phan css vs js de hien giao dien khi co thong bao moi.
 
+Cai chuc nang luu thay doi kia khong hoat dong duoc, khong luu du lieu thay doi vao trong csdl
+va can chinh sua phan nut thong bao trong trang chi tiet nhan vien.
+Va bat dau bo sung duong link chi tiet ls vs sua phan thong bao cho cac trang kia vs bo sung day
+du cho trang chi tiet ls

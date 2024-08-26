@@ -127,7 +127,7 @@
               <span th:if="${auditLog.idpb != null}">mã phòng ban <span th:text="${auditLog.idpb}"></span></span>
               <span th:if="${auditLog.idluong != null}">mã lương <span th:text="${auditLog.idluong}"></span></span>
             </span>
-            <span th:if="${log.act.name() == 'CHANGEPASS'}">thay đổi mật khẩu</span>
+            <span th:if="${auditLog.act.name() == 'CHANGEPASS'}">thay đổi mật khẩu</span>
           </p>
           <br>
           <a th:href="@{/auditlogs}" class="btn btn-danger">Quay lại</a>
