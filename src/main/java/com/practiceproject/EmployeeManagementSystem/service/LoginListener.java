@@ -6,15 +6,13 @@ import org.springframework.security.authentication.event.AuthenticationSuccessEv
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
-import com.practiceproject.EmployeeManagementSystem.repository.AuditLogRepository;
 
 @Component
 public class LoginListener implements ApplicationListener<AuthenticationSuccessEvent>{
     @Autowired
-    private AuditLogRepository aRepository;
+    private AuditLogService aService;
     @Autowired
     private AccountService uService;
 
@@ -23,9 +21,6 @@ public class LoginListener implements ApplicationListener<AuthenticationSuccessE
         Authentication authentication = event.getAuthentication();
         User user = uService.getUserByEmail(authentication.getName());
 
-        AuditLog auditLog = new AuditLog();
-        auditLog.setIduser(user);
-        auditLog.setAct(Act.LOGIN);
-        aRepository.save(auditLog);
+        aService.logAuditOperation(user, null, null, null, Act.LOGIN);
     }
 }

@@ -11,15 +11,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
-import com.practiceproject.EmployeeManagementSystem.repository.AuditLogRepository;
 
 @Component
 public class CustomLogoutSuccessHandler implements LogoutSuccessHandler{
     @Autowired
-    private AuditLogRepository aRepository;
+    private AuditLogService aService;
     @Autowired
     private AccountService uService;
 
@@ -29,10 +27,7 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler{
         if(authentication!=null && authentication.getName()!=null){
             User user = uService.getUserByEmail(authentication.getName());
 
-            AuditLog auditLog = new AuditLog();
-            auditLog.setIduser(user);
-            auditLog.setAct(Act.LOGOUT);
-            aRepository.save(auditLog);
+            aService.logAuditOperation(user, null, null, null, Act.LOGOUT);
         }
         response.sendRedirect("/login?logout");
     }
