@@ -51,8 +51,8 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
                 <li th:each = "log : ${ListLogs}">
-                  <a class="dropdown-item" href="#">
-                    Người dùng <span th:text="${log.iduser.email}"></span> đã 
+                  <a class="dropdown-item" th:href="@{/detaillog/{id}(id=${log.idlog})}">
+                    Bạn đã 
                       <span th:if="${log.act.name() == 'LOGIN'}">đăng nhập</span>
                       <span th:if="${log.act.name() == 'LOGOUT'}">đăng xuất</span>
                       <span th:if="${log.act.name() == 'ADD'}">
@@ -71,7 +71,8 @@
                           <span th:if="${log.idnv != null}">mã nhân viên <span th:text="${log.idnv}"></span></span>
                           <span th:if="${log.idpb != null}">mã phòng ban <span th:text="${log.idpb}"></span></span>
                           <span th:if="${log.idluong != null}">mã lương <span th:text="${log.idluong}"></span></span>
-                    </span>
+                      </span>
+                      <span th:if="${log.act.name() == 'CHANGEPASS'}">thay đổi mật khẩu</span>
                   </a>
                 </li>
               </ul>
@@ -104,22 +105,31 @@
             <span th:if="${auditLog.act.name() == 'LOGIN'}">đăng nhập</span>
             <span th:if="${auditLog.act.name() == 'LOGOUT'}">đăng xuất</span>
             <span th:if="${auditLog.act.name() == 'ADD'}">
-                <span th:if="${auditLog.idnv != null}"> thêm mới mã nhân viên <span th:text="${auditLog.idnv}"></span></span>
-                <span th:if="${auditLog.idpb != null}">thêm mới mã phòng ban <span th:text="${auditLog.idpb}"></span></span>
-                <span th:if="${auditLog.idluong != null}">thêm mới mã lương <span th:text="${auditLog.idluong}"></span></span>
-                <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}">đăng ký tài khoản <span th:text="${auditLog.idluong}"></span></span>
+              <span th:if="${auditLog.idnv != null}"> thêm mới mã nhân viên <span th:text="${auditLog.idnv}"></span></span>
+              <span th:if="${auditLog.idpb != null}">thêm mới mã phòng ban <span th:text="${auditLog.idpb}"></span></span>
+              <span th:if="${auditLog.idluong != null}">thêm mới mã lương <span th:text="${auditLog.idluong}"></span></span>
+              <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}">đăng ký tài khoản <span th:text="${auditLog.idluong}"></span></span>
             </span>
-            <span th:if="${auditLog.act.name() == 'UPDATE'}">
-                <span th:if="${auditLog.idnv != null}">cập nhật nhân viên mã <span th:text="${auditLog.idnv}"></span></span>
-                <span th:if="${auditLog.idpb != null}">cập nhật phòng ban mã <span th:text="${auditLog.idpb}"></span></span>
-                <span th:if="${auditLog.idluong != null}">cập nhật mã lương <span th:text="${auditLog.idluong}"></span></span>
-                <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}">cập nhật thông tin tài khoản <span th:text="${auditLog.idluong}"></span></span>
+            <span th:if="${auditLog.act.name() == 'UPDATE'}" th:each = "change : ${entityChanges}">
+              <span th:if="${auditLog.idnv != null}">cập nhật nhân viên mã <span th:text="${auditLog.idnv}"></span>
+                đã chỉnh sửa <span th:text="${change.fieldName}"></span> từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+              </span>
+              <span th:if="${auditLog.idpb != null}">cập nhật phòng ban mã <span th:text="${auditLog.idpb}"></span>
+                đã chỉnh sửa <span th:text="${change.fieldName}"></span> từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+              </span>
+              <span th:if="${auditLog.idluong != null}">cập nhật mã lương <span th:text="${auditLog.idluong}"></span>
+                đã chỉnh sửa <span th:text="${change.fieldName}"></span> từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+              </span>
+              <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}">cập nhật thông tin tài khoản <span th:text="${auditLog.idluong}"></span>
+                đã chỉnh sửa <span th:text="${change.fieldName}"></span> từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+              </span>
             </span>
             <span th:if="${auditLog.act.name() == 'DELETE'}">xóa 
-                <span th:if="${auditLog.idnv != null}">mã nhân viên <span th:text="${auditLog.idnv}"></span></span>
-                <span th:if="${auditLog.idpb != null}">mã phòng ban <span th:text="${auditLog.idpb}"></span></span>
-                <span th:if="${auditLog.idluong != null}">mã lương <span th:text="${auditLog.idluong}"></span></span>
+              <span th:if="${auditLog.idnv != null}">mã nhân viên <span th:text="${auditLog.idnv}"></span></span>
+              <span th:if="${auditLog.idpb != null}">mã phòng ban <span th:text="${auditLog.idpb}"></span></span>
+              <span th:if="${auditLog.idluong != null}">mã lương <span th:text="${auditLog.idluong}"></span></span>
             </span>
+            <span th:if="${log.act.name() == 'CHANGEPASS'}">thay đổi mật khẩu</span>
           </p>
           <br>
           <a th:href="@{/auditlogs}" class="btn btn-danger">Quay lại</a>
