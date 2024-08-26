@@ -70,9 +70,9 @@ public class AccountService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String ePass = passwordEncoder.encode(user.getPassword());
         user.setPassword(ePass);
-        this.repository.save(user);
+        User userDto = this.repository.save(user);
 
-        aService.logAuditOperation(user, null, null, null, Act.ADD);
+        aService.logAuditOperation(userDto, null, null, null, Act.ADD);
     }
 
     @Transactional
@@ -86,12 +86,11 @@ public class AccountService {
         }
         String encodedPass = passwordEncoder.encode(newpass); 
         user.setPassword(encodedPass);
-        repository.save(user);
+        User userDto = this.repository.save(user);
 
-        aService.logAuditOperation(user, null, null, null, Act.CHANGEPASS);
+        aService.logAuditOperation(userDto, null, null, null, Act.CHANGEPASS);
     }
 
-    @Transactional
     public void updateResetPass(String token, String email) throws CustomerNotFoundException{
         User user = repository.findbyEmail(email);
         if(user != null){
@@ -114,9 +113,9 @@ public class AccountService {
         user.setPassword(encodedPass);
         user.setResetPassToken(null);
 
-        repository.save(user);
+        User userDto = this.repository.save(user);
 
-        aService.logAuditOperation(user, null, null, null, Act.CHANGEPASS);
+        aService.logAuditOperation(userDto, null, null, null, Act.CHANGEPASS);
     }
 
     public void sendEmail(String email, String resetPasswordLink) throws UnsupportedEncodingException, MessagingException {
