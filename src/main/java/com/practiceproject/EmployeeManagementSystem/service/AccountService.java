@@ -58,7 +58,7 @@ public class AccountService {
     public void saveAccount(User user){
         User oldUser = getUserByID(user.getIduser());
         User newUser =  this.repository.save(user);
-        AuditLog savedLog = aService.updateAuditOperation(user, null, null, null, Act.UPDATE);
+        AuditLog savedLog = aService.updateAuditOperation(newUser, null, null, null, Act.UPDATE);
         aService.trackChanges(oldUser, newUser, savedLog);
     }
 

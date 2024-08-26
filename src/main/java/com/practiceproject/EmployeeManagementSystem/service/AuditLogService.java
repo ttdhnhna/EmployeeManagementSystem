@@ -114,8 +114,7 @@ public class AuditLogService {
 
     public void logAuditOperation(User user, Long employee, Long salary, Long department, Act action){
         AuditLog auditLog = new AuditLog();
-        User userDto = uService.getUserByID(user.getIduser());
-        auditLog.setIduser(userDto);
+        auditLog.setIduser(user);
         auditLog.setIdnv(employee);
         auditLog.setIdluong(salary);
         auditLog.setIdpb(department);
@@ -125,8 +124,7 @@ public class AuditLogService {
 
     public AuditLog updateAuditOperation(User user, Long employee, Long salary, Long department, Act action){
         AuditLog auditLog = new AuditLog();
-        User userDto = uService.getUserByID(user.getIduser());
-        auditLog.setIduser(userDto);
+        auditLog.setIduser(user);
         auditLog.setIdnv(employee);
         auditLog.setIdluong(salary);
         auditLog.setIdpb(department);
