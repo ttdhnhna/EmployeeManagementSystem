@@ -120,9 +120,7 @@
               <span th:if="${auditLog.idluong != null}">cập nhật mã lương <span th:text="${auditLog.idluong}"></span>
                 đã chỉnh sửa <span th:text="${change.fieldName}"></span> từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
               </span>
-              <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}">cập nhật thông tin tài khoản <span th:text="${auditLog.idluong}"></span>
-                đã chỉnh sửa <span th:text="${change.fieldName}"></span> từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-              </span>
+              <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}">cập nhật thông tin tài khoản <span th:text="${auditLog.idluong}"></span></span>
             </span>
             <span th:if="${auditLog.act.name() == 'DELETE'}">xóa 
               <span th:if="${auditLog.idnv != null}">mã nhân viên <span th:text="${auditLog.idnv}"></span></span>

@@ -14,6 +14,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.practiceproject.EmployeeManagementSystem.repository.AuditLogRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
@@ -25,7 +26,7 @@ public class AccountService {
     UserRepository repository;
 
     @Autowired
-    AuditLogService aService;
+    AuditLogRepository aRepository;
 
     @Autowired
     JavaMailSender mailSender;
@@ -56,10 +57,9 @@ public class AccountService {
 
     @Transactional
     public void saveAccount(User user){
-        User oldUser = getUserByID(user.getIduser());
-        User newUser =  this.repository.save(user);
-        AuditLog savedLog = aService.updateAuditOperation(newUser, null, null, null, Act.UPDATE);
-        aService.trackChanges(oldUser, newUser, savedLog);
+        this.repository.save(user);
+        logAuditOperation(user, null, null, null, Act.UPDATE);
+        // aService.trackChanges(oldUser, newUser, savedLog);
     }
 
     @Transactional
@@ -72,7 +72,7 @@ public class AccountService {
         user.setPassword(ePass);
         User userDto = this.repository.save(user);
 
-        aService.logAuditOperation(userDto, null, null, null, Act.ADD);
+        logAuditOperation(userDto, null, null, null, Act.ADD);
     }
 
     @Transactional
@@ -88,7 +88,7 @@ public class AccountService {
         user.setPassword(encodedPass);
         User userDto = this.repository.save(user);
 
-        aService.logAuditOperation(userDto, null, null, null, Act.CHANGEPASS);
+        logAuditOperation(userDto, null, null, null, Act.CHANGEPASS);
     }
 
     public void updateResetPass(String token, String email) throws CustomerNotFoundException{
@@ -115,7 +115,7 @@ public class AccountService {
 
         User userDto = this.repository.save(user);
 
-        aService.logAuditOperation(userDto, null, null, null, Act.CHANGEPASS);
+        logAuditOperation(userDto, null, null, null, Act.CHANGEPASS);
     }
 
     public void sendEmail(String email, String resetPasswordLink) throws UnsupportedEncodingException, MessagingException {
@@ -138,5 +138,15 @@ public class AccountService {
         helper.setText(content, true);
 
         mailSender.send(message);
+    }
+
+    public void logAuditOperation(User user, Long employee, Long salary, Long department, Act action){
+        AuditLog auditLog = new AuditLog();
+        auditLog.setIduser(user);
+        auditLog.setIdnv(employee);
+        auditLog.setIdluong(salary);
+        auditLog.setIdpb(department);
+        auditLog.setAct(action);
+        aRepository.save(auditLog);
     }
 }
