@@ -19,7 +19,7 @@ public class EntityChangesService {
     @Autowired
     AuditLogRepository aRepository;
 
-    public void trackChanges( Object oldEntity, Object newEntity, AuditLog idlog){
+    public void trackChanges(Object oldEntity, Object newEntity, AuditLog idlog){
         Class<?> clasz = oldEntity.getClass();
         Field[] fields = clasz.getDeclaredFields();
 
@@ -41,8 +41,7 @@ public class EntityChangesService {
                         + " Old Value: " + oldValue 
                         + " New Value: " + newValue);
                     repository.save(entityChanges);
-                    repository.flush();
-                 }
+                }
             } catch (IllegalAccessException e) {
                  e.printStackTrace();
             }
