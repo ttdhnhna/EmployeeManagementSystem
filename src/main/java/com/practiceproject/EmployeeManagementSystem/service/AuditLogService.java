@@ -1,6 +1,5 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
-import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Service;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.EntityChanges;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
-import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
 import com.practiceproject.EmployeeManagementSystem.repository.AuditLogRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.EntityChangesRepository;
 
@@ -84,53 +82,6 @@ public class AuditLogService {
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
         List<AuditLog> logs = this.repository.findTop10ByIduserOrderByNgaythDesc(iduser);
         return logs;
-    }
-
-    public void trackChanges( Object oldEntity, Object newEntity, AuditLog idlog){
-        Class<?> clasz = oldEntity.getClass();
-        Field[] fields = clasz.getDeclaredFields();
-
-        for(Field field:fields){
-            field.setAccessible(true);
-
-            try {
-                Object oldValue = field.get(oldEntity);
-                Object newValue = field.get(newEntity);
-                
-                if(oldValue!=null && !oldValue.equals(newValue)){  
-                    EntityChanges entityChanges = new EntityChanges();        
-                    entityChanges.setEntityType(clasz.getSimpleName());
-                    entityChanges.setFieldName(field.getName());
-                    entityChanges.setOldValue(oldValue.toString());
-                    entityChanges.setNewValue(newValue.toString());
-                    entityChanges.setIdlog(idlog);
-                    eRepository.save(entityChanges);
-                 }
-            } catch (IllegalAccessException e) {
-                 e.printStackTrace();
-            }
-        }
-    }
-
-    public void logAuditOperation(User user, Long employee, Long salary, Long department, Act action){
-        AuditLog auditLog = new AuditLog();
-        auditLog.setIduser(user);
-        auditLog.setIdnv(employee);
-        auditLog.setIdluong(salary);
-        auditLog.setIdpb(department);
-        auditLog.setAct(action);
-        this.repository.save(auditLog);
-    }
-
-    public AuditLog updateAuditOperation(User user, Long employee, Long salary, Long department, Act action){
-        AuditLog auditLog = new AuditLog();
-        auditLog.setIduser(user);
-        auditLog.setIdnv(employee);
-        auditLog.setIdluong(salary);
-        auditLog.setIdpb(department);
-        auditLog.setAct(action);
-        AuditLog savedLog = this.repository.save(auditLog);
-        return savedLog;
     }
 
     public List<EntityChanges> getDetailLog(AuditLog auditLog){

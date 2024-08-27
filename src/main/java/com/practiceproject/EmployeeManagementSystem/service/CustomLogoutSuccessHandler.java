@@ -17,7 +17,7 @@ import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
 @Component
 public class CustomLogoutSuccessHandler implements LogoutSuccessHandler{
     @Autowired
-    private AuditLogService aService;
+    private EntityChangesService eService;
     @Autowired
     private AccountService uService;
 
@@ -27,7 +27,7 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler{
         if(authentication!=null && authentication.getName()!=null){
             User user = uService.getUserByEmail(authentication.getName());
 
-            aService.logAuditOperation(user, null, null, null, Act.LOGOUT);
+            eService.logAuditOperation(user, null, null, null, Act.LOGOUT);
         }
         response.sendRedirect("/login?logout");
     }

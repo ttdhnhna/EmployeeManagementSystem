@@ -12,7 +12,7 @@ import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
 @Component
 public class LoginListener implements ApplicationListener<AuthenticationSuccessEvent>{
     @Autowired
-    private AuditLogService aService;
+    private EntityChangesService eService;
     @Autowired
     private AccountService uService;
 
@@ -21,6 +21,6 @@ public class LoginListener implements ApplicationListener<AuthenticationSuccessE
         Authentication authentication = event.getAuthentication();
         User user = uService.getUserByEmail(authentication.getName());
 
-        aService.logAuditOperation(user, null, null, null, Act.LOGIN);
+        eService.logAuditOperation(user, null, null, null, Act.LOGIN);
     }
 }

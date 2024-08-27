@@ -29,7 +29,7 @@ public class DepartmentService {
     @Autowired
     EmployeeRepository eRepository;
     @Autowired
-    AuditLogService lService;
+    EntityChangesService eService;
     @Autowired
     AccountService aService;
 
@@ -42,7 +42,7 @@ public class DepartmentService {
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
         department.setIduser(idUser);
         Department savedDepartment = this.repository.save(department);
-        lService.logAuditOperation(idUser, savedDepartment.getIdpb(), null, null, Act.ADD);
+        eService.logAuditOperation(idUser, savedDepartment.getIdpb(), null, null, Act.ADD);
     }
 
     @Transactional
@@ -50,8 +50,8 @@ public class DepartmentService {
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
         Department oldDepartment = getDepartmentID(department.getIdpb());
         Department savedDepartment = this.repository.save(department);
-        AuditLog savedLog = lService.updateAuditOperation(idUser, savedDepartment.getIdpb(), null, null, Act.UPDATE);
-        lService.trackChanges(oldDepartment, savedDepartment, savedLog);
+        AuditLog savedLog = eService.updateAuditOperation(idUser, savedDepartment.getIdpb(), null, null, Act.UPDATE);
+        eService.trackChanges(oldDepartment, savedDepartment, savedLog);
     }
 
     public Department getDepartmentID(long id){
@@ -71,13 +71,13 @@ public class DepartmentService {
         List<Employee> list = getNVInformationbyID(id);
         if(list != null){
             for(Employee e : list){
-                lService.logAuditOperation(idUser, null, e.getIdnv(), null, Act.DELETE);
-                lService.logAuditOperation(idUser, null, null, e.getIdluong().getIdluong(), Act.DELETE);
+                eService.logAuditOperation(idUser, null, e.getIdnv(), null, Act.DELETE);
+                eService.logAuditOperation(idUser, null, null, e.getIdluong().getIdluong(), Act.DELETE);
                 eRepository.delete(e); 
             }
         }
         this.repository.deleteById(id);
-        lService.logAuditOperation(idUser, id, null, null, Act.DELETE);
+        eService.logAuditOperation(idUser, id, null, null, Act.DELETE);
     }
 
     public Page<Department> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection, Long iduser){

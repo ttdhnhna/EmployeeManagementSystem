@@ -7,7 +7,10 @@
     <title>Hệ thống quản lý Nhân viên</title>
     <link rel="stylesheet" th:href="@{/styles/style01.css}">
     <link rel="stylesheet" th:href="@{/styles/style02.css}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+    crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
@@ -50,8 +53,8 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
               <li th:each = "log : ${ListLogs}">
-                <a class="dropdown-item" href="#">
-                  Người dùng <span th:text="${log.iduser.email}"></span> đã 
+                <a class="dropdown-item" th:href="@{/detaillog/{id}(id=${log.idlog})}">
+                  Bạn đã 
                     <span th:if="${log.act.name() == 'LOGIN'}">đăng nhập</span>
                     <span th:if="${log.act.name() == 'LOGOUT'}">đăng xuất</span>
                     <span th:if="${log.act.name() == 'ADD'}">
@@ -70,7 +73,8 @@
                         <span th:if="${log.idnv != null}">mã nhân viên <span th:text="${log.idnv}"></span></span>
                         <span th:if="${log.idpb != null}">mã phòng ban <span th:text="${log.idpb}"></span></span>
                         <span th:if="${log.idluong != null}">mã lương <span th:text="${log.idluong}"></span></span>
-                  </span>
+                    </span>
+                    <span th:if="${log.act.name() == 'CHANGEPASS'}">thay đổi mật khẩu</span>
                 </a>
               </li>
             </ul>
@@ -237,10 +241,10 @@
         </div>
       </footer> 
 
-      <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+      <!-- <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
       <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-      <script type="text/javascript"></script>
+      <script type="text/javascript"></script> -->
       <script>
         function formatVND(n, currency) {
           return currency + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');

@@ -45,37 +45,38 @@
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link" href="#" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-bell"></i>
-                    <!-- <span class="badge badge-danger" id="notificationCount">3</span> -->
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
-                    <li th:each = "log : ${ListLogs}">
-                      <a class="dropdown-item" href="#">
-                        Người dùng <span th:text="${log.iduser.email}"></span> đã 
-                          <span th:if="${log.act.name() == 'LOGIN'}">đăng nhập</span>
-                          <span th:if="${log.act.name() == 'LOGOUT'}">đăng xuất</span>
-                          <span th:if="${log.act.name() == 'ADD'}">
-                              <span th:if="${log.idnv != null}"> thêm mới mã nhân viên <span th:text="${log.idnv}"></span></span>
-                              <span th:if="${log.idpb != null}">thêm mới mã phòng ban <span th:text="${log.idpb}"></span></span>
-                              <span th:if="${log.idluong != null}">thêm mới mã lương <span th:text="${log.idluong}"></span></span>
-                              <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}">đăng ký tài khoản <span th:text="${log.idluong}"></span></span>
-                          </span>
-                          <span th:if="${log.act.name() == 'UPDATE'}">
-                              <span th:if="${log.idnv != null}">cập nhật nhân viên mã <span th:text="${log.idnv}"></span></span>
-                              <span th:if="${log.idpb != null}">cập nhật phòng ban mã <span th:text="${log.idpb}"></span></span>
-                              <span th:if="${log.idluong != null}">cập nhật mã lương <span th:text="${log.idluong}"></span></span>
-                              <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}">cập nhật thông tin tài khoản <span th:text="${log.idluong}"></span></span>
-                          </span>
-                          <span th:if="${log.act.name() == 'DELETE'}">xóa 
-                              <span th:if="${log.idnv != null}">mã nhân viên <span th:text="${log.idnv}"></span></span>
-                              <span th:if="${log.idpb != null}">mã phòng ban <span th:text="${log.idpb}"></span></span>
-                              <span th:if="${log.idluong != null}">mã lương <span th:text="${log.idluong}"></span></span>
-                        </span>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
+                    <a class="nav-link" href="#" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fa fa-bell"></i>
+                      <!-- <span class="badge badge-danger" id="notificationCount">3</span> -->
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+                      <li th:each = "log : ${ListLogs}">
+                        <a class="dropdown-item" th:href="@{/detaillog/{id}(id=${log.idlog})}">
+                          Bạn đã 
+                            <span th:if="${log.act.name() == 'LOGIN'}">đăng nhập</span>
+                            <span th:if="${log.act.name() == 'LOGOUT'}">đăng xuất</span>
+                            <span th:if="${log.act.name() == 'ADD'}">
+                                <span th:if="${log.idnv != null}"> thêm mới mã nhân viên <span th:text="${log.idnv}"></span></span>
+                                <span th:if="${log.idpb != null}">thêm mới mã phòng ban <span th:text="${log.idpb}"></span></span>
+                                <span th:if="${log.idluong != null}">thêm mới mã lương <span th:text="${log.idluong}"></span></span>
+                                <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}">đăng ký tài khoản <span th:text="${log.idluong}"></span></span>
+                            </span>
+                            <span th:if="${log.act.name() == 'UPDATE'}">
+                                <span th:if="${log.idnv != null}">cập nhật nhân viên mã <span th:text="${log.idnv}"></span></span>
+                                <span th:if="${log.idpb != null}">cập nhật phòng ban mã <span th:text="${log.idpb}"></span></span>
+                                <span th:if="${log.idluong != null}">cập nhật mã lương <span th:text="${log.idluong}"></span></span>
+                                <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}">cập nhật thông tin tài khoản <span th:text="${log.idluong}"></span></span>
+                            </span>
+                            <span th:if="${log.act.name() == 'DELETE'}">xóa 
+                                <span th:if="${log.idnv != null}">mã nhân viên <span th:text="${log.idnv}"></span></span>
+                                <span th:if="${log.idpb != null}">mã phòng ban <span th:text="${log.idpb}"></span></span>
+                                <span th:if="${log.idluong != null}">mã lương <span th:text="${log.idluong}"></span></span>
+                            </span>
+                            <span th:if="${log.act.name() == 'CHANGEPASS'}">thay đổi mật khẩu</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item">
                   <a class="nav-link" th:href="@{/logout} ">Đăng xuất</a>
                 </li>

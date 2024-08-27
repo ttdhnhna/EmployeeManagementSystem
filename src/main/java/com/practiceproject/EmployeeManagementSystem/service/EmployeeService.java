@@ -58,7 +58,7 @@ public class EmployeeService {
     @Autowired
     AccountService uService;
     @Autowired
-    AuditLogService aService;
+    EntityChangesService eService;
 
     //Chức năng hiện tất cả nhân viên
     // @Transactional(readOnly = true)
@@ -122,7 +122,7 @@ public class EmployeeService {
         savedSalary.setIdnv(savedEmployee);
         sService.saveSalary(savedSalary);
 
-        aService.logAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.ADD);
+        eService.logAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.ADD);
     }
     
     //Cập nhật nhân viên
@@ -159,8 +159,8 @@ public class EmployeeService {
         }
 
         Employee savedEmployee = this.repository.save(employee); 
-        AuditLog savedLog = aService.updateAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.UPDATE);
-        aService.trackChanges(oldEmployee, savedEmployee, savedLog);
+        AuditLog savedLog = eService.updateAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.UPDATE);
+        eService.trackChanges(oldEmployee, savedEmployee, savedLog);
     }
     
     //Tìm nhân viên bằng id
@@ -181,9 +181,9 @@ public class EmployeeService {
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
         Employee employee = getEmployeebyID(id);
         sRepository.deleteById(employee.getIdluong().getIdluong());
-        aService.logAuditOperation(iduser, null, employee.getIdluong().getIdluong(), null, Act.DELETE);
+        eService.logAuditOperation(iduser, null, employee.getIdluong().getIdluong(), null, Act.DELETE);
         this.repository.deleteById(id);
-        aService.logAuditOperation(iduser, id, null, null, Act.DELETE);
+        eService.logAuditOperation(iduser, id, null, null, Act.DELETE);
     }
 
     //Phân trang và sắp xếp
@@ -343,7 +343,7 @@ public class EmployeeService {
                     idpb.setSdt(sdtpb);
                     idpb.setTenpb(tenpb);
                     idpb = dRepository.save(idpb);
-                    aService.logAuditOperation(iduser, null, null, idpb.getIdpb(), Act.ADD);
+                    eService.logAuditOperation(iduser, null, null, idpb.getIdpb(), Act.ADD);
                 }
                 
                 saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, null, hsl, phucap);

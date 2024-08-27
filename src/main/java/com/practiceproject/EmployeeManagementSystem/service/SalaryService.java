@@ -24,7 +24,7 @@ public class SalaryService {
     @Autowired
     SalaryRepository repository;
     @Autowired
-    AuditLogService aService;
+    EntityChangesService eService;
     @Autowired
     AccountService uService;
 
@@ -48,7 +48,7 @@ public class SalaryService {
         }
         Salary saveSalary = this.repository.save(salary);
 
-        aService.logAuditOperation(iduser, null, saveSalary.getIdluong(), null, Act.ADD);
+        eService.logAuditOperation(iduser, null, saveSalary.getIdluong(), null, Act.ADD);
     }
 
     @Transactional
@@ -65,8 +65,8 @@ public class SalaryService {
         }
         Salary saveSalary = this.repository.save(salary);
 
-        AuditLog savedLog = aService.updateAuditOperation(iduser, null, saveSalary.getIdluong(), null, Act.UPDATE);
-        aService.trackChanges(oldSalary, saveSalary, savedLog);
+        AuditLog savedLog = eService.updateAuditOperation(iduser, null, saveSalary.getIdluong(), null, Act.UPDATE);
+        eService.trackChanges(oldSalary, saveSalary, savedLog);
     }
 
     //Tim id luong
