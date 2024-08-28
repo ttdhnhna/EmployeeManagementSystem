@@ -156,9 +156,8 @@ public class EmployeeService {
         } else {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
-
-        Employee savedEmployee = this.repository.save(employee); 
-        eService.updateAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.UPDATE, oldEmployee, savedEmployee);
+        Employee newEmployee = this.repository.save(employee);
+        eService.updateAuditOperation(iduser, employee.getIdnv(), null, null, Act.UPDATE, oldEmployee, newEmployee);
     }
     
     //Tìm nhân viên bằng id
