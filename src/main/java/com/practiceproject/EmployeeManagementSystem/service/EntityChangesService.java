@@ -12,6 +12,8 @@ import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
 import com.practiceproject.EmployeeManagementSystem.repository.AuditLogRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.EntityChangesRepository;
 
+import javax.transaction.Transactional;
+
 @Service
 public class EntityChangesService {
     @Autowired 
@@ -55,6 +57,7 @@ public class EntityChangesService {
         aRepository.save(auditLog);
     }
 
+    @Transactional
     public void updateAuditOperation(User user, Long employee, Long salary, Long department, Act action, Object oldEntity, Object newEntity){
         AuditLog auditLog = new AuditLog();
         auditLog.setIduser(user);
