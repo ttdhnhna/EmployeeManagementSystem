@@ -127,8 +127,8 @@ public class EmployeeService {
     //Cập nhật nhân viên
     @Transactional
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
-        Employee oldEmployee = employee;
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
+        eService.updateAuditOperation(iduser, employee.getIdnv(), null, null, Act.UPDATE, employee, employeeDto);
         MultipartFile file = employeeDto.getAnh();
         if (file != null && !file.isEmpty()) {
             @SuppressWarnings("null")
@@ -156,9 +156,7 @@ public class EmployeeService {
         } else {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
-
-        Employee savedEmployee = this.repository.save(employee); 
-        eService.updateAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.UPDATE, oldEmployee, savedEmployee);
+        this.repository.save(employee); 
     }
     
     //Tìm nhân viên bằng id
