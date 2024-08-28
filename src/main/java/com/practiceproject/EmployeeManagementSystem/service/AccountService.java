@@ -14,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
-import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
 
@@ -55,9 +54,7 @@ public class AccountService {
     public void saveAccount(User user){
         User oldUser = getUserByID(user.getIduser());
         User newUser =  this.repository.save(user);
-        AuditLog savedLog = eService.updateAuditOperation(user, null, null, null, Act.UPDATE);
-        eService.logAuditOperation(newUser, null, null, null, Act.UPDATE);
-        eService.trackChanges(oldUser, newUser, savedLog);
+        eService.updateAuditOperation(user, null, null, null, Act.UPDATE, oldUser, newUser);
     }
 
     @Transactional

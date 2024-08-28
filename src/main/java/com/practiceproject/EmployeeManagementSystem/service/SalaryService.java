@@ -13,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
@@ -63,10 +62,9 @@ public class SalaryService {
             salary.setTongluong(tl);
             salary.setTienno(0);;
         }
-        Salary saveSalary = this.repository.save(salary);
+        Salary savedSalary = this.repository.save(salary);
 
-        AuditLog savedLog = eService.updateAuditOperation(iduser, null, saveSalary.getIdluong(), null, Act.UPDATE);
-        eService.trackChanges(oldSalary, saveSalary, savedLog);
+        eService.updateAuditOperation(iduser, null, savedSalary.getIdluong(), null, Act.UPDATE, oldSalary, savedSalary);
     }
 
     //Tim id luong

@@ -29,7 +29,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.EmployeeDto;
@@ -159,8 +158,7 @@ public class EmployeeService {
         }
 
         Employee savedEmployee = this.repository.save(employee); 
-        AuditLog savedLog = eService.updateAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.UPDATE);
-        eService.trackChanges(oldEmployee, savedEmployee, savedLog);
+        eService.updateAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.UPDATE, oldEmployee, savedEmployee);
     }
     
     //Tìm nhân viên bằng id

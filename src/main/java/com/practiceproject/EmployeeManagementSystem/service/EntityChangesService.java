@@ -37,9 +37,6 @@ public class EntityChangesService {
                     entityChanges.setOldValue(oldValue.toString());
                     entityChanges.setNewValue(newValue.toString());
                     entityChanges.setIdlog(idlog);
-                    System.out.println("Field: " + field.getName() 
-                        + " Old Value: " + oldValue 
-                        + " New Value: " + newValue);
                     repository.save(entityChanges);
                 }
             } catch (IllegalAccessException e) {
@@ -58,7 +55,7 @@ public class EntityChangesService {
         aRepository.save(auditLog);
     }
 
-    public AuditLog updateAuditOperation(User user, Long employee, Long salary, Long department, Act action){
+    public void updateAuditOperation(User user, Long employee, Long salary, Long department, Act action, Object oldEntity, Object newEntity){
         AuditLog auditLog = new AuditLog();
         auditLog.setIduser(user);
         auditLog.setIdnv(employee);
@@ -66,7 +63,7 @@ public class EntityChangesService {
         auditLog.setIdpb(department);
         auditLog.setAct(action);
         AuditLog savedLog = aRepository.save(auditLog);
-        return savedLog;
+        trackChanges(oldEntity, newEntity, savedLog);
     }
 
 }

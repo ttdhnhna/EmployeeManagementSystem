@@ -14,7 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
@@ -50,8 +49,7 @@ public class DepartmentService {
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
         Department oldDepartment = getDepartmentID(department.getIdpb());
         Department savedDepartment = this.repository.save(department);
-        AuditLog savedLog = eService.updateAuditOperation(idUser, savedDepartment.getIdpb(), null, null, Act.UPDATE);
-        eService.trackChanges(oldDepartment, savedDepartment, savedLog);
+        eService.updateAuditOperation(idUser, savedDepartment.getIdpb(), null, null, Act.UPDATE, oldDepartment, savedDepartment);
     }
 
     public Department getDepartmentID(long id){

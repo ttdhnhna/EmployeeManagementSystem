@@ -171,31 +171,3 @@ Va sau khi xong cai nay minh se bo sung them phan chinh sua nhung cai gi va xoa 
 phong ban co ten gi luong se co hsl la bao nhieu (Hoac phan nay se la phan chi tiet lich
 su khi nguoi dung nhan vao).
 Voi ca nen tao phan css vs js de hien giao dien khi co thong bao moi.
-
-@Aspect
-@Component
-public class ChangeTrackingAspect {
-
-    @Autowired
-    private ChangeTrackingRepository changeTrackingRepository;
-
-    @Pointcut("execution(* com.example.demo.entity.*.set*(..))")
-    public void setter() {}
-
-    @Before("setter()")
-    public void beforeSetter(JoinPoint joinPoint) {
-        // Lấy thông tin về đối tượng và thuộc tính bị thay đổi
-        Object target = joinPoint.getTarget();
-        String methodName = joinPoint.getSignature().getName();
-        Object[] args = joinPoint.getArgs();
-
-        // Lưu thông tin thay đổi vào cơ sở dữ liệu
-        ChangeTracking changeTracking = new ChangeTracking();
-        changeTracking.setEntityId(target.getClass().getSimpleName() + "_" + ((User) target).getId());
-        changeTracking.setPropertyName(methodName.substring(3)); // Bỏ qua phần "set"
-        changeTracking.setOldValue(// Lấy giá trị cũ từ cơ sở dữ liệu hoặc cache
-        changeTracking.setNewValue(args[0]);
-        changeTracking.setChangeTime(LocalDateTime.now());
-        changeTrackingRepository.save(changeTracking);
-    }
-}
