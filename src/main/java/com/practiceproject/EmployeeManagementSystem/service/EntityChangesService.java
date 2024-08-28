@@ -27,7 +27,6 @@ public class EntityChangesService {
 
         for(Field field:fields){
             field.setAccessible(true);
-
             try {
                 Object oldValue = field.get(oldEntity);
                 Object newValue = field.get(newEntity);
