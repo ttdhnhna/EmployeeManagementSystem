@@ -171,3 +171,7 @@ Va sau khi xong cai nay minh se bo sung them phan chinh sua nhung cai gi va xoa 
 phong ban co ten gi luong se co hsl la bao nhieu (Hoac phan nay se la phan chi tiet lich
 su khi nguoi dung nhan vao).
 Voi ca nen tao phan css vs js de hien giao dien khi co thong bao moi.
+
+Đang thử theo cách mới chỉ sử dụng javers để tìm điểm khác biệt thôi rồi lưu vào entitychanges
+đang mới chỉ làm phần đấy ở bên accountService mai sẽ chạy thử xem được không nếu ổn thì hoàn thiện
+lốt còn không thì tìm cách khác.

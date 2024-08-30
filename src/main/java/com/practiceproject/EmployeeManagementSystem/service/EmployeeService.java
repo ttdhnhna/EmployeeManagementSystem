@@ -20,6 +20,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.javers.core.Javers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -58,6 +59,9 @@ public class EmployeeService {
     AccountService uService;
     @Autowired
     EntityChangesService eService;
+
+    @Autowired
+    Javers javers;
 
     //Chức năng hiện tất cả nhân viên
     // @Transactional(readOnly = true)
@@ -127,8 +131,9 @@ public class EmployeeService {
     //Cập nhật nhân viên
     @Transactional
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
-        Employee oldEmployee = employee;
+        Employee oldEmployee = getEmployeebyID(employee.getIdnv());
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
+        javers.commit(iduser.getEmail(), oldEmployee);
         MultipartFile file = employeeDto.getAnh();
         if (file != null && !file.isEmpty()) {
             @SuppressWarnings("null")
@@ -158,7 +163,8 @@ public class EmployeeService {
         }
 
         Employee savedEmployee = this.repository.save(employee); 
-        eService.updateAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.UPDATE, oldEmployee, savedEmployee);
+        javers.commit(iduser.getEmail(), savedEmployee);
+        eService.logAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.UPDATE);;
     }
     
     //Tìm nhân viên bằng id
