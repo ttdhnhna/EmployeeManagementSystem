@@ -129,6 +129,8 @@ public class EmployeeService {
     @Transactional
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
         Employee oldEmployee = getEmployeebyID(employee.getIdnv());
+        System.out.println("Old Name: " + oldEmployee.getHoten());
+
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
         MultipartFile file = employeeDto.getAnh();
         if (file != null && !file.isEmpty()) {
@@ -159,7 +161,6 @@ public class EmployeeService {
         }
 
         Employee savedEmployee = this.repository.save(employee); 
-        System.out.println("Old Name: " + oldEmployee.getHoten());
         System.out.println("New Name: " + savedEmployee.getHoten());
         AuditLog savedAuditlog = eService.updateAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.UPDATE);
         eService.trackChanges(oldEmployee, savedEmployee, savedAuditlog);

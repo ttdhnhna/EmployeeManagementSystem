@@ -172,4 +172,6 @@ phong ban co ten gi luong se co hsl la bao nhieu (Hoac phan nay se la phan chi t
 su khi nguoi dung nhan vao).
 Voi ca nen tao phan css vs js de hien giao dien khi
 
-Hieu roi khong phai do chuc nang sai ma do minh chuyen du lieu vao sai
+Đang thử 1 cách khác là xem liệu đặt vị trí mới lấy dữ liệu ra xem có bị thay đổi không
+nếu có thì mình sẽ phải nghĩ cách để đặt phần lệnh trackChanges lên trên cao hơn còn nếu
+vẫn thế thì mình sẽ phải nghĩ cách lấy dữ liệu cũ bằng cách khác.
