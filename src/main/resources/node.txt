@@ -171,3 +171,5 @@ Va sau khi xong cai nay minh se bo sung them phan chinh sua nhung cai gi va xoa 
 phong ban co ten gi luong se co hsl la bao nhieu (Hoac phan nay se la phan chi tiet lich
 su khi nguoi dung nhan vao).
 Voi ca nen tao phan css vs js de hien giao dien khi
+
+Hieu roi khong phai do chuc nang sai ma do minh chuyen du lieu vao sai
