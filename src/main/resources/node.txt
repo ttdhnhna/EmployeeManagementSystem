@@ -170,4 +170,18 @@ Tao phan hien so thong bao moi
 Va sau khi xong cai nay minh se bo sung them phan chinh sua nhung cai gi va xoa nhan vien,
 phong ban co ten gi luong se co hsl la bao nhieu (Hoac phan nay se la phan chi tiet lich
 su khi nguoi dung nhan vao).
-Voi ca nen tao phan css vs js de hien giao dien khi co thong bao moi.
+Voi ca nen tao phan css vs js de hien giao dien khi
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field javers in com.practiceproject.EmployeeManagementSystem.service.AccountService required a bean of type 'org.javers.core.Javers' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'org.javers.core.Javers' in your configuration.

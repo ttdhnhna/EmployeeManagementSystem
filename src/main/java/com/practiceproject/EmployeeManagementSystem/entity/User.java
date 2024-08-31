@@ -78,11 +78,23 @@ public class User {
     public void setResetPassToken(String resetPassToken) {
         this.resetPassToken = resetPassToken;
     }
-    // public Set<Employee> getIdnv() {
-    //     return idnv;
-    // }
-    // public void setIdnv(Set<Employee> idnv) {
-    //     this.idnv = idnv;
-    // }
+    public Set<Employee> getIdnv() {
+        return idnv;
+    }
+    public void setIdnv(Set<Employee> idnv) {
+        this.idnv = idnv;
+    }
+    public Set<Department> getIdpb() {
+        return idpb;
+    }
+    public void setIdpb(Set<Department> idpb) {
+        this.idpb = idpb;
+    }
+    public Set<AuditLog> getIdlog() {
+        return idlog;
+    }
+    public void setIdlog(Set<AuditLog> idlog) {
+        this.idlog = idlog;
+    }
     
 }

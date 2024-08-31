@@ -7,6 +7,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 
+import org.javers.core.Javers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
+import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
 
@@ -25,6 +27,8 @@ public class AccountService {
     EntityChangesService eService;
     @Autowired
     JavaMailSender mailSender;
+    @Autowired
+    Javers javers;
 
     // @Transactional(readOnly = true)
     // public List<User> getAccounts(){
@@ -53,8 +57,11 @@ public class AccountService {
     @Transactional
     public void saveAccount(User user){
         User oldUser = getUserByID(user.getIduser());
+        javers.commit(oldUser.getEmail(), oldUser);
         User newUser =  this.repository.save(user);
-        eService.updateAuditOperation(user, null, null, null, Act.UPDATE, oldUser, newUser);
+        javers.commit(newUser.getEmail(), newUser);
+        AuditLog savedAuditlog = eService.updateAuditOperation(newUser, null, null, null, Act.UPDATE);
+        eService.updatelogAuditOperation(savedAuditlog, user);
     }
 
     @Transactional

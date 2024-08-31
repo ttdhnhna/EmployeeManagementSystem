@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.javers.core.Javers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -31,6 +32,8 @@ public class DepartmentService {
     EntityChangesService eService;
     @Autowired
     AccountService aService;
+    @Autowired
+    Javers javers;
 
     // @Transactional(readOnly = true)
     // public List<Department> getDepartments(){
@@ -48,8 +51,10 @@ public class DepartmentService {
     public void updateDepartment(Department department){
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
         Department oldDepartment = getDepartmentID(department.getIdpb());
+        javers.commit(idUser.getEmail(), oldDepartment);
         Department savedDepartment = this.repository.save(department);
-        eService.updateAuditOperation(idUser, savedDepartment.getIdpb(), null, null, Act.UPDATE, oldDepartment, savedDepartment);
+        javers.commit(idUser.getEmail(), savedDepartment);
+        eService.logAuditOperation(idUser, null, savedDepartment.getIdpb(), null, Act.UPDATE);
     }
 
     public Department getDepartmentID(long id){

@@ -1,10 +1,6 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -46,11 +41,6 @@ public class  Employee {
     @BatchSize(size = 16)
     @JsonBackReference
     private User iduser;
-
-    @OneToMany(mappedBy = "idnv", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @BatchSize(size = 16)
-    @JsonManagedReference
-    private Set<AuditLog> idlog = new HashSet<>();
 
     private String hoten;
     private String ngaysinh;
@@ -171,13 +161,5 @@ public class  Employee {
 
     public void setIduser(User iduser) {
         this.iduser = iduser;
-    }
-
-    public Set<AuditLog> getIdlog() {
-        return idlog;
-    }
-
-    public void setIdlog(Set<AuditLog> idlog) {
-        this.idlog = idlog;
     }
 }
