@@ -7,7 +7,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 
-import org.javers.core.Javers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -27,8 +26,6 @@ public class AccountService {
     EntityChangesService eService;
     @Autowired
     JavaMailSender mailSender;
-    @Autowired
-    Javers javers;
 
     // @Transactional(readOnly = true)
     // public List<User> getAccounts(){
@@ -57,11 +54,9 @@ public class AccountService {
     @Transactional
     public void saveAccount(User user){
         User oldUser = getUserByID(user.getIduser());
-        javers.commit(oldUser.getEmail(), oldUser);
         User newUser =  this.repository.save(user);
-        javers.commit(newUser.getEmail(), newUser);
         AuditLog savedAuditlog = eService.updateAuditOperation(newUser, null, null, null, Act.UPDATE);
-        eService.updatelogAuditOperation(savedAuditlog, user);
+        eService.trackChanges(oldUser, newUser, savedAuditlog);
     }
 
     @Transactional

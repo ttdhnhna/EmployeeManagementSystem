@@ -20,7 +20,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.javers.core.Javers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,6 +29,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.EmployeeDto;
@@ -59,9 +59,6 @@ public class EmployeeService {
     AccountService uService;
     @Autowired
     EntityChangesService eService;
-
-    @Autowired
-    Javers javers;
 
     //Chức năng hiện tất cả nhân viên
     // @Transactional(readOnly = true)
@@ -133,7 +130,6 @@ public class EmployeeService {
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
         Employee oldEmployee = getEmployeebyID(employee.getIdnv());
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
-        javers.commit(iduser.getEmail(), oldEmployee);
         MultipartFile file = employeeDto.getAnh();
         if (file != null && !file.isEmpty()) {
             @SuppressWarnings("null")
@@ -163,8 +159,10 @@ public class EmployeeService {
         }
 
         Employee savedEmployee = this.repository.save(employee); 
-        javers.commit(iduser.getEmail(), savedEmployee);
-        eService.logAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.UPDATE);;
+        System.out.println("Old Name: " + oldEmployee.getHoten());
+        System.out.println("New Name: " + savedEmployee.getHoten());
+        AuditLog savedAuditlog = eService.updateAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.UPDATE);
+        eService.trackChanges(oldEmployee, savedEmployee, savedAuditlog);
     }
     
     //Tìm nhân viên bằng id

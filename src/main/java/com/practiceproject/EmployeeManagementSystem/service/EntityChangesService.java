@@ -1,12 +1,8 @@
 package com.practiceproject.EmployeeManagementSystem.service;
 
 
-import java.util.List;
+import java.lang.reflect.Field;
 
-import org.javers.core.Javers;
-import org.javers.core.diff.Change;
-import org.javers.core.diff.changetype.ValueChange;
-import org.javers.repository.jql.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +19,6 @@ public class EntityChangesService {
     EntityChangesRepository repository;
     @Autowired
     AuditLogRepository aRepository;
-    @Autowired
-    Javers javers;
 
     public void logAuditOperation(User user, Long employee, Long salary, Long department, Act action){
         AuditLog auditLog = new AuditLog();
@@ -47,20 +41,33 @@ public class EntityChangesService {
         return saveAuditLog;
     }
 
-    public void updatelogAuditOperation(AuditLog idlog, Object entityType){
-        List<Change> changes = javers.findChanges(
-            QueryBuilder.byInstanceId(entityType, entityType.getClass()).build()
-        );
-        for(Change c : changes){
-            if(c instanceof ValueChange){
-                ValueChange valueChange = (ValueChange) c;
-                EntityChanges entityChanges = new EntityChanges();  
-                entityChanges.setEntityType(entityType.toString());
-                entityChanges.setFieldName(valueChange.getPropertyName());
-                entityChanges.setOldValue(valueChange.getLeft().toString());
-                entityChanges.setNewValue(valueChange.getRight().toString());
-                entityChanges.setIdlog(idlog);
-                repository.save(entityChanges);
+    public void trackChanges(Object oldEntity, Object newEntity, AuditLog idlog){
+        Class<?> clazz = oldEntity.getClass();
+        Field[] fields = clazz.getDeclaredFields();
+
+        for(Field field : fields){
+            field.setAccessible(true);
+
+            try {
+                Object oldValue = field.get(oldEntity);
+                Object newValue = field.get(newEntity);
+
+                if(oldValue != null && !oldValue.equals(newValue)){
+                    EntityChanges change = new EntityChanges();
+                    change.setEntityType(clazz.getSimpleName());
+                    change.setFieldName(field.getName());
+                    change.setNewValue(newValue.toString());
+                    change.setOldValue(oldValue.toString());
+                    change.setIdlog(idlog);
+                    System.out.println("Saving change for field: " + field.getName() + 
+                    " Old Value: " + oldValue + 
+                    " New Value: " + newValue);
+
+                    repository.save(change);
+                    repository.flush();
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
             }
         }
     }

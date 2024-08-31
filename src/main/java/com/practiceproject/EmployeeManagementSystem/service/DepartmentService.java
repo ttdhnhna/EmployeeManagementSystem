@@ -7,7 +7,6 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.javers.core.Javers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
@@ -32,8 +32,6 @@ public class DepartmentService {
     EntityChangesService eService;
     @Autowired
     AccountService aService;
-    @Autowired
-    Javers javers;
 
     // @Transactional(readOnly = true)
     // public List<Department> getDepartments(){
@@ -44,17 +42,16 @@ public class DepartmentService {
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
         department.setIduser(idUser);
         Department savedDepartment = this.repository.save(department);
-        eService.logAuditOperation(idUser, savedDepartment.getIdpb(), null, null, Act.ADD);
+        eService.logAuditOperation(idUser, null, null, savedDepartment.getIdpb(), Act.ADD);
     }
 
     @Transactional
     public void updateDepartment(Department department){
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
         Department oldDepartment = getDepartmentID(department.getIdpb());
-        javers.commit(idUser.getEmail(), oldDepartment);
         Department savedDepartment = this.repository.save(department);
-        javers.commit(idUser.getEmail(), savedDepartment);
-        eService.logAuditOperation(idUser, null, savedDepartment.getIdpb(), null, Act.UPDATE);
+        AuditLog savedAuditlog = eService.updateAuditOperation(idUser, null, null, savedDepartment.getIdpb(), Act.UPDATE);
+        eService.trackChanges(oldDepartment, savedDepartment, savedAuditlog);
     }
 
     public Department getDepartmentID(long id){
@@ -74,13 +71,13 @@ public class DepartmentService {
         List<Employee> list = getNVInformationbyID(id);
         if(list != null){
             for(Employee e : list){
-                eService.logAuditOperation(idUser, null, e.getIdnv(), null, Act.DELETE);
-                eService.logAuditOperation(idUser, null, null, e.getIdluong().getIdluong(), Act.DELETE);
+                eService.logAuditOperation(idUser, e.getIdnv(), null, null, Act.DELETE);
+                eService.logAuditOperation(idUser, null, e.getIdluong().getIdluong(), null, Act.DELETE);
                 eRepository.delete(e); 
             }
         }
         this.repository.deleteById(id);
-        eService.logAuditOperation(idUser, id, null, null, Act.DELETE);
+        eService.logAuditOperation(idUser, null, null, id, Act.DELETE);
     }
 
     public Page<Department> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection, Long iduser){
