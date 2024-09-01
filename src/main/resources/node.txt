@@ -176,4 +176,6 @@ Voi ca nen tao phan css vs js de hien giao dien khi
 nếu có thì mình sẽ phải nghĩ cách để đặt phần lệnh trackChanges lên trên cao hơn còn nếu
 vẫn thế thì mình sẽ phải nghĩ cách lấy dữ liệu cũ bằng cách khác.
 
-Đã cập nhật dự án cần chạy thử.
+Ben phong ban co ve la hoat dong on roi nhung con ben luong thi no khong hoat dong duoc nen
+se can phai sua lai phan cap nhat phong ban can bo sung iduser
+Voi ca phan hien chi tiet con bi loi nen can chinh lai.
