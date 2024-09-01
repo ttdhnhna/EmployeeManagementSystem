@@ -17,6 +17,7 @@ import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
+import com.practiceproject.EmployeeManagementSystem.entitydto.SalaryDto;
 import com.practiceproject.EmployeeManagementSystem.repository.SalaryRepository;
 
 @Service
@@ -53,7 +54,7 @@ public class SalaryService {
 
     @Transactional
     public void updateSalary(Salary salary){
-        Salary oldSalary = getSalaryID(salary.getIdluong());
+        SalaryDto oldSalary = getSalaryDto(getSalaryID(salary.getIdluong()));
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
         float tl = (Salary.getLuongcb() * salary.getHsl() + salary.getPhucap()) - salary.getBaohiem() - salary.getTruluong();
         if(tl<=0){
@@ -64,8 +65,9 @@ public class SalaryService {
             salary.setTienno(0);;
         }
         Salary savedSalary = this.repository.save(salary);
+        SalaryDto newSalary = getSalaryDto(savedSalary);
         AuditLog auditLog = eService.updateAuditOperation(iduser, null, savedSalary.getIdluong(), null, Act.UPDATE);
-        eService.trackChanges(oldSalary, savedSalary, auditLog);
+        eService.trackChanges(oldSalary, newSalary, auditLog);
     }
 
     //Tim id luong
@@ -95,5 +97,14 @@ public class SalaryService {
             return repository.findAllSalaries(iduser, keyword);
         }
         return Collections.emptyList();
+    }
+
+    public SalaryDto getSalaryDto(Salary salary){
+        SalaryDto salaryDto = new SalaryDto();
+        salaryDto.setHsl(salary.getHsl());
+        salaryDto.setPhucap(salary.getHsl());
+        salaryDto.setBaohiem(salary.getHsl());
+        salaryDto.setTruluong(salary.getHsl());
+        return salaryDto;
     }
 }

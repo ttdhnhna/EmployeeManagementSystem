@@ -17,6 +17,7 @@ import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
+import com.practiceproject.EmployeeManagementSystem.entitydto.UserDto;
 
 @Service
 public class AccountService {
@@ -53,9 +54,10 @@ public class AccountService {
 
     @Transactional
     public void saveAccount(User user){
-        User oldUser = getUserByID(user.getIduser());
-        User newUser =  this.repository.save(user);
-        AuditLog savedAuditlog = eService.updateAuditOperation(newUser, null, null, null, Act.UPDATE);
+        UserDto oldUser = getUserDto(getUserByID(user.getIduser()));
+        User savedUser =  this.repository.save(user);
+        UserDto newUser = getUserDto(savedUser);
+        AuditLog savedAuditlog = eService.updateAuditOperation(savedUser, null, null, null, Act.UPDATE);
         eService.trackChanges(oldUser, newUser, savedAuditlog);
     }
 
@@ -135,5 +137,12 @@ public class AccountService {
         helper.setText(content, true);
 
         mailSender.send(message);
+    }
+
+    public UserDto getUserDto(User user){
+        UserDto userDto = new UserDto();
+        userDto.setHoten(user.getHoten());
+        userDto.setEmail(user.getEmail());
+        return userDto;
     }
 }

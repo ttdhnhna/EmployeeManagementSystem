@@ -32,10 +32,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
-import com.practiceproject.EmployeeManagementSystem.entity.EmployeeDto;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
+import com.practiceproject.EmployeeManagementSystem.entitydto.EmployeeDto;
 import com.practiceproject.EmployeeManagementSystem.repository.DepartmentRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.EntityChangesRepository;
@@ -132,8 +132,6 @@ public class EmployeeService {
     @Transactional
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
         EmployeeDto oldEmployee = getoldEmployee(employee);
-        System.out.println("Old:" + oldEmployee.getHoten());
-        System.out.println("New:" +employeeDto.getHoten());
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
         MultipartFile file = employeeDto.getAnh();
         if (file != null && !file.isEmpty()) {

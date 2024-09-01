@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
-import com.practiceproject.EmployeeManagementSystem.entity.EmployeeDto;
+import com.practiceproject.EmployeeManagementSystem.entitydto.EmployeeDto;
 import com.practiceproject.EmployeeManagementSystem.service.AuditLogService;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
 import com.practiceproject.EmployeeManagementSystem.service.Utility;

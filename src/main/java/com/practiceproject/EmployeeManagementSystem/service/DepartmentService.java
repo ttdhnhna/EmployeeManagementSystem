@@ -19,6 +19,7 @@ import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
+import com.practiceproject.EmployeeManagementSystem.entitydto.DepartmentDto;
 import com.practiceproject.EmployeeManagementSystem.repository.DepartmentRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 
@@ -48,10 +49,11 @@ public class DepartmentService {
     @Transactional
     public void updateDepartment(Department department){
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
-        Department oldDepartment = getDepartmentID(department.getIdpb());
+        DepartmentDto oldDepartment = getDepartmentDto(getDepartmentID(department.getIdpb()));
         Department savedDepartment = this.repository.save(department);
+        DepartmentDto newDepartment = getDepartmentDto(savedDepartment);
         AuditLog savedAuditlog = eService.updateAuditOperation(idUser, null, null, savedDepartment.getIdpb(), Act.UPDATE);
-        eService.trackChanges(oldDepartment, savedDepartment, savedAuditlog);
+        eService.trackChanges(oldDepartment, newDepartment, savedAuditlog);
     }
 
     public Department getDepartmentID(long id){
@@ -105,5 +107,13 @@ public class DepartmentService {
             }
         }
         return ListEmployees;
+    }
+
+    public DepartmentDto getDepartmentDto(Department department){
+        DepartmentDto departmentDto = new DepartmentDto();
+        departmentDto.setTenpb(department.getTenpb());
+        departmentDto.setDiachi(department.getDiachi());
+        departmentDto.setSdt(department.getSdt());
+        return departmentDto;
     }
 }
