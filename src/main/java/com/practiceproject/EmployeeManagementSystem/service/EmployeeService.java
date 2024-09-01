@@ -38,6 +38,7 @@ import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
 import com.practiceproject.EmployeeManagementSystem.repository.DepartmentRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
+import com.practiceproject.EmployeeManagementSystem.repository.EntityChangesRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.SalaryRepository;
 
 
@@ -51,6 +52,8 @@ public class EmployeeService {
     SalaryRepository sRepository;
     @Autowired
     DepartmentRepository dRepository;
+    @Autowired
+    EntityChangesRepository eRepository;
     @Autowired
     SalaryService sService;
     @Autowired
@@ -128,9 +131,9 @@ public class EmployeeService {
     //Cập nhật nhân viên
     @Transactional
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
-        Employee oldEmployee = getEmployeebyID(employee.getIdnv());
-        System.out.println("Old Name: " + oldEmployee.getHoten());
-
+        EmployeeDto oldEmployee = getoldEmployee(employee);
+        System.out.println("Old:" + oldEmployee.getHoten());
+        System.out.println("New:" +employeeDto.getHoten());
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
         MultipartFile file = employeeDto.getAnh();
         if (file != null && !file.isEmpty()) {
@@ -159,11 +162,9 @@ public class EmployeeService {
         } else {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
-
-        Employee savedEmployee = this.repository.save(employee); 
-        System.out.println("New Name: " + savedEmployee.getHoten());
-        AuditLog savedAuditlog = eService.updateAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.UPDATE);
-        eService.trackChanges(oldEmployee, savedEmployee, savedAuditlog);
+        this.repository.save(employee); 
+        AuditLog saveAuditLog = eService.updateAuditOperation(iduser, employee.getIdnv(), null, null, Act.UPDATE);
+        eService.trackChanges(oldEmployee, employeeDto, saveAuditLog);
     }
     
     //Tìm nhân viên bằng id
@@ -358,6 +359,21 @@ public class EmployeeService {
 
     private String getCellValue(Cell cell) {//Đề phòng với dữ liệu đầu vào là null thì sẽ lưu dữ liệu vào là rỗng
         return cell != null ? cell.getStringCellValue() : "";
+    }
+
+    public EmployeeDto getoldEmployee(Employee employee){
+        EmployeeDto oldEmployee = new EmployeeDto();
+        oldEmployee.setAnh(null);
+        oldEmployee.setHoten(employee.getHoten());
+        oldEmployee.setNgaysinh(employee.getNgaysinh());
+        oldEmployee.setQuequan(employee.getQuequan());
+        oldEmployee.setGt(employee.getGt());
+        oldEmployee.setDantoc(employee.getDantoc());
+        oldEmployee.setSdt(employee.getSdt());
+        oldEmployee.setEmail(employee.getEmail());
+        oldEmployee.setChucvu(employee.getChucvu());
+        oldEmployee.setIdpb(employee.getIdpb().getIdpb());
+        return oldEmployee;
     }
 }
 

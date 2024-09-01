@@ -176,9 +176,3 @@ Voi ca nen tao phan css vs js de hien giao dien khi
 nếu có thì mình sẽ phải nghĩ cách để đặt phần lệnh trackChanges lên trên cao hơn còn nếu
 vẫn thế thì mình sẽ phải nghĩ cách lấy dữ liệu cũ bằng cách khác.
 
-Old Name: Duong Tien Dat
-2024-09-01 11:37:58.031 DEBUG 3384 --- [nio-8080-exec-8] org.hibernate.SQL                        : select user0_.id_user as id_user1_5_0_, user0_.email as email2_5_0_, user0_.hoten as hoten3_5_0_, user0_.password as password4_5_0_, user0_.reset_password_token as reset_pa5_5_0_ from tbl_user user0_ where user0_.id_user=?
-2024-09-01 11:37:58.032 TRACE 3384 --- [nio-8080-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [1]
-2024-09-01 11:37:58.057 DEBUG 3384 --- [nio-8080-exec-8] org.hibernate.SQL                        : select department0_.id_pb as id_pb1_2_0_, department0_.diachi as diachi2_2_0_, department0_.id_user as id_user5_2_0_, department0_.sdt as sdt3_2_0_, department0_.tenpb as tenpb4_2_0_ from tbl_department department0_ where department0_.id_pb=?
-2024-09-01 11:37:58.057 TRACE 3384 --- [nio-8080-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [1]
-New Name: Duong Thanh Dat
