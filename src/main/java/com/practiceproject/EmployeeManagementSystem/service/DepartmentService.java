@@ -50,6 +50,7 @@ public class DepartmentService {
     public void updateDepartment(Department department){
         User idUser = aService.getUserByID(Utility.getCurrentUserId());
         DepartmentDto oldDepartment = getDepartmentDto(getDepartmentID(department.getIdpb()));
+        department.setIduser(idUser);
         Department savedDepartment = this.repository.save(department);
         DepartmentDto newDepartment = getDepartmentDto(savedDepartment);
         AuditLog savedAuditlog = eService.updateAuditOperation(idUser, null, null, savedDepartment.getIdpb(), Act.UPDATE);

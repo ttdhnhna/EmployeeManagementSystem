@@ -66,6 +66,8 @@ public class AuditlogController {
     public String detailLog(@PathVariable(value = "id") long id, Model model){
         AuditLog auditLog = service.getLogByID(id);
         List<EntityChanges> entityChanges = service.getDetailLog(auditLog);
+        List<AuditLog> ListLogs = service.getListLogs();
+        model.addAttribute("ListLogs", ListLogs); 
         model.addAttribute("auditLog", auditLog);
         model.addAttribute("entityChanges", entityChanges);
         return "detaillog";
