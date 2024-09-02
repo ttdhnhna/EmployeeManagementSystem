@@ -176,4 +176,5 @@ Voi ca nen tao phan css vs js de hien giao dien khi
 nếu có thì mình sẽ phải nghĩ cách để đặt phần lệnh trackChanges lên trên cao hơn còn nếu
 vẫn thế thì mình sẽ phải nghĩ cách lấy dữ liệu cũ bằng cách khác.
 
-Da sua duoc loi hien thi.
+Vừa sửa lại phần chi tiết với có thêm phần hiển thị số thông báo chưa đọc ở trang chủ rồi
+cần chạy thử.

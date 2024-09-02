@@ -88,4 +88,9 @@ public class AuditLogService {
         List<EntityChanges> entityChanges = eRepository.findAllByIdlog(auditLog);    
         return entityChanges;        
     }
+
+    public int getUnreadLog(Long iduser){
+        User user = uService.getUserByID(iduser);
+        return repository.countByIduserAndIsReadFalse(user);
+    }
 }

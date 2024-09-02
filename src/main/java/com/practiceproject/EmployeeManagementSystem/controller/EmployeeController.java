@@ -126,6 +126,7 @@ public class EmployeeController {
         Page<Employee> page=service.findPaginated(pageNo, pageSize, sortField, sortDir, iduser);
         List<Employee> ListEmployees = page.getContent();
         List<AuditLog> ListLogs = aService.getListLogs();
+        int unreadCount = aService.getUnreadLog(iduser);
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
@@ -137,6 +138,7 @@ public class EmployeeController {
 
         model.addAttribute("ListEmployees", ListEmployees); 
         model.addAttribute("ListLogs", ListLogs); 
+        model.addAttribute("unreadCount", unreadCount);
 
         model.addAttribute("isSearch", false); 
 

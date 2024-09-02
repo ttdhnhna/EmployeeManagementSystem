@@ -53,6 +53,7 @@ public class AuditLog {
     private Long idluong;
 
     private Act act;
+    private boolean isRead = false;
 
     @PrePersist
     protected void onCreate() {
@@ -120,5 +121,13 @@ public class AuditLog {
 
     public LocalDateTime getNgayth() {
         return ngayth;
+    }
+
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean isRead) {
+        this.isRead = isRead;
     }
 }

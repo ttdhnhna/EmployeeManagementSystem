@@ -17,7 +17,7 @@ html, body {
 }
 
 .dropdown-menu {
-    width: 350px;
+    width: 300px;
     max-height: 300px; 
     overflow-y: auto; 
     white-space: normal;

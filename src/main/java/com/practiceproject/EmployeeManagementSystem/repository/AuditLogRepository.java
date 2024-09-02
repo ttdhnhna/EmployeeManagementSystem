@@ -21,4 +21,6 @@ public interface AuditLogRepository extends JpaRepository<AuditLog, Long>{
     public List<AuditLog> findAll(Long iduser, String keywords);
 
     public List<AuditLog> findTop10ByIduserOrderByNgaythDesc(User iduser);
+
+    public int countByIduserAndIsReadFalse(User iduser);
 }
