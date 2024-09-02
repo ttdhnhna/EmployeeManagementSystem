@@ -110,57 +110,57 @@
               <span th:if="${auditLog.idluong != null}">thêm mới mã lương <span th:text="${auditLog.idluong}"></span></span>
               <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}">đăng ký tài khoản <span th:text="${auditLog.idluong}"></span></span>
             </span>
-            <span th:if="${auditLog.act.name() == 'UPDATE'}">
+            <span th:if="${auditLog.act.name() == 'UPDATE'}" th:each = "change : ${entityChanges}">
               <span th:if="${auditLog.idnv != null}">cập nhật nhân viên mã <span th:text="${auditLog.idnv}"></span></span>
               <span th:if="${auditLog.idpb != null}">cập nhật phòng ban mã <span th:text="${auditLog.idpb}"></span></span>
               <span th:if="${auditLog.idluong != null}">cập nhật mã lương <span th:text="${auditLog.idluong}"></span></span>
               <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}">cập nhật thông tin tài khoản <span th:text="${auditLog.iduser.email}"></span></span>
-                <span th:each = "change : ${entityChanges}">
-                  <span th:if="${auditLog.idnv != null}">
-                    <span th:if="${change.fieldName == hoten}">Thay đổi họ tên nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
-                    <span th:if="${change.fieldName == ngaysinh}">Thay đổi ngày sinh nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
-                    <span th:if="${change.fieldName == quequan}">Thay đổi quên quán nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
-                    <span th:if="${change.fieldName == gt}">Thay đổi giới tính nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
-                    <span th:if="${change.fieldName == dantoc}">Thay đổi dân tộc nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
-                    <span th:if="${change.fieldName == sdt}">Thay đổi số điện thoại nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
-                    <span th:if="${change.fieldName == email}">Thay đổi email nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
-                    <span th:if="${change.fieldName == chucvu}">Thay đổi chức vụ nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
-                    <span th:if="${change.fieldName == idpb}">Thay đổi phòng ban nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
+              <span>
+                <span th:if="${auditLog.idnv != null}">
+                  <span th:if="${change.fieldName == hoten}">Thay đổi họ tên nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${auditLog.idpb != null}">
-                    <span th:if="${change.fieldName == tenpb}">Thay đổi tên phòng ban từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
-                    <span th:if="${change.fieldName == diachi}">Thay đổi địa chỉ phòng ban từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
-                    <span th:if="${change.fieldName == sdt}">Thay đổi số điện thoại phòng ban từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
+                  <span th:if="${change.fieldName == ngaysinh}">Thay đổi ngày sinh nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${auditLog.idluong != null}">
-                    <span th:if="${change.fieldName == hsl}">Thay đổi hệ số lương từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
-                    <span th:if="${change.fieldName == phucap}">Thay đổi số tiền phụ cấp từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
-                    <span th:if="${change.fieldName == baohiem}">Thay đổi mức đóng bảo hiểm từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
-                    <span th:if="${change.fieldName == truluong}">Sửa đổi mức lương bị trừ từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
+                  <span th:if="${change.fieldName == quequan}">Thay đổi quên quán nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}">
-                    <span th:if="${change.fieldName == hoten}">Thay đổi tên người dùng từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
-                    <span th:if="${change.fieldName == email}">Thay đổi email người dùng từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                    </span>
+                  <span th:if="${change.fieldName == gt}">Thay đổi giới tính nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+                  </span>
+                  <span th:if="${change.fieldName == dantoc}">Thay đổi dân tộc nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+                  </span>
+                  <span th:if="${change.fieldName == sdt}">Thay đổi số điện thoại nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+                  </span>
+                  <span th:if="${change.fieldName == email}">Thay đổi email nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+                  </span>
+                  <span th:if="${change.fieldName == chucvu}">Thay đổi chức vụ nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+                  </span>
+                  <span th:if="${change.fieldName == idpb}">Thay đổi phòng ban nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
                   </span>
                 </span>
+                <span th:if="${auditLog.idpb != null}">
+                  <span th:if="${change.fieldName == tenpb}">Thay đổi tên phòng ban từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+                  </span>
+                  <span th:if="${change.fieldName == diachi}">Thay đổi địa chỉ phòng ban từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+                  </span>
+                  <span th:if="${change.fieldName == sdt}">Thay đổi số điện thoại phòng ban từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+                  </span>
+                </span>
+                <span th:if="${auditLog.idluong != null}">
+                  <span th:if="${change.fieldName == hsl}">Thay đổi hệ số lương từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+                  </span>
+                  <span th:if="${change.fieldName == phucap}">Thay đổi số tiền phụ cấp từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+                  </span>
+                  <span th:if="${change.fieldName == baohiem}">Thay đổi mức đóng bảo hiểm từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+                  </span>
+                  <span th:if="${change.fieldName == truluong}">Sửa đổi mức lương bị trừ từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+                  </span>
+                </span>
+                <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}">
+                  <span th:if="${change.fieldName == hoten}">Thay đổi tên người dùng từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+                  </span>
+                  <span th:if="${change.fieldName == email}">Thay đổi email người dùng từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
+                  </span>
+                </span>
+              </span>
             </span>
             <span th:if="${auditLog.act.name() == 'DELETE'}">xóa 
               <span th:if="${auditLog.idnv != null}">mã nhân viên <span th:text="${auditLog.idnv}"></span></span>
