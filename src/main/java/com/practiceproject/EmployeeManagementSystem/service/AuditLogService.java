@@ -30,6 +30,10 @@ public class AuditLogService {
     @Autowired
     AccountService uService;
 
+    public void saveLog(AuditLog log){
+        this.repository.save(log);
+    }
+
     public AuditLog getLogByID(long id){
         Optional<AuditLog> optional = repository.findById(id);
         AuditLog auditLog = null;

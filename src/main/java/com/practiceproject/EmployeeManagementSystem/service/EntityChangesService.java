@@ -59,10 +59,6 @@ public class EntityChangesService {
                     change.setNewValue(newValue.toString());
                     change.setOldValue(oldValue.toString());
                     change.setIdlog(idlog);
-                    System.out.println("Saving change for field: " + field.getName() + 
-                    " Old Value: " + oldValue + 
-                    " New Value: " + newValue);
-
                     repository.save(change);
                     repository.flush();
                 }

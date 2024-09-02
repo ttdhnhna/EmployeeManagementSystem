@@ -65,6 +65,8 @@ public class AuditlogController {
     @GetMapping("/detaillog/{id}")
     public String detailLog(@PathVariable(value = "id") long id, Model model){
         AuditLog auditLog = service.getLogByID(id);
+        auditLog.setRead(true);
+        service.saveLog(auditLog);
         List<EntityChanges> entityChanges = service.getDetailLog(auditLog);
         List<AuditLog> ListLogs = service.getListLogs();
         model.addAttribute("ListLogs", ListLogs); 
