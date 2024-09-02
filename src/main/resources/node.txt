@@ -176,5 +176,8 @@ Voi ca nen tao phan css vs js de hien giao dien khi
 nếu có thì mình sẽ phải nghĩ cách để đặt phần lệnh trackChanges lên trên cao hơn còn nếu
 vẫn thế thì mình sẽ phải nghĩ cách lấy dữ liệu cũ bằng cách khác.
 
-Vừa sửa lại phần chi tiết với có thêm phần hiển thị số thông báo chưa đọc ở trang chủ rồi
-cần chạy thử.
+Chay hien dung so luong thong bao chua doc roi nhung can chinh sua them 1 chut:
+Chinh lai phan chi tiet vi cac phan xuong dong nhieu qua
+Cap nhat phan thay doi so luong thong bao chua doc
+Danh dau cac phan thong bao chua doc
+Xoa phan hien gia tri moi va cu trong trackchanges.
