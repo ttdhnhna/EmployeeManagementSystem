@@ -176,3 +176,4 @@ Voi ca nen tao phan css vs js de hien giao dien khi
 nếu có thì mình sẽ phải nghĩ cách để đặt phần lệnh trackChanges lên trên cao hơn còn nếu
 vẫn thế thì mình sẽ phải nghĩ cách lấy dữ liệu cũ bằng cách khác.
 
+Da sua duoc loi hien thi.
