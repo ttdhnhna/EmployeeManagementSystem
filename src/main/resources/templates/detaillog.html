@@ -119,7 +119,7 @@
               <span th:each = "change : ${entityChanges}">
                 <span th:if="${auditLog.idnv != null}">
                   <span th:if="${change.fieldName == 'hoten'}">Thay đổi họ tên nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                  </span><br>
+                  </span>
                   <span th:if="${change.fieldName == 'ngaysinh'}">Thay đổi ngày sinh nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
                   </span>
                   <span th:if="${change.fieldName == 'quequan'}">Thay đổi quên quán nhân viên từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
@@ -139,7 +139,7 @@
                 </span>
                 <span th:if="${auditLog.idpb != null}">
                   <span th:if="${change.fieldName == 'tenpb'}">Thay đổi tên phòng ban từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                  </span><br>
+                  </span>
                   <span th:if="${change.fieldName == 'diachi'}">Thay đổi địa chỉ phòng ban từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
                   </span>
                   <span th:if="${change.fieldName == 'sdt'}">Thay đổi số điện thoại phòng ban từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
@@ -147,7 +147,7 @@
                 </span>
                 <span th:if="${auditLog.idluong != null}">
                   <span th:if="${change.fieldName == 'hsl'}">Thay đổi hệ số lương từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                  </span><br>
+                  </span>
                   <span th:if="${change.fieldName == 'phucap'}">Thay đổi số tiền phụ cấp từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
                   </span>
                   <span th:if="${change.fieldName == 'baohiem'}">Thay đổi mức đóng bảo hiểm từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
@@ -157,7 +157,7 @@
                 </span>
                 <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}">
                   <span th:if="${change.fieldName == 'hoten'}">Thay đổi tên người dùng từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
-                  </span><br>
+                  </span>
                   <span th:if="${change.fieldName == 'email'}">Thay đổi email người dùng từ <span th:text="${change.oldValue}"></span> thành <span th:text="${change.newValue}"></span>
                   </span>
                 </span>
