@@ -177,3 +177,6 @@ nếu có thì mình sẽ phải nghĩ cách để đặt phần lệnh trackCha
 vẫn thế thì mình sẽ phải nghĩ cách lấy dữ liệu cũ bằng cách khác.
 
 Ap dung phan thong bao nay cho cac trang con lai.
+
+Nut hien thong bao chua doc dang bi loi va nen tao 1 nut o phan lich su se danh dau la
+da doc tat ca va nen chinh lai phan css de dau do lui xuong cho o giua.
