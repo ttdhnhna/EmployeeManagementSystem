@@ -54,6 +54,8 @@ public class SalaryController {
     public String updateEmployee(@PathVariable(value = "id") long id, Model model){
         List<AuditLog> ListLogs = aService.getListLogs();
         model.addAttribute("ListLogs", ListLogs); 
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         Salary salary=service.getSalaryID(id);
         model.addAttribute("salary", salary);
         return "updatesalary";
@@ -75,6 +77,7 @@ public class SalaryController {
        Page<Salary> page=service.findPaginated(pageNo, pageSize, sortField, sortDir, iduser);
        List<Salary> ListSalaries= page.getContent();
        List<AuditLog> ListLogs = aService.getListLogs();
+       int unreadCount = aService.getUnreadLog(iduser);
 
        model.addAttribute("ListLogs", ListLogs); 
        model.addAttribute("currentPage", pageNo);
@@ -87,6 +90,7 @@ public class SalaryController {
 
        model.addAttribute("ListSalaries", ListSalaries);
        model.addAttribute("isSearch", false); 
+       model.addAttribute("unreadCount", unreadCount);
 
        return "salariespage";
    }
@@ -96,9 +100,12 @@ public class SalaryController {
         Long iduser = Utility.getCurrentUserId();
         List<Salary> ListSalaries=service.findAllSalaries(keyword, iduser);
         List<AuditLog> ListLogs = aService.getListLogs();
+        int unreadCount = aService.getUnreadLog(iduser);
+
         model.addAttribute("ListLogs", ListLogs); 
         model.addAttribute("ListSalaries", ListSalaries);
         model.addAttribute("isSearch", true); 
+        model.addAttribute("unreadCount", unreadCount);
 
         if(ListSalaries.isEmpty()){
             model.addAttribute("errorMess", "Không tìm thấy thông tin lương");

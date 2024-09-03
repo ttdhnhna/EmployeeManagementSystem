@@ -49,7 +49,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fa fa-bell"></i>
-                      <!-- <span class="badge badge-danger" id="notificationCount">3</span> -->
+                      <span class="badge badge-danger" id="notificationCount" th:if="${unreadCount > 0}" th:text="${unreadCount}"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
                       <li th:each = "log : ${ListLogs}">
@@ -75,6 +75,13 @@
                                 <span th:if="${log.idluong != null}">mã lương <span th:text="${log.idluong}"></span></span>
                             </span>
                             <span th:if="${log.act.name() == 'CHANGEPASS'}">thay đổi mật khẩu</span>
+                            <span class="notification-dot" th:if="${!log.isRead}"></span>
+                        </a>
+                      </li>
+                      <hr>
+                      <li>
+                        <a class="dropdown-item view-all" th:href="@{/auditlogs}">
+                          Xem tất cả thông báo.
                         </a>
                       </li>
                     </ul>

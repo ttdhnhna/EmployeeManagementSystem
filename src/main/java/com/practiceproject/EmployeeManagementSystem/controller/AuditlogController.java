@@ -35,7 +35,9 @@ public class AuditlogController {
 
         Page<AuditLog> page = service.findPaginated(pageNo, pageSize, sortField, sortDir, iduser);
         List<AuditLog> ListLogs = page.getContent();
+        int unreadCount = service.getUnreadLog(iduser);
 
+        model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
@@ -53,6 +55,8 @@ public class AuditlogController {
     public String findLogs(Model model, @Param("keyword") String keyword){
         Long iduser = Utility.getCurrentUserId();
         List<AuditLog> ListLogs = service.findAll(iduser, keyword);
+        int unreadCount = service.getUnreadLog(iduser);
+        model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("ListLogs", ListLogs); 
         model.addAttribute("isSearch", true); 
         
@@ -73,5 +77,11 @@ public class AuditlogController {
         model.addAttribute("auditLog", auditLog);
         model.addAttribute("entityChanges", entityChanges);
         return "detaillog";
+    }
+
+    @GetMapping("/readall")
+    public String readAll(){
+        service.readAllLog();
+        return "redirect:/auditlogs";
     }
 }

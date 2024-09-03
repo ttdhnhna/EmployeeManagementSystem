@@ -47,7 +47,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-bell"></i>
-                <span class="badge badge-danger" id="notificationCount" th:if="${unreadCount > 0}" th:text="${unreadCount}">4</span>
+                <span class="badge badge-danger" id="notificationCount" th:if="${unreadCount > 0}" th:text="${unreadCount}"></span>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
                 <li th:each = "log : ${ListLogs}">

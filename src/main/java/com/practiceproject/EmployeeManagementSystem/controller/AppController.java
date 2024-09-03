@@ -73,6 +73,8 @@ public class AppController {
         model.addAttribute("ListLogs", ListLogs); 
         User user = service.getUserByID(iduser);
         model.addAttribute("user", user);
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         return "accountspage";
     }
 
@@ -80,6 +82,8 @@ public class AppController {
     public String updateAccount( @PathVariable(value = "id")long id, Model model){
         List<AuditLog> ListLogs = aService.getListLogs();
         model.addAttribute("ListLogs", ListLogs); 
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         User user=service.getUserByID(id);
         model.addAttribute("user", user);
         return "updateaccount";
@@ -95,6 +99,8 @@ public class AppController {
     public String changePassword(@PathVariable(value = "id")long id, Model model){
         List<AuditLog> ListLogs = aService.getListLogs();
         model.addAttribute("ListLogs", ListLogs); 
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         User user=service.getUserByID(id);
         model.addAttribute("user", user);
         return "changepassword";

@@ -38,6 +38,8 @@ public class DepartmentController {
         model.addAttribute("ListLogs", ListLogs); 
         Department department=new Department();
         model.addAttribute("department", department);
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         return "newdepartment";
     }
 
@@ -65,6 +67,8 @@ public class DepartmentController {
         model.addAttribute("ListLogs", ListLogs); 
         Department department=service.getDepartmentID(id);
         model.addAttribute("department", department);
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         return "updatedepartment";
     }
 
@@ -78,7 +82,9 @@ public class DepartmentController {
         Page<Department> page=service.findPaginated(pageNo, pageSize, sortField, sortDir, iduser);
         List<Department> ListDepartments=page.getContent();
         List<AuditLog> ListLogs = aService.getListLogs();
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
 
+        model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
@@ -99,6 +105,8 @@ public class DepartmentController {
         Long iduser = Utility.getCurrentUserId();
         List<Department> ListDepartments=service.findDepartments(keyword, iduser);
         List<AuditLog> ListLogs = aService.getListLogs();
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("ListDepartments", ListDepartments);
         model.addAttribute("ListLogs", ListLogs); 
         model.addAttribute("isSearch", true); 
@@ -112,6 +120,8 @@ public class DepartmentController {
     //Trang chi tiết phòng ban.
     @GetMapping("/viewDepartmentdetail/{id}")
     public String viewDepartmentdetail(@PathVariable(value = "id") long id, Model model){
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         List<AuditLog> ListLogs = aService.getListLogs();
         model.addAttribute("ListLogs", ListLogs); 
         Department department=service.getDepartmentID(id);

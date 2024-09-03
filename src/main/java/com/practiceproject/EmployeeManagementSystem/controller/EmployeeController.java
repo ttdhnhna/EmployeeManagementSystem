@@ -50,6 +50,8 @@ public class EmployeeController {
     public String addEmployee(Model model){
         List<AuditLog> ListLogs = aService.getListLogs();
         EmployeeDto employeeDto=new EmployeeDto();
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("employee", employeeDto);
         model.addAttribute("ListLogs", ListLogs); 
         /*Phương thức addAttribute ở đây sẽ giúp ta truyền nhưng dữ liệu mà đối tượng employee có
@@ -105,6 +107,8 @@ public class EmployeeController {
         //Lay du lieu nhan vien tu service
         List<AuditLog> ListLogs = aService.getListLogs();
         Employee employee=service.getEmployeebyID(id);
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("ListLogs", ListLogs); 
         model.addAttribute("employee", employee);
         return "updateemployee"; 
@@ -150,6 +154,8 @@ public class EmployeeController {
     public String viewProfileEmployee(@PathVariable(value = "id") long id, Model model){
         Employee employee=service.getEmployeebyID(id);
         List<AuditLog> ListLogs = aService.getListLogs();
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("employee", employee);
         model.addAttribute("ListLogs", ListLogs); 
         return "employeeviewprofile";
@@ -161,6 +167,8 @@ public class EmployeeController {
         Long iduser = Utility.getCurrentUserId();
         List<Employee> ListEmployees=service.findAll(keyword, iduser);
         List<AuditLog> ListLogs = aService.getListLogs();
+        int unreadCount = aService.getUnreadLog(iduser);
+        model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("ListEmployees", ListEmployees);
         model.addAttribute("ListLogs", ListLogs); 
         model.addAttribute("isSearch", true); 
@@ -182,6 +190,8 @@ public class EmployeeController {
 
     @GetMapping("/uploadexcel")
     public String uploadExcelPage(Model model){
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         List<AuditLog> ListLogs = aService.getListLogs();
         model.addAttribute("ListLogs", ListLogs); 
         return "uploadexcel";

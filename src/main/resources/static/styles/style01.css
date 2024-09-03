@@ -17,7 +17,7 @@ html, body {
 }
 
 .dropdown-menu {
-    width: 330px;
+    width: 320px;
     max-height: 300px; 
     overflow-y: auto; 
     white-space: normal;
@@ -25,21 +25,30 @@ html, body {
 
 .view-all {
     text-align: center;
-    color: lightblue;
+    color: blue;
     margin-top: 5px;
     font-weight: bold;
 }
 
 .notification-dot {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    width: 10px;
-    height: 10px;
-    background-color: red;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: red; 
     border-radius: 50%;
+    margin-right: 15px; 
+    vertical-align: middle;
 }
+
+/* .notification-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: red; 
+    border-radius: 50%;
+    margin-right: 15px; 
+    vertical-align: middle;
+} */
 
 footer {
     flex-shrink: 0; 

@@ -164,19 +164,4 @@ logging system, especially when dealing with a high volume of logs. By leveragin
 batching capabilities or implementing custom batch processing logic, you can significantly
 reduce the load on your database and improve the overall performance of your application.
 
-Da sua duoc loi thong bao roi gio se bo sung phan link dan den chinh thong bao day trong phan
-trang auditlogpage de nguoi dung co the xem hoac co khi nen tao phan trang chi tiet lich su
-Tao phan hien so thong bao moi
-Va sau khi xong cai nay minh se bo sung them phan chinh sua nhung cai gi va xoa nhan vien,
-phong ban co ten gi luong se co hsl la bao nhieu (Hoac phan nay se la phan chi tiet lich
-su khi nguoi dung nhan vao).
-Voi ca nen tao phan css vs js de hien giao dien khi
-
-Đang thử 1 cách khác là xem liệu đặt vị trí mới lấy dữ liệu ra xem có bị thay đổi không
-nếu có thì mình sẽ phải nghĩ cách để đặt phần lệnh trackChanges lên trên cao hơn còn nếu
-vẫn thế thì mình sẽ phải nghĩ cách lấy dữ liệu cũ bằng cách khác.
-
-Ap dung phan thong bao nay cho cac trang con lai.
-
-Nut hien thong bao chua doc dang bi loi va nen tao 1 nut o phan lich su se danh dau la
-da doc tat ca va nen chinh lai phan css de dau do lui xuong cho o giua.
+Vua sua can chay thu.

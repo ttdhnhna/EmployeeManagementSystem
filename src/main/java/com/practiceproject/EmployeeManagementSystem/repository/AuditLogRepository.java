@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -23,4 +24,8 @@ public interface AuditLogRepository extends JpaRepository<AuditLog, Long>{
     public List<AuditLog> findTop10ByIduserOrderByNgaythDesc(User iduser);
 
     public int countByIduserAndIsReadFalse(User iduser);
+
+    @Modifying
+    @Query(value = "UPDATE AuditLog l SET l.isRead = true WHERE l.isRead = false")
+    public void markAllLogsasRead();
 }
