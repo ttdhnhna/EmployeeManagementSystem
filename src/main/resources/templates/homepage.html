@@ -165,41 +165,43 @@
         </div>
 
         <div th:if="${totalPages>1}">
-          <div class="row coL-sm-10">
-            <div class="coL-sm-2">
-              &nbsp; &nbsp;
-              Tổng hàng: [[${totalItems}]]
-              &nbsp; &nbsp;
-            </div>
-            <div class="coL-sm-1">
-              <a th:if="${currentPage > 1}" th:href="@{'/page/' + 1 + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu</a>
-              <span th:unless="${currentPage > 1}">Đầu</span>
-              &nbsp;
-            </div>
-
-            <div class="coL-sm-1">
-                <a th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trước</a>
-                <span th:unless="${currentPage > 1}">Trước</span>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <div class="coL-sm-2">
+                Tổng hàng: [[${totalItems}]]
+                &nbsp; &nbsp;
+              </div>
+              <li class="page-item">
+                <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + 1 + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu</a>
+                <span th:unless="${currentPage > 1}">Đầu</span>
                 &nbsp;
-            </div>
-            <div class="coL-sm-1">
-              <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
-                <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
-              </span>
-            </div>
+              </li>
 
-            <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Tiếp</a>
-              <span th:unless="${currentPage < totalPages}">Tiếp</span>
-              &nbsp;
-            </div>
+              <li class="page-item">
+                  <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trước</a>
+                  <span th:unless="${currentPage > 1}">Trước</span>
+                  &nbsp;
+              </li>
 
-            <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Cuối</a>
-              <span th:unless="${currentPage < totalPages}">Cuối</span>
-            </div>
-          </div>
+              <li class="page-item">
+                <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                  <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                  <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+                </span>
+              </li>
+
+              <li class="page-item">
+                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Tiếp</a>
+                <span th:unless="${currentPage < totalPages}">Tiếp</span>
+                &nbsp;
+              </li>
+
+              <li class="page-item">
+                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Cuối</a>
+                <span th:unless="${currentPage < totalPages}">Cuối</span>
+              </li>
+            </ul>
+          </nav>
         </div>
     </div>
 

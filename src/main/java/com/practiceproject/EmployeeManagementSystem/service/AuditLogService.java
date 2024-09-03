@@ -64,7 +64,7 @@ public class AuditLogService {
         return Collections.emptyList();
     }
 
-    @Scheduled(cron = "0 0 0 * * ?")//Chức năng sẽ tự chạy sau mỗi nửa đêm.
+    //@Scheduled(cron = "0 0 0 * * ?")//Chức năng sẽ tự chạy sau mỗi nửa đêm.
     public void autoDeletelog(){
         LocalDateTime now = LocalDateTime.now();
         //Xóa toàn bộ các log có tuổi đời lớn hơn 120 ngày trực tiếp từ csdl.

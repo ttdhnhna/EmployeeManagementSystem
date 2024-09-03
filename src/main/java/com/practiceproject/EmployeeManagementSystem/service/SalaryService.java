@@ -102,9 +102,9 @@ public class SalaryService {
     public SalaryDto getSalaryDto(Salary salary){
         SalaryDto salaryDto = new SalaryDto();
         salaryDto.setHsl(salary.getHsl());
-        salaryDto.setPhucap(salary.getHsl());
-        salaryDto.setBaohiem(salary.getHsl());
-        salaryDto.setTruluong(salary.getHsl());
+        salaryDto.setPhucap(salary.getPhucap());
+        salaryDto.setBaohiem(salary.getBaohiem());
+        salaryDto.setTruluong(salary.getTruluong());
         return salaryDto;
     }
 }
