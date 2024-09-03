@@ -34,7 +34,7 @@ public class AuditLog {
     @JsonBackReference
     private User iduser;
     
-    @OneToMany(mappedBy = "idlog", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idlog", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @BatchSize(size = 16)
     @JsonManagedReference
     private Set<EntityChanges> idchange = new HashSet<>();

@@ -14,7 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.scheduling.annotation.Scheduled;
+// import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
@@ -69,10 +69,14 @@ public class AuditLogService {
         LocalDateTime now = LocalDateTime.now();
         //Xóa toàn bộ các log có tuổi đời lớn hơn 120 ngày trực tiếp từ csdl.
         List<AuditLog> list = this.repository.findAll().stream()
-//            .filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now)>120)
+        //  .filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now)>120)
             .filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now)>1)
 
             .collect(Collectors.toList());
+        for(AuditLog a : list){
+            List<EntityChanges> details = eRepository.findAllByIdlog(a);
+            eRepository.deleteAll(details);
+        }
         /*List<AuditLog> list = this.repository.findAll(): có tác dụng là lấy tất cả các log và cho vào list
          * .stream(): giúp tạo các log thành 1 chuỗi các phần tử có thể được xử lý song song hoặc theo trình tự
          * để thực hiện hoạt động lọc loại bỏ.
