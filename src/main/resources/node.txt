@@ -164,4 +164,8 @@ logging system, especially when dealing with a high volume of logs. By leveragin
 batching capabilities or implementing custom batch processing logic, you can significantly
 reduce the load on your database and improve the overall performance of your application.
 
-Vua sua can chay thu.
+Them phan xuong dong cho trang chi tiet
+Loi hien chi tiet ls luong
+Test chuc nang xoa
+Them giao dien phan trang
+Hop voi nhanh chinh.
