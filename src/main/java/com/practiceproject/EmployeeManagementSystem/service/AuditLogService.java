@@ -70,8 +70,8 @@ public class AuditLogService {
         //Xóa toàn bộ các log có tuổi đời lớn hơn 120 ngày trực tiếp từ csdl.
         List<AuditLog> list = this.repository.findAll().stream()
         //  .filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now)>=1)
-              .filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now) >= 120)
-              .collect(Collectors.toList());
+            .filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now) >= 120)
+            .collect(Collectors.toList());
         for(AuditLog a : list){
             eRepository.deleteAll(eRepository.findAllByIdlog(a));
             repository.delete(a);
