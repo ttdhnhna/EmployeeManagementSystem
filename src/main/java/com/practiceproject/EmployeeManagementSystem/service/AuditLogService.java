@@ -74,8 +74,9 @@ public class AuditLogService {
 
             .collect(Collectors.toList());
         for(AuditLog a : list){
-            List<EntityChanges> details = eRepository.findAllByIdlog(a);
-            eRepository.deleteAll(details);
+            eRepository.deleteAll(eRepository.findAllByIdlog(a));
+            System.out.println("Deleting AuditLog ID: " + a.getIdlog());
+            repository.delete(a);
         }
         /*List<AuditLog> list = this.repository.findAll(): có tác dụng là lấy tất cả các log và cho vào list
          * .stream(): giúp tạo các log thành 1 chuỗi các phần tử có thể được xử lý song song hoặc theo trình tự
@@ -85,7 +86,7 @@ public class AuditLogService {
          * .collect(Collectors.toList()): Thu thập các phần tử của stream vào 1 list 
          * Collectors.toList() là một trình thu thập tích lũy các phần tử đã lọc vào một List<AuditLog> mới.
          */
-        this.repository.deleteAll(list);
+        System.out.println("Deleted logs count: " + list.size());
     }
 
     public List<AuditLog> getListLogs(){

@@ -2,6 +2,8 @@ package com.practiceproject.EmployeeManagementSystem.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -27,6 +29,7 @@ public class AuditlogController {
     }
 
     @GetMapping("/pageLog/{pageNo}")
+    @Transactional
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo, 
     @RequestParam("sortField") String sortField,
     @RequestParam("sortDir") String sortDir, Model model){
