@@ -39,7 +39,7 @@ public class AuditlogController {
         Page<AuditLog> page = service.findPaginated(pageNo, pageSize, sortField, sortDir, iduser);
         List<AuditLog> ListLogs = page.getContent();
         int unreadCount = service.getUnreadLog(iduser);
-        service.autoDeletelog();
+//        service.autoDeletelog();
 
         model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("currentPage", pageNo);

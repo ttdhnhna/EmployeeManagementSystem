@@ -14,7 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-// import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
@@ -64,18 +64,16 @@ public class AuditLogService {
         return Collections.emptyList();
     }
 
-    //@Scheduled(cron = "0 0 0 * * ?")//Chức năng sẽ tự chạy sau mỗi nửa đêm.
+    @Scheduled(cron = "0 0 0 * * ?")//Chức năng sẽ tự chạy sau mỗi nửa đêm.
     public void autoDeletelog(){
         LocalDateTime now = LocalDateTime.now();
         //Xóa toàn bộ các log có tuổi đời lớn hơn 120 ngày trực tiếp từ csdl.
         List<AuditLog> list = this.repository.findAll().stream()
-        //  .filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now)>120)
-            .filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now)>1)
-
-            .collect(Collectors.toList());
+        //  .filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now)>=1)
+              .filter(log -> ChronoUnit.DAYS.between(log.getNgayth(), now) >= 120)
+              .collect(Collectors.toList());
         for(AuditLog a : list){
             eRepository.deleteAll(eRepository.findAllByIdlog(a));
-            System.out.println("Deleting AuditLog ID: " + a.getIdlog());
             repository.delete(a);
         }
         /*List<AuditLog> list = this.repository.findAll(): có tác dụng là lấy tất cả các log và cho vào list
@@ -86,7 +84,6 @@ public class AuditLogService {
          * .collect(Collectors.toList()): Thu thập các phần tử của stream vào 1 list 
          * Collectors.toList() là một trình thu thập tích lũy các phần tử đã lọc vào một List<AuditLog> mới.
          */
-        System.out.println("Deleted logs count: " + list.size());
     }
 
     public List<AuditLog> getListLogs(){
