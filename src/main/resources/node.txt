@@ -51,11 +51,11 @@ bo sung:
 
 Nhiệm vụ mới: Tạo các chức năng sau:
 
-* Lịch sử hoạt động (Audit Log):
+* Lịch sử hoạt động (Audit Log):V
 Mô tả: Ghi lại các hoạt động quan trọng của người dùng như đăng nhập, chỉnh sửa, xóa dữ liệu.
 Lợi ích: Tăng cường bảo mật và giúp theo dõi các thay đổi trên hệ thống.
 
-* Hệ thống thông báo (Notifications):
+* Hệ thống thông báo (Notifications):V
 Mô tả: Thông báo khi có sự kiện quan trọng như cập nhật lương, đăng ký thành công, v.v.
 Lợi ích: Cải thiện trải nghiệm người dùng bằng cách cung cấp thông tin kịp thời.
 
@@ -164,3 +164,5 @@ logging system, especially when dealing with a high volume of logs. By leveragin
 batching capabilities or implementing custom batch processing logic, you can significantly
 reduce the load on your database and improve the overall performance of your application.
 
+Đã có 1 cái nhìn nào đấy về cách làm chức năng đa ngôn ngữ rồi, mai sẽ bắt đầu với việc thay đổi
+các file html đầu tiên.
