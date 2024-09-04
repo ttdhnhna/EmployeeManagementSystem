@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -29,13 +30,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
-import com.practiceproject.EmployeeManagementSystem.entity.EmployeeDto;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
+import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
+import com.practiceproject.EmployeeManagementSystem.entitydto.EmployeeDto;
 import com.practiceproject.EmployeeManagementSystem.repository.DepartmentRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
+import com.practiceproject.EmployeeManagementSystem.repository.EntityChangesRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.SalaryRepository;
 
 
@@ -50,9 +54,15 @@ public class EmployeeService {
     @Autowired
     DepartmentRepository dRepository;
     @Autowired
+    EntityChangesRepository eRepository;
+    @Autowired
+    SalaryService sService;
+    @Autowired
     DepartmentService dService;
     @Autowired
     AccountService uService;
+    @Autowired
+    EntityChangesService eService;
 
     //Chức năng hiện tất cả nhân viên
     // @Transactional(readOnly = true)
@@ -62,6 +72,7 @@ public class EmployeeService {
     
     //Lưu nhân viên
     @SuppressWarnings("null")
+    @Transactional
     public void saveEmployee(String hoten, String ngaysinh, 
     String quequan, String gt, String dantoc, String sdt,
     String email, String chucvu,
@@ -113,11 +124,16 @@ public class EmployeeService {
         Employee savedEmployee =  this.repository.save(employee);
 
         savedSalary.setIdnv(savedEmployee);
-        sRepository.save(savedSalary);
+        sService.saveSalary(savedSalary);
+
+        eService.logAuditOperation(iduser, savedEmployee.getIdnv(), null, null, Act.ADD);
     }
     
     //Cập nhật nhân viên
+    @Transactional
     public void updateEmployee(Employee employee, EmployeeDto employeeDto){
+        EmployeeDto oldEmployee = getoldEmployee(employee);
+        User iduser = uService.getUserByID(Utility.getCurrentUserId());
         MultipartFile file = employeeDto.getAnh();
         if (file != null && !file.isEmpty()) {
             @SuppressWarnings("null")
@@ -145,8 +161,9 @@ public class EmployeeService {
         } else {
             throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
         }
-
         this.repository.save(employee); 
+        AuditLog saveAuditLog = eService.updateAuditOperation(iduser, employee.getIdnv(), null, null, Act.UPDATE);
+        eService.trackChanges(oldEmployee, employeeDto, saveAuditLog);
     }
     
     //Tìm nhân viên bằng id
@@ -162,16 +179,21 @@ public class EmployeeService {
     }
 
     //Xóa nhân viên bằng id
+    @Transactional
     public void deleteEmployeebyID(long id){
+        User iduser = uService.getUserByID(Utility.getCurrentUserId());
         Employee employee = getEmployeebyID(id);
         sRepository.deleteById(employee.getIdluong().getIdluong());
+        eService.logAuditOperation(iduser, null, employee.getIdluong().getIdluong(), null, Act.DELETE);
         this.repository.deleteById(id);
+        eService.logAuditOperation(iduser, id, null, null, Act.DELETE);
     }
 
     //Phân trang và sắp xếp
     public Page<Employee> findPaginated(int pageNo,  int pageSize, String sortField, String sortDirection, Long iduser){
-        Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
-            Sort.by(sortField).descending();
+        Sort sort=sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) 
+            ? Sort.by(sortField).ascending() 
+            : Sort.by(sortField).descending();
         Pageable pageable=PageRequest.of(pageNo-1, pageSize, sort);
         User user = uService.getUserByID(iduser);
         return this.repository.findAllByIduser(user, pageable);
@@ -324,6 +346,7 @@ public class EmployeeService {
                     idpb.setSdt(sdtpb);
                     idpb.setTenpb(tenpb);
                     idpb = dRepository.save(idpb);
+                    eService.logAuditOperation(iduser, null, null, idpb.getIdpb(), Act.ADD);
                 }
                 
                 saveEmployee(hoten, ngaysinh, quequan, gt, dantoc, sdt, email, chucvu, idpb, null, hsl, phucap);
@@ -339,6 +362,21 @@ public class EmployeeService {
 
     private String getCellValue(Cell cell) {//Đề phòng với dữ liệu đầu vào là null thì sẽ lưu dữ liệu vào là rỗng
         return cell != null ? cell.getStringCellValue() : "";
+    }
+
+    public EmployeeDto getoldEmployee(Employee employee){
+        EmployeeDto oldEmployee = new EmployeeDto();
+        oldEmployee.setAnh(null);
+        oldEmployee.setHoten(employee.getHoten());
+        oldEmployee.setNgaysinh(employee.getNgaysinh());
+        oldEmployee.setQuequan(employee.getQuequan());
+        oldEmployee.setGt(employee.getGt());
+        oldEmployee.setDantoc(employee.getDantoc());
+        oldEmployee.setSdt(employee.getSdt());
+        oldEmployee.setEmail(employee.getEmail());
+        oldEmployee.setChucvu(employee.getChucvu());
+        oldEmployee.setIdpb(employee.getIdpb().getIdpb());
+        return oldEmployee;
     }
 }
 

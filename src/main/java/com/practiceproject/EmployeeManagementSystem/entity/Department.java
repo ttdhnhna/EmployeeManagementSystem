@@ -81,6 +81,4 @@ public class Department {
     public void setIduser(User iduser) {
         this.iduser = iduser;
     }
-    
-    
 }

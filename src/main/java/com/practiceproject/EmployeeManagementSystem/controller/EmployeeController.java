@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.Department;
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
-import com.practiceproject.EmployeeManagementSystem.entity.EmployeeDto;
+import com.practiceproject.EmployeeManagementSystem.entitydto.EmployeeDto;
+import com.practiceproject.EmployeeManagementSystem.service.AuditLogService;
 import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
 import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
@@ -33,6 +35,8 @@ public class EmployeeController {
     @Autowired 
     //Điều này có nghĩa là ta sẽ lấy được bean đc tạo tự động bởi Spring
     EmployeeService service;
+    @Autowired
+    AuditLogService aService;
 
     //Hiển thị trang chủ
     @GetMapping("/")
@@ -44,8 +48,12 @@ public class EmployeeController {
     }
     @GetMapping("/addEmployee")
     public String addEmployee(Model model){
+        List<AuditLog> ListLogs = aService.getListLogs();
         EmployeeDto employeeDto=new EmployeeDto();
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("employee", employeeDto);
+        model.addAttribute("ListLogs", ListLogs); 
         /*Phương thức addAttribute ở đây sẽ giúp ta truyền nhưng dữ liệu mà đối tượng employee có
          * và truyền vào employee dưới dạng html để ta có thể dùng để hiển thị và chỉnh sửa
          * trên trang web
@@ -97,7 +105,11 @@ public class EmployeeController {
         //@PathVariable được dùng để xử lý các biểu mẫu trong ánh xạ URI được yêu cầu và đặt làm tham số
         //Hay đơn giản hơn là nó lấy id có được khi ta nhấn nút sửa và gán nó vào id vừa khai báo ở trên
         //Lay du lieu nhan vien tu service
+        List<AuditLog> ListLogs = aService.getListLogs();
         Employee employee=service.getEmployeebyID(id);
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
+        model.addAttribute("ListLogs", ListLogs); 
         model.addAttribute("employee", employee);
         return "updateemployee"; 
     }
@@ -117,6 +129,8 @@ public class EmployeeController {
 
         Page<Employee> page=service.findPaginated(pageNo, pageSize, sortField, sortDir, iduser);
         List<Employee> ListEmployees = page.getContent();
+        List<AuditLog> ListLogs = aService.getListLogs();
+        int unreadCount = aService.getUnreadLog(iduser);
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
@@ -127,6 +141,11 @@ public class EmployeeController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("ListEmployees", ListEmployees); 
+        model.addAttribute("ListLogs", ListLogs); 
+        model.addAttribute("unreadCount", unreadCount);
+
+        model.addAttribute("isSearch", false); 
+
         return "homepage";
     }
 
@@ -134,7 +153,11 @@ public class EmployeeController {
     @GetMapping("/profileemployee/{id}")
     public String viewProfileEmployee(@PathVariable(value = "id") long id, Model model){
         Employee employee=service.getEmployeebyID(id);
+        List<AuditLog> ListLogs = aService.getListLogs();
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("employee", employee);
+        model.addAttribute("ListLogs", ListLogs); 
         return "employeeviewprofile";
     }
 
@@ -143,7 +166,13 @@ public class EmployeeController {
     public String findEmployees(Model model, @Param("keyword") String keyword){
         Long iduser = Utility.getCurrentUserId();
         List<Employee> ListEmployees=service.findAll(keyword, iduser);
+        List<AuditLog> ListLogs = aService.getListLogs();
+        int unreadCount = aService.getUnreadLog(iduser);
+        model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("ListEmployees", ListEmployees);
+        model.addAttribute("ListLogs", ListLogs); 
+        model.addAttribute("isSearch", true); 
+
         if (ListEmployees.isEmpty()) {
             model.addAttribute("errorMess", "Không tìm thấy nhân viên");
         }
@@ -160,9 +189,14 @@ public class EmployeeController {
     }
 
     @GetMapping("/uploadexcel")
-    public String uploadExcelPage(){
+    public String uploadExcelPage(Model model){
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
+        List<AuditLog> ListLogs = aService.getListLogs();
+        model.addAttribute("ListLogs", ListLogs); 
         return "uploadexcel";
     }
+    
     @PostMapping("/uploadexcel")
     public String uploadExcel(@RequestParam("file") MultipartFile file, Model model) throws IOException{
         try {

@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
     crossorigin="anonymous">
-    <link rel="stylesheet" href="style01.css">
+    <link rel="stylesheet" th:href="@{/styles/style01.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
@@ -34,8 +35,54 @@
           <li class="nav-item">
             <a class="nav-link" th:href="@{/salaries} ">Quản lý Lương</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/accounts} ">Tài khoản</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Thêm
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+              <a class="dropdown-item" th:href="@{/accounts} ">Tài khoản</a>           
+              <a class="dropdown-item" th:href="@{/auditlogs} ">Lịch sử</a>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-bell"></i>
+              <span class="badge badge-danger" id="notificationCount" th:if="${unreadCount > 0}" th:text="${unreadCount}"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+              <li th:each = "log : ${ListLogs}">
+                <a class="dropdown-item" th:href="@{/detaillog/{id}(id=${log.idlog})}">
+                  Bạn đã 
+                    <span th:if="${log.act.name() == 'LOGIN'}">đăng nhập</span>
+                    <span th:if="${log.act.name() == 'LOGOUT'}">đăng xuất</span>
+                    <span th:if="${log.act.name() == 'ADD'}">
+                        <span th:if="${log.idnv != null}"> thêm mới mã nhân viên <span th:text="${log.idnv}"></span></span>
+                        <span th:if="${log.idpb != null}">thêm mới mã phòng ban <span th:text="${log.idpb}"></span></span>
+                        <span th:if="${log.idluong != null}">thêm mới mã lương <span th:text="${log.idluong}"></span></span>
+                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}">đăng ký tài khoản <span th:text="${log.idluong}"></span></span>
+                    </span>
+                    <span th:if="${log.act.name() == 'UPDATE'}">
+                        <span th:if="${log.idnv != null}">cập nhật nhân viên mã <span th:text="${log.idnv}"></span></span>
+                        <span th:if="${log.idpb != null}">cập nhật phòng ban mã <span th:text="${log.idpb}"></span></span>
+                        <span th:if="${log.idluong != null}">cập nhật mã lương <span th:text="${log.idluong}"></span></span>
+                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}">cập nhật thông tin tài khoản <span th:text="${log.idluong}"></span></span>
+                    </span>
+                    <span th:if="${log.act.name() == 'DELETE'}">xóa 
+                        <span th:if="${log.idnv != null}">mã nhân viên <span th:text="${log.idnv}"></span></span>
+                        <span th:if="${log.idpb != null}">mã phòng ban <span th:text="${log.idpb}"></span></span>
+                        <span th:if="${log.idluong != null}">mã lương <span th:text="${log.idluong}"></span></span>
+                    </span>
+                    <span th:if="${log.act.name() == 'CHANGEPASS'}">thay đổi mật khẩu</span>
+                    <span class="notification-dot" th:if="${!log.isRead}"></span>
+                </a>
+              </li>
+              <hr>
+              <li>
+                <a class="dropdown-item view-all" th:href="@{/auditlogs}">
+                  Xem tất cả thông báo.
+                </a>
+              </li>
+            </ul>
           </li>
           <li sec:authorize="isAuthenticated()" class="nav-item">
             <a class="nav-link" th:href="@{/logout} ">Đăng xuất</a>
@@ -73,15 +120,24 @@
             <thead class="table-dark">
                 <tr>
                   <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=idluong&sortDir=' + ${reverseSortDir}}">ID Lương</a>
+                    <span th:if="${isSearch}">
+                      ID Lương
+                    </span>
+                    <a th:if="${!isSearch}" th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=idluong&sortDir=' + ${reverseSortDir}}">ID Lương</a>
                   </th>
                   <th>Họ tên</th>
                   <th>Chức vụ</th>
                   <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=hsl&sortDir=' + ${reverseSortDir}}">Hệ số lương</a>
+                    <span th:if="${isSearch}">
+                      Hệ số lương
+                    </span>
+                    <a th:if="${!isSearch}" th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=hsl&sortDir=' + ${reverseSortDir}}">Hệ số lương</a>
                   </th>
                   <th>
-                    <a th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=tongluong&sortDir=' + ${reverseSortDir}}">Tổng lương</a>
+                    <span th:if="${isSearch}">
+                      Tổng lương
+                    </span>
+                    <a th:if="${!isSearch}" th:href="@{'/pageSalary/' + ${currentPage} + '?sortField=tongluong&sortDir=' + ${reverseSortDir}}">Tổng lương</a>
                   </th>
                   <th>Chức năng</th>
                 </tr>
@@ -95,49 +151,56 @@
                     <td th:text="${'₫' + #numbers.formatDecimal(salary.tongluong, 1, 'COMMA', 2, 'POINT')}"></td>
                     <td>
                       <a th:href="@{/updateSalary/{id}(id=${salary.idluong})}" class="btn btn-primary">Cập nhật</a>
-                      <!-- <a th:href="@{/deleteSalary/{id}(id=${salary.idluong})}" class="btn btn-danger">Xóa</a> -->
                   </td>
                 </tr>
             </tbody>
         </table>
 
         <div th:if="${totalPages>1}">
-          <div class="row coL-sm-10">
-            <div class="coL-sm-2">
-              &nbsp; &nbsp;
-              Tổng hàng: [[${totalItems}]]
-              &nbsp; &nbsp;
-            </div>
-            <div class="coL-sm-1">
-              <a th:if="${currentPage > 1}" th:href="@{'/pageSalary/' + 1 + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu</a>
-              <span th:unless="${currentPage > 1}">Đầu</span>
-              &nbsp;
-            </div>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item" style="font-size: 16px;">
+                Tổng hàng: [[${totalItems}]]
+                &nbsp; &nbsp;
+              </li>
+              <li class="page-item">
+                <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/pageSalary/' + 1 + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu</a>
+                <span class="page-item disabled" th:unless="${currentPage > 1}">
+                  <span class="page-link">Đầu</span>
+                </span>
+              </li>
 
-            <div class="coL-sm-1">
-                <a th:if="${currentPage > 1}" th:href="@{'/pageSalary/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trước</a>
-                <span th:unless="${currentPage > 1}">Trước</span>
-                &nbsp;
-            </div>
+              <li class="page-item">
+                <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/pageSalary/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trước</a>
+                <span class="page-item disabled" th:unless="${currentPage > 1}">
+                  <span class="page-link">Trước</span>
+                </span>
+              </li>
 
-            <div class="coL-sm-1">
-              <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                <a th:if="${currentPage != i}" th:href="@{'/pageSalary/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
-                <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
-              </span>
-            </div>
+              <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
+                <a class="page-link" th:if="${currentPage != i}" th:href="@{'/pageSalary/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                <span class="page-item active" th:unless="${currentPage != i}">
+                  <span class="page-link">
+                    [[${i}]]
+                  </span>
+                </span>
+              </li>
 
-            <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/pageSalary/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Tiếp</a>
-              <span th:unless="${currentPage < totalPages}">Tiếp</span>
-              &nbsp;
-            </div>
+              <li class="page-item">
+                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/pageSalary/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Tiếp</a>
+                <span class="page-item disabled" th:unless="${currentPage < totalPages}">
+                  <span class="page-link">Tiếp</span>
+                </span>
+              </li>
 
-            <div class="coL-sm-1">
-              <a th:if="${currentPage < totalPages}" th:href="@{'/pageSalary/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Cuối</a>
-              <span th:unless="${currentPage < totalPages}">Cuối</span>
-            </div>
-          </div>
+              <li class="page-item">
+                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/pageSalary/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Cuối</a>
+                <span class="page-item disabled" th:unless="${currentPage < totalPages}">
+                  <span class="page-link">Cuối</span>
+                </span>
+              </li>
+            </ul>
+          </nav>
         </div>
     </div>
 

@@ -8,27 +8,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
     crossorigin="anonymous">
-    <link rel="stylesheet" href="style01.css">
-    <style>
-      .drop-zone {
-        width: 100%;
-        height: 150px;
-        border: 1px solid black;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 10px;
-        cursor: pointer;
-        background-color: #f9f9f9;
-      }
-      .drop-zone-text {
-        font-size: 16px;
-        color: black;
-      }
-      .drop-zone.dragover {
-        background-color: #e2e2e2;
-      }
-    </style>
+    <link rel="stylesheet" th:href="@{/styles/style01.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
@@ -54,8 +35,54 @@
           <li class="nav-item">
             <a class="nav-link" th:href="@{/salaries} ">Quản lý Lương</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/accounts} ">Tài khoản</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Thêm
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+              <a class="dropdown-item" th:href="@{/accounts} ">Tài khoản</a>           
+              <a class="dropdown-item" th:href="@{/auditlogs} ">Lịch sử</a>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-bell"></i>
+              <span class="badge badge-danger" id="notificationCount" th:if="${unreadCount > 0}" th:text="${unreadCount}"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+              <li th:each = "log : ${ListLogs}">
+                <a class="dropdown-item" th:href="@{/detaillog/{id}(id=${log.idlog})}">
+                  Bạn đã 
+                    <span th:if="${log.act.name() == 'LOGIN'}">đăng nhập</span>
+                    <span th:if="${log.act.name() == 'LOGOUT'}">đăng xuất</span>
+                    <span th:if="${log.act.name() == 'ADD'}">
+                        <span th:if="${log.idnv != null}"> thêm mới mã nhân viên <span th:text="${log.idnv}"></span></span>
+                        <span th:if="${log.idpb != null}">thêm mới mã phòng ban <span th:text="${log.idpb}"></span></span>
+                        <span th:if="${log.idluong != null}">thêm mới mã lương <span th:text="${log.idluong}"></span></span>
+                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}">đăng ký tài khoản <span th:text="${log.idluong}"></span></span>
+                    </span>
+                    <span th:if="${log.act.name() == 'UPDATE'}">
+                        <span th:if="${log.idnv != null}">cập nhật nhân viên mã <span th:text="${log.idnv}"></span></span>
+                        <span th:if="${log.idpb != null}">cập nhật phòng ban mã <span th:text="${log.idpb}"></span></span>
+                        <span th:if="${log.idluong != null}">cập nhật mã lương <span th:text="${log.idluong}"></span></span>
+                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}">cập nhật thông tin tài khoản <span th:text="${log.idluong}"></span></span>
+                    </span>
+                    <span th:if="${log.act.name() == 'DELETE'}">xóa 
+                        <span th:if="${log.idnv != null}">mã nhân viên <span th:text="${log.idnv}"></span></span>
+                        <span th:if="${log.idpb != null}">mã phòng ban <span th:text="${log.idpb}"></span></span>
+                        <span th:if="${log.idluong != null}">mã lương <span th:text="${log.idluong}"></span></span>
+                    </span>
+                    <span th:if="${log.act.name() == 'CHANGEPASS'}">thay đổi mật khẩu</span>
+                    <span class="notification-dot" th:if="${!log.isRead}"></span>
+                </a>
+              </li>
+              <hr>
+              <li>
+                <a class="dropdown-item view-all" th:href="@{/auditlogs}">
+                  Xem tất cả thông báo.
+                </a>
+              </li>
+            </ul>
           </li>
           <li sec:authorize="isAuthenticated()" class="nav-item">
             <a class="nav-link" th:href="@{/logout} ">Đăng xuất</a>

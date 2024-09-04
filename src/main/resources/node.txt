@@ -49,4 +49,3 @@ bo sung:
     server.tomcat.accesslog.enabled=true
     spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
-

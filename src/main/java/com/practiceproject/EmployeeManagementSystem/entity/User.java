@@ -42,6 +42,11 @@ public class User {
     @JsonManagedReference
     private Set<Department> idpb = new HashSet<>();
 
+    @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @BatchSize(size = 16)
+    @JsonManagedReference
+    private Set<AuditLog> idlog = new HashSet<>();
+
     public User() {
     }
     public Long getIduser() {
@@ -74,11 +79,23 @@ public class User {
     public void setResetPassToken(String resetPassToken) {
         this.resetPassToken = resetPassToken;
     }
-    // public Set<Employee> getIdnv() {
-    //     return idnv;
-    // }
-    // public void setIdnv(Set<Employee> idnv) {
-    //     this.idnv = idnv;
-    // }
+    public Set<Employee> getIdnv() {
+        return idnv;
+    }
+    public void setIdnv(Set<Employee> idnv) {
+        this.idnv = idnv;
+    }
+    public Set<Department> getIdpb() {
+        return idpb;
+    }
+    public void setIdpb(Set<Department> idpb) {
+        this.idpb = idpb;
+    }
+    public Set<AuditLog> getIdlog() {
+        return idlog;
+    }
+    public void setIdlog(Set<AuditLog> idlog) {
+        this.idlog = idlog;
+    }
     
 }

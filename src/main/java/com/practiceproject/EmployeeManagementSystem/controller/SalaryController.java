@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.Salary;
+import com.practiceproject.EmployeeManagementSystem.service.AuditLogService;
 import com.practiceproject.EmployeeManagementSystem.service.SalaryService;
 import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
@@ -21,6 +23,8 @@ import com.practiceproject.EmployeeManagementSystem.service.Utility;
 public class SalaryController {
     @Autowired
     SalaryService service;
+    @Autowired
+    AuditLogService aService;
 
     @GetMapping("/salaries")
     public String getSalaries(Model model){
@@ -33,6 +37,12 @@ public class SalaryController {
         return "redirect:/salaries";
     }
 
+    @PostMapping("/updateSalary")
+    public String updateSalary(@ModelAttribute("salary") Salary salary){
+        service.updateSalary(salary);
+        return "redirect:/salaries";
+    }
+
     // @GetMapping("/addSalary")
     // public String addSalary(Model model){
     //     Salary salary=new Salary();
@@ -42,6 +52,10 @@ public class SalaryController {
 
     @GetMapping("/updateSalary/{id}")
     public String updateEmployee(@PathVariable(value = "id") long id, Model model){
+        List<AuditLog> ListLogs = aService.getListLogs();
+        model.addAttribute("ListLogs", ListLogs); 
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         Salary salary=service.getSalaryID(id);
         model.addAttribute("salary", salary);
         return "updatesalary";
@@ -62,7 +76,10 @@ public class SalaryController {
 
        Page<Salary> page=service.findPaginated(pageNo, pageSize, sortField, sortDir, iduser);
        List<Salary> ListSalaries= page.getContent();
+       List<AuditLog> ListLogs = aService.getListLogs();
+       int unreadCount = aService.getUnreadLog(iduser);
 
+       model.addAttribute("ListLogs", ListLogs); 
        model.addAttribute("currentPage", pageNo);
        model.addAttribute("totalPages", page.getTotalPages());
        model.addAttribute("totalItems", page.getTotalElements());
@@ -72,6 +89,9 @@ public class SalaryController {
        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
        model.addAttribute("ListSalaries", ListSalaries);
+       model.addAttribute("isSearch", false); 
+       model.addAttribute("unreadCount", unreadCount);
+
        return "salariespage";
    }
     //Tìm kiếm
@@ -79,7 +99,14 @@ public class SalaryController {
     public String findSalaries(Model model, @Param("keyword") String keyword){
         Long iduser = Utility.getCurrentUserId();
         List<Salary> ListSalaries=service.findAllSalaries(keyword, iduser);
+        List<AuditLog> ListLogs = aService.getListLogs();
+        int unreadCount = aService.getUnreadLog(iduser);
+
+        model.addAttribute("ListLogs", ListLogs); 
         model.addAttribute("ListSalaries", ListSalaries);
+        model.addAttribute("isSearch", true); 
+        model.addAttribute("unreadCount", unreadCount);
+
         if(ListSalaries.isEmpty()){
             model.addAttribute("errorMess", "Không tìm thấy thông tin lương");
         }

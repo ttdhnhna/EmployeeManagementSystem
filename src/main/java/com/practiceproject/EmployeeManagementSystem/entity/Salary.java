@@ -112,5 +112,4 @@ public class Salary {
     public void setTienno(float tienno) {
         this.tienno = tienno;
     }
-    
 }

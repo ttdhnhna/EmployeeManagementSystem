@@ -1,4 +1,4 @@
-package com.practiceproject.EmployeeManagementSystem.entity;
+package com.practiceproject.EmployeeManagementSystem.entitydto;
 
 import org.springframework.web.multipart.MultipartFile;
 
