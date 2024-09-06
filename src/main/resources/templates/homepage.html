@@ -9,7 +9,8 @@
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
     crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/styles/style01.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
@@ -40,6 +41,11 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
                 <a class="dropdown-item" th:href="@{/accounts}" th:text="#{dropdownitemaccount}"></a>           
                 <a class="dropdown-item" th:href="@{/auditlogs}" th:text="#{dropdownitemhistory}"></a>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-language" style="font-size: 22px;"></i></a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
                 <a class="dropdown-item" th:href="@{/?lang=en}">English</a>
                 <a  class="dropdown-item" th:href="@{/?lang=vi}">Tiếng Việt</a>
               </ul>
@@ -97,15 +103,15 @@
     <div class="container">
         <div class="row">
             &nbsp; &nbsp; 
-            <h1 th:text="#{containerh1}"></h1>
+            <h1 th:text="#{containerh1employee}"></h1>
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <a th:href="@{/addEmployee}" class="btn btn-primary btn-sm mb-3" th:text="#{btnaddemployee}">
+                <a th:href="@{/addEmployee}" class="btn btn-primary btn-sm mb-3" th:text="#{btnadd}">
                 </a>
-                <a th:href="@{/excel}" class="btn btn-primary btn-sm mb-3" th:text="#{btndownloadexcel}">
+                <a th:href="@{/excel}" class="btn btn-primary btn-sm mb-3" data-toggle="tooltip" data-placement="bottom" title="Tải xuống file Excel" th:text="#{btndownloadexcel}">
                 </a>
-                <a th:href="@{/uploadexcel}" class="btn btn-primary btn-sm mb-3" th:text="#{btnuploadexcel}">
+                <a th:href="@{/uploadexcel}" class="btn btn-primary btn-sm mb-3" data-toggle="tooltip" data-placement="bottom" title="Tải lên file Excel" th:text="#{btnuploadexcel}">
                 </a>
             </div>
         </div>
@@ -159,10 +165,11 @@
           <nav aria-label="Page navigation example">
             <ul class="pagination">
               <li class="page-item" style="font-size: 16px;" th:text="#{totalitems}">
+                &nbsp; 
               </li>
               <li class="page-item" style="font-size: 16px;">
                 [[${totalItems}]]
-                &nbsp; &nbsp;
+                &nbsp; 
               </li>
               <li class="page-item">
                 <a class="page-link" th:if="${currentPage > 1}" th:text="#{firstpage}" th:href="@{'/page/' + 1 + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"></a>
