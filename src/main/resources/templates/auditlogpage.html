@@ -106,8 +106,7 @@
         </div>
         <div class="row">
           <div class="col-lg-3">
-              <a th:href="@{/readall}" class="btn btn-primary btn-sm mb-3" data-toggle="tooltip" data-placement="bottom" title="Đánh dấu tất cả thư là đã đọc">
-                  Đánh dấu đọc
+              <a th:href="@{/readall}" th:text="#{tbllogbtn}" class="btn btn-primary btn-sm mb-3" data-toggle="tooltip" data-placement="bottom" title="Đánh dấu tất cả thư là đã đọc">
               </a>
           </div>
       </div>
@@ -120,18 +119,16 @@
                 <thead>
                   <tr>
                     <th scope="col">
-                      <span th:if="${isSearch}">
-                        ID
+                      <span th:if="${isSearch}" th:text="#{tblid}">
                       </span>
-                      <a th:if="${!isSearch}" th:href="@{'/pageLog/' + ${currentPage} + '?sortField=idlog&sortDir=' + ${reverseSortDir}}">ID</a>
+                      <a th:if="${!isSearch}" th:text="#{tblid}" th:href="@{'/pageLog/' + ${currentPage} + '?sortField=idlog&sortDir=' + ${reverseSortDir}}"></a>
                     </th>
                     <th scope="col">
-                      <span th:if="${isSearch}">
-                        Thời điểm
+                      <span th:if="${isSearch}" th:text="#{tbltime}">
                       </span>
-                      <a th:if="${!isSearch}" th:href="@{'/pageLog/' + ${currentPage} + '?sortField=idlog&sortDir=' + ${reverseSortDir}}">Thời điểm</a>
+                      <a th:if="${!isSearch}" th:text="#{tbltime}" th:href="@{'/pageLog/' + ${currentPage} + '?sortField=idlog&sortDir=' + ${reverseSortDir}}"></a>
                     </th>
-                    <th scope="col">Hành động</th>
+                    <th scope="col" th:text="#{tblact}"></th>
                     <th scope="col" th:text="#{tblfunction}"></th>
                   </tr>
                 </thead>
@@ -140,27 +137,29 @@
                     <th scope="row" th:text="${log.idlog}"></th>
                     <td th:text="${#temporals.format(log.ngayth, 'yyyy-MM-dd HH:mm')}"></td>
                     <td>
-                      Người dùng <span th:text="${log.iduser.email}"></span> đã 
-                      <span th:if="${log.act.name() == 'LOGIN'}">đăng nhập</span>
-                      <span th:if="${log.act.name() == 'LOGOUT'}">đăng xuất</span>
-                      <span th:if="${log.act.name() == 'ADD'}">
-                          <span th:if="${log.idnv != null}"> thêm mới mã nhân viên <span th:text="${log.idnv}"></span></span>
-                          <span th:if="${log.idpb != null}">thêm mới mã phòng ban <span th:text="${log.idpb}"></span></span>
-                          <span th:if="${log.idluong != null}">thêm mới mã lương <span th:text="${log.idluong}"></span></span>
-                          <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}">đăng ký tài khoản <span th:text="${log.idluong}"></span></span>
+                      <span th:if="${log.act.name() == 'LOGIN'}" th:text="#{notificationlogin}"></span>
+                      <span th:if="${log.act.name() == 'LOGOUT'}" th:text="#{notificationlogout}"></span>
+                      <span th:if="${log.act.name() == 'ADD'}" >
+                        <span th:text="#{tblloguser}"></span><span th:text="${log.iduser.email}"></span> <span th:text="#{tblloguserhad}"></span>
+                        <span th:if="${log.idnv != null}" th:text="#{notificationaddemployee}"> <span th:text="${log.idnv}"></span></span>
+                        <span th:if="${log.idpb != null}" th:text="#{notificationadddepartment}"> <span th:text="${log.idpb}"></span></span>
+                        <span th:if="${log.idluong != null}" th:text="#{notificationaddsalary}"> <span th:text="${log.idluong}"></span></span>
+                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}" th:text="#{notificationregister}"> <span th:text="${log.idluong}"></span></span>
                       </span>
-                      <span th:if="${log.act.name() == 'UPDATE'}">
-                          <span th:if="${log.idnv != null}">cập nhật nhân viên mã <span th:text="${log.idnv}"></span></span>
-                          <span th:if="${log.idpb != null}">cập nhật phòng ban mã <span th:text="${log.idpb}"></span></span>
-                          <span th:if="${log.idluong != null}">cập nhật mã lương <span th:text="${log.idluong}"></span></span>
-                          <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}">cập nhật thông tin tài khoản <span th:text="${log.idluong}"></span></span>
+                      <span th:if="${log.act.name() == 'UPDATE'}" >
+                        <span th:text="#{tblloguser}"></span> <span th:text="${log.iduser.email}"></span> <span th:text="#{tblloguserhad}"></span>
+                        <span th:if="${log.idnv != null}" th:text="#{notificationupdateemployee}"> <span th:text="${log.idnv}"></span></span>
+                        <span th:if="${log.idpb != null}" th:text="#{notificationupdatedepartment}"> <span th:text="${log.idpb}"></span></span>
+                        <span th:if="${log.idluong != null}" th:text="#{notificationupdatesalary}"> <span th:text="${log.idluong}"></span></span>
+                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}" th:text="#{notificationupdateaccount }"> <span th:text="${log.idluong}"></span></span>
                       </span>
-                      <span th:if="${log.act.name() == 'DELETE'}">xóa 
-                          <span th:if="${log.idnv != null}">mã nhân viên <span th:text="${log.idnv}"></span></span>
-                          <span th:if="${log.idpb != null}">mã phòng ban <span th:text="${log.idpb}"></span></span>
-                          <span th:if="${log.idluong != null}">mã lương <span th:text="${log.idluong}"></span></span>
+                      <span th:if="${log.act.name() == 'DELETE'}">
+                          <span th:text="#{tblloguser}"></span> <span th:text="${log.iduser.email}"></span> <span th:text="#{tblloguserhad}"></span>
+                        <span th:if="${log.idnv != null}" th:text="#{notificationdeleteemployee}"> <span th:text="${log.idnv}"></span></span>
+                        <span th:if="${log.idpb != null}" th:text="#{notificationdeletedepartment}"> <span th:text="${log.idpb}"></span></span>
+                        <span th:if="${log.idluong != null}" th:text="#{notificationdeletesalary}"> <span th:text="${log.idluong}"></span></span>
                       </span>
-                      <span th:if="${log.act.name() == 'CHANGEPASS'}">thay đổi mật khẩu</span>
+                      <span th:if="${log.act.name() == 'CHANGEPASS'}" th:text="#{notificationchangepass}"></span>
                     </td>
                     <td>
                       <a th:href="@{/detaillog/{id}(id=${log.idlog})}" class="btn btn-primary" th:text="#{tblbtndetail}"></a>

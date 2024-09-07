@@ -164,5 +164,4 @@ logging system, especially when dealing with a high volume of logs. By leveragin
 batching capabilities or implementing custom batch processing logic, you can significantly
 reduce the load on your database and improve the overall performance of your application.
 
-Đã cập nhật phần chuyển ngôn ngữ này cho file ds pb, luong rồi cần hoàn thành nốt phần lịch sử 
-và 2 file messages-en và messages.
+Con loi o phan danh sach lich su vi khong hien id nv hoac pb duoc cap nhat con dau thi on roi.
