@@ -144,14 +144,14 @@
                         <span th:if="${log.idnv != null}" th:text="#{notificationaddemployee(${log.idnv})}"></span>
                         <span th:if="${log.idpb != null}" th:text="#{notificationadddepartment(${log.idpb})}"></span>
                         <span th:if="${log.idluong != null}" th:text="#{notificationaddsalary(${log.idluong})}"></span>
-                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}" th:text="#{notificationregister}"> <span th:text="${log.idluong}"></span></span>
+                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}" th:text="#{notificationregister}"></span>
                       </span>
                       <span th:if="${log.act.name() == 'UPDATE'}" >
                         <span th:text="#{tblloguser}"></span> <span th:text="${log.iduser.email}"></span> <span th:text="#{tblloguserhad}"></span>
                         <span th:if="${log.idnv != null}" th:text="#{notificationupdateemployee(${log.idnv})}"></span>
                         <span th:if="${log.idpb != null}" th:text="#{notificationupdatedepartment(${log.idpb})}"></span>
                         <span th:if="${log.idluong != null}" th:text="#{notificationupdatesalary(${log.idluong})}"></span>
-                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}" th:text="#{notificationupdateaccount }"> <span th:text="${log.idluong}"></span></span>
+                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}" th:text="#{notificationupdateaccount }"></span>
                       </span>
                       <span th:if="${log.act.name() == 'DELETE'}">
                         <span th:text="#{tblloguser}"></span> <span th:text="${log.iduser.email}"></span> <span th:text="#{tblloguserhad}"></span>
