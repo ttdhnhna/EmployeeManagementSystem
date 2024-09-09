@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ thống quản lý Nhân viên</title>
+    <title th:text="#{title}"></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
     crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/styles/style01.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
       <!-- Brand -->
-      <a class="navbar-brand" th:href="@{/}">Hệ thống Quản lý Nhân viên</a>
-    
+      <a class="navbar-brand" th:href="@{/}" th:text="#{brand}"></a>
+
       <!-- Toggler/collapsibe Button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" 
       aria-expanded="false" aria-controls="collapsibleNavbar" aria-label="Toggle navigation">
@@ -27,22 +27,27 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/} ">Quản lý Nhân viên</a>
+            <a class="nav-link" th:href="@{/}" th:text="#{navlinkemployee}"></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/departments} ">Quản lý Phòng ban</a>
+              <a class="nav-link" th:href="@{/departments}" th:text="#{navlinkdepartment}"></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/salaries} ">Quản lý Lương</a>
+              <a class="nav-link" th:href="@{/salaries}" th:text="#{navlinksalary}"></a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Thêm
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
-              <a class="dropdown-item" th:href="@{/accounts} ">Tài khoản</a>           
-              <a class="dropdown-item" th:href="@{/auditlogs} ">Lịch sử</a>
-            </ul>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{navlinkdropdown}"></a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+              <a class="dropdown-item" th:href="@{/accounts}" th:text="#{dropdownitemaccount}"></a>           
+              <a class="dropdown-item" th:href="@{/auditlogs}" th:text="#{dropdownitemhistory}"></a>
+          </ul>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-language" style="font-size: 22px;"></i></a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+                  <a class="dropdown-item" th:href="@{/?lang=en}">English</a>
+                  <a  class="dropdown-item" th:href="@{/?lang=vi}">Tiếng Việt</a>
+              </ul>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link" href="#" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -78,14 +83,13 @@
               </li>
               <hr>
               <li>
-                <a class="dropdown-item view-all" th:href="@{/auditlogs}">
-                  Xem tất cả thông báo.
+                <a class="dropdown-item view-all" th:href="@{/auditlogs}" th:text="#{notificationviewall}">
                 </a>
               </li>
             </ul>
           </li>
           <li sec:authorize="isAuthenticated()" class="nav-item">
-            <a class="nav-link" th:href="@{/logout} ">Đăng xuất</a>
+            <a class="dropdown-item view-all" th:href="@{/logout}" th:text="#{navlinklogout}"></a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" th:action="@{/findemployee}">
@@ -104,28 +108,27 @@
       <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="margin-bottom: 50px; margin-top: 20px;">
               <br>
-              <h1 class="text-center">Thông tin Tài khoản</h1>
+              <h1 class="text-center" th:text="#{accountinfo}"></h1>
               <div class="card-body" th:object="${user}">
                 <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
                 nut gui -->
                 <div class="form-group">
-                  <label>ID Tài khoản</label>
+                  <label th:text="#{accountid}"></label>
                   <output class="form-control mb-1" name="iduser" th:text="${user.iduser}"></output>
                 </div>
-                      <div class="form-group">
-                          <label>Tên người dùng</label>
-                          <output class="form-control mb-1" name="hoten" th:text="${user.hoten}"></output>
-                      </div>
-                      <div class="form-group">
-                          <label>Email</label>
-                          <output class="form-control mb-1" name="email" th:text="${user.email}"></output>
-                      </div>
-                      &nbsp;
-                      <div class="box-footer" style="margin-bottom: 20px;">
-                          <a th:href="@{/updateAccount/{id}(id=${user.iduser})}"class="btn btn-primary">
-                              Chỉnh sửa thông tin
-                          </a>
-                      </div>
+                <div class="form-group">
+                  <label th:text="#{updateaccountname}"></label>
+                  <output class="form-control mb-1" name="hoten" th:text="${user.hoten}"></output>
+                </div>
+                <div class="form-group">
+                    <label th:text="#{employeeemail}"></label>
+                    <output class="form-control mb-1" name="email" th:text="${user.email}"></output>
+                </div>
+                &nbsp;
+                <div class="box-footer" style="margin-bottom: 20px;">
+                    <a th:text="#{accountmodifybtn}" th:href="@{/updateAccount/{id}(id=${user.iduser})}"class="btn btn-primary">
+                    </a>
+                </div>
               </div>
           </div>
       </div>
