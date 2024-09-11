@@ -164,5 +164,8 @@ logging system, especially when dealing with a high volume of logs. By leveragin
 batching capabilities or implementing custom batch processing logic, you can significantly
 reduce the load on your database and improve the overall performance of your application.
 
-Da sua xong phan thong bao gio se lam not cho cac tranh khac roi se lam phan chuyen doi ngon
-ngu cho cac trang login hoac register.
+lam phan chuyen doi ngon ngu cho cac trang login hoac register.
+Đang cập nhật dở trang login, cần cập nhật lốt và bổ sung cho cả trang forgotpassword, resetpassword
+registration.
+Và sau khi xong thì nên làm thêm cả phần thông báo lỗi với cần phải bổ sung thêm phần giúp khi thay 
+đổi ngôn ngữ thì mình sẽ đứng im tại trang mà mình đang ở.

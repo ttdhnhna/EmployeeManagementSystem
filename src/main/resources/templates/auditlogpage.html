@@ -59,22 +59,25 @@
                 <a class="dropdown-item" th:href="@{/detaillog/{id}(id=${log.idlog})}">
                     <span th:if="${log.act.name() == 'LOGIN'}" th:text="#{notificationlogin}"></span>
                     <span th:if="${log.act.name() == 'LOGOUT'}" th:text="#{notificationlogout}"></span>
-                    <span th:if="${log.act.name() == 'ADD'}" th:text="#{notification}">
-                        <span th:if="${log.idnv != null}" th:text="#{notificationaddemployee(${log.idnv})}"></span>
-                        <span th:if="${log.idpb != null}" th:text="#{notificationadddepartment(${log.idpb})}"></span>
-                        <span th:if="${log.idluong != null}" th:text="#{notificationaddsalary(${log.idluong})}"></span>
-                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}" th:text="#{notificationregister}"></span>
+                    <span th:if="${log.act.name() == 'ADD'}">
+                      <span th:text="#{notification}"></span>
+                      <span th:if="${log.idnv != null}"><span th:text="#{notificationaddemployee(${log.idnv})}"></span></span>
+                      <span th:if="${log.idpb != null}"><span th:text="#{notificationadddepartment(${log.idpb})}"></span></span>
+                      <span th:if="${log.idluong != null}"><span th:text="#{notificationaddsalary(${log.idluong})}"></span></span>
+                      <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}"><span th:text="#{notificationregister}"></span></span>
                     </span>
-                    <span th:if="${log.act.name() == 'UPDATE'}" th:text="#{notification}">
-                        <span th:if="${log.idnv != null}" th:text="#{notificationupdateemployee(${log.idnv})}"></span>
-                        <span th:if="${log.idpb != null}" th:text="#{notificationupdatedepartment(${log.idpb})}"></span>
-                        <span th:if="${log.idluong != null}" th:text="#{notificationupdatesalary(${log.idluong})}"></span>                
-                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}" th:text="#{notificationupdateaccount }"></span>
+                    <span th:if="${log.act.name() == 'UPDATE'}">
+                      <span th:text="#{notification}"></span>
+                      <span th:if="${log.idnv != null}"><span th:text="#{notificationupdateemployee(${log.idnv})}"></span></span>
+                      <span th:if="${log.idpb != null}"><span th:text="#{notificationupdatedepartment(${log.idpb})}"></span></span>
+                      <span th:if="${log.idluong != null}"><span th:text="#{notificationupdatesalary(${log.idluong})}"></span></span>           
+                      <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}"><span th:text="#{notificationupdateaccount }"></span></span>
                     </span>
-                    <span th:if="${log.act.name() == 'DELETE'}" th:text="#{notification}"> 
-                        <span th:if="${log.idnv != null}" th:text="#{notificationdeleteemployee(${log.idnv})}"></span>
-                        <span th:if="${log.idpb != null}" th:text="#{notificationdeletedepartment(${log.idpb})}"></span>
-                        <span th:if="${log.idluong != null}" th:text="#{notificationdeletesalary(${log.idluong})}"></span>
+                    <span th:if="${log.act.name() == 'DELETE'}">
+                      <span th:text="#{notification}"></span>
+                      <span th:if="${log.idnv != null}"><span th:text="#{notificationdeleteemployee(${log.idnv})}"></span></span>
+                      <span th:if="${log.idpb != null}"><span th:text="#{notificationdeletedepartment(${log.idpb})}"></span></span>
+                      <span th:if="${log.idluong != null}"><span th:text="#{notificationdeletesalary(${log.idluong})}"></span></span>
                     </span>
                     <span th:if="${log.act.name() == 'CHANGEPASS'}" th:text="#{notificationchangepass}"></span>
                     <span class="notification-dot" th:if="${!log.isRead}"></span>
