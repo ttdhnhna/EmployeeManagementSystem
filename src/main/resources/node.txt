@@ -163,5 +163,3 @@ Batching log entries is a powerful technique to enhance the performance and effi
 logging system, especially when dealing with a high volume of logs. By leveraging Hibernate's
 batching capabilities or implementing custom batch processing logic, you can significantly
 reduce the load on your database and improve the overall performance of your application.
-
-Vua sua phan thong bao trang chu.
