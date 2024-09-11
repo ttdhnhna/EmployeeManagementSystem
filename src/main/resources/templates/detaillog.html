@@ -111,21 +111,21 @@
           <p class="card-text" th:text="${#temporals.format(auditLog.ngayth, 'yyyy-MM-dd HH:mm')}"></p>
           <h5 class="card-title" th:text="#{tblbtndetail}"></h5>
           <p class="card-text">
-            <span th:if="${log.act.name() == 'LOGIN'}" th:text="#{notificationlogin}"></span>
-            <span th:if="${log.act.name() == 'LOGOUT'}" th:text="#{notificationlogout}"></span>
-            <span th:if="${log.act.name() == 'ADD'}" >
-              <span th:text="#{tblloguser}"></span><span th:text="${log.iduser.email}"></span> <span th:text="#{tblloguserhad}"></span>
-              <span th:if="${log.idnv != null}" th:text="#{notificationaddemployee(${log.idnv})}"></span>
-              <span th:if="${log.idpb != null}" th:text="#{notificationadddepartment(${log.idpb})}"></span>
-              <span th:if="${log.idluong != null}" th:text="#{notificationaddsalary(${log.idluong})}"></span>
-              <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}" th:text="#{notificationregister}"></span>
+            <span th:if="${auditLog.act.name() == 'LOGIN'}" th:text="#{notificationlogin}"></span>
+            <span th:if="${auditLog.act.name() == 'LOGOUT'}" th:text="#{notificationlogout}"></span>
+            <span th:if="${auditLog.act.name() == 'ADD'}" >
+              <span th:text="#{tblloguser}"></span><span th:text="${auditLog.iduser.email}"></span> <span th:text="#{tblloguserhad}"></span>
+              <span th:if="${auditLog.idnv != null}" th:text="#{notificationaddemployee(${auditLog.idnv})}"></span>
+              <span th:if="${auditLog.idpb != null}" th:text="#{notificationadddepartment(${auditLog.idpb})}"></span>
+              <span th:if="${auditLog.idluong != null}" th:text="#{notificationaddsalary(${auditLog.idluong})}"></span>
+              <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}" th:text="#{notificationregister}"></span>
             </span>
-            <span th:if="${log.act.name() == 'UPDATE'}" >
-              <span th:text="#{tblloguser}"></span> <span th:text="${log.iduser.email}"></span> <span th:text="#{tblloguserhad}"></span>
-              <span th:if="${log.idnv != null}" th:text="#{notificationupdateemployee(${log.idnv})}"></span>
-              <span th:if="${log.idpb != null}" th:text="#{notificationupdatedepartment(${log.idpb})}"></span>
-              <span th:if="${log.idluong != null}" th:text="#{notificationupdatesalary(${log.idluong})}"></span>
-              <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}" th:text="#{notificationupdateaccount }"></span>
+            <span th:if="${auditLog.act.name() == 'UPDATE'}" >
+              <span th:text="#{tblloguser}"></span> <span th:text="${auditLog.iduser.email}"></span> <span th:text="#{tblloguserhad}"></span>
+              <span th:if="${auditLog.idnv != null}" th:text="#{notificationupdateemployee(${auditLog.idnv})}"></span>
+              <span th:if="${auditLog.idpb != null}" th:text="#{notificationupdatedepartment(${auditLog.idpb})}"></span>
+              <span th:if="${auditLog.idluong != null}" th:text="#{notificationupdatesalary(${auditLog.idluong})}"></span>
+              <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}" th:text="#{notificationupdateaccount}"></span>
               <span style="font-weight: bold;" th:text="#{changes}"></span><br>
               <span th:each = "change : ${entityChanges}">
                 <span th:if="${auditLog.idnv != null}">
@@ -174,13 +174,13 @@
                 </span>
               </span>
             </span>
-            <span th:if="${log.act.name() == 'DELETE'}">
-              <span th:text="#{tblloguser}"></span> <span th:text="${log.iduser.email}"></span> <span th:text="#{tblloguserhad}"></span>
-              <span th:if="${log.idnv != null}" th:text="#{notificationdeleteemployee(${log.idnv})}"></span>
-              <span th:if="${log.idpb != null}" th:text="#{notificationdeletedepartment(${log.idpb})}"></span>
-              <span th:if="${log.idluong != null}" th:text="#{notificationdeletesalary(${log.idluong})}"></span>
+            <span th:if="${auditLog.act.name() == 'DELETE'}">
+              <span th:text="#{tblloguser}"></span> <span th:text="${auditLog.iduser.email}"></span> <span th:text="#{tblloguserhad}"></span>
+              <span th:if="${auditLog.idnv != null}" th:text="#{notificationdeleteemployee(${log.idnv})}"></span>
+              <span th:if="${auditLog.idpb != null}" th:text="#{notificationdeletedepartment(${log.idpb})}"></span>
+              <span th:if="${auditLog.idluong != null}" th:text="#{notificationdeletesalary(${log.idluong})}"></span>
             </span>
-            <span th:if="${log.act.name() == 'CHANGEPASS'}" th:text="#{notificationchangepass}"></span>
+            <span th:if="${auditLog.act.name() == 'CHANGEPASS'}" th:text="#{notificationchangepass}"></span>
           </p>
           <br>
           <a th:href="@{/auditlogs}" class="btn btn-danger" th:text="#{returnbtn}"></a>
