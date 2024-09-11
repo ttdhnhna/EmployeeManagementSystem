@@ -114,7 +114,7 @@
             <span th:if="${auditLog.act.name() == 'LOGIN'}" th:text="#{notificationlogin}"></span>
             <span th:if="${auditLog.act.name() == 'LOGOUT'}" th:text="#{notificationlogout}"></span>
             <span th:if="${auditLog.act.name() == 'ADD'}" >
-              <span th:text="#{tblloguser}"></span><span th:text="${auditLog.iduser.email}"></span> <span th:text="#{tblloguserhad}"></span>
+              <span th:text="#{tblloguser}"></span> <span th:text="${auditLog.iduser.email}"></span> <span th:text="#{tblloguserhad}"></span>
               <span th:if="${auditLog.idnv != null}" th:text="#{notificationaddemployee(${auditLog.idnv})}"></span>
               <span th:if="${auditLog.idpb != null}" th:text="#{notificationadddepartment(${auditLog.idpb})}"></span>
               <span th:if="${auditLog.idluong != null}" th:text="#{notificationaddsalary(${auditLog.idluong})}"></span>
@@ -125,51 +125,51 @@
               <span th:if="${auditLog.idnv != null}" th:text="#{notificationupdateemployee(${auditLog.idnv})}"></span>
               <span th:if="${auditLog.idpb != null}" th:text="#{notificationupdatedepartment(${auditLog.idpb})}"></span>
               <span th:if="${auditLog.idluong != null}" th:text="#{notificationupdatesalary(${auditLog.idluong})}"></span>
-              <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}" th:text="#{notificationupdateaccount}"></span>
+              <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}" th:text="#{notificationupdateaccount}"></span><br>
               <span style="font-weight: bold;" th:text="#{changes}"></span><br>
               <span th:each = "change : ${entityChanges}">
                 <span th:if="${auditLog.idnv != null}">
-                  <span th:if="${change.fieldName == 'hoten'}"><span th:text="#{changenamenv}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'hoten'}"><span th:text="#{changenamenv}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span><br>
-                  <span th:if="${change.fieldName == 'ngaysinh'}"><span th:text="#{changensnv}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'ngaysinh'}"><span th:text="#{changensnv}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${change.fieldName == 'quequan'}"><span th:text="#{changeaddnv}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'quequan'}"><span th:text="#{changeaddnv}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${change.fieldName == 'gt'}"><span th:text="#{changesexnv}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'gt'}"><span th:text="#{changesexnv}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${change.fieldName == 'dantoc'}"><span th:text="#{changedtnv}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'dantoc'}"><span th:text="#{changedtnv}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${change.fieldName == 'sdt'}"><span th:text="#{changesdtnv}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'sdt'}"><span th:text="#{changesdtnv}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${change.fieldName == 'email'}"><span th:text="#{changeemailnv}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'email'}"><span th:text="#{changeemailnv}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${change.fieldName == 'chucvu'}"><span th:text="#{changecvnv}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'chucvu'}"><span th:text="#{changecvnv}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${change.fieldName == 'idpb'}"><span th:text="#{changepbnv}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'idpb'}"><span th:text="#{changepbnv}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
                 </span>
                 <span th:if="${auditLog.idpb != null}">
-                  <span th:if="${change.fieldName == 'tenpb'}"><span th:text="#{changenamepb}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'tenpb'}"><span th:text="#{changenamepb}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${change.fieldName == 'diachi'}"><span th:text="#{changeaddpb}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'diachi'}"><span th:text="#{changeaddpb}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${change.fieldName == 'sdt'}"><span th:text="#{changesdtpb}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'sdt'}"><span th:text="#{changesdtpb}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
                 </span>
                 <span th:if="${auditLog.idluong != null}">
-                  <span th:if="${change.fieldName == 'hsl'}"><span th:text="#{changehsl}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'hsl'}"><span th:text="#{changehsl}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${change.fieldName == 'phucap'}"><span th:text="#{changepc}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'phucap'}"><span th:text="#{changepc}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${change.fieldName == 'baohiem'}"><span th:text="#{changebh}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'baohiem'}"><span th:text="#{changebh}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${change.fieldName == 'truluong'}"><span th:text="#{changetruluong}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'truluong'}"><span th:text="#{changetruluong}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
                 </span>
                 <span th:if="${auditLog.idnv == null && auditLog.idpb == null && auditLog.idluong == null}">
-                  <span th:if="${change.fieldName == 'hoten'}"><span th:text="#{changenameuser}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'hoten'}"><span th:text="#{changenameuser}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
-                  <span th:if="${change.fieldName == 'email'}"><span th:text="#{changeemailuser}"></span><span th:text="${change.oldValue}"></span><span th:text="#{to}"></span><span th:text="${change.newValue}"></span>
+                  <span th:if="${change.fieldName == 'email'}"><span th:text="#{changeemailuser}"></span> <span th:text="${change.oldValue}"></span> <span th:text="#{to}"></span> <span th:text="${change.newValue}"></span>
                   </span>
                 </span>
               </span>
