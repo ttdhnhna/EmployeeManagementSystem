@@ -85,7 +85,7 @@
                 </li>
                 <hr>
                 <li>
-                  <a class="nav-link" th:href="@{/logout}" th:text="#{navlinklogout}"></a>
+                  <a class="nav-link" th:href="@{/logout(lang=${#locale.language})}" th:text="#{navlinklogout}"></a>
                 </li>
               </ul>
             </li>
