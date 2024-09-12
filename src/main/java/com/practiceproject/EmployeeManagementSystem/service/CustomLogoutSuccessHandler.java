@@ -30,11 +30,9 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler{
 
             eService.logAuditOperation(user, null, null, null, Act.LOGOUT);
         }
-        if(lang == null || lang.equals("en")){
-            response.sendRedirect("/login?logout&lang=en");
+        if (lang == null || (!lang.equals("en") && !lang.equals("vi"))) {
+            lang = "en"; 
         }
-        else if(lang.equals("vi")){
-            response.sendRedirect("/login?logout&lang=vi");
-        }
+        response.sendRedirect("/login?logout&lang=" + lang);
     }
 }
