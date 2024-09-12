@@ -24,12 +24,17 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler{
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException, ServletException {
+        String lang = request.getParameter("lang");
         if(authentication!=null && authentication.getName()!=null){
             User user = uService.getUserByEmail(authentication.getName());
 
             eService.logAuditOperation(user, null, null, null, Act.LOGOUT);
         }
-        response.sendRedirect("/login?logout");
+        if(lang == null || lang.equals("en")){
+            response.sendRedirect("/login?logout&lang=en");
+        }
+        else if(lang.equals("vi")){
+            response.sendRedirect("/login?logout&lang=vi");
+        }
     }
-    
 }
