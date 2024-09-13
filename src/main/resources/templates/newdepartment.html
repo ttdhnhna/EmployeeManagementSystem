@@ -85,12 +85,12 @@
                 </li>
                 <hr>
                 <li>
-                  <a class="nav-link" th:href="@{/logout(lang=${#locale.language})}" th:text="#{navlinklogout}"></a>
+                  <a class="nav-link" th:href="@{/auditlogs}"th:text="#{notificationviewall}"></a>
                 </li>
               </ul>
             </li>
             <li sec:authorize="isAuthenticated()" class="nav-item">
-              <a class="nav-link" th:href="@{/logout}" th:text="#{navlinklogout}"></a>
+              <a class="nav-link" th:href="@{/logout(lang=${#locale.language})}" th:text="#{navlinklogout}"></a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0" th:action="@{/finddepartment}">
