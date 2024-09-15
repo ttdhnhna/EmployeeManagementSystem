@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -37,6 +39,8 @@ public class EmployeeController {
     EmployeeService service;
     @Autowired
     AuditLogService aService;
+    @Autowired
+    MessageSource messageSource;
 
     //Hiển thị trang chủ
     @GetMapping("/")
@@ -168,13 +172,15 @@ public class EmployeeController {
         List<Employee> ListEmployees=service.findAll(keyword, iduser);
         List<AuditLog> ListLogs = aService.getListLogs();
         int unreadCount = aService.getUnreadLog(iduser);
+        String mess = messageSource.getMessage("cantfindnv", null, LocaleContextHolder.getLocale());
+        
         model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("ListEmployees", ListEmployees);
         model.addAttribute("ListLogs", ListLogs); 
         model.addAttribute("isSearch", true); 
 
         if (ListEmployees.isEmpty()) {
-            model.addAttribute("errorMess", "Không tìm thấy nhân viên");
+            model.addAttribute("errorMess", mess);
         }
         return "homepage";
     }

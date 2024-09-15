@@ -8,6 +8,8 @@ import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,6 +29,8 @@ public class AccountService {
     EntityChangesService eService;
     @Autowired
     JavaMailSender mailSender;
+    @Autowired
+    MessageSource messageSource;
 
     // @Transactional(readOnly = true)
     // public List<User> getAccounts(){
@@ -35,8 +39,9 @@ public class AccountService {
 
     public User getUserByEmail(String email){
         User user=repository.findbyEmail(email);
+        String mess = messageSource.getMessage("cantfindemailacc" + email, null, LocaleContextHolder.getLocale());
         if(user==null){
-            throw new IllegalStateException("Không tìm thấy tài khoản: "+email);
+            throw new IllegalStateException(mess);
         }
         return user;
     }
@@ -44,10 +49,11 @@ public class AccountService {
     public User getUserByID(long id){
         Optional<User> optional=repository.findById(id);
         User user=null;
+        String mess = messageSource.getMessage("cantfindidacc "+id, null, LocaleContextHolder.getLocale());
         if(optional.isPresent()){
             user=optional.get();
         }else{
-            throw new IllegalStateException("Không tìm thấy id tài khoản: "+id);
+            throw new IllegalStateException(mess);
         }
         return user;
     }
@@ -63,8 +69,9 @@ public class AccountService {
 
     @Transactional
     public void saveRegistration(User user){
+        String mess = messageSource.getMessage("musthaveinfo", null, LocaleContextHolder.getLocale());
         if(user.equals(null)){
-            throw new IllegalStateException("Thông tin không được bỏ trống");
+            throw new IllegalStateException(mess);
         }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String ePass = passwordEncoder.encode(user.getPassword());
@@ -77,11 +84,14 @@ public class AccountService {
     @Transactional
     public void changePassword(String currentpass, String newpass, String comfirm, User user){
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+        String mess1 = messageSource.getMessage("wrongpass", null, LocaleContextHolder.getLocale());
+        String mess2 = messageSource.getMessage("newpassmustdiff", null, LocaleContextHolder.getLocale());
+
         if(!passwordEncoder.matches(currentpass, user.getPassword())){
-            throw new IllegalStateException("Sai mật khẩu");
+            throw new IllegalStateException(mess1);
         }
         if(passwordEncoder.matches(newpass, user.getPassword())){
-            throw new IllegalStateException("Mật khẩu mới phải khác mật khẩu cũ");
+            throw new IllegalStateException(mess2);
         }
         String encodedPass = passwordEncoder.encode(newpass); 
         user.setPassword(encodedPass);
@@ -92,11 +102,12 @@ public class AccountService {
 
     public void updateResetPass(String token, String email) throws CustomerNotFoundException{
         User user = repository.findbyEmail(email);
+        String mess = messageSource.getMessage("cantfindemailacc", null, LocaleContextHolder.getLocale());
         if(user != null){
             user.setResetPassToken(token);
             repository.save(user);
         }else{
-            throw new CustomerNotFoundException ("Không thể tìm thấy người dùng với email: "  + email);
+            throw new CustomerNotFoundException (mess + email);
         }
     }
 

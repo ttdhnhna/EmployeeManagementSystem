@@ -8,6 +8,8 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +35,8 @@ public class DepartmentService {
     EntityChangesService eService;
     @Autowired
     AccountService aService;
+    @Autowired
+    MessageSource messageSource;
 
     // @Transactional(readOnly = true)
     // public List<Department> getDepartments(){
@@ -60,10 +64,12 @@ public class DepartmentService {
     public Department getDepartmentID(long id){
         Optional<Department> optional=repository.findById(id);
         Department department=null;
+        String mess = messageSource.getMessage("cantfindidpb", null, LocaleContextHolder.getLocale());
+       
         if(optional.isPresent()){
             department=optional.get();
         }else{
-            throw new IllegalStateException("Không tìm thấy ID phòng ban: "+id);
+            throw new IllegalStateException(mess + " "+id);
         }
         return department;
     }

@@ -8,6 +8,8 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
@@ -38,6 +40,8 @@ public class AppController {
     AccountService service;
     @Autowired
     AuditLogService aService;
+    @Autowired
+    MessageSource messageSource;
 
     //Thư viện giúp gửi email
     @Autowired
@@ -51,9 +55,10 @@ public class AppController {
 
     @PostMapping("/saveRegistration")
     public String saveRegistration(@ModelAttribute("user") User user, Model model){
+        String mess = messageSource.getMessage("regissuccessful", null, LocaleContextHolder.getLocale());
         try {
             service.saveRegistration(user);
-            model.addAttribute("successRegismess", "Bạn đã đăng ký tài khoản thành công!");
+            model.addAttribute("successRegismess", mess);
             return "login";
         }catch (IllegalStateException e){
             model.addAttribute("alertMessage", e.getMessage());
@@ -113,9 +118,10 @@ public class AppController {
     @ModelAttribute("user") User user, RedirectAttributes redirect,
     Model model){
         User fullUser = service.getUserByID(user.getIduser());
+        String mess = messageSource.getMessage("changepasssuccessful", null, LocaleContextHolder.getLocale());
         try {
             service.changePassword(currentpass, newpass, confirmpass, fullUser);
-            redirect.addFlashAttribute("message", "Bạn đã thay đổi mật khẩu thành công cho tài khoản có ID: " + fullUser.getIduser() + "!");
+            redirect.addFlashAttribute("message", mess);
             return "redirect:/accounts";
         } catch (IllegalStateException | IllegalArgumentException e) {
             redirect.addFlashAttribute("alertMessage", e.getMessage());
@@ -137,18 +143,20 @@ public class AppController {
     public String ProcessforgotPasswordFrom(HttpServletRequest request, Model model){
         String email = request.getParameter("email");
         String token = RandomString.make(50);
+        String mess1 = messageSource.getMessage("sentlinkemail", null, LocaleContextHolder.getLocale());
+        String mess2 = messageSource.getMessage("errorsendemail", null, LocaleContextHolder.getLocale());
         try {
             service.updateResetPass(token, email);
             String reserPasswordLink = Utility.getSiteUrl(request) + "/resetpassword?token=" + token;
             //Chức năng gửi email
             service.sendEmail(email, reserPasswordLink);   
-            model.addAttribute("message", "Chúng tôi đã gửi đường link để reset mật khẩu tới email của bạn! Vui lòng kiểm tra.");
+            model.addAttribute("message", mess1);
         } catch (CustomerNotFoundException e) {
             model.addAttribute("error", e.getMessage());
         } catch (UnsupportedEncodingException e) {
-            model.addAttribute("error", "Lỗi trong quá trình gửi email");
+            model.addAttribute("error", mess2);
         } catch (MessagingException e) {
-            model.addAttribute("error", "Lỗi trong quá trình gửi email");
+            model.addAttribute("error", mess2);
         }
         return "forgotpassword";
     }
@@ -156,8 +164,9 @@ public class AppController {
     @GetMapping("/resetpassword")
     public String showResetPassForm(@Param(value = "token")String token, Model model){
         User user = service.get(token);
+        String mess = messageSource.getMessage("errortoken", null, LocaleContextHolder.getLocale());
         if(user == null){
-            model.addAttribute("error", "Token không hợp lê!");
+            model.addAttribute("error", mess);
         }
         model.addAttribute("token", token);
         return "resetpassword";
@@ -167,13 +176,15 @@ public class AppController {
     public String processResetPass(HttpServletRequest request, Model model){
         String token = request.getParameter("token");
         String pass = request.getParameter("password");
+        String mess1 = messageSource.getMessage("errortoken", null, LocaleContextHolder.getLocale());
+        String mess2 = messageSource.getMessage("changepasssuccessful", null, LocaleContextHolder.getLocale());
         
         User user = service.get(token);
         if(user == null){
-            model.addAttribute("error", "Token không hợp lê!");
+            model.addAttribute("error", mess1);
         }else{
             service.updatePassword(user, pass);
-            model.addAttribute("message", "Bạn đã thay đổi mật khẩu thành công!");
+            model.addAttribute("message", mess2);
         }
         return "login";
     }
