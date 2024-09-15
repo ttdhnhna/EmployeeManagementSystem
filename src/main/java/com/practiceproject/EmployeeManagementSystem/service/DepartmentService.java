@@ -64,12 +64,12 @@ public class DepartmentService {
     public Department getDepartmentID(long id){
         Optional<Department> optional=repository.findById(id);
         Department department=null;
-        String mess = messageSource.getMessage("cantfindidpb", null, LocaleContextHolder.getLocale());
+        String mess = messageSource.getMessage("cantfindidpb", new Object[] { id }, LocaleContextHolder.getLocale());
        
         if(optional.isPresent()){
             department=optional.get();
         }else{
-            throw new IllegalStateException(mess + " "+id);
+            throw new IllegalStateException(mess);
         }
         return department;
     }

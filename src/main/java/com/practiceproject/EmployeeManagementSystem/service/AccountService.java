@@ -39,7 +39,7 @@ public class AccountService {
 
     public User getUserByEmail(String email){
         User user=repository.findbyEmail(email);
-        String mess = messageSource.getMessage("cantfindemailacc" + email, null, LocaleContextHolder.getLocale());
+        String mess = messageSource.getMessage("cantfindemailacc", new Object[] { email }, LocaleContextHolder.getLocale());
         if(user==null){
             throw new IllegalStateException(mess);
         }
@@ -49,7 +49,7 @@ public class AccountService {
     public User getUserByID(long id){
         Optional<User> optional=repository.findById(id);
         User user=null;
-        String mess = messageSource.getMessage("cantfindidacc "+id, null, LocaleContextHolder.getLocale());
+        String mess = messageSource.getMessage("cantfindidacc ", new Object[] { id }, LocaleContextHolder.getLocale());
         if(optional.isPresent()){
             user=optional.get();
         }else{
@@ -102,12 +102,12 @@ public class AccountService {
 
     public void updateResetPass(String token, String email) throws CustomerNotFoundException{
         User user = repository.findbyEmail(email);
-        String mess = messageSource.getMessage("cantfindemailacc", null, LocaleContextHolder.getLocale());
+        String mess = messageSource.getMessage("cantfindemailacc", new Object[] { email }, LocaleContextHolder.getLocale());
         if(user != null){
             user.setResetPassToken(token);
             repository.save(user);
         }else{
-            throw new CustomerNotFoundException (mess + email);
+            throw new CustomerNotFoundException (mess);
         }
     }
 
