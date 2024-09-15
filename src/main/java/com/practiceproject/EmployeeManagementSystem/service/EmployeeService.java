@@ -177,13 +177,13 @@ public class EmployeeService {
     
     //Tìm nhân viên bằng id
     public Employee getEmployeebyID(long id){
-        String mess = messageSource.getMessage("cantfindidnv", null, LocaleContextHolder.getLocale());
+        String mess = messageSource.getMessage("cantfindidnv", new Object[] { id }, LocaleContextHolder.getLocale());
         Optional<Employee> optional=repository.findById(id);
         Employee employee=null;
         if(optional.isPresent()){
             employee=optional.get();
         }else{
-            throw new IllegalStateException(mess+" "+id);
+            throw new IllegalStateException(mess);
         }
         return employee;
     }

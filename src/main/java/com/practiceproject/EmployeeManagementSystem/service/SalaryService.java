@@ -78,12 +78,12 @@ public class SalaryService {
     public Salary getSalaryID(long id){
         Optional<Salary> optional=repository.findById(id);
         Salary salary=null;
-        String mess = messageSource.getMessage("cantfindidluong", null, LocaleContextHolder.getLocale());
+        String mess = messageSource.getMessage("cantfindidluong", new Object[] { id }, LocaleContextHolder.getLocale());
         
         if(optional.isPresent()){
             salary=optional.get();
         }else{
-            throw new IllegalStateException(mess + " " + id);
+            throw new IllegalStateException(mess);
         }
         return salary;
     }

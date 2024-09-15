@@ -43,7 +43,7 @@ public class AuditLogService {
     public AuditLog getLogByID(long id){
         Optional<AuditLog> optional = repository.findById(id);
         AuditLog auditLog = null;
-        String mess = messageSource.getMessage("cantfindidlog", null, LocaleContextHolder.getLocale());
+        String mess = messageSource.getMessage("cantfindidlog", new Object[] { id }, LocaleContextHolder.getLocale());
     
         if(optional.isPresent()){
             auditLog=optional.get();
