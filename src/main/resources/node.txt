@@ -59,7 +59,7 @@ Lợi ích: Tăng cường bảo mật và giúp theo dõi các thay đổi trê
 Mô tả: Thông báo khi có sự kiện quan trọng như cập nhật lương, đăng ký thành công, v.v.
 Lợi ích: Cải thiện trải nghiệm người dùng bằng cách cung cấp thông tin kịp thời.
 
-* Hỗ trợ đa ngôn ngữ (Multi-Language Support):
+* Hỗ trợ đa ngôn ngữ (Multi-Language Support):V
 Mô tả: Cung cấp giao diện bằng nhiều ngôn ngữ khác nhau để phục vụ đa dạng người dùng.
 Lợi ích: Mở rộng phạm vi sử dụng của ứng dụng cho người dùng ở nhiều quốc gia.
 
@@ -164,3 +164,16 @@ logging system, especially when dealing with a high volume of logs. By leveragin
 batching capabilities or implementing custom batch processing logic, you can significantly
 reduce the load on your database and improve the overall performance of your application.
 
+Attendance Management
+Web Check-In/Check-Out System: Employees can log in to the system and manually check in/out via a web interface or mobile app.
+Tracking IP/Location: Use the employee's IP address or location (via GPS on mobile devices) to validate their presence.
+Automatic Attendance: Set up a system that tracks login times for employees when they access the system. You could automatically 
+log their arrival and departure based on their session start and end times.
+QR Code/Facial Recognition: You could introduce a QR code scanner or facial recognition via a web camera as an alternative for the 
+employee to register their attendance.
+
+Hệ thống Check-In/Check-Out trên Web: Nhân viên có thể đăng nhập vào hệ thống và check-in/out thủ công thông qua giao diện web hoặc 
+ứng dụng di động.
+Theo dõi IP/Vị trí: Sử dụng địa chỉ IP hoặc vị trí của nhân viên (thông qua GPS trên thiết bị di động) để xác thực sự hiện diện của họ.
+Tự động chấm công: Thiết lập hệ thống theo dõi thời gian đăng nhập của nhân viên khi họ truy cập hệ thống. Bạn có thể tự động ghi lại thời 
+gian đến và đi của họ dựa trên thời gian bắt đầu và kết thúc phiên làm việc của họ.
