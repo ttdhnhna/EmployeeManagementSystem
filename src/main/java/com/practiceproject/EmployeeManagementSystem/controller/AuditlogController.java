@@ -82,6 +82,8 @@ public class AuditlogController {
         service.saveLog(auditLog);
         List<EntityChanges> entityChanges = service.getDetailLog(auditLog);
         List<AuditLog> ListLogs = service.getListLogs();
+        int unreadCount = service.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("ListLogs", ListLogs); 
         model.addAttribute("auditLog", auditLog);
         model.addAttribute("entityChanges", entityChanges);
