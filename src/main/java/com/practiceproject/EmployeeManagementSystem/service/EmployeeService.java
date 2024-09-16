@@ -22,6 +22,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -63,6 +65,8 @@ public class EmployeeService {
     AccountService uService;
     @Autowired
     EntityChangesService eService;
+    @Autowired
+    MessageSource messageSource;
 
     //Chức năng hiện tất cả nhân viên
     // @Transactional(readOnly = true)
@@ -83,23 +87,27 @@ public class EmployeeService {
         Employee employee=new Employee();
         Salary salary=new Salary();
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
+        String mess1 = messageSource.getMessage("dontexistspb", null, LocaleContextHolder.getLocale());
+        String mess2 = messageSource.getMessage("dontmatchpbvsuser", null, LocaleContextHolder.getLocale());
+        String mess3 = messageSource.getMessage("invalidfile", null, LocaleContextHolder.getLocale());
+        String mess4 = messageSource.getMessage("errorreadingfile", null, LocaleContextHolder.getLocale());
 
         if (idpb == null) {
-            throw new IllegalStateException("Phòng ban không tồn tại hoặc không hợp lệ!");
+            throw new IllegalStateException(mess1);
         }  
         if (!idpb.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
-            throw new IllegalStateException("ID phòng ban vừa nhập không khớp với người dùng hiện tại!");
+            throw new IllegalStateException(mess2);
         }
 
         if (file != null && !file.isEmpty()) {
             String filename = StringUtils.cleanPath(file.getOriginalFilename());
             if (filename.contains("..")) {
-                throw new IllegalStateException("File không hợp lệ!");
+                throw new IllegalStateException(mess3);
             }
             try {
                 employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
             } catch (IOException e) {
-                throw new IllegalStateException("Lỗi khi đọc file ảnh", e);
+                throw new IllegalStateException(mess4, e);
             }
         } else {
             employee.setAnh(null); 
@@ -135,11 +143,13 @@ public class EmployeeService {
         EmployeeDto oldEmployee = getoldEmployee(employee);
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
         MultipartFile file = employeeDto.getAnh();
+        String mess1 = messageSource.getMessage("invalidfile", null, LocaleContextHolder.getLocale());
+        String mess2 = messageSource.getMessage("dontexistspb", null, LocaleContextHolder.getLocale());
         if (file != null && !file.isEmpty()) {
             @SuppressWarnings("null")
             String filename = StringUtils.cleanPath(file.getOriginalFilename());
             if (filename.contains("..")) {
-                throw new IllegalStateException("File không hợp lệ!");
+                throw new IllegalStateException(mess1);
             }
             try {
                 employee.setAnh(Base64.getEncoder().encodeToString(file.getBytes()));
@@ -159,7 +169,7 @@ public class EmployeeService {
         if (idpb.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
             employee.setIdpb(idpb);
         } else {
-            throw new IllegalStateException("ID phòng ban vừa nhập không tồn tại!");
+            throw new IllegalStateException(mess2);
         }
         this.repository.save(employee); 
         AuditLog saveAuditLog = eService.updateAuditOperation(iduser, employee.getIdnv(), null, null, Act.UPDATE);
@@ -168,12 +178,13 @@ public class EmployeeService {
     
     //Tìm nhân viên bằng id
     public Employee getEmployeebyID(long id){
+        String mess = messageSource.getMessage("cantfindidnv", new Object[] { id }, LocaleContextHolder.getLocale());
         Optional<Employee> optional=repository.findById(id);
         Employee employee=null;
         if(optional.isPresent()){
             employee=optional.get();
         }else{
-            throw new IllegalStateException("Không tìm thấy ID nhân viên: "+id);
+            throw new IllegalStateException(mess);
         }
         return employee;
     }
@@ -269,9 +280,12 @@ public class EmployeeService {
 
     public void uploadExcel(MultipartFile file) throws IOException{
         User iduser = uService.getUserByID(Utility.getCurrentUserId());
-
+        String mess1 = messageSource.getMessage("cantfindfile", null, LocaleContextHolder.getLocale());
+        String mess2 = messageSource.getMessage("errorreadingexcel", null, LocaleContextHolder.getLocale());
+        String mess3 = messageSource.getMessage("invalidexcelfile", null, LocaleContextHolder.getLocale());
+       
         if(file.isEmpty() || file==null){
-            throw new IllegalStateException("Không tìm thấy file. Vui lòng chọn file để tải lên.");
+            throw new IllegalStateException(mess1);
         }
         try (InputStream inputStream = file.getInputStream();
         Workbook workbook = new XSSFWorkbook(inputStream)) {
@@ -353,10 +367,10 @@ public class EmployeeService {
             }
         } catch (OLE2NotOfficeXmlFileException e) {
             // Bắt lỗi định dạng file và trả về thông báo cho người dùng
-            throw new IllegalStateException("Định dạng file không đúng. Vui lòng tải lên file .xlsx (Excel 2007 trở lên).");
+            throw new IllegalStateException(mess3);
         }
         catch (IOException e) {
-            throw new IllegalStateException("Lỗi khi đọc file Excel", e);
+            throw new IllegalStateException(mess2, e);
         }
     }
 

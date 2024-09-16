@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ thống quản lý Nhân viên</title>
+    <title th:text="#{title}"></title>
     <link rel="stylesheet" th:href="@{/styles/style01.css}">
     <link rel="stylesheet" th:href="@{/styles/style02.css}">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
     crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
       <!-- Brand -->
-      <a class="navbar-brand" th:href="@{/}">Hệ thống Quản lý Nhân viên</a>
-    
+      <a class="navbar-brand" th:href="@{/}" th:text="#{brand}"></a>
+
       <!-- Toggler/collapsibe Button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" 
       aria-expanded="false" aria-controls="collapsibleNavbar" aria-label="Toggle navigation">
@@ -29,22 +29,27 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/} ">Quản lý Nhân viên</a>
+            <a class="nav-link" th:href="@{/}" th:text="#{navlinkemployee}"></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/departments} ">Quản lý Phòng ban</a>
+              <a class="nav-link" th:href="@{/departments}" th:text="#{navlinkdepartment}"></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/salaries} ">Quản lý Lương</a>
+              <a class="nav-link" th:href="@{/salaries}" th:text="#{navlinksalary}"></a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Thêm
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
-              <a class="dropdown-item" th:href="@{/accounts} ">Tài khoản</a>           
-              <a class="dropdown-item" th:href="@{/auditlogs} ">Lịch sử</a>
-            </ul>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{navlinkdropdown}"></a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+              <a class="dropdown-item" th:href="@{/accounts}" th:text="#{dropdownitemaccount}"></a>           
+              <a class="dropdown-item" th:href="@{/auditlogs}" th:text="#{dropdownitemhistory}"></a>
+          </ul>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-language" style="font-size: 22px;"></i></a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+                <a class="dropdown-item" th:href="@{|/profileemployee/${employee.idnv}?lang=en|}" th:text="#{languageen}"></a>
+                <a class="dropdown-item" th:href="@{|/profileemployee/${employee.idnv}?lang=vi|}" th:text="#{languagevn}"></a>
+              </ul>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link" href="#" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,64 +59,63 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
               <li th:each = "log : ${ListLogs}">
                 <a class="dropdown-item" th:href="@{/detaillog/{id}(id=${log.idlog})}">
-                  Bạn đã 
-                    <span th:if="${log.act.name() == 'LOGIN'}">đăng nhập</span>
-                    <span th:if="${log.act.name() == 'LOGOUT'}">đăng xuất</span>
+                    <span th:if="${log.act.name() == 'LOGIN'}" th:text="#{notificationlogin}"></span>
+                    <span th:if="${log.act.name() == 'LOGOUT'}" th:text="#{notificationlogout}"></span>
                     <span th:if="${log.act.name() == 'ADD'}">
-                        <span th:if="${log.idnv != null}"> thêm mới mã nhân viên <span th:text="${log.idnv}"></span></span>
-                        <span th:if="${log.idpb != null}">thêm mới mã phòng ban <span th:text="${log.idpb}"></span></span>
-                        <span th:if="${log.idluong != null}">thêm mới mã lương <span th:text="${log.idluong}"></span></span>
-                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}">đăng ký tài khoản <span th:text="${log.idluong}"></span></span>
+                      <span th:text="#{notification}"></span>
+                      <span th:if="${log.idnv != null}"><span th:text="#{notificationaddemployee(${log.idnv})}"></span></span>
+                      <span th:if="${log.idpb != null}"><span th:text="#{notificationadddepartment(${log.idpb})}"></span></span>
+                      <span th:if="${log.idluong != null}"><span th:text="#{notificationaddsalary(${log.idluong})}"></span></span>
+                      <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}"><span th:text="#{notificationregister}"></span></span>
                     </span>
                     <span th:if="${log.act.name() == 'UPDATE'}">
-                        <span th:if="${log.idnv != null}">cập nhật nhân viên mã <span th:text="${log.idnv}"></span></span>
-                        <span th:if="${log.idpb != null}">cập nhật phòng ban mã <span th:text="${log.idpb}"></span></span>
-                        <span th:if="${log.idluong != null}">cập nhật mã lương <span th:text="${log.idluong}"></span></span>
-                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}">cập nhật thông tin tài khoản <span th:text="${log.idluong}"></span></span>
+                      <span th:text="#{notification}"></span>
+                      <span th:if="${log.idnv != null}"><span th:text="#{notificationupdateemployee(${log.idnv})}"></span></span>
+                      <span th:if="${log.idpb != null}"><span th:text="#{notificationupdatedepartment(${log.idpb})}"></span></span>
+                      <span th:if="${log.idluong != null}"><span th:text="#{notificationupdatesalary(${log.idluong})}"></span></span>           
+                      <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}"><span th:text="#{notificationupdateaccount }"></span></span>
                     </span>
-                    <span th:if="${log.act.name() == 'DELETE'}">xóa 
-                        <span th:if="${log.idnv != null}">mã nhân viên <span th:text="${log.idnv}"></span></span>
-                        <span th:if="${log.idpb != null}">mã phòng ban <span th:text="${log.idpb}"></span></span>
-                        <span th:if="${log.idluong != null}">mã lương <span th:text="${log.idluong}"></span></span>
+                    <span th:if="${log.act.name() == 'DELETE'}">
+                      <span th:text="#{notification}"></span>
+                      <span th:if="${log.idnv != null}"><span th:text="#{notificationdeleteemployee(${log.idnv})}"></span></span>
+                      <span th:if="${log.idpb != null}"><span th:text="#{notificationdeletedepartment(${log.idpb})}"></span></span>
+                      <span th:if="${log.idluong != null}"><span th:text="#{notificationdeletesalary(${log.idluong})}"></span></span>
                     </span>
-                    <span th:if="${log.act.name() == 'CHANGEPASS'}">thay đổi mật khẩu</span>
+                    <span th:if="${log.act.name() == 'CHANGEPASS'}" th:text="#{notificationchangepass}"></span>
                     <span class="notification-dot" th:if="${!log.isRead}"></span>
                 </a>
               </li>
               <hr>
               <li>
-                <a class="dropdown-item view-all" th:href="@{/auditlogs}">
-                  Xem tất cả thông báo.
-                </a>
+                <a class="dropdown-item view-all" th:href="@{/auditlogs}" th:text="#{notificationviewall}"></a>
               </li>
             </ul>
           </li>
           <li sec:authorize="isAuthenticated()" class="nav-item">
-            <a class="nav-link" th:href="@{/logout} ">Đăng xuất</a>
+            <a class="nav-link" th:href="@{/logout(lang=${#locale.language})}" th:text="#{navlinklogout}"></a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" th:action="@{/findemployee}">
-          <input class="form-control mr-sm-2" type="search" name = "keyword" placeholder="Tìm kiếm">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+          <input class="form-control mr-sm-2" type="search" name = "keyword" th:placeholder="#{searchform}">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" th:text="#{searchfbutton}"></button>
         </form>
       </div>
     </nav>
       <br>
     <!-- Body -->
     <div class="container light-style flex-grow-1 container-p-y">
-      <h2 class="py-3 mb-4">
-        Thông tin tài khoản
+      <h2 class="py-3 mb-4" th:text="#{accountinfo}">
       </h2>
       <div class="card overflow-hidden"> 
         <div class="row no-gutters row-bordered row-border-light">
           <div class="col-md-3 pt-0">
             <div class="list-group list-group-flush account-settings-links">
               <a class="list-group-item list-group-item-action active" data-toggle="list"
-                href="#account-general">Thông tin chung</a>
+                href="#account-general" th:text="#{accountgeneral}"></a>
               <a class="list-group-item list-group-item-action" data-toggle="list"
-                href="#account-details">Thông tin chi tiết</a>
+                href="#account-details" th:text="#{accountdetails}"></a>
               <a class="list-group-item list-group-item-action" data-toggle="list"
-                href="#account-salary">Thông tin lương</a>
+                href="#account-salary" th:text="#{accountsalary}"></a>
             </div>
           </div>
           <div class="col-md-9">
@@ -127,23 +131,23 @@
                 <hr class="border-light m-0">
                 <div class="card-body"> 
                   <div class="form-group">
-                    <label class="form-lable">Mã nhân viên</label>                     
+                    <label class="form-lable" th:text="#{tblid}"></label>                     
                     <output class="form-control mb-1" name="idnv" th:text="${employee.idnv}"></output>
                   </div>
                   <div class="form-group">
-                    <label class="form-lable">Họ và tên</label>
+                    <label class="form-lable" th:text="#{employeename}"></label>
                     <output class="form-control mb-1" name="hoten" th:text="${employee.hoten}"></output>
                   </div>
                   <div class="form-group">
-                    <label class="form-lable">Email</label>
+                    <label class="form-lable" th:text="#{employeeemail}"></label>
                     <output class="form-control mb-1" name="email" th:text="${employee.email}"></output>
                   </div>
                   <div class="form-group">
-                    <label class="form-lable">Chức vụ</label>
+                    <label class="form-lable" th:text="#{employeeposition}"></label>
                     <output class="form-control mb-1" name="chucvu" th:text="${employee.chucvu}"></output>
                   </div>
                   <div class="form-group">
-                    <label class="form-lable">Mã Phòng ban</label>
+                    <label class="form-lable" th:text="#{employeepb}"></label>
                     <input type="text" class="form-control mb-1"
                     name="idpb"
                     th:field="*{idpb}"> 
@@ -155,31 +159,31 @@
                 <div class="card-body pb-2">
                   
                   <div class="form-group">
-                    <label class="form-lable">Quê quán</label>
+                    <label class="form-lable" th:text="#{employeeadd}"></label>
                     <output class="form-control mb-1" name="quequan" th:text="${employee.quequan}"></output>
                   </div>
                   <div class="form-group">
-                    <label class="form-lable">Ngày sinh</label>
+                    <label class="form-lable" th:text="#{employeedate}"></label>
                     <output class="form-control mb-1" name="ngaysinh" th:text="${employee.ngaysinh}"></output>
                   </div>
                   <div class="form-group">
-                    <label class="form-lable">Giới tính</label>
+                    <label class="form-lable" th:text="#{employeesex}"></label>
                     <output class="form-control mb-1" name="gt" th:text="${employee.gt}"></output>
                   </div>
                   <div class="form-group">
-                    <label class="form-lable">Dân tộc</label>
+                    <label class="form-lable" th:text="#{employeedt}"></label>
                     <output class="form-control mb-1" name="dantoc" th:text="${employee.dantoc}"></output>
                   </div>
                 </div>
                 <hr class="border-light m-0">
                 <div class="card-body pb-2"> 
-                  <h6 class="mb-4">Liên hệ</h6>
+                  <h6 class="mb-4" th:text="#{contact}"></h6>
                   <div class="form-group">
-                    <label class="form-lable">Số điện thọai</label>
+                    <label class="form-lable" th:text="#{employeesdt}"></label>
                     <output class="form-control mb-1" name="sdt" th:text="${employee.sdt}"></output>
                   </div>
                   <div class="form-group">
-                    <label class="form-lable">Email</label>
+                    <label class="form-lable" th:text="#{employeeemail}"></label>
                     <output class="form-control mb-1" name="email" th:text="${employee.email}"></output>
                   </div>
                 </div>
@@ -188,37 +192,37 @@
               <div class="tab-pane face" id="account-salary">
                 <div class="card-body pb-2">
                   <div class="form-group">
-                    <label class="form-lable">Mã Lương</label>
+                    <label class="form-lable" th:text="#{salaryid}"></label>
                     <output class="form-control mb-1" name="idluong" th:text="${employee.idluong.idluong}"></output>
                   </div>
                   <div class="form-group">
-                    <label class="form-lable">Lương cơ bản</label>
+                    <label class="form-lable" th:text="#{basicsalary}"></label>
                     <output class="form-control mb-1" name="current">1350000</output>
                   </div>
                   <div class="form-group">
-                    <label class="form-lable">Hệ số lương</label>
+                    <label class="form-lable" th:text="#{tblhsl}"></label>
                     <output class="form-control mb-1" name="hsl" th:text="${employee.idluong.hsl}"></output>
                   </div>
                   <div class="form-group">
-                    <label class="form-lable">Phụ cấp</label>
+                    <label class="form-lable" th:text="#{employeepc}"></label>
                     <output class="form-control mb-1" th:text="${'₫' + #numbers.formatDecimal(employee.idluong.phucap, 1, 'COMMA', 2, 'POINT')}"></output>
                   </div>
                   <div class="form-group">
-                    <label class="form-lable">Bảo hiểm lao động</label>
+                    <label class="form-lable" th:text="#{employeebh}"></label>
                     <output class="form-control mb-1" th:text="${'₫' + #numbers.formatDecimal(employee.idluong.baohiem, 1, 'COMMA', 2, 'POINT')}"></output>
                   </div>
                   <div class="form-group">
-                    <label class="form-lable">Trừ lương</label>
+                    <label class="form-lable" th:text="#{employeetruluong}"></label>
                     <output class="form-control mb-1" th:text="${'₫' + #numbers.formatDecimal(employee.idluong.truluong, 1, 'COMMA', 2, 'POINT')}"></output>
                   </div>
                   <div th:if="${employee.idluong.tienno != 0}">
                     <div class="form-group">
-                        <label class="form-label">Nợ</label>
+                        <label class="form-label" th:text="#{debt}"></label>
                         <output class="form-control mb-1" th:text="${'₫' + #numbers.formatDecimal(employee.idluong.tienno, 1, 'COMMA', 2, 'POINT')}"></output>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="form-lable">Tổng lương</label>
+                    <label class="form-lable" th:text="#{tbltl}"></label>
                     <output class="form-control mb-1" th:text="${'₫' + #numbers.formatDecimal(employee.idluong.tongluong, 1, 'COMMA', 2, 'POINT')}"></output>
                   </div>
                 </div>
@@ -229,8 +233,7 @@
         <br>
       </div>
       <div class="text-right mt-3">
-        <a th:href="@{/}" class="btn btn-danger ">
-            Quay lại
+        <a th:href="@{/}" class="btn btn-danger" th:text="#{returnbtn}">
         </a>
       </div>
       </div>

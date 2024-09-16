@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +33,8 @@ public class AuditLogService {
     EntityChangesRepository eRepository;
     @Autowired
     AccountService uService;
+    @Autowired
+    MessageSource messageSource;
 
     public void saveLog(AuditLog log){
         this.repository.save(log);
@@ -39,10 +43,12 @@ public class AuditLogService {
     public AuditLog getLogByID(long id){
         Optional<AuditLog> optional = repository.findById(id);
         AuditLog auditLog = null;
+        String mess = messageSource.getMessage("cantfindidlog", new Object[] { id }, LocaleContextHolder.getLocale());
+    
         if(optional.isPresent()){
             auditLog=optional.get();
         }else{
-            throw new IllegalStateException("Không tìm thấy id Log: "+id);
+            throw new IllegalStateException(mess+id);
         }
         return auditLog;
     }

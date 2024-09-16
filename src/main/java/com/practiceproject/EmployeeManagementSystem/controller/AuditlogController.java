@@ -5,6 +5,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,8 @@ import com.practiceproject.EmployeeManagementSystem.service.Utility;
 public class AuditlogController {
     @Autowired
     AuditLogService service;
+    @Autowired
+    MessageSource messageSource;
 
     @GetMapping("/auditlogs")
     public String getLogs(Model model){
@@ -63,9 +67,10 @@ public class AuditlogController {
         model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("ListLogs", ListLogs); 
         model.addAttribute("isSearch", true); 
+        String mess = messageSource.getMessage("cantfindlog", null, LocaleContextHolder.getLocale());
         
         if(ListLogs.isEmpty()){
-            model.addAttribute("errorMess", "Không tìm thấy log vừa nhập");
+            model.addAttribute("errorMess", mess);
         }
         return "auditlogpage";
     }

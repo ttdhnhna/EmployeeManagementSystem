@@ -3,6 +3,8 @@ package com.practiceproject.EmployeeManagementSystem.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,8 @@ public class DepartmentController {
     DepartmentService service;
     @Autowired
     AuditLogService aService;
+    @Autowired
+    MessageSource messageSource;
 
     @GetMapping("/departments")
     public String getDepartments(Model model){
@@ -106,13 +110,14 @@ public class DepartmentController {
         List<Department> ListDepartments=service.findDepartments(keyword, iduser);
         List<AuditLog> ListLogs = aService.getListLogs();
         int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        String mess = messageSource.getMessage("cantfindpb", null, LocaleContextHolder.getLocale());
         model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("ListDepartments", ListDepartments);
         model.addAttribute("ListLogs", ListLogs); 
         model.addAttribute("isSearch", true); 
 
         if(ListDepartments.isEmpty()){
-            model.addAttribute("errorMess", "Không tìm thấy phòng ban");
+            model.addAttribute("errorMess", mess);
         }
         return "departmentspage";
     }

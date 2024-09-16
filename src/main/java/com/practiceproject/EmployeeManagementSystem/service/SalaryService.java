@@ -7,6 +7,8 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +30,8 @@ public class SalaryService {
     EntityChangesService eService;
     @Autowired
     AccountService uService;
+    @Autowired
+    MessageSource messageSource;
 
     //Hien ds luong
     // @Transactional(readOnly = true)
@@ -74,10 +78,12 @@ public class SalaryService {
     public Salary getSalaryID(long id){
         Optional<Salary> optional=repository.findById(id);
         Salary salary=null;
+        String mess = messageSource.getMessage("cantfindidluong", new Object[] { id }, LocaleContextHolder.getLocale());
+        
         if(optional.isPresent()){
             salary=optional.get();
         }else{
-            throw new IllegalStateException("Không tìm thấy ID lương: "+id);
+            throw new IllegalStateException(mess);
         }
         return salary;
     }

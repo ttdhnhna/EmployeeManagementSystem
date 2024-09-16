@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ thống quản lý Nhân viên</title>
+    <title th:text="#{title}"></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
     crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/styles/style01.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
         <!-- Brand -->
-        <a class="navbar-brand" th:href="@{/}">Hệ thống Quản lý Nhân viên</a>
-      
+        <a class="navbar-brand" th:href="@{/}" th:text="#{brand}"></a>
+
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" 
         aria-expanded="false" aria-controls="collapsibleNavbar" aria-label="Toggle navigation">
@@ -27,71 +27,76 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                  <a class="nav-link" th:href="@{/} ">Quản lý Nhân viên</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" th:href="@{/departments} ">Quản lý Phòng ban</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" th:href="@{/salaries} ">Quản lý Lương</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Thêm
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
-                    <a class="dropdown-item" th:href="@{/accounts} ">Tài khoản</a>           
-                    <a class="dropdown-item" th:href="@{/auditlogs} ">Lịch sử</a>
-                  </ul>
-                </li>
+                    <a class="nav-link" th:href="@{/}" th:text="#{navlinkemployee}"></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" th:href="@{/departments}" th:text="#{navlinkdepartment}"></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" th:href="@{/salaries}" th:text="#{navlinksalary}"></a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{navlinkdropdown}"></a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+                      <a class="dropdown-item" th:href="@{/accounts}" th:text="#{dropdownitemaccount}"></a>           
+                      <a class="dropdown-item" th:href="@{/auditlogs}" th:text="#{dropdownitemhistory}"></a>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-language" style="font-size: 22px;"></i></a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+                        <a class="dropdown-item" th:href="@{/addEmployee/?lang=en}" th:text="#{languageen}"></a>
+                        <a class="dropdown-item" th:href="@{/addEmployee/?lang=vi}" th:text="#{languagevn}"></a>
+                    </ul>
+                  </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fa fa-bell"></i>
                       <span class="badge badge-danger" id="notificationCount" th:if="${unreadCount > 0}" th:text="${unreadCount}"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
-                      <li th:each = "log : ${ListLogs}">
-                        <a class="dropdown-item" th:href="@{/detaillog/{id}(id=${log.idlog})}">
-                          Bạn đã 
-                            <span th:if="${log.act.name() == 'LOGIN'}">đăng nhập</span>
-                            <span th:if="${log.act.name() == 'LOGOUT'}">đăng xuất</span>
-                            <span th:if="${log.act.name() == 'ADD'}">
-                                <span th:if="${log.idnv != null}"> thêm mới mã nhân viên <span th:text="${log.idnv}"></span></span>
-                                <span th:if="${log.idpb != null}">thêm mới mã phòng ban <span th:text="${log.idpb}"></span></span>
-                                <span th:if="${log.idluong != null}">thêm mới mã lương <span th:text="${log.idluong}"></span></span>
-                                <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}">đăng ký tài khoản <span th:text="${log.idluong}"></span></span>
-                            </span>
-                            <span th:if="${log.act.name() == 'UPDATE'}">
-                                <span th:if="${log.idnv != null}">cập nhật nhân viên mã <span th:text="${log.idnv}"></span></span>
-                                <span th:if="${log.idpb != null}">cập nhật phòng ban mã <span th:text="${log.idpb}"></span></span>
-                                <span th:if="${log.idluong != null}">cập nhật mã lương <span th:text="${log.idluong}"></span></span>
-                                <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}">cập nhật thông tin tài khoản <span th:text="${log.idluong}"></span></span>
-                            </span>
-                            <span th:if="${log.act.name() == 'DELETE'}">xóa 
-                                <span th:if="${log.idnv != null}">mã nhân viên <span th:text="${log.idnv}"></span></span>
-                                <span th:if="${log.idpb != null}">mã phòng ban <span th:text="${log.idpb}"></span></span>
-                                <span th:if="${log.idluong != null}">mã lương <span th:text="${log.idluong}"></span></span>
-                            </span>
-                            <span th:if="${log.act.name() == 'CHANGEPASS'}">thay đổi mật khẩu</span>
-                            <span class="notification-dot" th:if="${!log.isRead}"></span>
-                        </a>
-                      </li>
+                        <li th:each = "log : ${ListLogs}">
+                            <a class="dropdown-item" th:href="@{/detaillog/{id}(id=${log.idlog})}">
+                                <span th:if="${log.act.name() == 'LOGIN'}" th:text="#{notificationlogin}"></span>
+                                <span th:if="${log.act.name() == 'LOGOUT'}" th:text="#{notificationlogout}"></span>
+                                <span th:if="${log.act.name() == 'ADD'}">
+                                  <span th:text="#{notification}"></span>
+                                  <span th:if="${log.idnv != null}"><span th:text="#{notificationaddemployee(${log.idnv})}"></span></span>
+                                  <span th:if="${log.idpb != null}"><span th:text="#{notificationadddepartment(${log.idpb})}"></span></span>
+                                  <span th:if="${log.idluong != null}"><span th:text="#{notificationaddsalary(${log.idluong})}"></span></span>
+                                  <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}"><span th:text="#{notificationregister}"></span></span>
+                                </span>
+                                <span th:if="${log.act.name() == 'UPDATE'}">
+                                  <span th:text="#{notification}"></span>
+                                  <span th:if="${log.idnv != null}"><span th:text="#{notificationupdateemployee(${log.idnv})}"></span></span>
+                                  <span th:if="${log.idpb != null}"><span th:text="#{notificationupdatedepartment(${log.idpb})}"></span></span>
+                                  <span th:if="${log.idluong != null}"><span th:text="#{notificationupdatesalary(${log.idluong})}"></span></span>           
+                                  <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}"><span th:text="#{notificationupdateaccount }"></span></span>
+                                </span>
+                                <span th:if="${log.act.name() == 'DELETE'}">
+                                  <span th:text="#{notification}"></span>
+                                  <span th:if="${log.idnv != null}"><span th:text="#{notificationdeleteemployee(${log.idnv})}"></span></span>
+                                  <span th:if="${log.idpb != null}"><span th:text="#{notificationdeletedepartment(${log.idpb})}"></span></span>
+                                  <span th:if="${log.idluong != null}"><span th:text="#{notificationdeletesalary(${log.idluong})}"></span></span>
+                                </span>
+                                <span th:if="${log.act.name() == 'CHANGEPASS'}" th:text="#{notificationchangepass}"></span>
+                                <span class="notification-dot" th:if="${!log.isRead}"></span>
+                            </a>
+                        </li>
                       <hr>
                       <li>
-                        <a class="dropdown-item view-all" th:href="@{/auditlogs}">
-                          Xem tất cả thông báo.
-                        </a>
+                        <a class="dropdown-item view-all" th:href="@{/auditlogs}" th:text="#{notificationviewall}"></a>
                       </li>
                     </ul>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item">
-                  <a class="nav-link" th:href="@{/logout} ">Đăng xuất</a>
+                    <a class="dropdown-item view-all" th:href="@{/logout(lang=${#locale.language})}" th:text="#{navlinklogout}"></a>
                 </li>
             </ul>
-          <form class="form-inline my-2 my-lg-0" th:action="@{/findemployee}">
-            <input class="form-control mr-sm-2" type="search" name = "keyword" placeholder="Tìm kiếm">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
-          </form>
+            <form class="form-inline my-2 my-lg-0" th:action="@{/findemployee}">
+                <input class="form-control mr-sm-2" type="search" name = "keyword" th:placeholder="#{searchform}">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" th:text="#{searchfbutton}"></button>
+            </form>
         </div>
     </nav>
     <br>
@@ -100,7 +105,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
                 <br>
-                <h1 class="text-center">Tạo mới Nhân viên</h1>
+                <h1 class="text-center" th:text="#{newemployeeh1}"></h1>
                 <div class="card-body">
                     <form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post"
                         enctype="multipart/form-data"
@@ -112,123 +117,123 @@
                         <!-- Phan action tren day chinh la cho se quyet dinh trang web se lam gi sau khi an 
                         nut gui -->
                         <div class="form-group">
-                            <label>Họ tên</label>
+                            <label th:text="#{employeename}"></label>
                             <input 
                                 type="text"
                                 name="hoten"
                                 id="hoten"
                                 th:field="*{hoten}"
                                 class="form-control"
-                                placeholder="Nhập họ và tên nhân viên"
+                                th:placeholder="#{newemployeenameipt}"
                             />
                         </div>
                         <div class="form-group">
-                            <label>Ngày sinh</label>
+                            <label th:text="#{employeedate}"></label>
                             <input 
                                 type="text"
                                 name="ngaysinh"
                                 id="ngaysinh"
                                 th:field="*{ngaysinh}"
                                 class="form-control"
-                                placeholder="Nhập ngày sinh nhân viên"
+                                th:placeholder="#{newemployeedateipt}"
                             />
                         </div>
                         <div class="form-group">
-                            <label>Quê quán</label>
+                            <label th:text="#{employeeadd}"></label>
                             <input 
                                 type="text"
                                 name="quequan"
                                 id="quequan"
                                 th:field="*{quequan}"
                                 class="form-control"
-                                placeholder="Nhập quê quán nhân viên"
+                                th:placeholder="#{newemployeeaddipt}"
                             />
                         </div>
                         <div class="form-group">
-                            <label>Giới tính</label>
+                            <label th:text="#{employeesex}"></label>
                             <input 
                                 type="text"
                                 name="gt"
                                 id="gt"
                                 th:field="*{gt}"
                                 class="form-control"
-                                placeholder="Nhập giới tính nhân viên"
+                                th:placeholder="#{newemployeesexipt}"
                             />
                         </div>
                         <div class="form-group">
-                            <label>Dân tộc</label>
+                            <label th:text="#{employeedt}"></label>
                             <input 
                                 type="text"
                                 name="dantoc"
                                 id="dantoc"
                                 th:field="*{dantoc}"
                                 class="form-control"
-                                placeholder="Nhập dân tộc nhân viên"
+                                th:placeholder="#{newemployeedtipt}"
                             />
                         </div>
                         <div class="form-group">
-                            <label>Số điện thoại</label>
+                            <label th:text="#{employeesdt}"></label>
                             <input 
                                 type="text"
                                 name="sdt"
                                 id="sdt"
                                 th:field="*{sdt}"
                                 class="form-control"
-                                placeholder="Nhập số điện thoại nhân viên"
+                                th:placeholder="#{newemployeesdtipt}"
                             />
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
+                            <label th:text="#{employeeemail}"></label>
                             <input 
                                 type="text"
                                 name="email"
                                 id="email"
                                 th:field="*{email}"
                                 class="form-control"
-                                placeholder="Nhập Email"
+                                th:placeholder="#{newemployeeemailipt}"
                             />
                         </div>
                         <div class="form-group">
-                            <label>Chức vụ</label>
+                            <label th:text="#{employeeposition}"></label>
                             <input 
                                 type="text"
                                 name="chucvu"
                                 id="chucvu"
                                 th:field="*{chucvu}"
                                 class="form-control"
-                                placeholder="Nhập chức vụ nhân viên"
+                                th:placeholder="#{newemployeepositionipt}"
                             />
                         </div>
                         <div class="form-group">
-                            <label>ID Phòng ban</label>
+                            <label th:text="#{employeepb}"></label>
                             <input 
                                 type="text"
                                 name="idpb"
                                 th:field="*{idpb}"
                                 class="form-control"
-                                placeholder="Nhập mã phòng ban nhân viên"
+                                th:placeholder="#{newemployeepbipt}"
                             />
                         </div>
                         <div class="form-group">
-                            <label>Hệ số lương</label>
+                            <label th:text="#{employeehsl}"></label>
                             <input 
                                 type="text"
                                 name="hsl"               
                                 class="form-control"
-                                placeholder="Nhập hệ số lương của nhân viên"
+                                th:placeholder="#{newemployeehslipt}"
                             />
                         </div>
                         <div class="form-group">
-                            <label>Phụ cấp</label>
+                            <label th:text="#{employeepc}"></label>
                             <input 
                                 type="text"
                                 name="phucap"                            
                                 class="form-control"
-                                placeholder="Nhập phụ cấp của nhân viên"
+                                th:placeholder="#{newemployeepcipt}"
                             />
                         </div>
                         <div class="form-group">
-                            <label>Ảnh đại điện</label>
+                            <label th:text="#{employeepic}"></label>
                             <br>
                             <input 
                                 type="file"
@@ -238,16 +243,15 @@
                             />
                             <br>
                             <br>
-                            <img id="thumbnail" alt="Ảnh đã chọn">
+                            <img id="thumbnail" th:alt="${newemployeepicalt}">
                         </div>
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">
-                                Tạo
+                            <button type="submit" th:text="#{createbtn}" class="btn btn-primary">
                             </button>
                         </div>
                     </form>
                     <hr>
-		            <a th:href="@{/}">Quay lại</a>
+		            <a th:href="@{/}" th:text="#{returnbtn}"></a>
                 </div>
             </div>
         </div>
