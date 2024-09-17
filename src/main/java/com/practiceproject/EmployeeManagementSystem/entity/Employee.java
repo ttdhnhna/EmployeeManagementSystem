@@ -42,6 +42,12 @@ public class  Employee {
     @JsonBackReference
     private User iduser;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_acc", referencedColumnName = "id_acc")
+    @BatchSize(size = 16)
+    @JsonBackReference
+    private EmployeeAccount idacc;
+
     private String hoten;
     private String ngaysinh;
     private String quequan;
@@ -161,5 +167,13 @@ public class  Employee {
 
     public void setIduser(User iduser) {
         this.iduser = iduser;
+    }
+
+    public EmployeeAccount getIdacc() {
+        return idacc;
+    }
+
+    public void setIdacc(EmployeeAccount idacc) {
+        this.idacc = idacc;
     }
 }

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
+import com.practiceproject.EmployeeManagementSystem.entity.EmployeeAccount;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 import com.practiceproject.EmployeeManagementSystem.service.AccountService;
@@ -64,6 +65,17 @@ public class AppController {
             model.addAttribute("alertMessage", e.getMessage());
             return "registration";
         }
+    }
+
+    @GetMapping("/regisEmpAcc/{id}")
+    public String regisEmpAcc(@PathVariable(value = "id") long id, Model model){
+        List<AuditLog> ListLogs = aService.getListLogs();
+        model.addAttribute("ListLogs", ListLogs); 
+        int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
+        model.addAttribute("unreadCount", unreadCount);
+        model.addAttribute("account", new EmployeeAccount());
+        model.addAttribute("idnv", id);
+        return "";
     }
 
     @GetMapping("/login")

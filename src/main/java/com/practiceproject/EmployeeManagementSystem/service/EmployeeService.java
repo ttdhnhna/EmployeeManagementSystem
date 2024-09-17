@@ -97,7 +97,6 @@ public class EmployeeService {
         if (!idpb.getIduser().getIduser().equals(Utility.getCurrentUserId())) {
             throw new IllegalStateException(mess2);
         }
-
         if (file != null && !file.isEmpty()) {
             String filename = StringUtils.cleanPath(file.getOriginalFilename());
             if (filename.contains("..")) {
@@ -122,6 +121,7 @@ public class EmployeeService {
         employee.setChucvu(chucvu);
         employee.setIduser(iduser);
         employee.setIdpb(idpb);
+        employee.setIdacc(null);
 
         salary.setHsl(hsl);
         salary.setPhucap(phucap);

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{title}"></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+    crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.ootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/styles/style01.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" th:href="@{/}" th:text="#{brand}"></a>
+
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" 
+        aria-expanded="false" aria-controls="collapsibleNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}" th:text="#{navlinkemployee}"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/departments}" th:text="#{navlinkdepartment}"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/salaries}" th:text="#{navlinksalary}"></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{navlinkdropdown}"></a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+                    <a class="dropdown-item" th:href="@{/accounts}" th:text="#{dropdownitemaccount}"></a>           
+                    <a class="dropdown-item" th:href="@{/auditlogs}" th:text="#{dropdownitemhistory}"></a>
+                </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-language" style="font-size: 22px;"></i></a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+                        <a class="dropdown-item" th:href="@{|/updateEmployee/${employee.idnv}?lang=en|}" th:text="#{languageen}"></a>
+                        <a class="dropdown-item" th:href="@{|/updateEmployee/${employee.idnv}?lang=vi|}" th:text="#{languagevn}"></a>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fa fa-bell"></i>
+                      <span class="badge badge-danger" id="notificationCount" th:if="${unreadCount > 0}" th:text="${unreadCount}"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+                        <li th:each = "log : ${ListLogs}">
+                            <a class="dropdown-item" th:href="@{/detaillog/{id}(id=${log.idlog})}">
+                                <span th:if="${log.act.name() == 'LOGIN'}" th:text="#{notificationlogin}"></span>
+                                <span th:if="${log.act.name() == 'LOGOUT'}" th:text="#{notificationlogout}"></span>
+                                <span th:if="${log.act.name() == 'ADD'}">
+                                  <span th:text="#{notification}"></span>
+                                  <span th:if="${log.idnv != null}"><span th:text="#{notificationaddemployee(${log.idnv})}"></span></span>
+                                  <span th:if="${log.idpb != null}"><span th:text="#{notificationadddepartment(${log.idpb})}"></span></span>
+                                  <span th:if="${log.idluong != null}"><span th:text="#{notificationaddsalary(${log.idluong})}"></span></span>
+                                  <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}"><span th:text="#{notificationregister}"></span></span>
+                                </span>
+                                <span th:if="${log.act.name() == 'UPDATE'}">
+                                  <span th:text="#{notification}"></span>
+                                  <span th:if="${log.idnv != null}"><span th:text="#{notificationupdateemployee(${log.idnv})}"></span></span>
+                                  <span th:if="${log.idpb != null}"><span th:text="#{notificationupdatedepartment(${log.idpb})}"></span></span>
+                                  <span th:if="${log.idluong != null}"><span th:text="#{notificationupdatesalary(${log.idluong})}"></span></span>           
+                                  <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}"><span th:text="#{notificationupdateaccount }"></span></span>
+                                </span>
+                                <span th:if="${log.act.name() == 'DELETE'}">
+                                  <span th:text="#{notification}"></span>
+                                  <span th:if="${log.idnv != null}"><span th:text="#{notificationdeleteemployee(${log.idnv})}"></span></span>
+                                  <span th:if="${log.idpb != null}"><span th:text="#{notificationdeletedepartment(${log.idpb})}"></span></span>
+                                  <span th:if="${log.idluong != null}"><span th:text="#{notificationdeletesalary(${log.idluong})}"></span></span>
+                                </span>
+                                <span th:if="${log.act.name() == 'CHANGEPASS'}" th:text="#{notificationchangepass}"></span>
+                                <span class="notification-dot" th:if="${!log.isRead}"></span>
+                            </a>
+                        </li>
+                      <hr>
+                      <li>
+                        <a class="dropdown-item view-all" th:href="@{/auditlogs}" th:text="#{notificationviewall}"></a>
+                      </li>
+                    </ul>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link" th:href="@{/logout(lang=${#locale.language})}" th:text="#{navlinklogout}"></a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" th:action="@{/findemployee}">
+                <input class="form-control mr-sm-2" type="search" name = "keyword" th:placeholder="#{searchform}">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" th:text="#{searchfbutton}"></button>
+            </form>
+        </div>
+    </nav>
+    <br>
+
+    <!-- Body -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+                &nbsp;
+                <h1 align="center" th:text="#{registrationtitle}"></h1>
+                &nbsp;
+                <!-- Cần bổ sung thêm thuộc tính id nhân viên và thay đổi action -->
+                <form th:action="@{/saveRegistration}" method="post" th:object="${user}">
+                    <div class="form-group">
+                        <!-- Tin nhắn báo lỗi -->
+                        <div th:if="${alertMessage != null}">
+                            <div class="alert alert-danger">[[${alertMessage}]]</div>
+                        </div>
+
+                        <label class="control-label" for="name" th:text="#{username}">
+                        </label>
+                        <input id="hoten" class="form-control" 
+                        th:field="*{hoten}" required autofocus="autofocus"
+                        th:placeholder="#{usernameinput}"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="email" th:text="#{useremail}">
+                        </label>
+                        <input id="email" class="form-control"  type="email"
+                        th:field="*{email}" required autofocus="autofocus"
+                        th:placeholder="#{useremailinput}"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="password" th:text="#{passwordinput}">
+                        </label>
+                        <input id="password" class="form-control" type="password"
+                        th:field="*{password}" required autofocus="autofocus" name="password"
+                        th:placeholder="#{passwordinput}">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="password" th:text="#{confirmpass}">
+                        </label>
+                        <input id="rpassword" class="form-control" type="password"
+                        name="rpassword" required autofocus="autofocus"
+                        oninput="ktMatkhauhople(this)"
+                        th:placeholder="#{confirmpass}">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" th:text="#{regisbtn}"></button>
+                        &nbsp;
+                        <a th:href="@{/login}" class="btn btn-danger" th:text="#{returnbtn}"></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    
+    <!-- Footer -->
+    <footer class="bg-light text-center text-lg-start">
+        <div class="footer-content text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          <div class="footer-left"> 
+            <b>Copyright©2024 Dương Thành Đạt.</b> All rights reserved.
+          </div>
+          <div class="footer-right">
+            <b>Version</b> 1.0.0
+          </div>
+        </div>
+    </footer> 
+    <script>
+        function ktMatkhauhople(input) {
+            var passwordInput = document.getElementById('password');
+            var rpasswordInput = document.getElementById('rpassword');
+    
+            // Check if passwords match
+            if (passwordInput.value === rpasswordInput.value) {
+                rpasswordInput.setCustomValidity('');
+            } else {
+                rpasswordInput.setCustomValidity('Mật khẩu không trùng khớp!');
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+    crossorigin="anonymous"></script>
+</body>
+</html>
