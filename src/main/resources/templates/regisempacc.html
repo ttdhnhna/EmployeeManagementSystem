@@ -111,20 +111,20 @@
                 <h1 align="center" th:text="#{registrationtitle}"></h1>
                 &nbsp;
                 <!-- Cần bổ sung thêm thuộc tính id nhân viên và thay đổi action -->
-                <form th:action="@{/saveRegistration}" method="post" th:object="${user}">
-                    <div class="form-group">
-                        <!-- Tin nhắn báo lỗi -->
-                        <div th:if="${alertMessage != null}">
-                            <div class="alert alert-danger">[[${alertMessage}]]</div>
-                        </div>
-
-                        <label class="control-label" for="name" th:text="#{username}">
-                        </label>
-                        <input id="hoten" class="form-control" 
-                        th:field="*{hoten}" required autofocus="autofocus"
-                        th:placeholder="#{usernameinput}"
-                        >
+                <form th:action="@{/saveRegistration}" method="post" th:object="${account}">
+                    <!-- Tin nhắn báo lỗi -->
+                    <div th:if="${alertMessage != null}">
+                        <div class="alert alert-danger">[[${alertMessage}]]</div>
                     </div>
+
+                    <div class="form-group">
+                        <input 
+                            type="hidden"
+                            th:field="*{idnv}"
+                            class="form-control"
+                        />
+                    </div>
+                    
                     <div class="form-group">
                         <label class="control-label" for="email" th:text="#{useremail}">
                         </label>
@@ -151,7 +151,7 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-success" th:text="#{regisbtn}"></button>
                         &nbsp;
-                        <a th:href="@{/login}" class="btn btn-danger" th:text="#{returnbtn}"></a>
+                        <a th:href="@{/}" class="btn btn-danger" th:text="#{returnbtn}"></a>
                     </div>
                 </form>
             </div>

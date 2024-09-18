@@ -1,6 +1,7 @@
 package com.practiceproject.EmployeeManagementSystem.controller;
 
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -28,6 +29,7 @@ import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 import com.practiceproject.EmployeeManagementSystem.service.AccountService;
 import com.practiceproject.EmployeeManagementSystem.service.AuditLogService;
 import com.practiceproject.EmployeeManagementSystem.service.CustomerNotFoundException;
+import com.practiceproject.EmployeeManagementSystem.service.EmpAccountService;
 import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
 import net.bytebuddy.utility.RandomString;
@@ -41,6 +43,8 @@ public class AppController {
     AccountService service;
     @Autowired
     AuditLogService aService;
+    @Autowired
+    EmpAccountService eService;
     @Autowired
     MessageSource messageSource;
 
@@ -75,7 +79,22 @@ public class AppController {
         model.addAttribute("unreadCount", unreadCount);
         model.addAttribute("account", new EmployeeAccount());
         model.addAttribute("idnv", id);
-        return "";
+        return "regisempacc";
+    }
+
+    @PostMapping("/saveRegisEmpAcc")
+    public String saveRegisEmpAcc(@ModelAttribute("account") EmployeeAccount account, 
+    @PathVariable(value = "idnv") long id,
+    Model model, RedirectAttributes redirectAttributes) throws IOException{
+        try {
+            if (account!=null) {
+                eService.createEmpAccount(account, id); 
+            }
+        } catch (IllegalStateException e) {
+            redirectAttributes.addFlashAttribute("alertMessage", e.getMessage());
+            return "redirect:/regisEmpAcc/"+id;
+        }
+        return "redirect:/";
     }
 
     @GetMapping("/login")

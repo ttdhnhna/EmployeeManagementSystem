@@ -25,7 +25,6 @@ public class EmployeeAccount {
     @Column(name = "id_acc")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idacc;
-    private String hoten;
     private String email; 
     private String password;
 
@@ -51,14 +50,6 @@ public class EmployeeAccount {
 
     public void setIdacc(Long idacc) {
         this.idacc = idacc;
-    }
-
-    public String getHoten() {
-        return hoten;
-    }
-
-    public void setHoten(String hoten) {
-        this.hoten = hoten;
     }
 
     public String getEmail() {
