@@ -177,3 +177,6 @@ Hệ thống Check-In/Check-Out trên Web: Nhân viên có thể đăng nhập v
 Theo dõi IP/Vị trí: Sử dụng địa chỉ IP hoặc vị trí của nhân viên (thông qua GPS trên thiết bị di động) để xác thực sự hiện diện của họ.
 Tự động chấm công: Thiết lập hệ thống theo dõi thời gian đăng nhập của nhân viên khi họ truy cập hệ thống. Bạn có thể tự động ghi lại thời 
 gian đến và đi của họ dựa trên thời gian bắt đầu và kết thúc phiên làm việc của họ.
+
+Can bo sung vai thu dau tien la khong de cho email nhan vien bi trung lap dong thoi phai lam phan chuc nang de lam an nut dang ky tai khoan
+cho nhan vien khi da co tk roi.
