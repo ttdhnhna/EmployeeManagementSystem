@@ -84,7 +84,7 @@ public class AppController {
 
     @PostMapping("/saveRegisEmpAcc")
     public String saveRegisEmpAcc(@ModelAttribute("account") EmployeeAccount account, 
-    @PathVariable(value = "idnv") long id,
+    @RequestParam(value = "idnv") long id,
     Model model, RedirectAttributes redirectAttributes) throws IOException{
         try {
             if (account!=null) {

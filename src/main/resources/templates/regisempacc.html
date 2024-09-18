@@ -120,7 +120,9 @@
                     <div class="form-group">
                         <input 
                             type="hidden"
-                            th:field="${idnv}"
+                            id="idnv"
+                            name="idnv"
+                            th:field="*{idnv.idnv}"
                             class="form-control"
                         />
                     </div>
