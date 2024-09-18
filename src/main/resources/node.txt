@@ -178,5 +178,7 @@ Theo dõi IP/Vị trí: Sử dụng địa chỉ IP hoặc vị trí của nhân
 Tự động chấm công: Thiết lập hệ thống theo dõi thời gian đăng nhập của nhân viên khi họ truy cập hệ thống. Bạn có thể tự động ghi lại thời 
 gian đến và đi của họ dựa trên thời gian bắt đầu và kết thúc phiên làm việc của họ.
 
-Mình đã làm xong phần đăng ký tk cho nhân viên rồi, giờ sẽ làm phần trang đăng nhập và trang chủ cho nhân viên đấy rồi mới bắt đầu làm chức năng 
+Mình đã làm xong phần đăng ký tk vs trang đăng nhập cho nhân viên rồi, giờ sẽ làm trang chủ cho nhân viên đấy rồi mới bắt đầu làm chức năng 
 đăng nhập với đăng xuất sau.
+
+Còn chắc năng chuyển đổi ngôn ngữ ở trang regisempacc bị lỗi sẽ sửa sau.

@@ -12,10 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
     <!-- Header -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
+		<!-- <div class="container">
 			<div class="navbar-header">
 			</div>
             <ul class="nav navbar-nav navbar-right">
@@ -29,8 +28,9 @@
                     </ul>
                 </li>
             </ul>
-		</div>
+		</div> -->
 	</nav>
+
     <!-- Body -->
     <br>
     <br>
@@ -78,10 +78,6 @@
                     </div>
 
                     <div class="form-group">
-                        <span th:text="#{donthaveaccount}"></span> <a th:href="@{/registration}" th:text="#{clickhere}"></a></span>
-                    </div>
-
-                    <div class="form-group">
                         <a th:href="@{/forgotpassword}" th:text="#{forgotpass}"></a></span>
                     </div>
 
@@ -97,6 +93,17 @@
             </div>
         </div>
     </div>
+    
+    <a th:href="@{/login}" style="position: fixed;
+        bottom: 10px;
+        right: 10px;
+        margin: 0;
+        padding: 0;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        text-decoration: underline;">
+        <img style="height: 40px" th:src="@{/image/icons8-admin-30.png}"/>
+    </a>
 
     <!-- Footer -->
     <footer class="bg-light text-center text-lg-start">

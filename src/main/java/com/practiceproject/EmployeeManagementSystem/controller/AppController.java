@@ -102,6 +102,11 @@ public class AppController {
         return "login";
     }
 
+    @GetMapping("/empacclogin")
+    public String empacclogin(){
+        return "employeeacclogin";
+    }
+
     @GetMapping("/accounts")
     public String showAccountPage(Model model){
         Long iduser = Utility.getCurrentUserId();
