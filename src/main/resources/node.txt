@@ -178,5 +178,5 @@ Theo dõi IP/Vị trí: Sử dụng địa chỉ IP hoặc vị trí của nhân
 Tự động chấm công: Thiết lập hệ thống theo dõi thời gian đăng nhập của nhân viên khi họ truy cập hệ thống. Bạn có thể tự động ghi lại thời 
 gian đến và đi của họ dựa trên thời gian bắt đầu và kết thúc phiên làm việc của họ.
 
-Can bo sung vai thu dau tien la khong de cho email nhan vien bi trung lap dong thoi phai lam phan chuc nang de lam an nut dang ky tai khoan
-cho nhan vien khi da co tk roi.
+Mình đã làm xong phần đăng ký tk cho nhân viên rồi, giờ sẽ làm phần trang đăng nhập và trang chủ cho nhân viên đấy rồi mới bắt đầu làm chức năng 
+đăng nhập với đăng xuất sau.

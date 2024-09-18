@@ -70,8 +70,12 @@ public class AccountService {
     @Transactional
     public void saveRegistration(User user){
         String mess = messageSource.getMessage("musthaveinfo", null, LocaleContextHolder.getLocale());
-        if(user.equals(null)){
+        String emailExistsMess = messageSource.getMessage("emailexists", null, LocaleContextHolder.getLocale());
+        if(user==null){
             throw new IllegalStateException(mess);
+        }
+        if(repository.findbyEmail(user.getEmail())!=null){
+            throw new IllegalStateException(emailExistsMess);
         }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String ePass = passwordEncoder.encode(user.getPassword());

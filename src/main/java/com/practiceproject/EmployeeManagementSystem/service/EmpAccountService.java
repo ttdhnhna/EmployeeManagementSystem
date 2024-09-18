@@ -51,9 +51,15 @@ public class EmpAccountService {
 
     @Transactional
     public void createEmpAccount(EmployeeAccount account, long id){
+        String emailExistsMess = messageSource.getMessage("emailexists", null, LocaleContextHolder.getLocale());
+        
         if(account.equals(null)){
             throw new IllegalStateException("null");
         }
+        if(repository.findByEmail(account.getEmail()) != null){
+            throw new IllegalStateException(emailExistsMess);
+        }
+
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String ePass = passwordEncoder.encode(account.getPassword());
         account.setPassword(ePass);
