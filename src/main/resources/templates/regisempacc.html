@@ -48,7 +48,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-language" style="font-size: 22px;"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
                         <a class="dropdown-item" th:href="@{|/regisEmpAcc/${account.idacc}?lang=en|}" th:text="#{languageen}"></a>
-                        <a class="dropdown-item" th:href="@{|/regisEmpAcc/${account.idnacc}?lang=vi|}" th:text="#{languagevn}"></a>
+                        <a class="dropdown-item" th:href="@{|/regisEmpAcc/${account.idacc}?lang=vi|}" th:text="#{languagevn}"></a>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -111,7 +111,7 @@
                 <h1 align="center" th:text="#{registrationtitle}"></h1>
                 &nbsp;
                 <!-- Cần bổ sung thêm thuộc tính id nhân viên và thay đổi action -->
-                <form th:action="@{/saveRegistration}" method="post" th:object="${account}">
+                <form th:action="@{/saveRegisEmpAcc}" method="post" th:object="${account}">
                     <!-- Tin nhắn báo lỗi -->
                     <div th:if="${alertMessage != null}">
                         <div class="alert alert-danger">[[${alertMessage}]]</div>
