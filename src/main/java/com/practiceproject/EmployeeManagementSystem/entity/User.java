@@ -46,6 +46,12 @@ public class User {
     @JsonManagedReference
     private Set<AuditLog> idlog = new HashSet<>();
 
+    public enum Role{
+        MANAGER, EMPLOYEE
+    }
+
+    private Role role;
+
     public User() {
     }
     public Long getIduser() {
@@ -96,5 +102,10 @@ public class User {
     public void setIdlog(Set<AuditLog> idlog) {
         this.idlog = idlog;
     }
-    
+    public Role getRole() {
+        return role;
+    }
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }

@@ -9,7 +9,6 @@
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
     crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/styles/style01.css}">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -27,7 +26,7 @@
         <!-- Navbar links -->
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" th:href="@{/}" th:text="#{navlinkemployee}"></a>
             </li>
             <li class="nav-item">
@@ -35,7 +34,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" th:href="@{/salaries}" th:text="#{navlinksalary}"></a>
-            </li>
+            </li> -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{navlinkdropdown}"></a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
@@ -46,8 +45,8 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-language" style="font-size: 22px;"></i></a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
-                <a class="dropdown-item" th:href="@{/?lang=en}" th:text="#{languageen}"></a>
-                <a class="dropdown-item" th:href="@{/?lang=vi}" th:text="#{languagevn}"></a>
+                <!-- <a class="dropdown-item" th:href="@{/?lang=en}" th:text="#{languageen}"></a> -->
+                <!-- <a class="dropdown-item" th:href="@{/?lang=vi}" th:text="#{languagevn}"></a> -->
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -103,117 +102,10 @@
     <br>
 
     <!-- Body -->
-    <div class="container">
-        <div class="row">
-            &nbsp; &nbsp; 
-            <h1 th:text="#{containerh1employee}"></h1>
-        </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <a th:href="@{/addEmployee}" class="btn btn-primary btn-sm mb-3" th:text="#{btnadd}">
-                </a>
-                <a th:href="@{/excel}" class="btn btn-primary btn-sm mb-3" data-toggle="tooltip" data-placement="bottom" title="Tải xuống file Excel" th:text="#{btndownloadexcel}">
-                </a>
-                <a th:href="@{/uploadexcel}" class="btn btn-primary btn-sm mb-3" data-toggle="tooltip" data-placement="bottom" title="Tải lên file Excel" th:text="#{btnuploadexcel}">
-                </a>
-            </div>
-        </div>
-        <!-- Tin nhắn  -->
-        <div th:if="${errorMess != null}">
-          <div class="alert alert-danger">[[${errorMess}]]</div>
-        </div>
-        <div class="table-responsive">
-          <table class="table thead-light table-bordered ">
-            <thead class="table-dark">
-                <tr>
-                    <th>
-                      <span th:if="${isSearch}" th:text="#{tblid}">
-                      </span>
-                      <a th:if="${!isSearch}" th:href="@{'/page/' + ${currentPage} + '?sortField=idnv&sortDir=' + ${reverseSortDir}}" th:text="#{tblid}"></a>
-                    </th>
-                    <th th:text="#{tblpic}"></th>
-                    <th>
-                      <span th:if="${isSearch}" th:text="#{tblname}">
-                      </span>
-                      <a th:if="${!isSearch}" th:href="@{'/page/' + ${currentPage} + '?sortField=hoten&sortDir=' + ${reverseSortDir}}" th:text="#{tblname}"></a>
-                    </th>
-                    <th>
-                      <span th:if="${isSearch}" th:text="#{tblposition}"> 
-                      </span>
-                      <a th:if="${!isSearch}" th:href="@{'/page/' + ${currentPage} + '?sortField=chucvu&sortDir='+${reverseSortDir}}" th:text="#{tblposition}"></a>
-                    </th>
-                    <th th:text="#{tblfunction}"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each = "employee : ${ListEmployees}">
-                    <td th:text="${employee.idnv}"></td>
-                    <td>
-                      <img th:if="${employee.anh != null}" th:src="${'data:image/jpeg;base64,' + employee.anh}" height="100" width="100">
-                      <img th:if="${employee.anh == null}" src="https://bootdey.com/img/Content/avatar/avatar1.png" height="100" width="100">
-                    </td>
-                    <td th:text="${employee.hoten}"></td>
-                    <td th:text="${employee.chucvu}"></td>
-                    <td>
-                      <a th:href="@{/updateEmployee/{id}(id=${employee.idnv})}" class="btn btn-primary" th:text="#{tblbtnupdate}"></a>
-                      <a th:href="@{/profileemployee/{id}(id=${employee.idnv})}" class="btn btn-primary" th:text="#{tblbtndetail}"></a>
-                      <a th:if="${employee.idacc == null}" th:href="@{/regisEmpAcc/{id}(id=${employee.idnv})}" class="btn btn-primary">Tạo tài khoản</a>
-                      <a th:href="@{/deleteEmployee/{id}(id=${employee.idnv})}" class="btn btn-danger" th:text="#{tblbtndelete}"></a>
-                    </td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div th:if="${totalPages>1}">
-          <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item" style="font-size: 16px;" th:text="#{totalitems}">
-                &nbsp; 
-              </li>
-              <li class="page-item" style="font-size: 16px;">
-                &nbsp; 
-                [[${totalItems}]]
-              </li>
-              <li class="page-item">
-                <a class="page-link" th:if="${currentPage > 1}" th:text="#{firstpage}" th:href="@{'/page/' + 1 + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"></a>
-                <span class="page-item disabled" th:unless="${currentPage > 1}">
-                  <span class="page-link" th:text="#{firstpage}"></span>
-                </span>
-              </li>
-
-              <li class="page-item">
-                <a class="page-link" th:if="${currentPage > 1}" th:text="#{previouspage}" th:href="@{'/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"></a>
-                <span class="page-item disabled" th:unless="${currentPage > 1}">
-                  <span class="page-link" th:text="#{previouspage}"></span>
-                </span>
-              </li>
-
-              <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
-                <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
-                <span class="page-item active" th:unless="${currentPage != i}">
-                  <span class="page-link">
-                    [[${i}]]
-                  </span>
-                </span>
-              </li>
-
-              <li class="page-item">
-                <a class="page-link" th:if="${currentPage < totalPages}" th:text="#{nextpage}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"></a>
-                <span class="page-item disabled" th:unless="${currentPage < totalPages}">
-                  <span class="page-link" th:text="#{nextpage}"></span>
-                </span>
-              </li>
-
-              <li class="page-item">
-                <a class="page-link" th:if="${currentPage < totalPages}" th:text="#{lastpage}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"></a>
-                <span class="page-item disabled" th:unless="${currentPage < totalPages}">
-                  <span class="page-link" th:text="#{lastpage}"></span>
-                </span>
-              </li>
-          </ul>
-        </nav>
-      </div>
+    <div class="container light-style flex-grow-1 container-p-y">
+        <h1 class="text-center">Chào mừng</h1>
+        <p class="text-center">Nguoi dung da dang nhap!</p>
+        <!-- <p>Your user name is: <b>[[${#request.userPrincipal.principal.username}]]</b></p> -->
     </div>
 
     <!-- Footer -->

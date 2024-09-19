@@ -19,6 +19,7 @@ import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
+import com.practiceproject.EmployeeManagementSystem.entity.User.Role;
 import com.practiceproject.EmployeeManagementSystem.entitydto.UserDto;
 
 @Service
@@ -80,6 +81,7 @@ public class AccountService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String ePass = passwordEncoder.encode(user.getPassword());
         user.setPassword(ePass);
+        user.setRole(Role.MANAGER);
         User userDto = this.repository.save(user);
 
         eService.logAuditOperation(userDto, null, null, null, Act.ADD);

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.EmployeeAccount;
+import com.practiceproject.EmployeeManagementSystem.entity.EmployeeAccount.Role;
 import com.practiceproject.EmployeeManagementSystem.repository.EmpAccountRepository;
 import com.practiceproject.EmployeeManagementSystem.repository.EmployeeRepository;
 
@@ -65,6 +66,7 @@ public class EmpAccountService {
         account.setPassword(ePass);
         Employee idnv = eService.getEmployeebyID(id);
         account.setIdnv(idnv);
+        account.setRole(Role.EMPLOYEE);
         EmployeeAccount savedAccount = this.repository.save(account);
 
         idnv.setIdacc(savedAccount);

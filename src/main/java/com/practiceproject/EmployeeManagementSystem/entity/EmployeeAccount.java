@@ -41,6 +41,12 @@ public class EmployeeAccount {
     @JsonManagedReference
     private Set<Attendance> idatt = new HashSet<>();
 
+    public enum Role{
+        EMPLOYEE
+    }
+
+    private Role role;
+
     public EmployeeAccount() {
     }
 
@@ -90,5 +96,13 @@ public class EmployeeAccount {
 
     public void setIdatt(Set<Attendance> idatt) {
         this.idatt = idatt;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     } 
 }
