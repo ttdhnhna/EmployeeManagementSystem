@@ -34,10 +34,10 @@ public class Attendance {
     private String country;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_acc", nullable = false, referencedColumnName = "id_acc")
+    @JoinColumn(name = "id_nv", nullable = false, referencedColumnName = "id_nv")
     @BatchSize(size = 16)
     @JsonBackReference
-    private EmployeeAccount idacc;
+    private Employee idnv;
 
     @PrePersist
     protected void onCreate(){
@@ -94,14 +94,14 @@ public class Attendance {
 
     public void setCountry(String country) {
         this.country = country;
+    }  
+
+    public Employee getIdnv() {
+        return idnv;
     }
 
-    public EmployeeAccount getIdacc() {
-        return idacc;
-    }
-
-    public void setIdacc(EmployeeAccount idacc) {
-        this.idacc = idacc;
+    public void setIdnv(Employee idnv) {
+        this.idnv = idnv;
     }
 
     public LocalDateTime getCheckInTime() {

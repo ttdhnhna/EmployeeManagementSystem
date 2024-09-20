@@ -1,16 +1,11 @@
 package com.practiceproject.EmployeeManagementSystem.entity;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -19,8 +14,8 @@ import org.hibernate.annotations.BatchSize;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name = "tblEmployeeAccount")
-public class EmployeeAccount {
+@Table(name = "tblAccount")
+public class Account {
     @Id
     @Column(name = "id_acc")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,18 +31,18 @@ public class EmployeeAccount {
     @JsonManagedReference
     private Employee idnv;
 
-    @OneToMany(mappedBy = "idacc",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "idacc", fetch = FetchType.LAZY)
     @BatchSize(size = 16)
     @JsonManagedReference
-    private Set<Attendance> idatt = new HashSet<>();
+    private User iduser;
 
     public enum Role{
-        EMPLOYEE
+        MANAGER, EMPLOYEE
     }
 
     private Role role;
 
-    public EmployeeAccount() {
+    public Account() {
     }
 
     public Long getIdacc() {
@@ -90,19 +85,19 @@ public class EmployeeAccount {
         this.idnv = idnv;
     }
 
-    public Set<Attendance> getIdatt() {
-        return idatt;
-    }
-
-    public void setIdatt(Set<Attendance> idatt) {
-        this.idatt = idatt;
-    }
-
     public Role getRole() {
         return role;
     }
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public User getUser() {
+        return iduser;
+    }
+
+    public void setUser(User iduser) {
+        this.iduser = iduser;
     } 
 }

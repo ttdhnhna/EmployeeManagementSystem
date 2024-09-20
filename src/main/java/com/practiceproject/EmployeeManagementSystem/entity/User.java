@@ -10,11 +10,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.BatchSize;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -26,10 +29,6 @@ public class User {
     private Long iduser;
     private String hoten;
     private String email; 
-    private String password;
-
-    @Column(name = "reset_password_token")
-    private String resetPassToken;
 
     @OneToMany(mappedBy = "iduser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @BatchSize(size = 16)
@@ -46,11 +45,11 @@ public class User {
     @JsonManagedReference
     private Set<AuditLog> idlog = new HashSet<>();
 
-    public enum Role{
-        MANAGER, EMPLOYEE
-    }
-
-    private Role role;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_acc", referencedColumnName = "id_acc")
+    @BatchSize(size = 16)
+    @JsonBackReference
+    private Account idacc;
 
     public User() {
     }
@@ -72,18 +71,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public String getResetPassToken() {
-        return resetPassToken;
-    }
-    public void setResetPassToken(String resetPassToken) {
-        this.resetPassToken = resetPassToken;
-    }
     public Set<Employee> getIdnv() {
         return idnv;
     }
@@ -102,10 +89,10 @@ public class User {
     public void setIdlog(Set<AuditLog> idlog) {
         this.idlog = idlog;
     }
-    public Role getRole() {
-        return role;
+    public Account getIdacc() {
+        return idacc;
     }
-    public void setRole(Role role) {
-        this.role = role;
+    public void setIdacc(Account idacc) {
+        this.idacc = idacc;
     }
 }

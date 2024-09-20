@@ -19,7 +19,6 @@ import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
-import com.practiceproject.EmployeeManagementSystem.entity.User.Role;
 import com.practiceproject.EmployeeManagementSystem.entitydto.UserDto;
 
 @Service
@@ -79,9 +78,9 @@ public class AccountService {
             throw new IllegalStateException(emailExistsMess);
         }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String ePass = passwordEncoder.encode(user.getPassword());
-        user.setPassword(ePass);
-        user.setRole(Role.MANAGER);
+        // String ePass = passwordEncoder.encode(user.getPassword());
+        // user.setPassword(ePass);
+        // user.setRole(Role.MANAGER);
         User userDto = this.repository.save(user);
 
         eService.logAuditOperation(userDto, null, null, null, Act.ADD);
@@ -93,14 +92,14 @@ public class AccountService {
         String mess1 = messageSource.getMessage("wrongpass", null, LocaleContextHolder.getLocale());
         String mess2 = messageSource.getMessage("newpassmustdiff", null, LocaleContextHolder.getLocale());
 
-        if(!passwordEncoder.matches(currentpass, user.getPassword())){
-            throw new IllegalStateException(mess1);
-        }
-        if(passwordEncoder.matches(newpass, user.getPassword())){
-            throw new IllegalStateException(mess2);
-        }
-        String encodedPass = passwordEncoder.encode(newpass); 
-        user.setPassword(encodedPass);
+        // if(!passwordEncoder.matches(currentpass, user.getPassword())){
+        //     throw new IllegalStateException(mess1);
+        // }
+        // if(passwordEncoder.matches(newpass, user.getPassword())){
+        //     throw new IllegalStateException(mess2);
+        // }
+        // String encodedPass = passwordEncoder.encode(newpass); 
+        // user.setPassword(encodedPass);
         User userDto = this.repository.save(user);
 
         eService.logAuditOperation(userDto, null, null, null, Act.CHANGEPASS);
@@ -110,24 +109,24 @@ public class AccountService {
         User user = repository.findbyEmail(email);
         String mess = messageSource.getMessage("cantfindemailacc", new Object[] { email }, LocaleContextHolder.getLocale());
         if(user != null){
-            user.setResetPassToken(token);
+            // user.setResetPassToken(token);
             repository.save(user);
         }else{
             throw new CustomerNotFoundException (mess);
         }
     }
 
-    public User get(String resetPassToken){
-        return repository.findByResetPassToken(resetPassToken);
-    }
+    // public User get(String resetPassToken){
+    //     return repository.findByResetPassToken(resetPassToken);
+    // }
 
     @Transactional
     public void updatePassword(User user, String newPass){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPass = passwordEncoder.encode(newPass); 
 
-        user.setPassword(encodedPass);
-        user.setResetPassToken(null);
+        // user.setPassword(encodedPass);
+        // user.setResetPassToken(null);
 
         User userDto = this.repository.save(user);
 

@@ -23,15 +23,15 @@ public class CustomUserDetail implements UserDetails{
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> users=new ArrayList<>();
-        if(user.getRole().equals(com.practiceproject.EmployeeManagementSystem.entity.User.Role.MANAGER)){
-            users.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
-        }
+        // if(user.getRole().equals(com.practiceproject.EmployeeManagementSystem.entity.User.Role.MANAGER)){
+        //     users.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
+        // }
         return users;
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return user.getEmail();
     }
 
     @Override

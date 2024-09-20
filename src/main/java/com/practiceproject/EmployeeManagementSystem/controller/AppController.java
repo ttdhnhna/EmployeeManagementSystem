@@ -23,13 +23,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
-import com.practiceproject.EmployeeManagementSystem.entity.EmployeeAccount;
+import com.practiceproject.EmployeeManagementSystem.entity.Account;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 import com.practiceproject.EmployeeManagementSystem.service.AccountService;
 import com.practiceproject.EmployeeManagementSystem.service.AuditLogService;
 import com.practiceproject.EmployeeManagementSystem.service.CustomerNotFoundException;
-import com.practiceproject.EmployeeManagementSystem.service.EmpAccountService;
+import com.practiceproject.EmployeeManagementSystem.service.LoginAccountService;
 import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
 import net.bytebuddy.utility.RandomString;
@@ -44,7 +44,7 @@ public class AppController {
     @Autowired
     AuditLogService aService;
     @Autowired
-    EmpAccountService eService;
+    LoginAccountService eService;
     @Autowired
     MessageSource messageSource;
 
@@ -77,13 +77,13 @@ public class AppController {
         model.addAttribute("ListLogs", ListLogs); 
         int unreadCount = aService.getUnreadLog(Utility.getCurrentUserId());
         model.addAttribute("unreadCount", unreadCount);
-        model.addAttribute("account", new EmployeeAccount());
+        model.addAttribute("account", new Account());
         model.addAttribute("idnv", id);
         return "regisempacc";
     }
 
     @PostMapping("/saveRegisEmpAcc")
-    public String saveRegisEmpAcc(@ModelAttribute("account") EmployeeAccount account, 
+    public String saveRegisEmpAcc(@ModelAttribute("account") Account account, 
     @RequestParam(value = "idnv") long id,
     Model model, RedirectAttributes redirectAttributes) throws IOException{
         try {
@@ -202,32 +202,32 @@ public class AppController {
         return "forgotpassword";
     }
 
-    @GetMapping("/resetpassword")
-    public String showResetPassForm(@Param(value = "token")String token, Model model){
-        User user = service.get(token);
-        String mess = messageSource.getMessage("errortoken", null, LocaleContextHolder.getLocale());
-        if(user == null){
-            model.addAttribute("error", mess);
-        }
-        model.addAttribute("token", token);
-        return "resetpassword";
-    }
+    // @GetMapping("/resetpassword")
+    // public String showResetPassForm(@Param(value = "token")String token, Model model){
+    //     User user = service.get(token);
+    //     String mess = messageSource.getMessage("errortoken", null, LocaleContextHolder.getLocale());
+    //     if(user == null){
+    //         model.addAttribute("error", mess);
+    //     }
+    //     model.addAttribute("token", token);
+    //     return "resetpassword";
+    // }
 
-    @PostMapping("/upresetpassword")
-    public String processResetPass(HttpServletRequest request, Model model){
-        String token = request.getParameter("token");
-        String pass = request.getParameter("password");
-        String mess1 = messageSource.getMessage("errortoken", null, LocaleContextHolder.getLocale());
-        String mess2 = messageSource.getMessage("changepasssuccessful", null, LocaleContextHolder.getLocale());
+    // @PostMapping("/upresetpassword")
+    // public String processResetPass(HttpServletRequest request, Model model){
+    //     String token = request.getParameter("token");
+    //     String pass = request.getParameter("password");
+    //     String mess1 = messageSource.getMessage("errortoken", null, LocaleContextHolder.getLocale());
+    //     String mess2 = messageSource.getMessage("changepasssuccessful", null, LocaleContextHolder.getLocale());
         
-        User user = service.get(token);
-        if(user == null){
-            model.addAttribute("error", mess1);
-        }else{
-            service.updatePassword(user, pass);
-            model.addAttribute("message", mess2);
-        }
-        return "login";
-    }
+    //     User user = service.get(token);
+    //     if(user == null){
+    //         model.addAttribute("error", mess1);
+    //     }else{
+    //         service.updatePassword(user, pass);
+    //         model.addAttribute("message", mess2);
+    //     }
+    //     return "login";
+    // }
     
 }

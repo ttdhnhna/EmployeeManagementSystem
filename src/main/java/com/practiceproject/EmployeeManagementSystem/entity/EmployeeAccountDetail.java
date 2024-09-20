@@ -9,16 +9,16 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class EmployeeAccountDetail implements UserDetails{
-    EmployeeAccount account;
+    Account account;
 
-    public EmployeeAccountDetail(EmployeeAccount account){
+    public EmployeeAccountDetail(Account account){
         this.account=account;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> accs = new ArrayList<>();
-        if(account.getRole().equals(com.practiceproject.EmployeeManagementSystem.entity.EmployeeAccount.Role.EMPLOYEE)){
+        if(account.getRole().equals(com.practiceproject.EmployeeManagementSystem.entity.Account.Role.EMPLOYEE)){
             accs.add(new SimpleGrantedAuthority("ROLE_EMPLOYEE"));
         }
         return accs;
