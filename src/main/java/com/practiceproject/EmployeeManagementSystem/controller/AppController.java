@@ -97,12 +97,12 @@ public class AppController {
         return "redirect:/";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/manager/login")
     public String login(){
         return "login";
     }
 
-    @GetMapping("/empacclogin")
+    @GetMapping("/employee/login")
     public String empacclogin(){
         return "employeeacclogin";
     }
