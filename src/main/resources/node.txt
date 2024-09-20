@@ -183,52 +183,5 @@ Mình đã làm xong phần đăng ký tk vs trang đăng nhập cho nhân viên
 
 Còn chắc năng chuyển đổi ngôn ngữ ở trang regisempacc bị lỗi sẽ sửa sau.
 
-@Service
-public class CustomUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository; // Repository for Admins (Users)
 
-    @Autowired
-    private EmployeeAccountRepository employeeAccountRepository; // Repository for EmployeeAccounts
-
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        // Try to find the user in the Admin/User repository
-        User user = userRepository.findByEmail(email);
-        if (user != null) {
-            return new org.springframework.security.core.userdetails.User(
-                    user.getEmail(),
-                    user.getPassword(),
-                    getAuthorities(user) // Fetch authorities based on role (Admin)
-            );
-        }
-
-        // If not found, try to find the user in the EmployeeAccount repository
-        EmployeeAccount employeeAccount = employeeAccountRepository.findByEmail(email);
-        if (employeeAccount != null) {
-            return new org.springframework.security.core.userdetails.User(
-                    employeeAccount.getEmail(),
-                    employeeAccount.getPassword(),
-                    getAuthorities(employeeAccount) // Fetch authorities based on role (Employee)
-            );
-        }
-
-        // If neither found, throw an exception
-        throw new UsernameNotFoundException("User not found with email: " + email);
-    }
-
-    private Collection<? extends GrantedAuthority> getAuthorities(User user) {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        if (user.getRole().equals(Role.MANAGER)) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        }
-        return authorities;
-    }
-
-    private Collection<? extends GrantedAuthority> getAuthorities(EmployeeAccount employeeAccount) {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_EMPLOYEE"));
-        return authorities;
-    }
-}

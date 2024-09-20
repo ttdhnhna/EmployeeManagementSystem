@@ -8,39 +8,34 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-/**
- * CustomUserDetail
- */
+public class EmployeeAccountDetail implements UserDetails{
+    EmployeeAccount account;
 
-public class CustomUserDetail implements UserDetails{
-
-    User user;
-
-    public CustomUserDetail(User user) {
-        this.user = user;
+    public EmployeeAccountDetail(EmployeeAccount account){
+        this.account=account;
     }
-    
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> users=new ArrayList<>();
-        if(user.getRole().equals(com.practiceproject.EmployeeManagementSystem.entity.User.Role.MANAGER)){
-            users.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
+        List<GrantedAuthority> accs = new ArrayList<>();
+        if(account.getRole().equals(com.practiceproject.EmployeeManagementSystem.entity.EmployeeAccount.Role.EMPLOYEE)){
+            accs.add(new SimpleGrantedAuthority("ROLE_EMPLOYEE"));
         }
-        return users;
+        return accs;
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return account.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return account.getEmail();
     }
 
-    public Long getUserId(){
-        return user.getIduser();
+    public Long getAccId(){
+        return account.getIdacc();
     }
 
     @Override

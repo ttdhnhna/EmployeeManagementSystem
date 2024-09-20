@@ -69,13 +69,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers("/")//Hóa ra đây là chỗ yêu cầu cần đăng nhập mới có quyền truy cập. Câu lệnh này sẽ chỉnh đường dẫn đc thêm sẽ làm những gì. 
-            .authenticated()//Xác định danh tính người định truy cập đường link đc chỉ định hay là đường link ở trên.
-            .anyRequest().permitAll()
+                .antMatchers("/").hasRole("MANAGER")//Hóa ra đây là chỗ yêu cầu cần đăng nhập mới có quyền truy cập. Câu lệnh này sẽ chỉnh đường dẫn đc thêm sẽ làm những gì. 
+                .antMatchers("/employeepage").hasRole("EMPLOYEE")
+                .anyRequest()
+                .authenticated()//Xác định danh tính người định truy cập đường link đc chỉ định hay là đường link ở trên.
             .and()
             .formLogin()
                 .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/", true)
                 .permitAll()
+            .and()
+            .formLogin()
+                .loginPage("/empacclogin")
+                .loginProcessingUrl("/empacclogin")
+                .defaultSuccessUrl("/employeepage", true)
             .and()
             .logout()
                 .invalidateHttpSession(true)

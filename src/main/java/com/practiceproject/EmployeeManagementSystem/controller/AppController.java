@@ -107,6 +107,11 @@ public class AppController {
         return "employeeacclogin";
     }
 
+    @GetMapping("/employeepage")
+    public String employePage(Model model){
+        return "employeehomepage";
+    }
+
     @GetMapping("/accounts")
     public String showAccountPage(Model model){
         Long iduser = Utility.getCurrentUserId();
