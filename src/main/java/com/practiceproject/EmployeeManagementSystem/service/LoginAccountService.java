@@ -115,6 +115,31 @@ public class LoginAccountService {
         cService.logAuditOperation(savedUser, null, null, null, Act.ADD);
     }
 
+    @Transactional
+    public void changePassword(String currentpass, String newpass, String comfirm, User user){
+        BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+        String mess1 = messageSource.getMessage("wrongpass", null, LocaleContextHolder.getLocale());
+        String mess2 = messageSource.getMessage("newpassmustdiff", null, LocaleContextHolder.getLocale());
+        String mess3 = messageSource.getMessage("cantfindemailacc", new Object[] { user.getEmail() }, LocaleContextHolder.getLocale());
+        
+        Account acc = repository.findByEmail(user.getEmail());
+        if(acc == null){
+            throw new IllegalStateException(mess3);
+        }
+        if(!passwordEncoder.matches(currentpass, acc.getPassword())){
+            throw new IllegalStateException(mess1);
+        }
+        if(passwordEncoder.matches(newpass, acc.getPassword())){
+            throw new IllegalStateException(mess2);
+        }
+        String encodedPass = passwordEncoder.encode(newpass); 
+        acc.setPassword(encodedPass);
+        this.repository.save(acc);
+        User userDto = uRepository.save(user);
+
+        cService.logAuditOperation(userDto, null, null, null, Act.CHANGEPASS);
+    }
+
     public void updateResetPass(String token, String email) throws CustomerNotFoundException{
         Account account = repository.findByEmail(email);
         String mess = messageSource.getMessage("cantfindemailacc", new Object[] { email }, LocaleContextHolder.getLocale());

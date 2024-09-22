@@ -183,7 +183,5 @@ Mình đã làm xong phần đăng ký tk vs trang đăng nhập cho nhân viên
 
 Còn chắc năng chuyển đổi ngôn ngữ ở trang regisempacc bị lỗi sẽ sửa sau.
 
-Đang chỉnh lại liên kết giữa user, employee vs account và đang chỉnh dở phần account service để chuyển hết các chức năng liên quan đến thay
-đổi mật khẩu vs đăng ký cho loginaccountservice để dễ quản lý mai sẽ làm phần controller và sẽ tiếp tục sửa cho các đối tượng có liên quan 
-sau rồi có khi lúc ấy mới có thể làm được phần đăng nhập.
+Đang sửa dở phần security config, cần bổ sung tiếp.
 

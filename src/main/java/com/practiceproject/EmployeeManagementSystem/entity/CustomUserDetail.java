@@ -2,7 +2,7 @@ package com.practiceproject.EmployeeManagementSystem.entity;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,33 +14,30 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class CustomUserDetail implements UserDetails{
 
-    User user;
+    Account account;
 
-    public CustomUserDetail(User user) {
-        this.user = user;
+    public CustomUserDetail(Account account) {
+        this.account = account;
     }
     
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> users=new ArrayList<>();
-        // if(user.getRole().equals(com.practiceproject.EmployeeManagementSystem.entity.User.Role.MANAGER)){
-        //     users.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
-        // }
-        return users;
+        Collection<Account> accs=new ArrayList<>();
+        return accs.stream().map(user->new SimpleGrantedAuthority(account.getEmail())).collect(Collectors.toList());
     }
 
     @Override
     public String getPassword() {
-        return user.getEmail();
+        return account.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return account.getEmail();
     }
 
     public Long getUserId(){
-        return user.getIduser();
+        return account.getUser().getIduser();
     }
 
     @Override

@@ -41,7 +41,7 @@
                 <h1 align="center" th:text="#{registrationtitle}"></h1>
                 &nbsp;
                 <!-- Cần bổ sung thêm thuộc tính id nhân viên và thay đổi action -->
-                <form th:action="@{/saveRegistration}" method="post" th:object="${user}">
+                <form th:action="@{/saveRegistration}" method="post" th:object="${account}">
                     <div class="form-group">
                         <!-- Tin nhắn báo lỗi -->
                         <div th:if="${alertMessage != null}">
@@ -50,7 +50,7 @@
 
                         <label class="control-label" for="name" th:text="#{username}">
                         </label>
-                        <input id="hoten" class="form-control" 
+                        <input id="hoten", name="hoten" class="form-control" 
                         th:field="*{hoten}" required autofocus="autofocus"
                         th:placeholder="#{usernameinput}"
                         >

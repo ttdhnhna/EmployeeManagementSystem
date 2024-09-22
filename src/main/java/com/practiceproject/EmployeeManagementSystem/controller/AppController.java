@@ -42,6 +42,8 @@ public class AppController {
     @Autowired
     AccountService service;
     @Autowired
+    LoginAccountService lService;
+    @Autowired
     AuditLogService aService;
     @Autowired
     LoginAccountService eService;
@@ -54,15 +56,16 @@ public class AppController {
 
     @GetMapping("/registration")
     public String registerPage(Model model){
-        model.addAttribute("user",new User());
+        model.addAttribute("account",new Account());
         return "registration";
     }
 
     @PostMapping("/saveRegistration")
-    public String saveRegistration(@ModelAttribute("user") User user, Model model){
+    public String saveRegistration(@ModelAttribute("account") Account account, 
+    @RequestParam("hoten") String hoten, Model model){
         String mess = messageSource.getMessage("regissuccessful", null, LocaleContextHolder.getLocale());
         try {
-            service.saveRegistration(user);
+            lService.saveRegistration(account, hoten);
             model.addAttribute("successRegismess", mess);
             return "login";
         }catch (IllegalStateException e){
@@ -161,7 +164,7 @@ public class AppController {
         User fullUser = service.getUserByID(user.getIduser());
         String mess = messageSource.getMessage("changepasssuccessful", null, LocaleContextHolder.getLocale());
         try {
-            service.changePassword(currentpass, newpass, confirmpass, fullUser);
+            lService.changePassword(currentpass, newpass, confirmpass, fullUser);
             redirect.addFlashAttribute("message", mess);
             return "redirect:/accounts";
         } catch (IllegalStateException | IllegalArgumentException e) {
@@ -187,10 +190,10 @@ public class AppController {
         String mess1 = messageSource.getMessage("sentlinkemail", null, LocaleContextHolder.getLocale());
         String mess2 = messageSource.getMessage("errorsendemail", null, LocaleContextHolder.getLocale());
         try {
-            service.updateResetPass(token, email);
+            lService.updateResetPass(token, email);
             String reserPasswordLink = Utility.getSiteUrl(request) + "/resetpassword?token=" + token;
             //Chức năng gửi email
-            service.sendEmail(email, reserPasswordLink);   
+            lService.sendEmail(email, reserPasswordLink);   
             model.addAttribute("message", mess1);
         } catch (CustomerNotFoundException e) {
             model.addAttribute("error", e.getMessage());
@@ -202,32 +205,32 @@ public class AppController {
         return "forgotpassword";
     }
 
-    // @GetMapping("/resetpassword")
-    // public String showResetPassForm(@Param(value = "token")String token, Model model){
-    //     User user = service.get(token);
-    //     String mess = messageSource.getMessage("errortoken", null, LocaleContextHolder.getLocale());
-    //     if(user == null){
-    //         model.addAttribute("error", mess);
-    //     }
-    //     model.addAttribute("token", token);
-    //     return "resetpassword";
-    // }
+    @GetMapping("/resetpassword")
+    public String showResetPassForm(@Param(value = "token")String token, Model model){
+        Account acc = lService.get(token);
+        String mess = messageSource.getMessage("errortoken", null, LocaleContextHolder.getLocale());
+        if(acc == null){
+            model.addAttribute("error", mess);
+        }
+        model.addAttribute("token", token);
+        return "resetpassword";
+    }
 
-    // @PostMapping("/upresetpassword")
-    // public String processResetPass(HttpServletRequest request, Model model){
-    //     String token = request.getParameter("token");
-    //     String pass = request.getParameter("password");
-    //     String mess1 = messageSource.getMessage("errortoken", null, LocaleContextHolder.getLocale());
-    //     String mess2 = messageSource.getMessage("changepasssuccessful", null, LocaleContextHolder.getLocale());
+    @PostMapping("/upresetpassword")
+    public String processResetPass(HttpServletRequest request, Model model){
+        String token = request.getParameter("token");
+        String pass = request.getParameter("password");
+        String mess1 = messageSource.getMessage("errortoken", null, LocaleContextHolder.getLocale());
+        String mess2 = messageSource.getMessage("changepasssuccessful", null, LocaleContextHolder.getLocale());
         
-    //     User user = service.get(token);
-    //     if(user == null){
-    //         model.addAttribute("error", mess1);
-    //     }else{
-    //         service.updatePassword(user, pass);
-    //         model.addAttribute("message", mess2);
-    //     }
-    //     return "login";
-    // }
+        Account acc = lService.get(token);
+        if(acc == null){
+            model.addAttribute("error", mess1);
+        }else{
+            lService.updatePassword(acc, pass);
+            model.addAttribute("message", mess2);
+        }
+        return "login";
+    }
     
 }
