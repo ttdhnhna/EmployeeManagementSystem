@@ -34,7 +34,7 @@ public class Attendance {
     private String country;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_nv", nullable = false, referencedColumnName = "id_nv")
+    @JoinColumn(name = "idnv", nullable = false, referencedColumnName = "idnv")
     @BatchSize(size = 16)
     @JsonBackReference
     private Employee idnv;
