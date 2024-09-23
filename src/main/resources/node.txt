@@ -183,5 +183,4 @@ Mình đã làm xong phần đăng ký tk vs trang đăng nhập cho nhân viên
 
 Còn chắc năng chuyển đổi ngôn ngữ ở trang regisempacc bị lỗi sẽ sửa sau.
 
-Đang sửa dở phần security config, cần bổ sung tiếp.
 
