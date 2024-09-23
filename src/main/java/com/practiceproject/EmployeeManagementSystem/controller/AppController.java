@@ -46,8 +46,6 @@ public class AppController {
     @Autowired
     AuditLogService aService;
     @Autowired
-    LoginAccountService eService;
-    @Autowired
     MessageSource messageSource;
 
     //Thư viện giúp gửi email
@@ -91,7 +89,7 @@ public class AppController {
     Model model, RedirectAttributes redirectAttributes) throws IOException{
         try {
             if (account!=null) {
-                eService.createEmpAccount(account, id); 
+                lService.createEmpAccount(account, id); 
             }
         } catch (IllegalStateException e) {
             redirectAttributes.addFlashAttribute("alertMessage", e.getMessage());
