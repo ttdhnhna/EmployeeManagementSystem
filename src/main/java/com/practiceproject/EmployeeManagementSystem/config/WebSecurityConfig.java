@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     // Why it's needed: When a user tries to log in, the password they enter will be hashed using the same algorithm and compared to the hashed password in the database. BCrypt is preferred because it's computationally expensive, making it more resistant to brute-force attacks.
 
     @Bean
-    public CustomSuccessHandler customSuccessHandler(){
+    public CustomSuccessHandler successHandler(){
         return new CustomSuccessHandler();
     }
 
@@ -82,7 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .successHandler(customSuccessHandler())
+                .successHandler(successHandler())
                 .permitAll()
             .and()
             .logout()
