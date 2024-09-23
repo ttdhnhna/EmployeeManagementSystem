@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.practiceproject.EmployeeManagementSystem.service.CustomLogoutSuccessHandler;
+import com.practiceproject.EmployeeManagementSystem.service.CustomSuccessHandler;
 import com.practiceproject.EmployeeManagementSystem.service.CustomUserDetailsService;
 
 @Configuration
@@ -40,6 +41,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     // Purpose: Password encoding is critical to storing passwords securely.
     // What it does: This creates a BCryptPasswordEncoder, a widely-used password hashing algorithm that securely hashes passwords before storing them in the database.
     // Why it's needed: When a user tries to log in, the password they enter will be hashed using the same algorithm and compared to the hashed password in the database. BCrypt is preferred because it's computationally expensive, making it more resistant to brute-force attacks.
+
+    @Bean
+    public CustomSuccessHandler customSuccessHandler(){
+        return new CustomSuccessHandler();
+    }
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
@@ -76,6 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
+                .successHandler(customSuccessHandler())
                 .permitAll()
             .and()
             .logout()

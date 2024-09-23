@@ -20,6 +20,8 @@ public class EmployeeAccountDetail implements UserDetails{
         List<GrantedAuthority> accs = new ArrayList<>();
         if(account.getRole().equals(com.practiceproject.EmployeeManagementSystem.entity.Account.Role.EMPLOYEE)){
             accs.add(new SimpleGrantedAuthority("ROLE_EMPLOYEE"));
+        }else if(account.getRole().equals(com.practiceproject.EmployeeManagementSystem.entity.Account.Role.MANAGER)){
+            accs.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
         }
         return accs;
     }
