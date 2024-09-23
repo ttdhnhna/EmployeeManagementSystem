@@ -71,8 +71,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http.authorizeRequests()
                 .antMatchers("/").hasRole("MANAGER")//Hóa ra đây là chỗ yêu cầu cần đăng nhập mới có quyền truy cập. Câu lệnh này sẽ chỉnh đường dẫn đc thêm sẽ làm những gì. 
                 .antMatchers("/employeepage").hasRole("EMPLOYEE")
-                .antMatchers("/employee/login").permitAll()
-                .antMatchers("/manager/login").permitAll()
                 .anyRequest().authenticated()//Xác định danh tính người định truy cập đường link đc chỉ định hay là đường link ở trên.
             .and()
             .formLogin()

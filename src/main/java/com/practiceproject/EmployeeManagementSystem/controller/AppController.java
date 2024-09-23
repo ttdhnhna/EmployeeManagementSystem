@@ -100,14 +100,9 @@ public class AppController {
         return "redirect:/";
     }
 
-    @GetMapping("/manager/login")
+    @GetMapping("/login")
     public String login(){
         return "login";
-    }
-
-    @GetMapping("/employee/login")
-    public String empacclogin(){
-        return "employeeacclogin";
     }
 
     @GetMapping("/employeepage")
