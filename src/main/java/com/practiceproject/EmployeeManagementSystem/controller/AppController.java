@@ -60,7 +60,7 @@ public class AppController {
 
     @PostMapping("/saveRegistration")
     public String saveRegistration(@ModelAttribute("account") Account account, 
-    @RequestParam("hoten") String hoten, Model model){
+    @RequestParam(value = "hoten") String hoten, Model model){
         String mess = messageSource.getMessage("regissuccessful", null, LocaleContextHolder.getLocale());
         try {
             lService.saveRegistration(account, hoten);
