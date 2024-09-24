@@ -101,16 +101,17 @@ public class LoginAccountService {
         String ePass = passwordEncoder.encode(account.getPassword());
         account.setPassword(ePass);
         account.setRole(Role.MANAGER);
+        Account savedAccount = this.repository.save(account);
 
         User user = new User();
-        user.setEmail(account.getEmail());
+        user.setEmail(savedAccount.getEmail());
         user.setHoten(hoten);
-        user.setIdacc(account);
+        user.setIdacc(savedAccount);
         User savedUser = uRepository.save(user);
 
-        account.setUser(savedUser);
-        account.setIdnv(null);
-        repository.save(account);
+        savedAccount.setUser(savedUser);
+        savedAccount.setIdnv(null);
+        this.repository.save(savedAccount);
 
         cService.logAuditOperation(savedUser, null, null, null, Act.ADD);
     }
