@@ -3,13 +3,11 @@ package com.practiceproject.EmployeeManagementSystem.entity;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-// import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.practiceproject.EmployeeManagementSystem.entity.Account.Role;
 
 /**
  * CustomUserDetail
@@ -25,12 +23,8 @@ public class CustomUserDetail implements UserDetails{
     
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        if(account.getRole().equals(Role.MANAGER)){
-            authorities.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
-        }else if(account.getRole().equals(Role.EMPLOYEE)){
-            authorities.add(new SimpleGrantedAuthority("ROLE_EMPLOYEE"));
-        }
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(account.getRole().toString()));
         return authorities;
     }
 
