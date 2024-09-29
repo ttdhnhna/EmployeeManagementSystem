@@ -60,7 +60,7 @@ public class AppController {
 
     @PostMapping("/saveRegistration")
     public String saveRegistration(@ModelAttribute("account") Account account, 
-    Model model){
+    @RequestParam(value = "hoten") String hoten, Model model){
         String mess = messageSource.getMessage("regissuccessful", null, LocaleContextHolder.getLocale());
         try {
             System.out.println("Dang test dang ky tai khoan");

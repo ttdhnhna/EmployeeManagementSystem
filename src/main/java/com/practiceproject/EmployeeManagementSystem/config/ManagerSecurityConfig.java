@@ -39,7 +39,8 @@ public class ManagerSecurityConfig extends WebSecurityConfigurerAdapter{
             .antMatchers("/").hasAnyAuthority("MANAGER")
             .antMatchers("/manager/**").hasAuthority("MANAGER")
             .antMatchers("/registration", "/styles/**", "/image/**", "/forgotpassword"
-                , "/employee/login"
+                , "/employee/login", "/saveRegistration", "/upforgotpassword", "/resetpassword"
+                , "/upresetpassword"
             ).permitAll()
             // .antMatchers("/forgotpassword").permitAll()
             // .antMatchers("/employee/login").permitAll()
