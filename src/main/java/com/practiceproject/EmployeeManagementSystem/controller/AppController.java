@@ -63,8 +63,7 @@ public class AppController {
     @RequestParam(value = "hoten") String hoten, Model model){
         String mess = messageSource.getMessage("regissuccessful", null, LocaleContextHolder.getLocale());
         try {
-            System.out.println("Dang test dang ky tai khoan");
-            lService.saveRegistration(account, null);
+            lService.saveRegistration(account, hoten);
             model.addAttribute("successRegismess", mess);
             return "login";
         }catch (IllegalStateException e){

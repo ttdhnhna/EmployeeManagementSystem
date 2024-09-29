@@ -113,9 +113,6 @@ public class LoginAccountService {
         savedAccount.setIdnv(null);
         this.repository.save(savedAccount);
         
-        System.out.println("Account emails: " + savedAccount.getEmail());
-        System.out.println("Saving account...");
-
         cService.logAuditOperation(savedUser, null, null, null, Act.ADD);
     }
 

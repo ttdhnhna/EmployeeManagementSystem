@@ -36,7 +36,7 @@ public class ManagerSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers("/").hasAnyAuthority("MANAGER")
+            .antMatchers("/").hasAuthority("MANAGER")
             .antMatchers("/manager/**").hasAuthority("MANAGER")
             .antMatchers("/registration", "/styles/**", "/image/**", "/forgotpassword"
                 , "/employee/login", "/saveRegistration", "/upforgotpassword", "/resetpassword"
