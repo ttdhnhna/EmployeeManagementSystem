@@ -33,6 +33,6 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler{
         if (lang == null || (!lang.equals("en") && !lang.equals("vi"))) {
             lang = "en"; 
         }
-        response.sendRedirect("/login?logout&lang=" + lang);
+        response.sendRedirect("/manager/login?logout&lang=" + lang);
     }
 }

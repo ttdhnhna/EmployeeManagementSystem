@@ -98,12 +98,17 @@ public class AppController {
         return "redirect:/";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/manager/login")
     public String login(){
         return "login";
     }
 
-    @GetMapping("/employeepage")
+    @GetMapping("/employee/login")
+    public String loginemployee(){
+        return "employeeacclogin";
+    }
+
+    @GetMapping("/employee/home")
     public String employePage(Model model){
         return "employeehomepage";
     }
