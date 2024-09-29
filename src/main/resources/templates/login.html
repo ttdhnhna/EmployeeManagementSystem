@@ -23,8 +23,8 @@
                         <i class="fa-solid fa-language" style="font-size: 25px;"></i> 
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">      
-                        <li><a class="dropdown-item" th:href="@{/login/?lang=en}" th:text="#{languageen}"></a></li>
-                        <li><a class="dropdown-item" th:href="@{/login/?lang=vi}" th:text="#{languagevn}"></a></li>
+                        <li><a class="dropdown-item" th:href="@{/manager/login/?lang=en}" th:text="#{languageen}"></a></li>
+                        <li><a class="dropdown-item" th:href="@{/manager/login/?lang=vi}" th:text="#{languagevn}"></a></li>
                     </ul>
                 </li>
             </ul>
@@ -38,7 +38,7 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <h1 align="center" th:text="#{logintitle}"></h1>
-                <form th:action="@{/login}" method="post">
+                <form th:action="@{/manager/login}" method="post">
                     <!-- Tin nhắn báo lỗi -->
                     <div th:if="${param.error}">
                         <div class="alert alert-danger" th:text="#{loginmess1}"></div>
@@ -97,14 +97,7 @@
         </div>
     </div>
 
-    <a th:href="@{/employee/login}" style="position: fixed;
-        bottom: 60px;
-        right: 10px;
-        margin: 0;
-        padding: 0;
-        margin-right: 10px;
-        margin-bottom: 10px;
-        text-decoration: underline;">
+    <a th:href="@{/employee/login}" class="image-login">
         <img style="height: 40px" th:src="@{/image/icons8-login-50.png}"/>
     </a>
 
