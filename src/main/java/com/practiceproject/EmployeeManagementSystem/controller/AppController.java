@@ -60,10 +60,11 @@ public class AppController {
 
     @PostMapping("/saveRegistration")
     public String saveRegistration(@ModelAttribute("account") Account account, 
-    @RequestParam(value = "hoten") String hoten, Model model){
+    Model model){
         String mess = messageSource.getMessage("regissuccessful", null, LocaleContextHolder.getLocale());
         try {
-            lService.saveRegistration(account, hoten);
+            System.out.println("Dang test dang ky tai khoan");
+            lService.saveRegistration(account, null);
             model.addAttribute("successRegismess", mess);
             return "login";
         }catch (IllegalStateException e){
