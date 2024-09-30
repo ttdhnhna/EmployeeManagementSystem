@@ -50,7 +50,7 @@ public class EmployeeController {
         // Chúng ta sử dụng Interface Model để truyền dữ liệu từ Controller sang View để hiển thị
         return findPaginated(1, "idnv", "asc", model);
     }
-    @GetMapping("/manager/addEmployee")
+    @GetMapping("/addEmployee")
     public String addEmployee(Model model){
         List<AuditLog> ListLogs = aService.getListLogs();
         EmployeeDto employeeDto=new EmployeeDto();
@@ -104,7 +104,7 @@ public class EmployeeController {
         return "redirect:/";
     }
 
-    @GetMapping("/manager/updateEmployee/{id}")
+    @GetMapping("/updateEmployee/{id}")
     public String updateEmployee(@PathVariable(value = "id") long id, Model model){
         //@PathVariable được dùng để xử lý các biểu mẫu trong ánh xạ URI được yêu cầu và đặt làm tham số
         //Hay đơn giản hơn là nó lấy id có được khi ta nhấn nút sửa và gán nó vào id vừa khai báo ở trên
@@ -154,7 +154,7 @@ public class EmployeeController {
     }
 
     //Xem chi tiết hồ sơ nhân viên
-    @GetMapping("/manager/profileemployee/{id}")
+    @GetMapping("/profileemployee/{id}")
     public String viewProfileEmployee(@PathVariable(value = "id") long id, Model model){
         Employee employee=service.getEmployeebyID(id);
         List<AuditLog> ListLogs = aService.getListLogs();
@@ -166,7 +166,7 @@ public class EmployeeController {
     }
 
     //Tìm kiếm
-    @GetMapping("/manager/findemployee")
+    @GetMapping("/findemployee")
     public String findEmployees(Model model, @Param("keyword") String keyword){
         Long iduser = Utility.getCurrentUserId();
         List<Employee> ListEmployees=service.findAll(keyword, iduser);

@@ -64,16 +64,10 @@ public class ManagerSecurityConfig extends WebSecurityConfigurerAdapter{
             .antMatchers("/manager/**").hasAuthority("MANAGER")
             .antMatchers("/registration", "/styles/**", "/image/**", "/forgotpassword"
                 , "/employee/login", "/saveRegistration", "/upforgotpassword", "/resetpassword"
-                , "/upresetpassword"
+                , "/upresetpassword", "/manager/login/?lang=en", "/manager/login/?lang=vi"
+                , "/forgotpassword/?lang=en", "/forgotpassword/?lang=vi", "/registration/?lang=en"
+                , "/registration/?lang=vi"
             ).permitAll()
-            // .antMatchers("/forgotpassword").permitAll()
-            // .antMatchers("/employee/login").permitAll()
-            // .antMatchers("/manager/login/?lang=en").permitAll()
-            // .antMatchers("/manager/login/?lang=vi").permitAll()
-            // .antMatchers("/forgotpassword/?lang=en").permitAll()
-            // .antMatchers("/forgotpassword/?lang=vi").permitAll()
-            // .antMatchers("/registration/?lang=en").permitAll()
-            // .antMatchers("/registration/?lang=vi").permitAll()
             .anyRequest().authenticated()
             .and()
             .formLogin()

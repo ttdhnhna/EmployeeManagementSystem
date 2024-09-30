@@ -41,12 +41,7 @@
                 <form th:action="@{/manager/login}" method="post">
                     <!-- Tin nhắn báo lỗi -->
                     <div th:if="${param.error}">
-                        <div class="alert alert-danger" th:text="${session.error}"></div>
-                    </div>
-                    <div th:if="${session.error != null}">
-                        <div class="alert alert-danger">
-                            <p>Error found: [[${session.error}]]</p>
-                        </div>
+                        <div class="alert alert-danger" th:text="#{loginmess1}"></div>
                     </div>
                     <!-- Tin nhắn báo đăng xuất -->
                     <div th:if="${param.logout}">
