@@ -24,7 +24,7 @@ public class EmployeeSecurityConfig extends WebSecurityConfigurerAdapter{
             .and()
             .formLogin()
                 .loginPage("/employee/login")
-                .usernameParameter("email")
+                .usernameParameter("username")
                 .loginProcessingUrl("/employee/login")
                 .defaultSuccessUrl("/employee/home")
                 .permitAll()

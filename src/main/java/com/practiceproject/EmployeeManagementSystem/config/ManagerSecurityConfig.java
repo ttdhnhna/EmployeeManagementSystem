@@ -82,7 +82,7 @@ public class ManagerSecurityConfig extends WebSecurityConfigurerAdapter{
                     request.getSession().setAttribute("error", exception.getMessage());
                     response.sendRedirect("/login?error");
                 })
-                .usernameParameter("email")
+                .usernameParameter("username")
                 .loginProcessingUrl("/manager/login")
                 .defaultSuccessUrl("/")
                 .permitAll()
