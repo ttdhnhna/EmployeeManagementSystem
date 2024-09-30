@@ -72,10 +72,6 @@ public class ManagerSecurityConfig extends WebSecurityConfigurerAdapter{
             .and()
             .formLogin()
                 .loginPage("/manager/login")
-                .failureHandler((request, response, exception) -> {
-                    request.getSession().setAttribute("error", exception.getMessage());
-                    response.sendRedirect("/login?error");
-                })
                 .usernameParameter("username")
                 .loginProcessingUrl("/manager/login")
                 .defaultSuccessUrl("/")
