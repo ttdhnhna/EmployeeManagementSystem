@@ -19,9 +19,8 @@ public class EmployeeSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-            .antMatchers("/employee/**").hasAuthority("EMPLOYEE")
-            .anyRequest().authenticated()
+        http.antMatcher("/employee/**")
+            .authorizeRequests().anyRequest().hasAuthority("EMPLOYEE")
             .and()
             .formLogin()
                 .loginPage("/employee/login")
