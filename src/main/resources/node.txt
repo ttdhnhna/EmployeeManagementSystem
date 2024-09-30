@@ -183,3 +183,14 @@ Mình đã làm xong phần đăng ký tk vs trang đăng nhập cho nhân viên
 
 Còn chắc năng chuyển đổi ngôn ngữ ở trang regisempacc bị lỗi sẽ sửa sau.
 
+Did not store anonymous SecurityContext
+2024-09-30 16:37:33.613 DEBUG 2128 --- [nio-8080-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-09-30 16:37:35.311 DEBUG 2128 --- [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /manager/login
+2024-09-30 16:37:35.312 DEBUG 2128 --- [nio-8080-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-09-30 16:37:35.882 DEBUG 2128 --- [nio-8080-exec-7] org.hibernate.SQL                        : select account0_.id_acc as id_acc1_2_, account0_.email as email2_2_, account0_.password as password3_2_, account0_.reset_password_token as reset_pa4_2_, account0_.role as role5_2_ from tbl_account account0_ where account0_.email=?
+2024-09-30 16:37:35.892 TRACE 2128 --- [nio-8080-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - []
+2024-09-30 16:37:36.110 DEBUG 2128 --- [nio-8080-exec-7] o.s.s.a.dao.DaoAuthenticationProvider    : Failed to find user ''
+2024-09-30 16:37:36.114 DEBUG 2128 --- [nio-8080-exec-7] o.s.s.w.a.r.TokenBasedRememberMeServices : Interactive login attempt was unsuccessful.
+2024-09-30 16:37:36.114 DEBUG 2128 --- [nio-8080-exec-7] o.s.s.w.a.r.TokenBasedRememberMeServices : Cancelling cookie
+2024-09-30 16:37:36.115 DEBUG 2128 --- [nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext
+2024-09-30 16:37:36.116 DEBUG 2128 --- [nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store empty SecurityContext

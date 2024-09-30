@@ -43,6 +43,11 @@
                     <div th:if="${param.error}">
                         <div class="alert alert-danger" th:text="${session.error}"></div>
                     </div>
+                    <div th:if="${session.error != null}">
+                        <div class="alert alert-danger">
+                            <p>Error found: [[${session.error}]]</p>
+                        </div>
+                    </div>
                     <!-- Tin nhắn báo đăng xuất -->
                     <div th:if="${param.logout}">
                         <div class="alert alert-info" th:text="#{loginmess2}"></div>
