@@ -19,7 +19,7 @@ import com.practiceproject.EmployeeManagementSystem.service.CustomLogoutSuccessH
 import com.practiceproject.EmployeeManagementSystem.service.CustomUserDetailsService;
 
 @Configuration
-@Order(1)
+@Order(2)
 @EnableWebSecurity
 public class ManagerSecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired

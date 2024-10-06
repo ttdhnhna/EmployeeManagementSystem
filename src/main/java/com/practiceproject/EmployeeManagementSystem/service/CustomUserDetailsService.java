@@ -14,8 +14,6 @@ import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 
 public class CustomUserDetailsService implements UserDetailsService{
     @Autowired
-    UserRepository repository;
-    @Autowired
     AccountRepository eRepository;
     @Autowired
     MessageSource messageSource;

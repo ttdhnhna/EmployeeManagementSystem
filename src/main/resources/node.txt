@@ -182,3 +182,5 @@ Mình đã làm xong phần đăng ký tk vs trang đăng nhập cho nhân viên
 đăng nhập với đăng xuất sau.
 
 Còn chắc năng chuyển đổi ngôn ngữ ở trang regisempacc bị lỗi sẽ sửa sau.
+
+Van con loi hien hinh anh nut chuyen doi va chuc nang dang nhap cua nhan vien
