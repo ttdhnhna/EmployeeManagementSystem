@@ -20,24 +20,17 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Order(1)
 @EnableWebSecurity
 public class EmployeeSecurityConfig extends WebSecurityConfigurerAdapter{
-    @Autowired
-    DataSource dataSource;
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
-    @Autowired
-    private DaoAuthenticationProvider authenticationProvider;
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider);
-    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/employee/**")
-            .authorizeRequests().anyRequest().hasAuthority("EMPLOYEE")
-            .and()
+        http.authorizeRequests()
+                .antMatchers("/employee/**").hasRole("EMPLOYEE")
+                .antMatchers("/styles/**", "/image/**"
+                        , "/upforgotpassword", "/resetpassword"
+                        , "/upresetpassword", "/manager/login"
+                        , "/forgotpassword"
+                ).permitAll()
+                .anyRequest().authenticated()
+                .and()
             .formLogin()
                 .loginPage("/employee/login")
                 .usernameParameter("username")

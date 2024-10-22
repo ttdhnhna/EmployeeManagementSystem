@@ -59,6 +59,15 @@ public class LoginAccountService {
         return account;
     }
 
+    public Account getAccountByEmail(String email){
+        Account account=repository.findByEmail(email);
+        String mess = messageSource.getMessage("cantfindemailacc", new Object[] { email }, LocaleContextHolder.getLocale());
+        if(account==null){
+            throw new IllegalStateException(mess);
+        }
+        return account;
+    }
+
     @Transactional
     public void deleteEmpAccbyID(long id){
         this.repository.deleteById(id);

@@ -32,7 +32,7 @@ public class AccountService {
     //     return repository.findAll();
     // }
 
-    public User getUserByEmail(String email){
+    public User getAccountByEmail(String email){
         User user=repository.findbyEmail(email);
         String mess = messageSource.getMessage("cantfindemailacc", new Object[] { email }, LocaleContextHolder.getLocale());
         if(user==null){
