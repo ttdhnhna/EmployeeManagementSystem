@@ -49,3 +49,6 @@ bo sung:
     server.tomcat.accesslog.enabled=true
     spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
+De phong khi thay doi mat khau email cho email sv thi phai nho tao lai phan mat khau
+ung dung bang cach vao phan bao mat tai khoan -> xac minh 2 buoc -> mat khau ung dung
+-> tao 1 mat khau ung dung moi va dan vao phan spring.mail.password.
