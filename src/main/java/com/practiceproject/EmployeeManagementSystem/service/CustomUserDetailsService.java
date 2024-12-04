@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.practiceproject.EmployeeManagementSystem.entity.Account;
 import com.practiceproject.EmployeeManagementSystem.entity.CustomUserDetail;
 import com.practiceproject.EmployeeManagementSystem.repository.AccountRepository;
-import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 
 public class CustomUserDetailsService implements UserDetailsService{
     @Autowired
