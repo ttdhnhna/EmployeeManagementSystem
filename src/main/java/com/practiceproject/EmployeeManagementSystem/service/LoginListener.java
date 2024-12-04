@@ -17,7 +17,7 @@ public class LoginListener implements ApplicationListener<AuthenticationSuccessE
     private AccountService uService;
 
     @Override
-    public void onApplicationEvent(AuthenticationSuccessEvent event) {
+    public void onApplicationEvent(@SuppressWarnings("null") AuthenticationSuccessEvent event) {
         Authentication authentication = event.getAuthentication();
         User user = uService.getUserByEmail(authentication.getName());
 
