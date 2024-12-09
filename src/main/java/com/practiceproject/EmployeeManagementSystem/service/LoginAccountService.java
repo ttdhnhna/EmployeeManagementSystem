@@ -77,16 +77,8 @@ public class LoginAccountService {
     public void createEmpAccount(Account account, long id){
         String emailExistsMess = messageSource.getMessage("emailexists", null, LocaleContextHolder.getLocale());
         
-        if(account.equals(null)){
-            throw new IllegalStateException("null");
-        }
-        if(repository.findByEmail(account.getEmail()) != null){
-            throw new IllegalStateException(emailExistsMess);
-        }
+        validateAccount(account, "null", emailExistsMess);
 
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String ePass = passwordEncoder.encode(account.getPassword());
-        account.setPassword(ePass);
         Employee idnv = eService.getEmployeebyID(id);
         account.setIdnv(idnv);
         account.setRole(Role.EMPLOYEE);
@@ -100,15 +92,9 @@ public class LoginAccountService {
     public void saveRegistration(Account account, String hoten){
         String mess = messageSource.getMessage("musthaveinfo", null, LocaleContextHolder.getLocale());
         String emailExistsMess = messageSource.getMessage("emailexists", null, LocaleContextHolder.getLocale());
-        if(account==null){
-            throw new IllegalStateException(mess);
-        }
-        if(repository.findByEmail(account.getEmail())!=null){
-            throw new IllegalStateException(emailExistsMess);
-        }
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String ePass = passwordEncoder.encode(account.getPassword());
-        account.setPassword(ePass);
+
+        validateAccount(account, mess, emailExistsMess);
+
         account.setRole(Role.MANAGER);
         Account savedAccount = this.repository.save(account);
 
@@ -200,4 +186,16 @@ public class LoginAccountService {
 
         mailSender.send(message);
     }
+
+    private void validateAccount(Account account, String mess1, String mess2) {
+        if (account == null) {
+            throw new IllegalArgumentException(mess1);
+        }
+        if (repository.findByEmail(account.getEmail()) != null) {
+            throw new IllegalArgumentException(mess2);
+        }
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
+    }
+    
 }

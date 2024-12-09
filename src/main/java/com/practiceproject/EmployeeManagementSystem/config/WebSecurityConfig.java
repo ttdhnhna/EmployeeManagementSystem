@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.practiceproject.EmployeeManagementSystem.service.CustomLogoutSuccessHandler;
-// import com.practiceproject.EmployeeManagementSystem.service.CustomSuccessHandler;
+import com.practiceproject.EmployeeManagementSystem.service.CustomSuccessHandler;
 import com.practiceproject.EmployeeManagementSystem.service.CustomUserDetailsService;
 
 @Configuration
@@ -42,10 +42,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     // What it does: This creates a BCryptPasswordEncoder, a widely-used password hashing algorithm that securely hashes passwords before storing them in the database.
     // Why it's needed: When a user tries to log in, the password they enter will be hashed using the same algorithm and compared to the hashed password in the database. BCrypt is preferred because it's computationally expensive, making it more resistant to brute-force attacks.
 
-    // @Bean
-    // public CustomSuccessHandler successHandler(){
-    //     return new CustomSuccessHandler();
-    // }
+    @Bean
+    public CustomSuccessHandler successHandler(){
+        return new CustomSuccessHandler();
+    }
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
@@ -75,17 +75,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/registration").permitAll()
-                .antMatchers("/forgotpassword").permitAll()
-                .antMatchers("/").hasRole("MANAGER")//Hóa ra đây là chỗ yêu cầu cần đăng nhập mới có quyền truy cập. Câu lệnh này sẽ chỉnh đường dẫn đc thêm sẽ làm những gì. 
-                .antMatchers("/employeepage").hasRole("EMPLOYEE")
+                .antMatchers("/login", "/styles/**", "/image/**").permitAll()
+                .antMatchers("/registration", "/registration/?lang=en"
+                , "/registration/?lang=vi").permitAll()
+                .antMatchers("/forgotpassword", "/forgotpassword/?lang=en"
+                , "/forgotpassword/?lang=vi").permitAll()
+                .antMatchers("/").hasAuthority("MANAGER")//Hóa ra đây là chỗ yêu cầu cần đăng nhập mới có quyền truy cập. Câu lệnh này sẽ chỉnh đường dẫn đc thêm sẽ làm những gì. 
+                .antMatchers("/employee/home").hasAuthority("EMPLOYEE")
                 .anyRequest().authenticated()//Xác định danh tính người định truy cập đường link đc chỉ định hay là đường link ở trên.
             .and()
             .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                // .successHandler(successHandler())
+                .successHandler(successHandler())
                 .permitAll()
             .and()
             .logout()
