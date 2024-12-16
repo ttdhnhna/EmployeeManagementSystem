@@ -178,5 +178,4 @@ Theo dõi IP/Vị trí: Sử dụng địa chỉ IP hoặc vị trí của nhân
 Tự động chấm công: Thiết lập hệ thống theo dõi thời gian đăng nhập của nhân viên khi họ truy cập hệ thống. Bạn có thể tự động ghi lại thời 
 gian đến và đi của họ dựa trên thời gian bắt đầu và kết thúc phiên làm việc của họ.
 
-Đang thử lại 1 cách tiếp cận khác.
 

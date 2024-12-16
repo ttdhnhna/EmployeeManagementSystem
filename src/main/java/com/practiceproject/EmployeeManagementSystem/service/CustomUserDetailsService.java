@@ -22,6 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService{
         Account acc = eRepository.findByEmail(username);
         String mess = messageSource.getMessage("cantfinduser", null, LocaleContextHolder.getLocale());
         if(acc!=null){
+            System.out.println("Role: " + acc.getRole());
             return new CustomUserDetail(acc);
         }
         throw new UsernameNotFoundException(mess);
