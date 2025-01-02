@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     DataSource dataSource;
     @Autowired
     private CustomLogoutSuccessHandler logout;
-
+    
     @Bean
     public UserDetailsService userDetailsService(){
         return new CustomUserDetailsService();

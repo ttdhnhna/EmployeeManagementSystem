@@ -10,7 +10,7 @@ import com.practiceproject.EmployeeManagementSystem.entity.User;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long>{
     @Query("SELECT a FROM Account a WHERE a.email=?1")
-    Account findByEmail(String email);
+    public Account findByEmail(String email);
 
     public Account findByResetPassToken(String token);
 

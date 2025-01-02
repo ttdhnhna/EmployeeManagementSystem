@@ -15,14 +15,15 @@ public class CustomUserDetailsService implements UserDetailsService{
     @Autowired
     AccountRepository eRepository;
     @Autowired
+    LoginAccountService service;
+    @Autowired
     MessageSource messageSource;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account acc = eRepository.findByEmail(username);
+        Account acc = service.getAccountByEmail(username);
         String mess = messageSource.getMessage("cantfinduser", null, LocaleContextHolder.getLocale());
         if(acc!=null){
-            System.out.println("Role: " + acc.getRole());
             return new CustomUserDetail(acc);
         }
         throw new UsernameNotFoundException(mess);
