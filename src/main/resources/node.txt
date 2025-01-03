@@ -181,3 +181,6 @@ gian đến và đi của họ dựa trên thời gian bắt đầu và kết th
 Đã xử lý xong phần đăng nhập theo chức vụ rồi, giờ sẽ cần phải hoàn thiện phần giao diện của trang nhân viên, tìm lỗi phần chức năng
 chuyển đổi ngôn ngữ và phần đăng xuất của nhân viên đang bị lỗi vì cái chức năng lịch sử lưu phần đăng xuất kia cần phải sửa lại.
 Sau khi đã xử lý xong thì mình mới bắt đầu xử lý đến phần chức năng chấm công.
+
+Vừa xử lý xong phần giao diện rồi, sẽ cần làm tiếp các chức năng của phần trang nhân viên trong ngày mai
+rồi sửa chức năng chuyển đổi ngôn ngữ.
