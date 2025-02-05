@@ -30,25 +30,25 @@
               <a class="nav-link" th:href="@{/employee/home}">Trang chủ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/profileemployee/{id}(id=${account.employee.idnv})}">Thông tin chi tiết</a>
+              <a class="nav-link" th:href="@{/employee/employeeprofile/{id}(id=${account.idnv.idnv})}">Thông tin chi tiết</a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" th:href="@{/salaries}">Lương</a>
-            </li>  -->
+            <li class="nav-item">
+              <a class="nav-link" href="#">Điểm danh</a>
+            </li> 
             <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{navlinkdropdown}"></a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
                 <a class="dropdown-item" th:href="@{/accounts}" th:text="#{dropdownitemaccount}"></a>           
                 <a class="dropdown-item" th:href="@{/auditlogs}" th:text="#{dropdownitemhistory}"></a>
               </ul>
-            </li>
+            </li>-->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-language" style="font-size: 22px;"></i></a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
-                <a class="dropdown-item" th:href="@{/?lang=en}" th:text="#{languageen}"></a> 
-                <a class="dropdown-item" th:href="@{/?lang=vi}" th:text="#{languagevn}"></a> 
+                <a class="dropdown-item" th:href="@{/employee/home/?lang=en}" th:text="#{languageen}"></a> 
+                <a class="dropdown-item" th:href="@{/employee/home/?lang=vi}" th:text="#{languagevn}"></a> 
               </ul>
-            </li> -->
+            </li> 
             <!-- <li class="nav-item dropdown">
               <a class="nav-link" href="#" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-bell"></i>

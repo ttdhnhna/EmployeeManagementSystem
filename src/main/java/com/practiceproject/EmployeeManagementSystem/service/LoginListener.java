@@ -10,10 +10,8 @@ import org.springframework.stereotype.Component;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog.Act;
 
-@SuppressWarnings("unused")
 @Component
 public class LoginListener implements ApplicationListener<AuthenticationSuccessEvent>{
-    @SuppressWarnings("unused")
     @Autowired
     private EntityChangesService eService;
     // @Autowired
@@ -24,7 +22,6 @@ public class LoginListener implements ApplicationListener<AuthenticationSuccessE
     @Override
     public void onApplicationEvent(@SuppressWarnings("null") AuthenticationSuccessEvent event) {
         Authentication authentication = event.getAuthentication();
-        @SuppressWarnings("unused")
         Account account = aService.getAccountByEmail(authentication.getName());
         // User user = uService.getAccountByEmail(authentication.getName());
 

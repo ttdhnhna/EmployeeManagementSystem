@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{title}"></title>
+    <link rel="stylesheet" th:href="@{/styles/style01.css}">
+    <link rel="stylesheet" th:href="@{/styles/style02.css}">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" th:href="@{/employee/home}" th:text="#{brand}"></a>
+      
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" 
+        aria-expanded="false" aria-controls="collapsibleNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar" th:object="${employee}">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/employee/home}">Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/employee/employeeprofile/{id}(id=${employee.idnv})}">Thông tin chi tiết</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Điểm danh</a>
+            </li> 
+            <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{navlinkdropdown}"></a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+                <a class="dropdown-item" th:href="@{/accounts}" th:text="#{dropdownitemaccount}"></a>           
+                <a class="dropdown-item" th:href="@{/auditlogs}" th:text="#{dropdownitemhistory}"></a>
+              </ul>
+            </li>-->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-language" style="font-size: 22px;"></i></a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+                <a class="dropdown-item" th:href="@{|/employee/employeeprofile/${employee.idnv}?lang=en|}" th:text="#{languageen}"></a> 
+                <a class="dropdown-item" th:href="@{|/employee/employeeprofile/${employee.idnv}?lang=vi|}" th:text="#{languagevn}"></a> 
+              </ul>
+            </li>
+            <!-- <li class="nav-item dropdown">
+              <a class="nav-link" href="#" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-bell"></i>
+                <span class="badge badge-danger" id="notificationCount" th:if="${unreadCount > 0}" th:text="${unreadCount}"></span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
+                <li th:each = "log : ${ListLogs}">
+                  <a class="dropdown-item" th:href="@{/detaillog/{id}(id=${log.idlog})}">
+                      <span th:if="${log.act.name() == 'LOGIN'}" th:text="#{notificationlogin}"></span>
+                      <span th:if="${log.act.name() == 'LOGOUT'}" th:text="#{notificationlogout}"></span>
+                      <span th:if="${log.act.name() == 'ADD'}">
+                        <span th:text="#{notification}"></span>
+                        <span th:if="${log.idnv != null}"><span th:text="#{notificationaddemployee(${log.idnv})}"></span></span>
+                        <span th:if="${log.idpb != null}"><span th:text="#{notificationadddepartment(${log.idpb})}"></span></span>
+                        <span th:if="${log.idluong != null}"><span th:text="#{notificationaddsalary(${log.idluong})}"></span></span>
+                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}"><span th:text="#{notificationregister}"></span></span>
+                      </span>
+                      <span th:if="${log.act.name() == 'UPDATE'}">
+                        <span th:text="#{notification}"></span>
+                        <span th:if="${log.idnv != null}"><span th:text="#{notificationupdateemployee(${log.idnv})}"></span></span>
+                        <span th:if="${log.idpb != null}"><span th:text="#{notificationupdatedepartment(${log.idpb})}"></span></span>
+                        <span th:if="${log.idluong != null}"><span th:text="#{notificationupdatesalary(${log.idluong})}"></span></span>           
+                        <span th:if="${log.idnv == null && log.idpb == null && log.idluong == null}"><span th:text="#{notificationupdateaccount }"></span></span>
+                      </span>
+                      <span th:if="${log.act.name() == 'DELETE'}">
+                        <span th:text="#{notification}"></span>
+                        <span th:if="${log.idnv != null}"><span th:text="#{notificationdeleteemployee(${log.idnv})}"></span></span>
+                        <span th:if="${log.idpb != null}"><span th:text="#{notificationdeletedepartment(${log.idpb})}"></span></span>
+                        <span th:if="${log.idluong != null}"><span th:text="#{notificationdeletesalary(${log.idluong})}"></span></span>
+                      </span>
+                      <span th:if="${log.act.name() == 'CHANGEPASS'}" th:text="#{notificationchangepass}"></span>
+                      <span class="notification-dot" th:if="${!log.isRead}"></span>
+                  </a>
+                </li>
+                <hr>
+                <li>
+                  <a class="dropdown-item view-all" th:href="@{/auditlogs}" th:text="#{notificationviewall}"></a>
+                </li>
+              </ul>
+            </li> -->
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+              <a class="nav-link" th:href="@{/logout(lang=${#locale.language})}" th:text="#{navlinklogout}"></a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0" th:action="@{/findemployee}">
+            <input class="form-control mr-sm-2" type="search" name = "keyword" th:placeholder="#{searchform}">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" th:text="#{searchfbutton}"></button>
+          </form>
+        </div>
+    </nav>
+      <br>
+    <!-- Body -->
+    <div class="container light-style flex-grow-1 container-p-y">
+      <h2 class="py-3 mb-4" th:text="#{accountinfo}">
+      </h2>
+      <div class="card overflow-hidden"> 
+        <div class="row no-gutters row-bordered row-border-light">
+          <div class="col-md-3 pt-0">
+            <div class="list-group list-group-flush account-settings-links">
+              <a class="list-group-item list-group-item-action active" data-toggle="list"
+                href="#account-general" th:text="#{accountgeneral}"></a>
+              <a class="list-group-item list-group-item-action" data-toggle="list"
+                href="#account-details" th:text="#{accountdetails}"></a>
+              <a class="list-group-item list-group-item-action" data-toggle="list"
+                href="#account-salary" th:text="#{accountsalary}"></a>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="tab-content">
+
+              <div class="tab-pane fade active show" id="account-general" th:object="${employee}">
+                <div class="card-body media align-items-center">
+                  <img th:if="${employee.anh != null}" th:src="${'data:image/jpeg;base64,' + employee.anh}" height="100" width="100"
+                    class="d-block ui-w-80">
+                  <img th:if="${employee.anh == null}" src="https://bootdey.com/img/Content/avatar/avatar1.png" height="100" width="100"
+                    class="d-block ui-w-80">
+                </div>
+                <hr class="border-light m-0">
+                <div class="card-body"> 
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{tblid}"></label>                     
+                    <output class="form-control mb-1" name="idnv" th:text="${employee.idnv}"></output>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{employeename}"></label>
+                    <output class="form-control mb-1" name="hoten" th:text="${employee.hoten}"></output>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{employeeemail}"></label>
+                    <output class="form-control mb-1" name="email" th:text="${employee.email}"></output>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{employeeposition}"></label>
+                    <output class="form-control mb-1" name="chucvu" th:text="${employee.chucvu}"></output>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{employeepb}"></label>
+                    <input type="text" class="form-control mb-1"
+                    name="idpb"
+                    th:field="*{idpb}"> 
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane face" id="account-details" th:object="${employee}">
+                <div class="card-body pb-2">
+                  
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{employeeadd}"></label>
+                    <output class="form-control mb-1" name="quequan" th:text="${employee.quequan}"></output>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{employeedate}"></label>
+                    <output class="form-control mb-1" name="ngaysinh" th:text="${employee.ngaysinh}"></output>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{employeesex}"></label>
+                    <output class="form-control mb-1" name="gt" th:text="${employee.gt}"></output>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{employeedt}"></label>
+                    <output class="form-control mb-1" name="dantoc" th:text="${employee.dantoc}"></output>
+                  </div>
+                </div>
+                <hr class="border-light m-0">
+                <div class="card-body pb-2"> 
+                  <h6 class="mb-4" th:text="#{contact}"></h6>
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{employeesdt}"></label>
+                    <output class="form-control mb-1" name="sdt" th:text="${employee.sdt}"></output>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{employeeemail}"></label>
+                    <output class="form-control mb-1" name="email" th:text="${employee.email}"></output>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane face" id="account-salary">
+                <div class="card-body pb-2">
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{salaryid}"></label>
+                    <output class="form-control mb-1" name="idluong" th:text="${employee.idluong.idluong}"></output>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{basicsalary}"></label>
+                    <output class="form-control mb-1" name="current">1350000</output>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{tblhsl}"></label>
+                    <output class="form-control mb-1" name="hsl" th:text="${employee.idluong.hsl}"></output>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{employeepc}"></label>
+                    <output class="form-control mb-1" th:text="${'₫' + #numbers.formatDecimal(employee.idluong.phucap, 1, 'COMMA', 2, 'POINT')}"></output>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{employeebh}"></label>
+                    <output class="form-control mb-1" th:text="${'₫' + #numbers.formatDecimal(employee.idluong.baohiem, 1, 'COMMA', 2, 'POINT')}"></output>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{employeetruluong}"></label>
+                    <output class="form-control mb-1" th:text="${'₫' + #numbers.formatDecimal(employee.idluong.truluong, 1, 'COMMA', 2, 'POINT')}"></output>
+                  </div>
+                  <div th:if="${employee.idluong.tienno != 0}">
+                    <div class="form-group">
+                        <label class="form-label" th:text="#{debt}"></label>
+                        <output class="form-control mb-1" th:text="${'₫' + #numbers.formatDecimal(employee.idluong.tienno, 1, 'COMMA', 2, 'POINT')}"></output>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-lable" th:text="#{tbltl}"></label>
+                    <output class="form-control mb-1" th:text="${'₫' + #numbers.formatDecimal(employee.idluong.tongluong, 1, 'COMMA', 2, 'POINT')}"></output>
+                  </div>
+                </div>
+            </div>
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+      <div class="text-right mt-3">
+        <a th:href="@{/employee/home}" class="btn btn-danger" th:text="#{returnbtn}">
+        </a>
+      </div>
+      </div>
+      <br>
+      <br>
+      
+      <footer class="bg-light text-center text-lg-start">
+        <div class="footer-content text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          <div class="footer-left"> 
+            <b>Copyright©2024 Dương Thành Đạt.</b> All rights reserved.
+          </div>
+          <div class="footer-right">
+            <b>Version</b> 1.0.0
+          </div>
+        </div>
+      </footer> 
+
+      <!-- <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script type="text/javascript"></script> -->
+      <script>
+        function formatVND(n, currency) {
+          return currency + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+          var currentElements = document.getElementsByName('current');
+          for (var i = 0; i < currentElements.length; i++) {
+            var currentValue = parseInt(currentElements[i].textContent);
+            currentElements[i].textContent = formatVND(currentValue, '₫');
+          }
+        });
+      </script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+      crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+      crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+      crossorigin="anonymous"></script>
+</body>
+</html>

@@ -23,12 +23,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.practiceproject.EmployeeManagementSystem.entity.AuditLog;
+import com.practiceproject.EmployeeManagementSystem.entity.Employee;
 import com.practiceproject.EmployeeManagementSystem.entity.Account;
 import com.practiceproject.EmployeeManagementSystem.entity.User;
 import com.practiceproject.EmployeeManagementSystem.repository.UserRepository;
 import com.practiceproject.EmployeeManagementSystem.service.AccountService;
 import com.practiceproject.EmployeeManagementSystem.service.AuditLogService;
 import com.practiceproject.EmployeeManagementSystem.service.CustomerNotFoundException;
+import com.practiceproject.EmployeeManagementSystem.service.EmployeeService;
 import com.practiceproject.EmployeeManagementSystem.service.LoginAccountService;
 import com.practiceproject.EmployeeManagementSystem.service.Utility;
 
@@ -41,6 +43,8 @@ public class AppController {
     UserRepository repository;
     @Autowired
     AccountService service;
+    @Autowired
+    EmployeeService eService;
     @Autowired
     LoginAccountService lService;
     @Autowired
@@ -110,7 +114,17 @@ public class AppController {
 
     @GetMapping("/employee/home")
     public String employePage(Model model){
+        String emailAcc = Utility.getCurrentAccount();
+        Account acc = lService.getAccountByEmail(emailAcc);
+        model.addAttribute("account", acc);
         return "employeehomepage";
+    }
+
+    @GetMapping("/employee/employeeprofile/{id}")
+    public String profileEmployee(@PathVariable(value = "id") long id, Model model){
+        Employee employee = eService.getEmployeebyID(id);
+        model.addAttribute("employee", employee);
+        return "employeeprofile";
     }
 
     @GetMapping("/accounts")

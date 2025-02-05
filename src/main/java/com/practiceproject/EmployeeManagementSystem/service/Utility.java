@@ -21,4 +21,13 @@ public class Utility {
         }
         return null;
     }
+
+    public static String getCurrentAccount(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication!=null && authentication.getPrincipal() instanceof CustomUserDetail){
+            CustomUserDetail userDetail = (CustomUserDetail) authentication.getPrincipal();
+            return userDetail.getUsername();
+        }
+        return null;
+    }
 }
