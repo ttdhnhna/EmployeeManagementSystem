@@ -35,7 +35,7 @@
               <a class="nav-link" th:href="@{/employee/employeeprofile/{id}(id=${employee.idnv})}">Thông tin chi tiết</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Điểm danh</a>
+                <a class="nav-link" th:href="@{/attendant}">Điểm danh</a>
             </li> 
             <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{navlinkdropdown}"></a>
@@ -51,13 +51,13 @@
                 <a class="dropdown-item" th:href="@{|/employee/employeeprofile/${employee.idnv}?lang=vi|}" th:text="#{languagevn}"></a> 
               </ul>
             </li>
-            <!-- <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
               <a class="nav-link" href="#" id="notificationBell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-bell"></i>
                 <span class="badge badge-danger" id="notificationCount" th:if="${unreadCount > 0}" th:text="${unreadCount}"></span>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">       
-                <li th:each = "log : ${ListLogs}">
+                <!--<li th:each = "log : ${ListLogs}">
                   <a class="dropdown-item" th:href="@{/detaillog/{id}(id=${log.idlog})}">
                       <span th:if="${log.act.name() == 'LOGIN'}" th:text="#{notificationlogin}"></span>
                       <span th:if="${log.act.name() == 'LOGOUT'}" th:text="#{notificationlogout}"></span>
@@ -87,10 +87,10 @@
                 </li>
                 <hr>
                 <li>
-                  <a class="dropdown-item view-all" th:href="@{/auditlogs}" th:text="#{notificationviewall}"></a>
-                </li>
+                  <a class="dropdown-item view-all" th:href="@{/auditlogs}" th:text="#{notificationviewall}"
+                  </a> -->
               </ul>
-            </li> -->
+            </li> 
             <li sec:authorize="isAuthenticated()" class="nav-item">
               <a class="nav-link" th:href="@{/logout(lang=${#locale.language})}" th:text="#{navlinklogout}"></a>
             </li>

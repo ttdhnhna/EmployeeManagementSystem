@@ -127,6 +127,14 @@ public class AppController {
         return "employeeprofile";
     }
 
+    @GetMapping("/attendant")
+    public String attendanceFunc(Model model){
+        String emailAcc = Utility.getCurrentAccount();
+        Account acc = lService.getAccountByEmail(emailAcc);
+        model.addAttribute("account", acc);
+        return "attendant";
+    }
+
     @GetMapping("/accounts")
     public String showAccountPage(Model model){
         Long iduser = Utility.getCurrentUserId();
